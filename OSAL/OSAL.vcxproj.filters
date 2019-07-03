@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Simulation">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{554ffbab-ad38-4ee8-abd1-3e9c213eba58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Inc">
+      <UniqueIdentifier>{40e94d8e-c98e-4c82-8161-ac0fdaf8a2fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Src">
+      <UniqueIdentifier>{8dc32251-d21e-4d23-9911-500472d1910b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="App">
+      <UniqueIdentifier>{a7c654df-4702-49aa-a98a-585f61a651bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Doc">
+      <UniqueIdentifier>{7ba3d053-b47c-4352-9001-9d6e26f85be6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Core\Src\OSAL.c">
+      <Filter>Core\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Src\OSAL_Cbtimer.c">
+      <Filter>Core\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Src\OSAL_Clock.c">
+      <Filter>Core\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Src\OSAL_Memory.c">
+      <Filter>Core\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Src\OSAL_Timers.c">
+      <Filter>Core\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Src\OSAL_Nv.c">
+      <Filter>Core\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Src\OSAL_Printf.c">
+      <Filter>Core\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Src\OSAL_PwrMgr.c">
+      <Filter>Core\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\App\GenericApp.c">
+      <Filter>App</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\App\OSAL_GenericApp.c">
+      <Filter>App</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Src\OSAL_Bufmgr.c">
+      <Filter>Core\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Src\OSAL_List.c">
+      <Filter>Core\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Src\OSAL_Queue.c">
+      <Filter>Core\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Src\OSAL_Ring.c">
+      <Filter>Core\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Simulation\osport.c">
+      <Filter>Simulation</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Simulation\simcount.c">
+      <Filter>Simulation</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Simulation\main.c">
+      <Filter>Simulation</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Core\Inc\OSAL.h">
+      <Filter>Core\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Inc\OSAL_Cbtimer.h">
+      <Filter>Core\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Inc\OSAL_Clock.h">
+      <Filter>Core\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Inc\OSAL_Comdef.h">
+      <Filter>Core\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Inc\OSAL_Memory.h">
+      <Filter>Core\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Inc\OSAL_Tasks.h">
+      <Filter>Core\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Inc\OSAL_Timers.h">
+      <Filter>Core\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Inc\OSAL_Nv.h">
+      <Filter>Core\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Inc\OSAL_Debug.h">
+      <Filter>Core\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Inc\OSAL_Printf.h">
+      <Filter>Core\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Inc\OSAL_PwrMgr.h">
+      <Filter>Core\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\App\GenericApp.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Inc\OSAL_Bufmgr.h">
+      <Filter>Core\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Inc\OSAL_List.h">
+      <Filter>Core\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Inc\OSAL_Queue.h">
+      <Filter>Core\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Inc\OSAL_Ring.h">
+      <Filter>Core\Inc</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Filter>Doc</Filter>
+    </None>
+  </ItemGroup>
+</Project>
