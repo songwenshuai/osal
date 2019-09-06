@@ -51,12 +51,8 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
-OSAL/Debug/
+Debug/
 .vs/
 .vscode/
-OSAL/OSAL.vcxproj.user
 OSAL.sln
-Makefile.win
-OSAL.layout
-OSAL_private.h
-OSAL_private.rc
+OSAL.vcxproj.user
