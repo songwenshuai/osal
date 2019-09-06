@@ -134,6 +134,7 @@
   <ItemGroup>
     <ClCompile Include="Source\App\GenericApp.c" />
     <ClCompile Include="Source\App\OSAL_GenericApp.c" />
+    <ClCompile Include="Source\App\OSAL_Main.c" />
     <ClCompile Include="Source\Core\Src\OSAL.c" />
     <ClCompile Include="Source\Core\Src\OSAL_Bufmgr.c" />
     <ClCompile Include="Source\Core\Src\OSAL_Cbtimer.c" />
@@ -141,14 +142,12 @@
     <ClCompile Include="Source\Core\Src\OSAL_List.c" />
     <ClCompile Include="Source\Core\Src\OSAL_Memory.c" />
     <ClCompile Include="Source\Core\Src\OSAL_Nv.c" />
+    <ClCompile Include="Source\Core\Src\OSAL_Port.c" />
     <ClCompile Include="Source\Core\Src\OSAL_Printf.c" />
     <ClCompile Include="Source\Core\Src\OSAL_PwrMgr.c" />
     <ClCompile Include="Source\Core\Src\OSAL_Queue.c" />
     <ClCompile Include="Source\Core\Src\OSAL_Ring.c" />
     <ClCompile Include="Source\Core\Src\OSAL_Timers.c" />
-    <ClCompile Include="Source\Simulation\main.c" />
-    <ClCompile Include="Source\Simulation\osport.c" />
-    <ClCompile Include="Source\Simulation\simcount.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App\GenericApp.h" />

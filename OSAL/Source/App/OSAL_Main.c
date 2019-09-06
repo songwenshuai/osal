@@ -1,7 +1,7 @@
 /**************************************************************************************************
-  Filename:       simcount.c
-  Revised:        $Date: 2014-11-04 15:36:27 -0800 (Tue, 04 Nov 2014) $
-  Revision:       $Revision: 40989 $
+  Filename:       main.c
+  Revised:        $Date:  $
+  Revision:       $Revision:  $
 
   Description:
 **************************************************************************************************/
@@ -10,12 +10,11 @@
  * INCLUDES
  */
 #include <windows.h>
-
 #include "OSAL.h"
 
- /*********************************************************************
-  * GLOBAL VARIABLES
-  */
+/*********************************************************************
+ * GLOBAL VARIABLES
+ */
 
 LARGE_INTEGER count_start;
 LARGE_INTEGER count_freq;
@@ -93,4 +92,28 @@ uint32 get_microsecond(void)
 
     // get time
     return (uint32)((count_end.QuadPart - count_start.QuadPart) / (count_freq.QuadPart / 1000000.0));
+}
+
+/**
+ * @brief main
+ **/
+
+int main(int argc, char **argv)
+{
+    // Turn off interrupts
+    osal_int_disable(INTS_ALL);
+
+    // Initialize the operating system
+    osal_init_system();
+
+    // Allow interrupts
+    osal_int_enable(INTS_ALL);
+
+    // Tick Init
+    SysTickSetup();
+
+    // No Return from here
+    osal_start_system();
+
+    return 0;
 }
