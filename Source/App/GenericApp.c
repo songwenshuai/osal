@@ -25,9 +25,13 @@
 uint8 App_TaskID;
 
 /*********************************************************************
+ * LOCAL VARIABLES
+ */
+
+/*********************************************************************
  * FUNCTIONS
  *********************************************************************/
-static void App_ProcessOSALMsg( osal_event_hdr_t *pInMsg );
+static void App_ProcessOSALMsg( DebugStr_t *pInMsg );
 static void Periodic_Event(void);
 static void App_TimerCB(uint8* pData);
 
@@ -50,6 +54,9 @@ void App_Init(uint8 task_id)
 
     // Setup a delayed profile startup
     osal_set_event(App_TaskID, SBP_START_DEVICE_EVT);
+
+    // Setup Cb Timer
+    osal_CbTimerStartReload(App_TimerCB, (uint8*)"test", 5000, NULL);
 }
 
 /*********************************************************************
@@ -72,7 +79,7 @@ uint16 App_ProcessEvent(uint8 task_id, uint16 events)
 
         if ( (pMsg = osal_msg_receive( App_TaskID )) != NULL )
         {
-            App_ProcessOSALMsg( (osal_event_hdr_t *)pMsg );
+            App_ProcessOSALMsg( (DebugStr_t *)pMsg );
 
             // Release the memory
             VOID osal_msg_deallocate( pMsg );
@@ -102,6 +109,50 @@ uint16 App_ProcessEvent(uint8 task_id, uint16 events)
     // Discard unknown events
     return 0;
 }
+/*********************************************************************
+ * @fn      msg_send_str
+ *
+ * @brief
+ *
+ *   This feature allows modules to display a debug text string as
+ *   applications execute in real-time. This feature will output to
+ *   the serial port for display in the Z-Test tool.
+ *
+ *   This feature will most likely be compiled out in the production
+ *   code in order to save code space.
+ *
+ * @param   _byte *str_ptr - pointer to null-terminated string
+ *
+ * @return  void
+ */
+static void msg_send_str( _byte *str_ptr )
+{
+  DebugStr_t *msg;
+  _byte mln;
+  _byte strLen;
+
+  // Text string length
+  strLen = (_byte)osal_strlen( (void*)str_ptr );
+
+  // Debug string message length
+  mln = sizeof ( DebugStr_t ) + strLen;
+
+  // Get a message buffer to build the debug message
+  msg = (DebugStr_t *)osal_msg_allocate( mln + 1 );
+  msg = osal_memset(msg, 0, mln + 1);
+  if ( msg )
+  {
+    // Message type, length
+    msg->hdr.event = APP_MESSAGE;
+    msg->strLen = strLen;
+
+    // Append message, has terminator
+    msg->pString = (uint8 *)( msg + 1 );
+    osal_memcpy ( msg->pString, str_ptr, strLen );
+
+    osal_msg_send( App_TaskID, (uint8 *)msg );
+  }
+} // msg_send_str()
 
 /*********************************************************************
  * @fn          Periodic_Event
@@ -121,14 +172,6 @@ static void Periodic_Event(void)
     deviation = ((new_time - oldtime) - SBP_PERIODIC_EVT_DELAY);
     oldtime = new_time;
     printf("deviation = %d\r\n", deviation);
-//------------------------------- cbtimer test ------------------------------------
-    static int32 cbtimerf = 0;
-    if (cbtimerf == 0)
-    {
-        // Setup Cb Timer
-        osal_CbTimerStartReload(App_TimerCB, (uint8*)"test", 5000, NULL);
-        cbtimerf = 1;
-    }
 //------------------------------- nv test --------------------------------------
     static uint32 flag = 0;
     static char nvDataWrite[13] = {0};
@@ -141,17 +184,7 @@ static void Periodic_Event(void)
     osal_nv_read( NV_APPID, 0, osal_nv_item_len(NV_APPID), nvDataRead);
     printf("reads_%s", nvDataRead);
 //------------------------------- message test ------------------------------------
-    osal_event_hdr_t *msgPtr;
-
-    // Send the address to the task
-    msgPtr = (osal_event_hdr_t *)osal_msg_allocate(sizeof(osal_event_hdr_t));
-    if (msgPtr)
-    {
-        msgPtr->event = APP_MESSAGE;
-        msgPtr->status = (uint8)get_second();
-
-        osal_msg_send(App_TaskID, (uint8 *)msgPtr);
-    }
+    msg_send_str("message");
 //------------------------------- ltoa test ------------------------------------
     uint8 ltoa_str[11] = { 0 };
     uint32 ltoa_num = 2147483648;
@@ -191,15 +224,15 @@ static void App_TimerCB(uint8* pData)
  *
  * @return  none
  */
-static void App_ProcessOSALMsg(osal_event_hdr_t *pInMsg)
+static void App_ProcessOSALMsg(DebugStr_t *pInMsg)
 {
     static uint32 rcv;
 
-    switch (pInMsg->event)
+    switch (pInMsg->hdr.event)
     {
     case APP_MESSAGE:
         printf("messages  = %04d\r\n", ++rcv);
-        printf("status    = %04d\r\n", pInMsg->status);
+        printf("rcv       = %s\r\n", pInMsg->pString);
         printf("\r\n");
         break;
     default:

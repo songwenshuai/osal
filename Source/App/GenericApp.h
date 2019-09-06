@@ -36,6 +36,16 @@ extern "C"
 #define NV_APPID              0x100
 
 /*********************************************************************
+ * TYPEDEF
+ */
+typedef struct
+{
+  osal_event_hdr_t  hdr;
+  uint8             strLen;
+  uint8             *pString;
+} DebugStr_t;
+
+/*********************************************************************
  * FUNCTIONS
  */
 void         App_Init( uint8 task_id );

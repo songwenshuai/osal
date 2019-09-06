@@ -120,9 +120,9 @@ typedef unsigned short int  uint16;
 typedef unsigned long int   uint32;
 typedef unsigned long long  uint64; 
 
+typedef uint8               _byte;
 typedef unsigned long       _dword;
 typedef int                 _bool;
-typedef unsigned char       _byte;
 typedef unsigned short      _word;
 
 // Data types
