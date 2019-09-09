@@ -149,7 +149,7 @@ static void msg_send_str( _byte *str_ptr )
 
     // Append message, has terminator
     msg->pString = (uint8 *)( msg + 1 );
-    osal_memcpy ( msg->pString, str_ptr, strLen );
+    _memcpy ( msg->pString, str_ptr, strLen );
 
     osal_msg_send( App_TaskID, (uint8 *)msg );
   }

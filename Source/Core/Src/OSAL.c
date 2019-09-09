@@ -481,16 +481,111 @@ int osal_strlen( char *pString )
  */
 void *osal_memcpy( void *dst, const void GENERIC *src, unsigned int len )
 {
-  uint8 *pDst;
-  const uint8 GENERIC *pSrc;
+  char * pd;
+  char * ps;
+  pd = (char*)dst;
+  ps = (char*)src;
 
-  pSrc = src;
-  pDst = dst;
+  if (len == 0 || pd == ps)
+  {
+      { /* nothing to do */
+          goto done;
+      }
+  }
 
-  while ( len-- )
-    *pDst++ = *pSrc++;
+  //
+  // Copy bytes until Source is word aligned
+  //
+  do {
+    if (len == 0) {
+      goto done;
+    }
+    if (((int)ps & 3) == 0) {
+      break;
+    }
+    *(char*)pd++ = *(char*)ps++;
+    len--;
+  } while (1);
+  //
+  // Copy words if possible (destination is also word aligned)
+  //
+  if (((int)pd & 3) == 0) {
+    unsigned NumWords = len >> 2;
+    while (NumWords >= 4) {
+      *(uint32*)pd = *(uint32*)ps;
+      pd += 4;
+      ps += 4;
+      *(uint32*)pd = *(uint32*)ps;
+      pd += 4;
+      ps += 4;
+      *(uint32*)pd = *(uint32*)ps;
+      pd += 4;
+      ps += 4;
+      *(uint32*)pd = *(uint32*)ps;
+      pd += 4;
+      ps += 4;
+      NumWords -= 4;
+    }
+    if (NumWords) {
+      do {
+        *(uint32*)pd = *(uint32*)ps;
+        pd += 4;
+        ps += 4;
+      } while (--NumWords);
+    }
+    len &= 3;
+  }
+  //
+  // Copy half-words if possible (destination is also half-word aligned)
+  //
+  if (((int)pd & 1) == 0) {
+    unsigned NumItems = len >> 1;
+    while (NumItems >= 4) {
+      *(uint16*)pd = *(uint16*)ps;
+      pd += 2;
+      ps += 2;
+      *(uint16*)pd = *(uint16*)ps;
+      pd += 2;
+      ps += 2;
+      *(uint16*)pd = *(uint16*)ps;
+      pd += 2;
+      ps += 2;
+      *(uint16*)pd = *(uint16*)ps;
+      pd += 2;
+      ps += 2;
+      NumItems -= 4;
+    }
+    if (NumItems) {
+      do {
+      *(uint16*)pd = *(uint16*)ps;
+      pd += 2;
+      ps += 2;
+      } while (--NumItems);
+    }
+    len &= 1;
+  }
 
-  return ( pDst );
+  //
+  // Copy bytes, bulk
+  //
+  while (len >= 4) {
+    *(char*)pd++ = *(char*)ps++;
+    *(char*)pd++ = *(char*)ps++;
+    *(char*)pd++ = *(char*)ps++;
+    *(char*)pd++ = *(char*)ps++;
+    len -= 4;
+  };
+  //
+  // Copy bytes, one at a time
+  //
+  if (len) {
+    do {
+      *(char*)pd++ = *(char*)ps++;
+    } while (--len);
+  };
+
+done:
+  return ( pd );
 }
 
 /*********************************************************************
@@ -544,7 +639,7 @@ void *osal_memdup( const void GENERIC *src, unsigned int len )
   pDst = osal_mem_alloc( len );
   if ( pDst )
   {
-    VOID osal_memcpy( pDst, src, len );
+    _memcpy( pDst, src, len );
   }
 
   return ( (void *)pDst );
