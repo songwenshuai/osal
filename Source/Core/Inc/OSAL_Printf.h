@@ -32,14 +32,19 @@
 #ifndef _OSAL_PRINTF_H_
 #define _OSAL_PRINTF_H_
 
-#include <stdarg.h>
-#include <stddef.h>
-
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
+typedef char* va_list;
+
+#define _ADDRESSOF(v) (&(v))
+#define _INTSIZEOF(n)          ((sizeof(n) + sizeof(int) - 1) & ~(sizeof(int) - 1))
+
+#define _va_start(ap, v)       ((void)(ap = (va_list)_ADDRESSOF(v) + _INTSIZEOF(v)))
+#define _va_arg(ap, t)         (*(t*)((ap += _INTSIZEOF(t)) - _INTSIZEOF(t)))
+#define _va_end(ap)            ((void)(ap = (va_list)0))
 
 /**
  * Output a character to a custom device like UART, used by the printf() function

@@ -201,6 +201,130 @@ char* osal_strcpy(char* dst, const char* src)
 }
 
 /*********************************************************************
+ * @fn      osal_strnlen
+ *
+ * @brief
+ *
+ *
+ * @param   char* dst
+ *
+ * @param   const char* src
+ *
+ * 
+ * @return  char*
+ */
+size_t osal_strnlen(const char* str, size_t maxlen)
+{
+	const char* cp;
+
+	for(cp = str; maxlen != 0 && *cp != '\0'; cp++, maxlen--)
+	{
+		{
+			;
+		}
+	}
+
+	return (size_t)(cp - str);
+}
+
+/*********************************************************************
+ * @fn      osal_strncpy
+ *
+ * @brief
+ *
+ *
+ * @param   char* dst
+ *
+ * @param   const char* src
+ *
+ * 
+ * @return  char*
+ */
+char* osal_strncpy(char* dst, const char* src, size_t maxlen)
+{
+	const size_t srclen = osal_strnlen(src, maxlen);
+	if(srclen < maxlen)
+	{
+		//  The stpncpy() and strncpy() functions copy at most maxlen
+		//  characters from src into dst.
+		osal_memcpy(dst, src, srclen);
+		//  If src is less than maxlen characters long, the remainder
+		//  of dst is filled with '\0' characters.
+		osal_memset(dst + srclen, 0, maxlen - srclen);
+	}
+	else
+	{
+		//  Otherwise, dst is not terminated.
+		osal_memcpy(dst, src, maxlen);
+	}
+	//  The strcpy() and strncpy() functions return dst.
+	return dst;
+}
+
+/*****************************************************************************
+  Function:
+    char* strncpy_m(char* destStr, size_t destSize, int nStrings, ...)
+
+  Summary:
+    Copies multiple strings to a destination
+
+  Description:
+    Copies multiple strings to a destination
+    but doesn't copy more than destSize characters.
+    Useful where the destination is actually an array and an extra \0
+    won't be appended to overflow the buffer
+    
+  Precondition:
+    - valid string pointers
+    - destSize should be > 0
+
+  Parameters:
+    destStr - Pointer to a string to be initialized with the multiple strings provided as arguments.
+
+    destSize    - the maximum size of the destStr field, that cannot be exceeded.
+                  An \0 won't be appended if the resulting size is > destSize
+
+    nStrings    - number of string parameters to be copied into destStr
+
+    ...         - variable number of arguments
+    
+    
+  Returns:
+    Length of the destination string, terminating \0 (if exists) not included
+  */
+size_t osal_strncpy_m(char *destStr, size_t destSize, int nStrings, ...)
+{
+    va_list args = {0};
+    const char *str;
+    char *end;
+    size_t len;
+
+    destStr[0] = '\0';
+    end = destStr + destSize - 1;
+    *end = '\0';
+    len = 0;
+
+    _va_start(args, nStrings);
+
+    while (nStrings--)
+    {
+        if (*end)
+        { // if already full don't calculate strlen outside the string area
+            len = destSize;
+            break;
+        }
+
+        str = _va_arg(args, const char *);
+        osal_strncpy(destStr + len, str, destSize - len);
+        len += osal_strlen(str);
+    }
+
+    _va_end(args);
+
+    return len;
+}
+
+/*********************************************************************
  * @fn      osal_strlen
  *
  * @brief

@@ -118,6 +118,14 @@ typedef unsigned long int   uint24;
 typedef unsigned long int   uint32;
 typedef unsigned long long  uint64;
 
+typedef unsigned int        size_t;
+
+typedef long long           intmax_t;
+typedef unsigned long long  uintmax_t;
+
+typedef unsigned int        uintptr_t;
+typedef int                 ptrdiff_t;
+
 typedef unsigned char       _byte;
 typedef unsigned short      _word;
 typedef unsigned long       _dword;

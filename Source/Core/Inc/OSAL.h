@@ -233,6 +233,21 @@ typedef void * osal_msg_q_t;
   extern char* osal_strcpy(char* dst, const char* src);
 
   /*
+   * Convert an interger to an ascii string
+   */
+  extern size_t osal_strnlen(const char* str, size_t maxlen);
+
+  /*
+   * Convert an interger to an ascii string
+   */
+  extern size_t osal_strncpy_m(char *destStr, size_t destSize, int nStrings, ...);
+
+  /*
+   * Convert an interger to an ascii string
+   */
+  extern char* osal_strncpy(char* dst, const char* src, size_t maxlen);
+
+  /*
    * String Length
    */
   extern int osal_strlen( const char* pString );
