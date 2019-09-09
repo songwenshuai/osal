@@ -139,6 +139,7 @@ static void msg_send_str( _byte *str_ptr )
 
   // Get a message buffer to build the debug message
   msg = (DebugStr_t *)osal_msg_allocate( mln + 1 );
+  // add terminator
   msg = osal_memset(msg, 0, mln + 1);
   if ( msg )
   {

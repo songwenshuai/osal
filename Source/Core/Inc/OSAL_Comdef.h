@@ -106,35 +106,34 @@ extern "C"
  * TYPEDEFS
  */
 
-#ifdef _WIN32
-#define bool                _Bool
-#endif
-
-typedef signed   char       int8;
-typedef signed   short int  int16;
-typedef signed   long int   int32;
-typedef signed   long long  int64;
+typedef signed char         int8;
+typedef signed short int    int16;
+typedef signed long int     int24;
+typedef signed long int     int32;
+typedef signed long long    int64;
 
 typedef unsigned char       uint8;
 typedef unsigned short int  uint16;
+typedef unsigned long int   uint24;
 typedef unsigned long int   uint32;
-typedef unsigned long long  uint64; 
+typedef unsigned long long  uint64;
 
-typedef uint8               _byte;
-typedef unsigned long       _dword;
-typedef int                 _bool;
+typedef unsigned char       _byte;
 typedef unsigned short      _word;
+typedef unsigned long       _dword;
 
-// Data types
-typedef int32               int24;
-typedef uint32              uint24;
-
-typedef uint32              halDataAlign_t;
+#ifdef _WIN32
+#define bool                _Bool
+#else
+typedef int                 bool;
+#endif
 
 typedef bool                halIntState_t;
 
+typedef uint32              halDataAlign_t;
+
 // Generic Status return
-typedef uint8               Status_t;
+typedef unsigned char       Status_t;
  
 /* ------------------------------------------------------------------------------------------------
  *                            uint8_val, uint8_bits, byte_val, byte_bits
