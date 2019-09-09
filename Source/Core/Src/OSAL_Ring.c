@@ -40,8 +40,8 @@
 /* --- Buffer unique part ends --- */
 
 /* Memory set and copy functions */
-#define BUF_MEMSET                      _memset
-#define BUF_MEMCPY                      _memcpy
+#define BUF_MEMSET                      osal_memset
+#define BUF_MEMCPY                      osal_memcpy
 #define BUF_IS_VALID(b)                 ((b) != NULL && (b)->buff != NULL && (b)->size > 0)
 #define BUF_MIN(x, y)                   ((x) < (y) ? (x) : (y))
 #define BUF_MAX(x, y)                   ((x) > (y) ? (x) : (y))

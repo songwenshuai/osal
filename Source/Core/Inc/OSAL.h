@@ -221,36 +221,21 @@ typedef void * osal_msg_q_t;
    * Convert an interger to an ascii string
    */
   extern int32 rand_range(int32 min, int32 max);
-  
-  /*
-   * Convert an interger to an ascii string
-   */
-  extern void* _memset(void* dest, int c, size_t n);
 
   /*
    * Convert an interger to an ascii string
    */
-  extern void* _memcpy(void* dst0, const void* src0, size_t length);
+  extern char* osal_strcat(char* dst, const char* src);
 
   /*
    * Convert an interger to an ascii string
    */
-  extern char* _strcat(char* __restrict dst, const char* __restrict src);
+  extern char* osal_strcpy(char* dst, const char* src);
 
-  /*
-   * Convert an interger to an ascii string
-   */
-  extern char* _strcpy(char* __restrict dst, const char* __restrict src);
-
-  /*
-   * Convert an interger to an ascii string
-   */
-  extern size_t _strlen(const char* str);
-  
   /*
    * String Length
    */
-  extern int osal_strlen( char *pString );
+  extern int osal_strlen( const char* pString );
 
   /*
    * Memory copy

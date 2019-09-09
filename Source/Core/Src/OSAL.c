@@ -66,64 +66,6 @@ static uint8 osal_msg_enqueue_push( uint8 destination_task, uint8 *msg_ptr, uint
  * HELPER FUNCTIONS
  */
 
-/*********************************************************************
- * @fn      _strlen
- *
- * @brief   
- * 
- * @param   const char* str
- *
- * @return  size_t 
- */
-size_t _strlen(const char* str)
-{
-    const char* p;
-    const unsigned long* lp;
-
-    /* Magic numbers for the algorithm */
-    static const unsigned long mask01 = 0x01010101;
-    static const unsigned long mask80 = 0x80808080;
-
-#define LONGPTR_MASK (sizeof(long) - 1)
-
-    /* Skip the first few bytes until we have an aligned p */
-    for (p = str; (uintptr_t)p & LONGPTR_MASK; p++)
-    {
-        if (*p == '\0')
-        {
-            return ((uintptr_t)p - (uintptr_t)str);
-        }
-    }
-
-    /*
-     * Helper macro to return string length if we caught the zero
-     * byte.
-     */
-#define testbyte(x)                               \
-  do                                              \
-  {                                               \
-    if(p[x] == '\0')                              \
-      return ((uintptr_t)p - (uintptr_t)str + x); \
-  } while(0)
-
-    /* Scan the rest of the string using word sized operation */
-    // Cast to void to prevent alignment warning
-    for (lp = (const unsigned long*)(const void*)p;; lp++)
-    {
-        if ((*lp - mask01) & mask80)
-        {
-            p = (const char*)(lp);
-            testbyte(0);
-            testbyte(1);
-            testbyte(2);
-            testbyte(3);
-        }
-    }
-
-    /* NOTREACHED */
-    // return (0);
-}
-
 static uint32 prngState = 0;
 
 /*********************************************************************
@@ -210,238 +152,51 @@ int32 rand_range(int32 min, int32 max)
 }
 
 /*********************************************************************
- * @fn      _memset
+ * @fn      osal_strcat
  *
  * @brief
  *
  *
- * @param   void* dest
+ * @param   char* dst
  *
- * @param   int c
- *
- * @param   size_t n
- * 
- * @return  void* 
- */
-void* _memset(void* dest, int c, size_t n)
-{
-    unsigned char* s = dest;
-    size_t k;
-
-    /* Fill head and tail with minimal branching. Each
-     * conditional ensures that all the subsequently used
-     * offsets are well-defined and in the dest region. */
-
-    if (!n)
-    {
-        return dest;
-    }
-    s[0] = s[n - 1] = (unsigned char)c;
-    if (n <= 2)
-    {
-        return dest;
-    }
-    s[1] = s[n - 2] = (unsigned char)c;
-    s[2] = s[n - 3] = (unsigned char)c;
-    if (n <= 6)
-    {
-        return dest;
-    }
-    s[3] = s[n - 4] = (unsigned char)c;
-    if (n <= 8)
-    {
-        return dest;
-    }
-
-    /* Advance pointer to align it at a 4-byte boundary,
-     * and truncate n to a multiple of 4. The previous code
-     * already took care of any head/tail that get cut off
-     * by the alignment. */
-
-    k = (uintptr_t)s & 3;
-    s += k;
-    n -= k;
-    n &= (unsigned long)-4;
-    n /= 4;
-
-    // Cast to void first to prevent alignment warning
-    uint32* ws = (uint32*)(void*)s;
-    uint32 wc = c & 0xFF;
-    wc |= ((wc << 8) | (wc << 16) | (wc << 24));
-
-    /* Pure C fallback with no aliasing violations. */
-    for (; n; n--, ws++)
-    {
-        {
-            *ws = wc;
-        }
-    }
-
-    return dest;
-}
-
-/*********************************************************************
- * @fn      _memcpy
- *
- * @brief
- *
- *
- * @param   void* dst0
- *
- * @param   const void* src0
- *
- * @param   size_t length
- * 
- * @return  void* 
- */
-void* _memcpy(void* dst0, const void* src0, size_t length)
-{
-    char* dst = dst0;
-    const char* src = src0;
-    size_t t;
-
-    if (length == 0 || dst == src)
-    {
-        { /* nothing to do */
-            goto done;
-        }
-    }
-    /*
-     * sizeof(word) MUST BE A POWER OF TWO
-     * SO THAT wmask BELOW IS ALL ONES
-     */
-    typedef int word; /* "word" used for optimal copy speed */
-
-#define wsize sizeof(word)
-#define wmask (wsize - 1)
-
-    /*
-     * Macros: loop-t-times; and loop-t-times, t>0
-     */
-     // clang-format off
-#define	TLOOP(s) if (t) TLOOP1(s)
-#define	TLOOP1(s) do { s; } while (--t)
-    // clang-format on
-
-    if ((uintptr_t)dst < (uintptr_t)src)
-    {
-        /*
-         * Copy forward.
-         */
-        t = (uintptr_t)src; /* only need low bits */
-        if ((t | (uintptr_t)dst) & wmask)
-        {
-            /*
-             * Try to align operands.  This cannot be done
-             * unless the low bits match.
-             */
-            if ((t ^ (uintptr_t)dst) & wmask || length < wsize)
-            {
-                {
-                    t = length;
-                }
-            }
-            else
-            {
-                {
-                    t = wsize - (t & wmask);
-                }
-            }
-            length -= t;
-            TLOOP1(*dst++ = *src++);
-        }
-        /*
-         * Copy whole words, then mop up any trailing bytes.
-         */
-        t = length / wsize;
-        // Silence warning for alignment change by casting to void*
-        TLOOP(*(word*)(void*)dst = *(const word*)(const void*)src; src += wsize; dst += wsize);
-        t = length & wmask;
-        TLOOP(*dst++ = *src++);
-    }
-    else
-    {
-        /*
-         * Copy backwards.  Otherwise essentially the same.
-         * Alignment works as before, except that it takes
-         * (t&wmask) bytes to align, not wsize-(t&wmask).
-         */
-        src += length;
-        dst += length;
-        t = (uintptr_t)src;
-        if ((t | (uintptr_t)dst) & wmask)
-        {
-            if ((t ^ (uintptr_t)dst) & wmask || length <= wsize)
-            {
-                {
-                    t = length;
-                }
-            }
-            else
-            {
-                {
-                    t &= wmask;
-                }
-            }
-            length -= t;
-            TLOOP1(*--dst = *--src);
-        }
-        t = length / wsize;
-        // Silence warning for alignment change by casting to void*
-        TLOOP(src -= wsize; dst -= wsize; *(word*)(void*)dst = *(const word*)(const void*)src);
-        t = length & wmask;
-        TLOOP(*--dst = *--src);
-    }
-done:
-    return (dst0);
-}
-
-/*********************************************************************
- * @fn      _strcat
- *
- * @brief
- *
- *
- * @param   char* __restrict dst
- *
- * @param   const char* __restrict src
+ * @param   const char* src
  *
  * 
  * @return  char*
  */
-char* _strcat(char* __restrict dst, const char* __restrict src)
+char* osal_strcat(char* dst, const char* src)
 {
-    const size_t dstlen = _strlen(dst);
-    const size_t srclen = _strlen(src);
-    //  The _strcat() and strncat() functions append a copy of the null-
+    const size_t dstlen = osal_strlen(dst);
+    const size_t srclen = osal_strlen(src);
+    //  The osal_strcat() and strncat() functions append a copy of the null-
     //  terminated string src to the end of the null-terminated string dst,
     //  then add a terminating '\0'.  The string dst must have sufficient
     //  space to hold the result.
-    _memcpy(dst + dstlen, src, srclen + 1);
-    //  The _strcat() and strncat() functions return dst.
+    osal_memcpy(dst + dstlen, src, srclen + 1);
+    //  The osal_strcat() and strncat() functions return dst.
     return dst;
 }
 
 /*********************************************************************
- * @fn      _strcpy
+ * @fn      osal_strcpy
  *
  * @brief
  *
  *
- * @param   char* __restrict dst
+ * @param   char* dst
  *
- * @param   const char* __restrict src
+ * @param   const char* src
  *
  * 
  * @return  char*
  */
-char* _strcpy(char* __restrict dst, const char* __restrict src)
+char* osal_strcpy(char* dst, const char* src)
 {
-    const size_t length = _strlen(src);
-    //  The stpcpy() and _strcpy() functions copy the string src to dst
+    const size_t length = osal_strlen(src);
+    //  The stpcpy() and osal_strcpy() functions copy the string src to dst
     //  (including the terminating '\0' character).
-    _memcpy(dst, src, length + 1);
-    //  The _strcpy() and strncpy() functions return dst.
+    osal_memcpy(dst, src, length + 1);
+    //  The osal_strcpy() and strncpy() functions return dst.
     return dst;
 }
 
@@ -457,9 +212,53 @@ char* _strcpy(char* __restrict dst, const char* __restrict src)
  *
  * @return  int - number of characters
  */
-int osal_strlen( char *pString )
+int osal_strlen( const char* pString )
 {
-  return (int)( _strlen( pString ) );
+    const char* p;
+    const unsigned long* lp;
+
+    /* Magic numbers for the algorithm */
+    static const unsigned long mask01 = 0x01010101;
+    static const unsigned long mask80 = 0x80808080;
+
+#define LONGPTR_MASK (sizeof(long) - 1)
+
+    /* Skip the first few bytes until we have an aligned p */
+    for (p = pString; (uintptr_t)p & LONGPTR_MASK; p++)
+    {
+        if (*p == '\0')
+        {
+            return ((uintptr_t)p - (uintptr_t)pString);
+        }
+    }
+
+    /*
+     * Helper macro to return string length if we caught the zero
+     * byte.
+     */
+#define testbyte(x)                               \
+  do                                              \
+  {                                               \
+    if(p[x] == '\0')                              \
+      return ((uintptr_t)p - (uintptr_t)pString + x); \
+  } while(0)
+
+    /* Scan the rest of the string using word sized operation */
+    // Cast to void to prevent alignment warning
+    for (lp = (const unsigned long*)(const void*)p;; lp++)
+    {
+        if ((*lp - mask01) & mask80)
+        {
+            p = (const char*)(lp);
+            testbyte(0);
+            testbyte(1);
+            testbyte(2);
+            testbyte(3);
+        }
+    }
+
+    /* NOTREACHED */
+    // return (0);
 }
 
 /*********************************************************************
@@ -469,9 +268,9 @@ int osal_strlen( char *pString )
  *
  *   Generic memory copy.
  *
- *   Note: This function differs from the standard _memcpy(), since
+ *   Note: This function differs from the standard osal_memcpy(), since
  *         it returns the pointer to the next destination uint8. The
- *         standard _memcpy() returns the original destination address.
+ *         standard osal_memcpy() returns the original destination address.
  *
  * @param   dst - destination address
  * @param   src - source address
@@ -486,7 +285,7 @@ void *osal_memcpy( void *dst, const void GENERIC *src, unsigned int len )
   pd = (char*)dst;
   ps = (char*)src;
 
-  if (len == 0 || pd == ps)
+  if (len == 0 || dst == src)
   {
       { /* nothing to do */
           goto done;
@@ -595,9 +394,9 @@ done:
  *   source buffer, by taking the source address pointer and moving
  *   pointer ahead "len" bytes, then decrementing the pointer.
  *
- *   Note: This function differs from the standard _memcpy(), since
+ *   Note: This function differs from the standard osal_memcpy(), since
  *         it returns the pointer to the next destination uint8. The
- *         standard _memcpy() returns the original destination address.
+ *         standard osal_memcpy() returns the original destination address.
  *
  * @param   dst - destination address
  * @param   src - source address
@@ -607,17 +406,112 @@ done:
  */
 void *osal_revmemcpy( void *dst, const void GENERIC *src, unsigned int len )
 {
-  uint8 *pDst;
-  const uint8 GENERIC *pSrc;
+  char * pd;
+  char * ps;
+  pd = (char*)dst;
+  ps = (char*)src;
+  ps += (len-1);
 
-  pSrc = src;
-  pSrc += (len-1);
-  pDst = dst;
+  if (len == 0 || dst == src)
+  {
+      { /* nothing to do */
+          goto done;
+      }
+  }
 
-  while ( len-- )
-    *pDst++ = *pSrc--;
+  //
+  // Copy bytes until Source is word aligned
+  //
+  do {
+    if (len == 0) {
+      goto done;
+    }
+    if (((int)ps & 3) == 0) {
+      break;
+    }
+    *(char*)pd++ = *(char*)ps--;
+    len--;
+  } while (1);
+  //
+  // Copy words if possible (destination is also word aligned)
+  //
+  if (((int)pd & 3) == 0) {
+    unsigned NumWords = len >> 2;
+    while (NumWords >= 4) {
+      *(uint32*)pd = *(uint32*)ps;
+      pd += 4;
+      ps -= 4;
+      *(uint32*)pd = *(uint32*)ps;
+      pd += 4;
+      ps -= 4;
+      *(uint32*)pd = *(uint32*)ps;
+      pd += 4;
+      ps -= 4;
+      *(uint32*)pd = *(uint32*)ps;
+      pd += 4;
+      ps -= 4;
+      NumWords -= 4;
+    }
+    if (NumWords) {
+      do {
+        *(uint32*)pd = *(uint32*)ps;
+        pd += 4;
+        ps -= 4;
+      } while (--NumWords);
+    }
+    len &= 3;
+  }
+  //
+  // Copy half-words if possible (destination is also half-word aligned)
+  //
+  if (((int)pd & 1) == 0) {
+    unsigned NumItems = len >> 1;
+    while (NumItems >= 4) {
+      *(uint16*)pd = *(uint16*)ps;
+      pd += 2;
+      ps -= 2;
+      *(uint16*)pd = *(uint16*)ps;
+      pd += 2;
+      ps -= 2;
+      *(uint16*)pd = *(uint16*)ps;
+      pd += 2;
+      ps -= 2;
+      *(uint16*)pd = *(uint16*)ps;
+      pd += 2;
+      ps -= 2;
+      NumItems -= 4;
+    }
+    if (NumItems) {
+      do {
+      *(uint16*)pd = *(uint16*)ps;
+      pd += 2;
+      ps -= 2;
+      } while (--NumItems);
+    }
+    len &= 1;
+  }
 
-  return ( pDst );
+  //
+  // Copy bytes, bulk
+  //
+  while (len >= 4) {
+    *(char*)pd++ = *(char*)ps--;
+    *(char*)pd++ = *(char*)ps--;
+    *(char*)pd++ = *(char*)ps--;
+    *(char*)pd++ = *(char*)ps--;
+    len -= 4;
+  };
+  //
+  // Copy bytes, one at a time
+  //
+  if (len) {
+    do {
+      *(char*)pd++ = *(char*)ps--;
+    } while (--len);
+  };
+
+done:
+  return ( pd );
 }
 
 /*********************************************************************
@@ -639,7 +533,7 @@ void *osal_memdup( const void GENERIC *src, unsigned int len )
   pDst = osal_mem_alloc( len );
   if ( pDst )
   {
-    _memcpy( pDst, src, len );
+    osal_memcpy( pDst, src, len );
   }
 
   return ( (void *)pDst );
@@ -690,7 +584,59 @@ uint8 osal_memcmp( const void GENERIC *src1, const void GENERIC *src2, unsigned 
  */
 void *osal_memset( void *dest, uint8 value, int len )
 {
-  return _memset( dest, value, len );
+  unsigned char* s = dest;
+  size_t k;
+
+  /* Fill head and tail with minimal branching. Each
+   * conditional ensures that all the subsequently used
+   * offsets are well-defined and in the dest region. */
+
+  if (!len)
+  {
+      return dest;
+  }
+  s[0] = s[len - 1] = (unsigned char)value;
+  if (len <= 2)
+  {
+      return dest;
+  }
+  s[1] = s[len - 2] = (unsigned char)value;
+  s[2] = s[len - 3] = (unsigned char)value;
+  if (len <= 6)
+  {
+      return dest;
+  }
+  s[3] = s[len - 4] = (unsigned char)value;
+  if (len <= 8)
+  {
+      return dest;
+  }
+
+  /* Advance pointer to align it at a 4-byte boundary,
+   * and truncate len to a multiple of 4. The previous code
+   * already took care of any head/tail that get cut off
+   * by the alignment. */
+
+  k = (uintptr_t)s & 3;
+  s += k;
+  len -= k;
+  len &= (unsigned long)-4;
+  len /= 4;
+
+  // Cast to void first to prevent alignment warning
+  uint32* ws = (uint32*)(void*)s;
+  uint32 wc = value & 0xFF;
+  wc |= ((wc << 8) | (wc << 16) | (wc << 24));
+
+  /* Pure C fallback with no aliasing violations. */
+  for (; len; len--, ws++)
+  {
+      {
+          *ws = wc;
+      }
+  }
+
+  return dest;
 }
 
 /*********************************************************************
@@ -803,19 +749,19 @@ uint8* osal_ltoa(uint32 l, uint8* buf, uint8 radix)
 
     if (num3)
     {
-      _strcpy((char*)buf, (char const*)tmp3);
-      for (i = 0; i < 4 - _strlen((char const*)tmp2); i++)
-        _strcat((char*)buf, "0");
+      osal_strcpy((char*)buf, (char const*)tmp3);
+      for (i = 0; i < 4 - osal_strlen((char const*)tmp2); i++)
+        osal_strcat((char*)buf, "0");
     }
-    _strcat((char*)buf, (char const*)tmp2);
+    osal_strcat((char*)buf, (char const*)tmp2);
     if (num3 || num2)
     {
-      for (i = 0; i < 4 - _strlen((char const*)tmp1); i++)
-        _strcat((char*)buf, "0");
+      for (i = 0; i < 4 - osal_strlen((char const*)tmp1); i++)
+        osal_strcat((char*)buf, "0");
     }
-    _strcat((char*)buf, (char const*)tmp1);
+    osal_strcat((char*)buf, (char const*)tmp1);
     if (!num3 && !num2 && !num1)
-      _strcpy((char*)buf, "0");
+      osal_strcpy((char*)buf, "0");
   }
   else if ( radix == 16 )
   {
@@ -827,13 +773,13 @@ uint8* osal_ltoa(uint32 l, uint8* buf, uint8 radix)
 
     if (num2)
     {
-      _strcpy((char*)buf,(char const*)tmp2);
-      for (i = 0; i < 4 - _strlen((char const*)tmp1); i++)
-        _strcat((char*)buf, "0");
+      osal_strcpy((char*)buf,(char const*)tmp2);
+      for (i = 0; i < 4 - osal_strlen((char const*)tmp1); i++)
+        osal_strcat((char*)buf, "0");
     }
-    _strcat((char*)buf, (char const*)tmp1);
+    osal_strcat((char*)buf, (char const*)tmp1);
     if (!num2 && !num1)
-      _strcpy((char*)buf, "0");
+      osal_strcpy((char*)buf, "0");
   }
   else
     return NULL;
