@@ -27,7 +27,6 @@ LARGE_INTEGER count_freq;
 /**
  * @brief SysTickSetup
  **/
-
 void SysTickSetup(void)
 {
     // get count Frequency
@@ -41,7 +40,6 @@ void SysTickSetup(void)
  * @brief macMcuPrecisionCount (320us)
  *
  **/
-
 uint32 macMcuPrecisionCount(void)
 {
     LARGE_INTEGER count_end;
@@ -98,7 +96,6 @@ uint32 get_microsecond(void)
 /**
  * @brief main
  **/
-
 int main(int argc, char **argv)
 {
     // Turn off interrupts

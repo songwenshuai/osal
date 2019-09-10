@@ -14,24 +14,35 @@
 
 #include "OSAL_List.h"
 
-/*
- *  ======== osal_list_clearList ========
+/**
+ *  @brief  Function to initialize the contents of an osal_list_list
+ *
+ *  @param  list Pointer to an osal_list_list structure that will be used to
+ *               maintain a linked list
  */
 void osal_list_clearList(osal_list_list *list)
 {
   list->head = list->tail = NULL;
 }
 
-/*
- *  ======== osal_list_empty ========
+/**
+ *  @brief  Function to test whether a linked list is empty
+ *
+ *  @param  list A pointer to a linked list
+ *
+ *  @return true if empty, false if not empty
  */
 bool osal_list_empty(osal_list_list *list)
 {
   return (list->head == NULL);
 }
 
-/*
- *  ======== osal_list_get ========
+/**
+ *  @brief  Function to atomically get the first elem in a linked list
+ *
+ *  @param  list A pointer to a linked list
+ *
+ *  @return Pointer the first elem in the linked list or NULL if empty
  */
 osal_list_elem *osal_list_get(osal_list_list *list)
 {
@@ -57,16 +68,30 @@ osal_list_elem *osal_list_get(osal_list_list *list)
   return (elem);
 }
 
-/*
- *  ======== osal_list_head ========
+/**
+ *  @brief  Function to return the head of a linked list
+ *
+ *  This function does not remove the head, it simply returns a pointer to
+ *  it. This function is typically used when traversing a linked list.
+ *
+ *  @param  list A pointer to the linked list
+ *
+ *  @return Pointer to the first elem in the linked list or NULL if empty
  */
 osal_list_elem *osal_list_head(osal_list_list *list)
 {
   return (list->head);
 }
 
-/*
- *  ======== osal_list_insert ========
+/**
+ *  @brief  Function to insert an elem into a linked list
+ *
+ *  @param  list A pointer to the linked list
+ *
+ *  @param  newElem New elem to insert
+ *
+ *  @param  curElem Elem to insert the newElem in front of.
+ *          This value cannot be NULL.
  */
 void osal_list_insert(osal_list_list *list, osal_list_elem *newElem,
                      osal_list_elem *curElem)
@@ -86,24 +111,43 @@ void osal_list_insert(osal_list_list *list, osal_list_elem *newElem,
   curElem->prev = newElem;
 }
 
-/*
- *  ======== osal_list_next ========
+/**
+ *  @brief  Function to return the next elem in a linked list
+ *
+ *  This function does not remove the elem, it simply returns a pointer to
+ *  next one. This function is typically used when traversing a linked list.
+ *
+ *  @param  elem Elem in the list
+ *
+ *  @return Pointer to the next elem in linked list or NULL if at the end
  */
 osal_list_elem *osal_list_next(osal_list_elem *elem)
 {
   return (elem->next);
 }
 
-/*
- *  ======== osal_list_prev ========
+/**
+ *  @brief  Function to return the previous elem in a linked list
+ *
+ *  This function does not remove the elem, it simply returns a pointer to
+ *  previous one. This function is typically used when traversing a linked list.
+ *
+ *  @param  elem Elem in the list
+ *
+ *  @return Pointer to the previous elem in linked list or NULL if at the
+ *  beginning
  */
 osal_list_elem *osal_list_prev(osal_list_elem *elem)
 {
   return (elem->prev);
 }
 
-/*
- *  ======== osal_list_put ========
+/**
+ *  @brief  Function to put an elem onto the end of a linked list
+ *
+ *  @param  list A pointer to the linked list
+ *
+ *  @param  elem Element to place onto the end of the linked list
  */
 void osal_list_put(osal_list_list *list, osal_list_elem *elem)
 {
@@ -122,8 +166,12 @@ void osal_list_put(osal_list_list *list, osal_list_elem *elem)
   list->tail = elem;
 }
 
-/*
- *  ======== osal_list_putHead ========
+/**
+ *  @brief  Function to put an elem onto the head of a linked list
+ *
+ *  @param  list A pointer to the linked list
+ *
+ *  @param  elem Element to place onto the beginning of the linked list
  */
 void osal_list_putHead(osal_list_list *list, osal_list_elem *elem)
 {
@@ -142,8 +190,12 @@ void osal_list_putHead(osal_list_list *list, osal_list_elem *elem)
   list->head = elem;
 }
 
-/*
- *  ======== osal_list_remove ========
+/**
+ *  @brief  Function to remove an elem from a linked list
+ *
+ *  @param  list A pointer to the linked list
+ *
+ *  @param  elem Element to be removed from a linked list
  */
 void osal_list_remove(osal_list_list *list, osal_list_elem *elem)
 {
@@ -168,8 +220,15 @@ void osal_list_remove(osal_list_list *list, osal_list_elem *elem)
   }
 }
 
-/*
- *  ======== osal_list_tail ========
+/**
+ *  @brief  Function to return the tail of a linked list
+ *
+ *  This function does not remove the tail, it simply returns a pointer to
+ *  it. This function is typically used when traversing a linked list.
+ *
+ *  @param  list A pointer to the linked list
+ *
+ *  @return Pointer to the last elem in the linked list or NULL if empty
  */
 osal_list_elem *osal_list_tail(osal_list_list *list)
 {

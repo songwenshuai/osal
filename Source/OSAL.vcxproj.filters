@@ -13,9 +13,6 @@
     <Filter Include="App">
       <UniqueIdentifier>{a7c654df-4702-49aa-a98a-585f61a651bd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Doc">
-      <UniqueIdentifier>{7ba3d053-b47c-4352-9001-9d6e26f85be6}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Src\OSAL.c">
@@ -116,10 +113,5 @@
     <ClInclude Include="App\GenericApp.h">
       <Filter>App</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\README.md">
-      <Filter>Doc</Filter>
-    </None>
   </ItemGroup>
 </Project>

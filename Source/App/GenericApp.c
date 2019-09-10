@@ -69,7 +69,6 @@ void App_Init(uint8 task_id)
  *
  * @return      none
  */
-
 uint16 App_ProcessEvent(uint8 task_id, uint16 events)
 {
     uint8* pMsg;
@@ -113,6 +112,7 @@ uint16 App_ProcessEvent(uint8 task_id, uint16 events)
     // Discard unknown events
     return 0;
 }
+
 /*********************************************************************
  * @fn      msg_send_str
  *
@@ -176,7 +176,7 @@ static void Periodic_Event(void)
     new_time = get_microsecond();
     deviation = ((new_time - oldtime) > 1000000) ? ((new_time - oldtime) - 1000000) : (1000000 - (new_time - oldtime));
     oldtime = new_time;
-    printf("deviation = %d\r\n", deviation);
+    printf("deviation = %dus\r\n", deviation);
 //------------------------------- nv test --------------------------------------
     static uint32 flag = 0;
     static char nvDataWrite[13] = {0};
