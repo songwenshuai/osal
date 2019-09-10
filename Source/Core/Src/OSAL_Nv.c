@@ -99,6 +99,8 @@ static const uint16 hotIds[OSAL_NV_MAX_HOT] = {
  * MACROS
  */
 
+/* #define OSAL_NV_CHECK_BUS_VOLTAGE  OnBoard_CheckVoltage() */
+
 #define OSAL_NV_DATA_SIZE( LEN )  \
      ((((LEN) + OSAL_NV_WORD_SIZE - 1) / OSAL_NV_WORD_SIZE) * OSAL_NV_WORD_SIZE)
 
@@ -175,6 +177,14 @@ typedef enum
  * GLOBAL VARIABLES
  */
 
+#ifdef OAD_KEEP_NV_PAGES
+// When NV pages are to remain intact during OAD download,
+// the image itself should not include NV pages.
+#pragma location=HAL_NV_START_ADDR
+__no_init uint8 _nvBuf[OSAL_NV_PAGES_USED * OSAL_NV_PAGE_SIZE];
+#pragma required=_nvBuf
+#endif // OAD_KEEP_NV_PAGES
+
 /******************************************************************************
  * LOCAL VARIABLES
  */
@@ -225,6 +235,23 @@ static uint8  hotItem(uint16 id);
 static void   hotItemUpdate(uint8 pg, uint16 off, uint16 id);
 
 /*********************************************************************
+ * @fn      flash_write_word
+ *
+ * @brief   Writes 4bytes of data to address ulAddress
+ *
+ * @param   ulAddress - Address to which data has to be written
+ *          address has to be 4byte-aligned.
+ *
+ * @param   data - 4byte data
+ *
+ * @return  none
+ */
+static void flash_write_word(uint32* ulAddress, uint32 data)
+{
+    *(uint32*)(&nvDataBuf[OSAL_NV_PTR_TO_PAGE(ulAddress)][OSAL_NV_PTR_TO_OFFSET(ulAddress)]) = data;
+}
+
+/*********************************************************************
  * @fn      initFlash
  *
  * @brief   Sets the clock parameter required by the flash-controller
@@ -262,37 +289,25 @@ static void initFlash(void)
  */
 static void flashErasePage(uint8* addr)
 {
-    halIntState_t IntState;
+  halIntState_t IntState;
 
-    uint16 cnt = HAL_FLASH_PAGE_SIZE;
-    uint8* pData = nvDataBuf[(HAL_NV_ADDR_OFFSET(addr) / HAL_FLASH_PAGE_SIZE)];
+  /* Set the clock frequency */
+  /*
+  initFlash();
+  */
 
-    HAL_ENTER_CRITICAL_SECTION(IntState);
+  uint16 cnt = HAL_FLASH_PAGE_SIZE;
+  uint8* pData = nvDataBuf[(HAL_NV_ADDR_OFFSET(addr) / HAL_FLASH_PAGE_SIZE)];
 
-    /* Erase flash */
-    while (cnt--)
-    {
-        *pData++ = 0xFF;
-    }
+  HAL_ENTER_CRITICAL_SECTION(IntState);
 
-    HAL_EXIT_CRITICAL_SECTION(IntState);
-}
+  /* Erase flash */
+  while (cnt--)
+  {
+    *pData++ = 0xFF;
+  }
 
-/*********************************************************************
- * @fn      flash_write_word
- *
- * @brief   Writes 4bytes of data to address ulAddress
- *
- * @param   ulAddress - Address to which data has to be written
- *          address has to be 4byte-aligned.
- *
- * @param   data - 4byte data
- *
- * @return  none
- */
-static void flash_write_word(uint32* ulAddress, uint32 data)
-{
-    *(uint32*)(&nvDataBuf[OSAL_NV_PTR_TO_PAGE(ulAddress)][OSAL_NV_PTR_TO_OFFSET(ulAddress)]) = data;
+  HAL_EXIT_CRITICAL_SECTION(IntState);
 }
 
 /*********************************************************************
@@ -311,101 +326,101 @@ static void flash_write_word(uint32* ulAddress, uint32 data)
  */
 static void flashWrite(uint8* addr, uint16 len, uint8* buf)
 {
-    if (len > 0)
-    {
-        /* 4-byte aligned pointer */
-        uint32* uint32ptr;
-        /* 4-byte temporary variable */
-        uint32 temp_u32;
-        uint16 i = 0, j;
+  if (len > 0)
+  {
+      /* 4-byte aligned pointer */
+      uint32* uint32ptr;
+      /* 4-byte temporary variable */
+      uint32 temp_u32;
+      uint16 i = 0, j;
 
-        /* start_bytes - unaligned byte count at the beggining
-         * middle_bytes - aligned byte count at the middle
-         * end_bytes - unaligned byte count at the end
+      /* start_bytes - unaligned byte count at the beggining
+       * middle_bytes - aligned byte count at the middle
+       * end_bytes - unaligned byte count at the end
+       */
+      uint16 start_bytes = 0, middle_bytes = 0, end_bytes = 0;
+      halIntState_t IntState;
+
+      /* Extract 4-byte aligned address */
+      uint32ptr = (uint32*)aligned_address(addr);
+
+      /* Calculate the start_bytes */
+        /* If the addr is not 4-byte aligned */
+      if (byte_offset(addr))
+      {
+          /* If the start-address and the end-address are in the
+         * same 4-byte-aligned-chunk.
          */
-        uint16 start_bytes = 0, middle_bytes = 0, end_bytes = 0;
-        halIntState_t IntState;
+          if ((((uint32)addr) >> 2) == ((((uint32)addr) + len) >> 2))
+          {
+              start_bytes = len;
+          }
+          else
+          {
+              start_bytes = 4 - (byte_offset(addr));
+          }
+      }
 
-        /* Extract 4-byte aligned address */
-        uint32ptr = (uint32*)aligned_address(addr);
+      /* Calculate the middle_bytes and end_bytes */
+        /* If there are any bytes left */
+      if ((len - start_bytes) > 0)
+      {
+          /* Highest-multiple-of-4 less than (len - start_bytes) */
+          middle_bytes = ((len - start_bytes) & (~3));
+          /* Remainder when divided by 4 */
+          end_bytes = (len - start_bytes) & 3;
+      }
 
-        /* Calculate the start_bytes */
-          /* If the addr is not 4-byte aligned */
-        if (byte_offset(addr))
-        {
-            /* If the start-address and the end-address are in the
-           * same 4-byte-aligned-chunk.
-           */
-            if ((((uint32)addr) >> 2) == ((((uint32)addr) + len) >> 2))
-            {
-                start_bytes = len;
-            }
-            else
-            {
-                start_bytes = 4 - (byte_offset(addr));
-            }
-        }
+      HAL_ENTER_CRITICAL_SECTION(IntState);
 
-        /* Calculate the middle_bytes and end_bytes */
-          /* If there are any bytes left */
-        if ((len - start_bytes) > 0)
-        {
-            /* Highest-multiple-of-4 less than (len - start_bytes) */
-            middle_bytes = ((len - start_bytes) & (~3));
-            /* Remainder when divided by 4 */
-            end_bytes = (len - start_bytes) & 3;
-        }
+      /* Write the start bytes to the flash */
+      if (start_bytes > 0)
+      {
+          /* Take the first 4-byte chunk into a temp_u32 */
+          temp_u32 = *uint32ptr;
+          /* Write the required bytes into temp_u32 */
+          for (; i < start_bytes; i++)
+          {
+              *(((uint8*)(&temp_u32)) + i + byte_offset(addr)) = buf[i];
+          }
+          /* Write the 4-byte chunk into the flah */
+          flash_write_word(uint32ptr, temp_u32);
+          /* Increment the 4-byte-aligned-address by 4 */
+          uint32ptr++;
+      }
 
-        HAL_ENTER_CRITICAL_SECTION(IntState);
+      /* Write the middle bytes to the flash */
+      while (i < start_bytes + middle_bytes)
+      {
+          /* Extract 4 bytes into from the buf */
+          *((uint8*)(&temp_u32)) = buf[i++];
+          *((uint8*)(&temp_u32) + 1) = buf[i++];
+          *((uint8*)(&temp_u32) + 2) = buf[i++];
+          *((uint8*)(&temp_u32) + 3) = buf[i++];
 
-        /* Write the start bytes to the flash */
-        if (start_bytes > 0)
-        {
-            /* Take the first 4-byte chunk into a temp_u32 */
-            temp_u32 = *uint32ptr;
-            /* Write the required bytes into temp_u32 */
-            for (; i < start_bytes; i++)
-            {
-                *(((uint8*)(&temp_u32)) + i + byte_offset(addr)) = buf[i];
-            }
-            /* Write the 4-byte chunk into the flah */
-            flash_write_word(uint32ptr, temp_u32);
-            /* Increment the 4-byte-aligned-address by 4 */
-            uint32ptr++;
-        }
+          /* Write the 4-byte chunk into the flash */
+          flash_write_word(uint32ptr, temp_u32);
+          /* Increment the 4-byte-aligned-address by 4 */
+          uint32ptr++;
+      }
 
-        /* Write the middle bytes to the flash */
-        while (i < start_bytes + middle_bytes)
-        {
-            /* Extract 4 bytes into from the buf */
-            *((uint8*)(&temp_u32)) = buf[i++];
-            *((uint8*)(&temp_u32) + 1) = buf[i++];
-            *((uint8*)(&temp_u32) + 2) = buf[i++];
-            *((uint8*)(&temp_u32) + 3) = buf[i++];
+      /* Write the end bytes to the flash */
+      if (end_bytes > 0)
+      {
+          j = 0;
+          /* Take the first 4-byte chunk into a temp_u32 */
+          temp_u32 = *uint32ptr;
+          for (; i < len; i++)
+          {
+              *((uint8*)& temp_u32 + j) = buf[i];
+              j++;
+          }
+          /* Write the 4-byte chunk into the flash */
+          flash_write_word(uint32ptr, temp_u32);
+      }
 
-            /* Write the 4-byte chunk into the flash */
-            flash_write_word(uint32ptr, temp_u32);
-            /* Increment the 4-byte-aligned-address by 4 */
-            uint32ptr++;
-        }
-
-        /* Write the end bytes to the flash */
-        if (end_bytes > 0)
-        {
-            j = 0;
-            /* Take the first 4-byte chunk into a temp_u32 */
-            temp_u32 = *uint32ptr;
-            for (; i < len; i++)
-            {
-                *((uint8*)& temp_u32 + j) = buf[i];
-                j++;
-            }
-            /* Write the 4-byte chunk into the flash */
-            flash_write_word(uint32ptr, temp_u32);
-        }
-
-        HAL_EXIT_CRITICAL_SECTION(IntState);
-    }
+      HAL_EXIT_CRITICAL_SECTION(IntState);
+  }
 }
 
 /******************************************************************************
@@ -1364,7 +1379,7 @@ uint8 osal_nv_item_init( uint16 id, uint16 len, void *buf )
   uint8 findPg;
   uint16 offset;
 
-  if ( hotItem( id ) < OSAL_NV_MAX_HOT )
+  if ( ( hotItem( id ) < OSAL_NV_MAX_HOT ) /* && ( !OSAL_NV_CHECK_BUS_VOLTAGE ) */ )
   {
     return NV_OPER_FAILED;
   }
@@ -1432,6 +1447,13 @@ uint16 osal_nv_item_len( uint16 id )
 uint8 osal_nv_write( uint16 id, uint16 ndx, uint16 len, void *buf )
 {
   uint8 rtrn = SUCCESS;
+
+  /*
+  if ( !OSAL_NV_CHECK_BUS_VOLTAGE )
+  {
+    return NV_OPER_FAILED;
+  }
+  */
 
   if ( len != 0 )
   {

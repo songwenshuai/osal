@@ -494,6 +494,62 @@ void osalTimerUpdate( uint32 updateTime )
   }
 }
 
+#ifdef POWER_SAVING
+/*
+  Timer4 interrupts @ 1.0 msecs using 1/128 pre-scaler
+  TICK_COUNT = (CPUMHZ / 128) / 1000
+*/
+#define TICK_COUNT  1  // 32 Mhz Output Compare Count
+
+/**************************************************************************************************
+ * @fn          TimerElapsed
+ *
+ * @brief       Determine the number of OSAL timer ticks elapsed during sleep.
+ *              Deprecated for CC2538 and CC2430 SoC.
+ *
+ * input parameters
+ *
+ * @param       None.
+ *
+ * output parameters
+ *
+ * None.
+ *
+ * @return      Number of timer ticks elapsed during sleep.
+ **************************************************************************************************
+ */
+uint32 TimerElapsed( void )
+{
+  /* Stubs */
+  return (0);
+}
+
+/*********************************************************************
+ * @fn      osal_adjust_timers
+ *
+ * @brief   Update the timer structures for elapsed ticks.
+ *
+ * @param   none
+ *
+ * @return  none
+ *********************************************************************/
+void osal_adjust_timers( void )
+{
+  uint32 eTime;
+
+  if ( timerHead != NULL )
+  {
+    // Compute elapsed time (msec)
+    eTime = TimerElapsed() / TICK_COUNT;
+
+    if ( eTime )
+    {
+      osalTimerUpdate( eTime );
+    }
+  }
+}
+#endif /* POWER_SAVING */
+
 #if defined POWER_SAVING || defined USE_ICALL
 /*********************************************************************
  * @fn      osal_next_timeout

@@ -71,20 +71,23 @@ void App_Init(uint8 task_id)
 
 uint16 App_ProcessEvent(uint8 task_id, uint16 events)
 {
+    uint8* pMsg;
+
     VOID task_id; // Intentionally unreferenced parameter
 
-    if (events & SYS_EVENT_MSG)
+    if ( events & SYS_EVENT_MSG )
     {
-        uint8* pMsg;
+        pMsg = osal_msg_receive( App_TaskID );
 
-        if ( (pMsg = osal_msg_receive( App_TaskID )) != NULL )
+        while ( pMsg )
         {
+            /* Do something here - for now, just deallocate the msg and move on */
             App_ProcessOSALMsg( (DebugStr_t *)pMsg );
-
-            // Release the memory
+            /* De-allocate */
             VOID osal_msg_deallocate( pMsg );
+            /* Next */
+            pMsg = osal_msg_receive( App_TaskID );
         }
-        
         // return unprocessed events
         return (events ^ SYS_EVENT_MSG);
     }
@@ -169,8 +172,8 @@ static void Periodic_Event(void)
 //------------------------------- time test ------------------------------------
     static int32 oldtime = 0, new_time = 0, deviation = 0;
 
-    new_time = get_millisecond();
-    deviation = ((new_time - oldtime) - SBP_PERIODIC_EVT_DELAY);
+    new_time = get_microsecond();
+    deviation = ((new_time - oldtime) > 1000000) ? ((new_time - oldtime) - 1000000) : (1000000 - (new_time - oldtime));
     oldtime = new_time;
     printf("deviation = %d\r\n", deviation);
 //------------------------------- nv test --------------------------------------
