@@ -58,7 +58,7 @@ typedef struct
   /*
    * Updates the OSAL clock and Timers from the MAC 320us timer tick.
    */
-  extern void osalTimeUpdate(void);
+  extern void osalTimeUpdate( void );
 
   /*
    * Set the new time.  This will only set the seconds portion

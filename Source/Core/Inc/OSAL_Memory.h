@@ -98,7 +98,7 @@ extern "C"
   /*
    * Return the highest number of bytes ever used in the heap.
    */
-  uint16 osal_heap_high_water(void);
+  uint16 osal_heap_high_water( void );
 
 /*********************************************************************
 *********************************************************************/

@@ -67,6 +67,11 @@ extern "C"
   extern uint32 osal_get_timeoutEx( uint8 task_id, uint16 event_id );
 
   /*
+   * Adjust timer tables
+   */
+  extern void osal_adjust_timers( void );
+
+  /*
    * Update timer tables
    */
   extern void osalTimerUpdate( uint32 updateTime );

@@ -19,10 +19,10 @@
   */
 
 #if defined(ewarm)
+
 /**
  * @brief
  **/
-
 uint32 CPUcpsid(void)
 {
     //
@@ -42,10 +42,10 @@ uint32 CPUcpsid(void)
 #endif
 
 #if defined(rvmdk) || defined(__ARMCC_VERSION)
+
 /**
  * @brief
  **/
-
 __asm uint32 CPUcpsid(void)
 {
     //
@@ -58,10 +58,10 @@ __asm uint32 CPUcpsid(void)
 #endif
 
 #if defined(_WIN32)
+
 /**
  * @brief
  **/
-
 uint32 CPUcpsid(void)
 {
     return 0;
@@ -69,10 +69,10 @@ uint32 CPUcpsid(void)
 #endif
 
 #if defined(ewarm)
+
 /**
  * @brief
  **/
-
 uint32 CPUcpsie(void)
 {
     //
@@ -92,10 +92,10 @@ uint32 CPUcpsie(void)
 #endif
 
 #if defined(rvmdk) || defined(__ARMCC_VERSION)
+
 /**
  * @brief
  **/
-
 __asm uint32 CPUcpsie(void)
 {
     //
@@ -108,10 +108,10 @@ __asm uint32 CPUcpsie(void)
 #endif
 
 #if defined(_WIN32)
+
 /**
  * @brief
  **/
-
 uint32 CPUcpsie(void)
 {
     return 0;
@@ -119,20 +119,20 @@ uint32 CPUcpsie(void)
 #endif
 
 #if defined(_WIN32)
+
 /**
  * @brief
  **/
-
 void SysTickIntEnable(void)
 {
 }
 #endif
 
 #if defined(_WIN32)
+
 /**
  * @brief 
  **/
-
 void SysTickIntDisable(void)
 {
 }
@@ -141,7 +141,6 @@ void SysTickIntDisable(void)
 /**
  * @brief put char to console
  **/
-
 void _putchar(char character)
 {
     // send char to console etc.
@@ -156,7 +155,6 @@ void _putchar(char character)
  * @brief Delay routine
  * @param[in] delay Amount of time for which the calling task should block
  **/
-
 void Delay(uint32 delay)
 {
     //Delay the task for the specified duration

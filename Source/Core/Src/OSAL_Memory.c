@@ -26,7 +26,6 @@
 #define MAXMEMHEAP                 6144   /* Typically, 1.0-6.0K */
 
 #define OSALMEM_IN_USE             0x8000
-
 #if (MAXMEMHEAP & OSALMEM_IN_USE)
 #error MAXMEMHEAP is too big to manage!
 #endif
@@ -57,7 +56,7 @@
  * run-time throughput (on 8051 SOC if not also MSP). This is dynamic "dead space" and is not
  * available to the small-block bucket heap.
  *
- * Adjust this size accordingly to accomodate application-specific changes including changing the
+ * Adjust this size accordingly to accommodate application-specific changes including changing the
  * size of long-lived objects profiled by sample apps and long-lived objects added by application.
  */
 #if defined ZCL_KEY_ESTABLISH_OLD // CBKE no longer uses long lived memory allocations.
@@ -72,9 +71,9 @@
 #endif
 #endif
 
-/* Adjust accordingly to attempt to accomodate the block sizes of the vast majority of
+/* Adjust accordingly to attempt to accommodate the block sizes of the vast majority of
  * very high frequency allocations/frees by profiling the system runtime.
- * This default of 16 accomodates the OSAL timers block, osalTimerRec_t, and many others.
+ * This default of 16 accommodates the OSAL timers block, osalTimerRec_t, and many others.
  * Ensure that this size is an even multiple of OSALMEM_MIN_BLKSZ for run-time efficiency.
  */
 #if !defined OSALMEM_SMALL_BLKSZ
@@ -90,7 +89,7 @@
  */
 
 // Size of the heap bucket reserved for small block-sized allocations.
-// Adjust accordingly to attempt to accomodate the vast majority of very high frequency operations.
+// Adjust accordingly to attempt to accommodate the vast majority of very high frequency operations.
 #define OSALMEM_SMALLBLK_BUCKET  ((OSALMEM_SMALL_BLKSZ * OSALMEM_SMALL_BLKCNT) + OSALMEM_LL_BLKSZ)
 // Index of the first available osalMemHdr_t after the small-block heap which will be set in-use in
 // order to prevent the small-block bucket from being coalesced with the wilderness.
@@ -310,7 +309,7 @@ void *osal_mem_alloc( uint16 size )
   HAL_ENTER_CRITICAL_SECTION( intState );  // Hold off interrupts.
 
   // Smaller allocations are first attempted in the small-block bucket, and all long-lived
-  // allocations are channeled into the LL block reserved within this bucket.
+  // allocations are channelled into the LL block reserved within this bucket.
   if ((osalMemStat == 0) || (size <= OSALMEM_SMALL_BLKSZ))
   {
     hdr = ff1;

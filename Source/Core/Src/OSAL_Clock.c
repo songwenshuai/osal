@@ -39,6 +39,7 @@
  * that atleast one millisecond has elapsed 320us*4 > 1 ms 
  */
 #define TIMER_CLOCK_UPDATE 4 
+
 /*********************************************************************
  * TYPEDEFS
  */
