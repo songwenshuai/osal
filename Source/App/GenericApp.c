@@ -13,6 +13,7 @@
  */
 #include "OSAL.h"
 
+#include "OSAL_Printf.h"
 #include "OSAL_Timers.h"
 #include "OSAL_Cbtimer.h"
 #include "OSAL_Nv.h"

@@ -19,6 +19,7 @@
 #include "OSAL_Memory.h"
 #include "OSAL_Timers.h"
 #include "OSAL_PwrMgr.h"
+#include "OSAL_Printf.h"
 #include "OSAL_Nv.h"
 
 /*********************************************************************

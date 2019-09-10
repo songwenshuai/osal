@@ -14,9 +14,10 @@
 
 #include "OSAL_Cbtimer.h"
 #include "OSAL_Memory.h"
-#include "GenericApp.h"
-
+#include "OSAL_Printf.h"
 #include "OSAL_Tasks.h"
+
+#include "GenericApp.h"
 
 /*********************************************************************
  * GLOBAL VARIABLES

@@ -23,12 +23,6 @@ extern "C"
 
 #include "OSAL_Comdef.h"
 
-#include "OSAL_Printf.h"
-
-#include "OSAL_List.h"
-#include "OSAL_Queue.h"
-#include "OSAL_Ring.h"
-
 /*********************************************************************
  * MACROS
  */

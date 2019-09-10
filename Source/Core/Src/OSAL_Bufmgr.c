@@ -14,7 +14,6 @@
 #include "OSAL.h"
 
 #include "OSAL_Memory.h"
-
 #include "OSAL_Bufmgr.h"
 
 /*********************************************************************
