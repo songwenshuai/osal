@@ -29,15 +29,15 @@ uint8 App_TaskID;
  * LOCAL VARIABLES
  */
 
-/*********************************************************************
- * FUNCTIONS
- *********************************************************************/
+ /*********************************************************************
+  * FUNCTIONS
+  */
+
 static void App_ProcessOSALMsg( DebugStr_t *pInMsg );
 static void Periodic_Event(void);
 static void App_TimerCB(uint8* pData);
 
 extern uint32 get_second(void);
-extern uint32 get_millisecond(void);
 extern uint32 get_microsecond(void);
 
 /*********************************************************************

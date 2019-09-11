@@ -44,7 +44,7 @@ uint32 macMcuPrecisionCount(void)
 {
     LARGE_INTEGER count_end;
 
-    //get end count
+    // get end count
     QueryPerformanceCounter(&count_end);
 
     // get time (1000 000 us / 320us ) = 3125
@@ -58,7 +58,7 @@ uint32 get_second(void)
 {
     LARGE_INTEGER count_end;
 
-    //get end count
+    // get end count
     QueryPerformanceCounter(&count_end);
 
     // get time
@@ -72,7 +72,7 @@ uint32 get_millisecond(void)
 {
     LARGE_INTEGER count_end;
 
-    //get end count
+    // get end count
     QueryPerformanceCounter(&count_end);
 
     // get time
@@ -86,7 +86,7 @@ uint32 get_microsecond(void)
 {
     LARGE_INTEGER count_end;
 
-    //get end count
+    // get end count
     QueryPerformanceCounter(&count_end);
 
     // get time
