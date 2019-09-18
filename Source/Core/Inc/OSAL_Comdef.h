@@ -23,7 +23,7 @@ extern "C"
  * OPTION
  */
 
-//#define SYS_TICK                1
+//#define USE_SYSTICK_IRQ                1
 
 /*********************************************************************
  * COMPILER
@@ -118,13 +118,13 @@ typedef unsigned long int   uint24;
 typedef unsigned long int   uint32;
 typedef unsigned long long  uint64;
 
-typedef unsigned int        size_t;
+typedef unsigned int        _size_t;
 
-typedef long long           intmax_t;
-typedef unsigned long long  uintmax_t;
+typedef long long           _intmax_t;
+typedef unsigned long long  _uintmax_t;
 
-typedef unsigned int        uintptr_t;
-typedef int                 ptrdiff_t;
+typedef unsigned int        _uintptr_t;
+typedef int                 _ptrdiff_t;
 
 typedef unsigned char       _byte;
 typedef unsigned short      _word;

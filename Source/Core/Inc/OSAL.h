@@ -229,17 +229,17 @@ typedef void * osal_msg_q_t;
   /*
    * Convert an interger to an ascii string
    */
-  extern size_t osal_strnlen(const char* str, size_t maxlen);
+  extern _size_t osal_strnlen(const char* str, _size_t maxlen);
 
   /*
    * Convert an interger to an ascii string
    */
-  extern size_t osal_strncpy_m(char *destStr, size_t destSize, int nStrings, ...);
+  extern _size_t osal_strncpy_m(char *destStr, _size_t destSize, int nStrings, ...);
 
   /*
    * Convert an interger to an ascii string
    */
-  extern char* osal_strncpy(char* dst, const char* src, size_t maxlen);
+  extern char* osal_strncpy(char* dst, const char* src, _size_t maxlen);
 
   /*
    * String Length

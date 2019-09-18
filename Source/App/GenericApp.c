@@ -37,8 +37,6 @@ static void App_ProcessOSALMsg( DebugStr_t *pInMsg );
 static void Periodic_Event(void);
 static void App_TimerCB(uint8* pData);
 
-extern uint32 get_second(void);
-extern uint32 get_microsecond(void);
 
 /*********************************************************************
  * @fn          App_Init
@@ -170,13 +168,6 @@ static void msg_send_str( _byte *str_ptr )
  */
 static void Periodic_Event(void)
 {
-//------------------------------- time test ------------------------------------
-    static int32 oldtime = 0, new_time = 0, deviation = 0;
-
-    new_time = get_microsecond();
-    deviation = ((new_time - oldtime) > 1000000) ? ((new_time - oldtime) - 1000000) : (1000000 - (new_time - oldtime));
-    oldtime = new_time;
-    printf("deviation = %dus\r\n", deviation);
 //------------------------------- nv test --------------------------------------
     static uint32 flag = 0;
     static char nvDataWrite[13] = {0};

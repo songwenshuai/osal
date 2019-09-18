@@ -37,14 +37,14 @@
 extern "C" {
 #endif
 
-typedef char* va_list;
+typedef char* _va_list;
 
 #define _ADDRESSOF(v) (&(v))
 #define _INTSIZEOF(n)          ((sizeof(n) + sizeof(int) - 1) & ~(sizeof(int) - 1))
 
-#define _va_start(ap, v)       ((void)(ap = (va_list)_ADDRESSOF(v) + _INTSIZEOF(v)))
+#define _va_start(ap, v)       ((void)(ap = (_va_list)_ADDRESSOF(v) + _INTSIZEOF(v)))
 #define _va_arg(ap, t)         (*(t*)((ap += _INTSIZEOF(t)) - _INTSIZEOF(t)))
-#define _va_end(ap)            ((void)(ap = (va_list)0))
+#define _va_end(ap)            ((void)(ap = (_va_list)0))
 
 /**
  * Output a character to a custom device like UART, used by the printf() function
@@ -89,8 +89,8 @@ int sprintf_(char* buffer, const char* format, ...);
  */
 #define snprintf  snprintf_
 #define vsnprintf vsnprintf_
-int  snprintf_(char* buffer, size_t count, const char* format, ...);
-int vsnprintf_(char* buffer, size_t count, const char* format, va_list va);
+int  snprintf_(char* buffer, _size_t count, const char* format, ...);
+int vsnprintf_(char* buffer, _size_t count, const char* format, _va_list va);
 
 
 /**
@@ -100,7 +100,7 @@ int vsnprintf_(char* buffer, size_t count, const char* format, va_list va);
  * \return The number of characters that are WRITTEN into the buffer, not counting the terminating null character
  */
 #define vprintf vprintf_
-int vprintf_(const char* format, va_list va);
+int vprintf_(const char* format, _va_list va);
 
 
 /**

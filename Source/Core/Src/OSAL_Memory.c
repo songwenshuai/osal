@@ -23,7 +23,7 @@
  * ------------------------------------------------------------------------------------------------
  */
 // Memory Allocation Heap
-#define MAXMEMHEAP                 6144   /* Typically, 1.0-6.0K */
+#define MAXMEMHEAP                 2048   /* Typically, 1.0-6.0K */
 
 #define OSALMEM_IN_USE             0x8000
 #if (MAXMEMHEAP & OSALMEM_IN_USE)
@@ -143,7 +143,7 @@ typedef union {
  * ------------------------------------------------------------------------------------------------
  */
 
-#if defined ewarm
+#if defined __IAR_SYSTEMS_ICC__
 static __no_init osalMemHdr_t theHeap[MAXMEMHEAP / OSALMEM_HDRSZ];
 static __no_init osalMemHdr_t *ff1;  // First free block in the small-block bucket.
 #else
@@ -449,7 +449,7 @@ void *osal_mem_alloc( uint16 size )
 
   HAL_EXIT_CRITICAL_SECTION( intState );  // Re-enable interrupts.
 
-  HAL_ASSERT(((size_t)hdr % sizeof(halDataAlign_t)) == 0);
+  HAL_ASSERT(((_size_t)hdr % sizeof(halDataAlign_t)) == 0);
 
 #ifdef DPRINTF_OSALHEAPTRACE
   printf("osal_mem_alloc(%u)->%lx:%s:%u\n", size, (unsigned) hdr, fname, lnum);

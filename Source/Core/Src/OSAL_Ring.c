@@ -55,7 +55,7 @@
  * \return          `1` on success, `0` otherwise
  */
 uint8
-BUF_PREF(buff_init)(BUF_PREF(buff_t)* buff, void* buffdata, size_t size) {
+BUF_PREF(buff_init)(BUF_PREF(buff_t)* buff, void* buffdata, _size_t size) {
     if (buff == NULL || buffdata == NULL || size == 0) {
         return 0;
     }
@@ -91,9 +91,9 @@ BUF_PREF(buff_free)(BUF_PREF(buff_t)* buff) {
  *                  When returned value is less than `btw`, there was no enough memory available
  *                  to copy full data array
  */
-size_t
-BUF_PREF(buff_write)(BUF_PREF(buff_t)* buff, const void* data, size_t btw) {
-    size_t tocopy, free;
+_size_t
+BUF_PREF(buff_write)(BUF_PREF(buff_t)* buff, const void* data, _size_t btw) {
+    _size_t tocopy, free;
     const uint8* d = data;
 
     if (!BUF_IS_VALID(buff) || btw == 0) {
@@ -133,9 +133,9 @@ BUF_PREF(buff_write)(BUF_PREF(buff_t)* buff, const void* data, size_t btw) {
  * \param[in]       btr: Number of bytes to read
  * \return          Number of bytes read and copied to data array
  */
-size_t
-BUF_PREF(buff_read)(BUF_PREF(buff_t)* buff, void* data, size_t btr) {
-    size_t tocopy, full;
+_size_t
+BUF_PREF(buff_read)(BUF_PREF(buff_t)* buff, void* data, _size_t btr) {
+    _size_t tocopy, full;
     uint8 *d = data;
 
     if (!BUF_IS_VALID(buff) || btr == 0) {
@@ -176,9 +176,9 @@ BUF_PREF(buff_read)(BUF_PREF(buff_t)* buff, void* data, size_t btr) {
  * \param[in]       btp: Number of bytes to peek
  * \return          Number of bytes peeked and written to output array
  */
-size_t
-BUF_PREF(buff_peek)(BUF_PREF(buff_t)* buff, size_t skip_count, void* data, size_t btp) {
-    size_t full, tocopy, r;
+_size_t
+BUF_PREF(buff_peek)(BUF_PREF(buff_t)* buff, _size_t skip_count, void* data, _size_t btp) {
+    _size_t full, tocopy, r;
     uint8 *d = data;
 
     if (!BUF_IS_VALID(buff) || btp == 0) {
@@ -223,9 +223,9 @@ BUF_PREF(buff_peek)(BUF_PREF(buff_t)* buff, size_t skip_count, void* data, size_
  * \param[in]       buff: Buffer handle
  * \return          Number of free bytes in memory
  */
-size_t
+_size_t
 BUF_PREF(buff_get_free)(BUF_PREF(buff_t)* buff) {
-    size_t size, w, r;
+    _size_t size, w, r;
 
     if (!BUF_IS_VALID(buff)) {
         return 0;
@@ -251,9 +251,9 @@ BUF_PREF(buff_get_free)(BUF_PREF(buff_t)* buff) {
  * \param[in]       buff: Buffer handle
  * \return          Number of bytes ready to be read
  */
-size_t
+_size_t
 BUF_PREF(buff_get_full)(BUF_PREF(buff_t)* buff) {
-    size_t w, r, size;
+    _size_t w, r, size;
 
     if (!BUF_IS_VALID(buff)) {
         return 0;
@@ -302,9 +302,9 @@ BUF_PREF(buff_get_linear_block_read_address)(BUF_PREF(buff_t)* buff) {
  * \param[in]       buff: Buffer handle
  * \return          Linear buffer size in units of bytes for read operation
  */
-size_t
+_size_t
 BUF_PREF(buff_get_linear_block_read_length)(BUF_PREF(buff_t)* buff) {
-    size_t w, r, len;
+    _size_t w, r, len;
 
     if (!BUF_IS_VALID(buff)) {
         return 0;
@@ -331,9 +331,9 @@ BUF_PREF(buff_get_linear_block_read_length)(BUF_PREF(buff_t)* buff) {
  * \param[in]       len: Number of bytes to skip and mark as read
  * \return          Number of bytes skipped
  */
-size_t
-BUF_PREF(buff_skip)(BUF_PREF(buff_t)* buff, size_t len) {
-    size_t full;
+_size_t
+BUF_PREF(buff_skip)(BUF_PREF(buff_t)* buff, _size_t len) {
+    _size_t full;
 
     if (!BUF_IS_VALID(buff) || len == 0) {
         return 0;
@@ -365,9 +365,9 @@ BUF_PREF(buff_get_linear_block_write_address)(BUF_PREF(buff_t)* buff) {
  * \param[in]       buff: Buffer handle
  * \return          Linear buffer size in units of bytes for write operation
  */
-size_t
+_size_t
 BUF_PREF(buff_get_linear_block_write_length)(BUF_PREF(buff_t)* buff) {
-    size_t w, r, len;
+    _size_t w, r, len;
 
     if (!BUF_IS_VALID(buff)) {
         return 0;
@@ -406,9 +406,9 @@ BUF_PREF(buff_get_linear_block_write_length)(BUF_PREF(buff_t)* buff) {
  * \param[in]       len: Number of bytes to advance
  * \return          Number of bytes advanced for write operation
  */
-size_t
-BUF_PREF(buff_advance)(BUF_PREF(buff_t)* buff, size_t len) {
-    size_t free;
+_size_t
+BUF_PREF(buff_advance)(BUF_PREF(buff_t)* buff, _size_t len) {
+    _size_t free;
 
     if (!BUF_IS_VALID(buff) || len == 0) {
         return 0;

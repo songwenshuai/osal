@@ -99,7 +99,7 @@ static const uint16 hotIds[OSAL_NV_MAX_HOT] = {
 )
 
 #define OSAL_NV_PAGE_TO_PTR( pg ) \
-  ((uint8 *)((uint8 *)(((HAL_NV_PAGE_BEG + ((pg) * OSAL_NV_PHY_PER_PG)) * HAL_FLASH_PAGE_SIZE)+ (FLASH_BASE))))
+  ((uint8 *)((uint8 *)(((HAL_NV_PAGE_BEG + ((pg) * OSAL_NV_PHY_PER_PG)) * HAL_FLASH_PAGE_SIZE)+ (NV_FLASH_BASE))))
 
 #define OSAL_NV_PTR_TO_PAGE( p_addr )   (HAL_NV_ADDR_OFFSET(p_addr) / HAL_FLASH_PAGE_SIZE)
 #define OSAL_NV_PTR_TO_OFFSET( p_addr ) (HAL_NV_ADDR_OFFSET(p_addr) % HAL_FLASH_PAGE_SIZE)

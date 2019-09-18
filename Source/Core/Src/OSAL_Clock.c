@@ -55,7 +55,9 @@
 /*********************************************************************
  * EXTERNAL FUNCTIONS
  */
+#ifndef USE_SYSTICK_IRQ
 extern uint32 macMcuPrecisionCount(void);
+#endif
 
 /*  This function is used to divide a 31 bit dividend by a 16 bit
  *  divisor and return a packed 16 bit quotient and 16 bit
@@ -82,9 +84,12 @@ extern uint32 macMcuPrecisionCount(void);
 /*********************************************************************
  * LOCAL VARIABLES
  */
+
+#ifndef USE_SYSTICK_IRQ
 static uint32 previousMacTimerTick = 0;
 static uint16 remUsTicks = 0;
-  
+#endif
+
 static uint32 timeMSec = 0;
 
 // number of seconds since 0 hrs, 0 minutes, 0 seconds, on the
@@ -102,6 +107,7 @@ static void osalClockUpdate( uint32 elapsedMSec );
  * FUNCTIONS
  *********************************************************************/
 
+#ifndef USE_SYSTICK_IRQ
 /*********************************************************************
  * @fn      osalTimeUpdate
  *
@@ -165,6 +171,7 @@ void osalTimeUpdate( void )
     }
   }
 }
+#endif
 
 /*********************************************************************
  * @fn      osalClockUpdate

@@ -18,7 +18,7 @@
   * FUNCTIONS
   */
 
-#if defined(ewarm)
+#if defined(__IAR_SYSTEMS_ICC__)
 
 /**
  * @brief
@@ -41,7 +41,7 @@ uint32 CPUcpsid(void)
 #pragma diag_default = Pe940
 #endif
 
-#if defined(rvmdk) || defined(__ARMCC_VERSION)
+#if defined(__KEIL__) || defined(__ARMCC_VERSION)
 
 /**
  * @brief
@@ -68,7 +68,7 @@ uint32 CPUcpsid(void)
 }
 #endif
 
-#if defined(ewarm)
+#if defined(__IAR_SYSTEMS_ICC__)
 
 /**
  * @brief
@@ -91,7 +91,7 @@ uint32 CPUcpsie(void)
 #pragma diag_default = Pe940
 #endif
 
-#if defined(rvmdk) || defined(__ARMCC_VERSION)
+#if defined(__KEIL__) || defined(__ARMCC_VERSION)
 
 /**
  * @brief
@@ -118,7 +118,6 @@ uint32 CPUcpsie(void)
 }
 #endif
 
-#if defined(_WIN32)
 
 /**
  * @brief
@@ -126,9 +125,7 @@ uint32 CPUcpsie(void)
 void SysTickIntEnable(void)
 {
 }
-#endif
 
-#if defined(_WIN32)
 
 /**
  * @brief 
@@ -136,7 +133,6 @@ void SysTickIntEnable(void)
 void SysTickIntDisable(void)
 {
 }
-#endif
 
 /**
  * @brief put char to console

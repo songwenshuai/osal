@@ -167,8 +167,8 @@ int32 rand_range(int32 min, int32 max)
  */
 char* osal_strcat(char* dst, const char* src)
 {
-    const size_t dstlen = osal_strlen(dst);
-    const size_t srclen = osal_strlen(src);
+    const _size_t dstlen = osal_strlen(dst);
+    const _size_t srclen = osal_strlen(src);
     //  The osal_strcat() and strncat() functions append a copy of the null-
     //  terminated string src to the end of the null-terminated string dst,
     //  then add a terminating '\0'.  The string dst must have sufficient
@@ -193,7 +193,7 @@ char* osal_strcat(char* dst, const char* src)
  */
 char* osal_strcpy(char* dst, const char* src)
 {
-    const size_t length = osal_strlen(src);
+    const _size_t length = osal_strlen(src);
     //  The stpcpy() and osal_strcpy() functions copy the string src to dst
     //  (including the terminating '\0' character).
     osal_memcpy(dst, src, length + 1);
@@ -214,7 +214,7 @@ char* osal_strcpy(char* dst, const char* src)
  * 
  * @return  char*
  */
-size_t osal_strnlen(const char* str, size_t maxlen)
+_size_t osal_strnlen(const char* str, _size_t maxlen)
 {
 	const char* cp;
 
@@ -225,7 +225,7 @@ size_t osal_strnlen(const char* str, size_t maxlen)
 		}
 	}
 
-	return (size_t)(cp - str);
+	return (_size_t)(cp - str);
 }
 
 /*********************************************************************
@@ -241,9 +241,9 @@ size_t osal_strnlen(const char* str, size_t maxlen)
  * 
  * @return  char*
  */
-char* osal_strncpy(char* dst, const char* src, size_t maxlen)
+char* osal_strncpy(char* dst, const char* src, _size_t maxlen)
 {
-	const size_t srclen = osal_strnlen(src, maxlen);
+	const _size_t srclen = osal_strnlen(src, maxlen);
 	if(srclen < maxlen)
 	{
 		//  The stpncpy() and strncpy() functions copy at most maxlen
@@ -264,7 +264,7 @@ char* osal_strncpy(char* dst, const char* src, size_t maxlen)
 
 /*****************************************************************************
   Function:
-    char* strncpy_m(char* destStr, size_t destSize, int nStrings, ...)
+    char* strncpy_m(char* destStr, _size_t destSize, int nStrings, ...)
 
   Summary:
     Copies multiple strings to a destination
@@ -293,12 +293,12 @@ char* osal_strncpy(char* dst, const char* src, size_t maxlen)
   Returns:
     Length of the destination string, terminating \0 (if exists) not included
   */
-size_t osal_strncpy_m(char *destStr, size_t destSize, int nStrings, ...)
+_size_t osal_strncpy_m(char *destStr, _size_t destSize, int nStrings, ...)
 {
-    va_list args = {0};
+    _va_list args = {0};
     const char *str;
     char *end;
-    size_t len;
+    _size_t len;
 
     destStr[0] = '\0';
     end = destStr + destSize - 1;
@@ -349,11 +349,11 @@ int osal_strlen( const char* pString )
 #define LONGPTR_MASK (sizeof(long) - 1)
 
     /* Skip the first few bytes until we have an aligned p */
-    for (p = pString; (uintptr_t)p & LONGPTR_MASK; p++)
+    for (p = pString; (_uintptr_t)p & LONGPTR_MASK; p++)
     {
         if (*p == '\0')
         {
-            return ((uintptr_t)p - (uintptr_t)pString);
+            return ((_uintptr_t)p - (_uintptr_t)pString);
         }
     }
 
@@ -365,7 +365,7 @@ int osal_strlen( const char* pString )
   do                                              \
   {                                               \
     if(p[x] == '\0')                              \
-      return ((uintptr_t)p - (uintptr_t)pString + x); \
+      return ((_uintptr_t)p - (_uintptr_t)pString + x); \
   } while(0)
 
     /* Scan the rest of the string using word sized operation */
@@ -638,7 +638,7 @@ uint8 osal_memcmp( const void GENERIC *src1, const void GENERIC *src2, unsigned 
 void *osal_memset( void *dest, uint8 value, int len )
 {
   unsigned char* s = dest;
-  size_t k;
+  _size_t k;
 
   /* Fill head and tail with minimal branching. Each
    * conditional ensures that all the subsequently used
@@ -670,7 +670,7 @@ void *osal_memset( void *dest, uint8 value, int len )
    * already took care of any head/tail that get cut off
    * by the alignment. */
 
-  k = (uintptr_t)s & 3;
+  k = (_uintptr_t)s & 3;
   s += k;
   len -= k;
   len &= (unsigned long)-4;
@@ -1608,7 +1608,7 @@ void osal_run_system( void )
 {
   uint8 idx = 0;
 
-#ifndef SYS_TICK
+#ifndef USE_SYSTICK_IRQ
   osalTimeUpdate();
 #endif
 

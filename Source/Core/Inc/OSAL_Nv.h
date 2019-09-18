@@ -31,18 +31,18 @@ extern "C"
 #define ZCD_NV_NWK_ACTIVE_KEY_INFO        0x003A
 #define ZCD_NV_NWK_ALTERN_KEY_INFO        0x003B
 
-#define FLASH_BASE                        ((uint32)nvDataBuf)                      // Flash 
+#define NV_FLASH_BASE                        ((uint32)nvDataBuf)                      // Flash 
 #define HAL_NV_PAGE_END                   (HAL_NV_PAGE_CNT - 1)                    // 0-5 six page
 
 // Flash consists of 256 pages of 2 KB.
-#define HAL_FLASH_PAGE_SIZE               2048
+#define HAL_FLASH_PAGE_SIZE               1024
 #define HAL_FLASH_WORD_SIZE               4
 
 // Z-Stack uses flash pages for NV
 #define HAL_NV_PAGE_CNT                   6
 #define HAL_NV_PAGE_BEG                   (HAL_NV_PAGE_END - HAL_NV_PAGE_CNT + 1)
 
-#define HAL_NV_START_ADDR                 FLASH_BASE
+#define HAL_NV_START_ADDR                 NV_FLASH_BASE
 #define HAL_NV_ADDR_OFFSET(p_addr)        (((uint32)p_addr) - HAL_NV_START_ADDR)
 // ++ sws add end
 
