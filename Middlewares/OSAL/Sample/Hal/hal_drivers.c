@@ -1,4 +1,4 @@
-/**************************************************************************************************
+﻿/**************************************************************************************************
   Filename:       hal_drivers.c
   Revised:        $Date: 2007-07-06 10:42:24 -0700 (Fri, 06 Jul 2007) $
   Revision:       $Revision: 13579 $
@@ -52,8 +52,10 @@
   * GLOBAL FUNCTIONS
   */
 
+#ifndef _WIN32
 extern void flex_button_scan(void);
 extern void user_button_init( void );
+#endif
 
 /**************************************************************************************************
  *                                      GLOBAL VARIABLES
@@ -102,7 +104,9 @@ void HalDriverInit (void)
 
   /* KEY */
 #if (defined HAL_KEY) && (HAL_KEY == TRUE)
+#ifndef _WIN32
   user_button_init();
+#endif
 #endif
   
 }
@@ -151,7 +155,9 @@ uint16 Hal_ProcessEvent( uint8 task_id, uint16 events )
   {
 #if (defined HAL_KEY) && (HAL_KEY == TRUE)
     /* Check for keys */
+#ifndef _WIN32
     flex_button_scan();
+#endif
 
     /* if interrupt disabled, do next polling */
     osal_start_timerEx( Hal_TaskID, HAL_KEY_EVENT, 20);

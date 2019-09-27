@@ -1,4 +1,4 @@
-/**************************************************************************************************
+﻿/**************************************************************************************************
   Filename:       hal_led.c
   Revised:        $Date: 2013-05-17 11:25:11 -0700 (Fri, 17 May 2013) $
   Revision:       $Revision: 34355 $
@@ -45,7 +45,11 @@
 
 #include "OSAL_Timers.h"
 #include "hal_drivers.h"
+#ifndef _WIN32
 #include "bsp_led.h"
+#else
+#include "BSP.h"
+#endif
 #include "hal_led.h"
 
 /***************************************************************************************************
@@ -115,7 +119,9 @@ void HalLedOnOff (uint8 leds, uint8 mode);
 void HalLedInit (void)
 {
   // Init LED
+#ifndef _WIN32
   BSP_LED_Init();
+#endif
 
 #if (HAL_LED == TRUE)
   /* Initialize all LEDs to OFF */
@@ -346,7 +352,7 @@ void HalLedUpdate (void)
           }
           else
           {
-            wait = sts->next - time;  /* Time left */
+            wait = (uint16)(sts->next - time);  /* Time left */
           }
 
           if (!next || ( wait && (wait < next) ))
@@ -383,11 +389,19 @@ void HalLedOnOff (uint8 leds, uint8 mode)
   {
     if (mode == HAL_LED_MODE_ON)
     {
+#ifndef _WIN32
       BSP_LED_Off(USER_LD1);
+#else
+      BSP_SetLED(0);
+#endif
     }
     else
     {
+#ifndef _WIN32
       BSP_LED_On(USER_LD1);
+#else
+      BSP_ClrLED(0);
+#endif
     }
   }
 
@@ -395,11 +409,19 @@ void HalLedOnOff (uint8 leds, uint8 mode)
   {
     if (mode == HAL_LED_MODE_ON)
     {
+#ifndef _WIN32
       BSP_LED_Off(USER_LD2);
+#else
+      BSP_SetLED(1);
+#endif
     }
     else
     {
+#ifndef _WIN32
       BSP_LED_On(USER_LD2);
+#else
+      BSP_ClrLED(1);
+#endif
     }
   }
 
@@ -407,11 +429,19 @@ void HalLedOnOff (uint8 leds, uint8 mode)
   {
     if (mode == HAL_LED_MODE_ON)
     {
+#ifndef _WIN32
       BSP_LED_Off(USER_LD3);
+#else
+      BSP_SetLED(2);
+#endif
     }
     else
     {
+#ifndef _WIN32
       BSP_LED_On(USER_LD3);
+#else
+      BSP_ClrLED(2);
+#endif
     }
   }
 
@@ -464,10 +494,16 @@ void HalLedEnterSleep( void )
 #if (HAL_LED == TRUE)
   /* Save the state of each led */
   HalSleepLedState = 0;
+#ifndef _WIN32
   HalSleepLedState |= BSP_LED_Read(USER_LD1);
   HalSleepLedState |= BSP_LED_Read(USER_LD2) << 1;
   HalSleepLedState |= BSP_LED_Read(USER_LD3) << 2;
 
+#else
+  HalSleepLedState |= BSP_GetLEDState(0);
+  HalSleepLedState |= BSP_GetLEDState(1) << 1;
+  HalSleepLedState |= BSP_GetLEDState(2) << 2;
+#endif
   /* TURN OFF all LEDs to save power */
   HalLedOnOff (HAL_LED_ALL, HAL_LED_MODE_OFF);
 #endif /* HAL_LED */

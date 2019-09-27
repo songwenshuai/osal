@@ -53,7 +53,9 @@ extern int putc(int ch);
  ***************************************************************************************************/
 void SysTickIntEnable(void)
 {
+#ifndef _WIN32
     HAL_ResumeTick();
+#endif
 }
 
 
@@ -68,7 +70,9 @@ void SysTickIntEnable(void)
  ***************************************************************************************************/
 void SysTickIntDisable(void)
 {
+#ifndef _WIN32
     HAL_SuspendTick();
+#endif
 }
 
 /*******************************************************************************
@@ -97,7 +101,9 @@ void SysTickIntDisable(void)
 void halSleep( uint32 osal_timeout )
 {
     //Sleep the task for the specified duration
+#ifndef _WIN32
     HAL_Delay(osal_timeout);
+#endif
 }
 
 /***************************************************************************************************
@@ -118,10 +124,12 @@ void halSleep( uint32 osal_timeout )
  ***************************************************************************************************/
 void HAL_IncTick(void)
 {
+#ifndef _WIN32
   uwTick += uwTickFreq;
 
   /* Update OSAL timer and clock */
   osalAdjustTimer(TICK_IN_MS);
+#endif
 }
 
 /***************************************************************************************************
@@ -135,10 +143,12 @@ void HAL_IncTick(void)
  ***************************************************************************************************/
 void _putchar(char character)
 {
+#ifndef _WIN32
   // send char to console etc.
   int c = (int)character;
 
   if (c == '\n')
     putc('\r');
   putc(c);
+#endif
 }

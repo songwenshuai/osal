@@ -501,11 +501,11 @@ typedef union
 *       OSAL lock configuration fallback
 */
 #ifndef   OSAL_IRQ_LOCK
-  #define OSAL_IRQ_LOCK(LockState)                // Lock OSAL (nestable)   (i.e. disable interrupts)
+  #define OSAL_IRQ_LOCK(LockState)                (void)(LockState)   // Lock OSAL (nestable)   (i.e. disable interrupts)
 #endif
 
 #ifndef   OSAL_IRQ_UNLOCK
-  #define OSAL_IRQ_UNLOCK(LockState)              // Unlock OSAL (nestable) (i.e. enable previous interrupt lock state)
+  #define OSAL_IRQ_UNLOCK(LockState)              (void)(LockState)   // Unlock OSAL (nestable) (i.e. enable previous interrupt lock state)
 #endif
 
 /*********************************************************************

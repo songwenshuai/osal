@@ -33,19 +33,29 @@ Purpose : embOS sample program running two simple tasks, each toggling
 
 #include "Windows.h"
 #include "BSP.h"
+#include "OSAL.h"
 
+/*********************************************************************
+*
+*       Global functions
+*
+**********************************************************************
+*/
+extern void SysTickSetup(void);
 
 /*********************************************************************
 *
 *       main()
 */
 int main(void) {
-  OS_InitHW();  // Initialize required hardware
+
+  SysTickSetup();  // Initialize ticks
+
   BSP_Init();   // Initialize LED ports
-  while (1) {
-    BSP_ToggleLED(1);
-    Sleep(200);
-  }
+
+  // No Return from here
+  osal_start_system();
+
   return 0;
 }
 

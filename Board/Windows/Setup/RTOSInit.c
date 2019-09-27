@@ -33,6 +33,8 @@ Purpose : Initializes and handles the hardware for embOS
 #include <stdio.h>
 #include <time.h>
 #include <BSP.h>
+#include <OSAL.h>
+#include <OSAL_Clock.h>
 
 /*********************************************************************
 *
@@ -40,6 +42,15 @@ Purpose : Initializes and handles the hardware for embOS
 *
 **********************************************************************
 */
+
+#define TICK_IN_MS 1 /* 1 millisecond */ 
+
+/*********************************************************************
+ * GLOBAL VARIABLES
+ */
+
+LARGE_INTEGER count_start;
+LARGE_INTEGER count_freq;
 
 /*********************************************************************
 *
@@ -91,6 +102,7 @@ static void _ISRTickThread(void) {
 #if 0
       OS_TICK_Handle();
 #endif
+      osalAdjustTimer(TICK_IN_MS);
     }
 #if 0
     OS_INT_Leave();
@@ -161,6 +173,79 @@ void OS_InitHW(void) {
 #endif
   hISRThread = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE) _ISRTickThread, NULL, 0, NULL);
   timeSetEvent(1,0, _CbSignalTickProc, (int)hISRThread, (TIME_PERIODIC | TIME_CALLBACK_FUNCTION));
+#if 0
+  OS_INT_DecRI();
+#endif
+}
+
+
+/**
+ * @brief SysTickSetup
+ **/
+void SysTickSetup(void)
+{
+    // get count Frequency
+    QueryPerformanceFrequency(&count_freq);
+
+    // get initial time
+    QueryPerformanceCounter(&count_start);
+}
+
+/**
+ * @brief macMcuPrecisionCount (320us)
+ *
+ **/
+uint32 macMcuPrecisionCount(void)
+{
+    LARGE_INTEGER count_end;
+
+    // get end count
+    QueryPerformanceCounter(&count_end);
+
+    // get time (1000 000 us / 320us ) = 3125
+    return (uint32)((count_end.QuadPart - count_start.QuadPart) / (count_freq.QuadPart / 3125.0));
+}
+
+/**
+ * @brief get_second (s)
+ **/
+uint32 get_second(void)
+{
+    LARGE_INTEGER count_end;
+
+    // get end count
+    QueryPerformanceCounter(&count_end);
+
+    // get time
+    return (uint32)((count_end.QuadPart - count_start.QuadPart) / (count_freq.QuadPart / 1.0));
+}
+
+/**
+ * @brief get_millisecond (ms)
+ **/
+uint32 get_millisecond(void)
+{
+    LARGE_INTEGER count_end;
+
+    // get end count
+    QueryPerformanceCounter(&count_end);
+
+    // get time
+    return (uint32)((count_end.QuadPart - count_start.QuadPart) / (count_freq.QuadPart / 1000.0));
+}
+
+/**
+ * @brief get_microsecond (us)
+ **/
+uint32 get_microsecond(void)
+{
+    LARGE_INTEGER count_end;
+
+    // get end count
+    QueryPerformanceCounter(&count_end);
+
+    // get time
+    return (uint32)((count_end.QuadPart - count_start.QuadPart) / (count_freq.QuadPart / 1000000.0));
 }
 
 /*************************** End of file ****************************/
