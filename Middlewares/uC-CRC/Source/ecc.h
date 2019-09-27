@@ -49,7 +49,6 @@
 */
 
 #include  <cpu.h>
-#include  <cpu_core.h>
 
 
 /*

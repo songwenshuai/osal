@@ -368,6 +368,8 @@
           <state>$PROJ_DIR$/../../../Middlewares/uC-LIB/Config</state>
           <state>$PROJ_DIR$/../../../Middlewares/uC-LIB/Ports</state>
           <state>$PROJ_DIR$/../../../Middlewares/uC-LIB/Source</state>
+          <state>$PROJ_DIR$/../../../Middlewares/uC-CRC/Cfg/Template</state>
+          <state>$PROJ_DIR$/../../../Middlewares/uC-CRC/Source</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -1424,6 +1426,42 @@
         </file>
         <file>
           <name>$PROJ_DIR$\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_SYSVIEW_Int.h</name>
+        </file>
+      </group>
+    </group>
+    <group>
+      <name>uC-CRC</name>
+      <group>
+        <name>Cfg</name>
+        <group>
+          <name>Template</name>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\uC-CRC\Cfg\Template\crc_cfg.h</name>
+          </file>
+        </group>
+      </group>
+      <group>
+        <name>Source</name>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\Middlewares\uC-CRC\Source\crc_util.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\Middlewares\uC-CRC\Source\crc_util.h</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\Middlewares\uC-CRC\Source\ecc.h</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\Middlewares\uC-CRC\Source\ecc_hamming.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\Middlewares\uC-CRC\Source\ecc_hamming.h</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\Middlewares\uC-CRC\Source\edc_crc.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\Middlewares\uC-CRC\Source\edc_crc.h</name>
         </file>
       </group>
     </group>
