@@ -23,6 +23,7 @@ extern "C"
  * MACROS
  */
 
+#define SBP_BUTTON_EVT_DELAY    20
 #define SBP_PERIODIC_EVT_DELAY  1000
 #define SBP_CBTIMER_EVT_DELAY   5000
 
@@ -33,6 +34,7 @@ extern "C"
 
 #define SBP_START_DEVICE_EVT  0x0002
 #define SBP_PERIODIC_EVT      0x0004  
+#define BTN_PROCESS_EVT       0x0008  
 
 #define NV_APPID              0x100
 

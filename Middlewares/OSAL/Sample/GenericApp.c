@@ -22,6 +22,8 @@
 
 #include "GenericApp.h"
 
+#include  "bsp_led.h"
+
 /*********************************************************************
  * GLOBAL VARIABLES
  */
@@ -30,6 +32,13 @@ uint8 App_TaskID;
 /*********************************************************************
  * LOCAL VARIABLES
  */
+
+ /*********************************************************************
+  * GLOBAL FUNCTIONS
+  */
+
+extern void flex_button_scan(void);
+extern void user_button_init( void );
 
  /*********************************************************************
   * FUNCTIONS
@@ -58,6 +67,12 @@ void App_Init(uint8 task_id)
 
     // Setup Cb Timer
     osal_CbTimerStartReload(App_TimerCB, (uint8*)"TEST", SBP_CBTIMER_EVT_DELAY, NULL);
+
+    // Init Button
+    user_button_init();
+
+    // Init LED
+    BSP_LED_Init();
 }
 
 /*********************************************************************
@@ -97,6 +112,9 @@ uint16 App_ProcessEvent(uint8 task_id, uint16 events)
         // Set timer for first periodic event
         osal_start_timerEx(App_TaskID, SBP_PERIODIC_EVT, SBP_PERIODIC_EVT_DELAY);
 
+        // Set timer for Button Process
+        osal_start_timerEx(App_TaskID, BTN_PROCESS_EVT, SBP_BUTTON_EVT_DELAY);
+
         return (events ^ SBP_START_DEVICE_EVT);
     }
 
@@ -112,6 +130,20 @@ uint16 App_ProcessEvent(uint8 task_id, uint16 events)
         Periodic_Event();
 
         return (events ^ SBP_PERIODIC_EVT);
+    }
+
+    if (events & BTN_PROCESS_EVT)
+    {
+        // Restart timer
+        if ( SBP_BUTTON_EVT_DELAY )
+        {
+            osal_start_timerEx(App_TaskID, BTN_PROCESS_EVT, SBP_BUTTON_EVT_DELAY);
+        }
+        
+        // Perform periodic application task
+        flex_button_scan();
+
+        return (events ^ BTN_PROCESS_EVT);
     }
 
     // Discard unknown events
@@ -175,6 +207,8 @@ static void msg_send_str( _byte *str_ptr )
  */
 static void Periodic_Event(void)
 {
+//------------------------------- gpio test ------------------------------------
+  BSP_LED_Toggle(USER_LED_ALL);
 //------------------------------- hard fault test ------------------------------------
 #if 0
     volatile unsigned int *p;
