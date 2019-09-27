@@ -24,6 +24,7 @@ extern "C"
  */
 
 #define SBP_PERIODIC_EVT_DELAY  1000
+#define SBP_CBTIMER_EVT_DELAY   5000
 
 /*********************************************************************
  * CONSTANTS

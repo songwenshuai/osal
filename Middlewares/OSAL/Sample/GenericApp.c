@@ -57,7 +57,7 @@ void App_Init(uint8 task_id)
     osal_set_event(App_TaskID, SBP_START_DEVICE_EVT);
 
     // Setup Cb Timer
-    osal_CbTimerStartReload(App_TimerCB, (uint8*)"test", 5000, NULL);
+    osal_CbTimerStartReload(App_TimerCB, (uint8*)"TEST", SBP_CBTIMER_EVT_DELAY, NULL);
 }
 
 /*********************************************************************
@@ -187,7 +187,7 @@ static void Periodic_Event(void)
     static int32 oldtime = 0, new_time = 0, deviation = 0;
 
     new_time = osal_GetSystemClock();
-    deviation = ((new_time - oldtime) > 1000) ? ((new_time - oldtime) - 1000) : (1000 - (new_time - oldtime));
+    deviation = ABS((new_time - oldtime) - SBP_PERIODIC_EVT_DELAY);
     oldtime = new_time;
     SEGGER_SYSVIEW_PrintfHost("Tick = %d ms \r\n", deviation);
     printf("deviation = %d ms\r\n", deviation);
@@ -230,6 +230,13 @@ static void App_TimerCB(uint8* pData)
 {
     if (pData)
     {
+        static int32 oldtime1 = 0, new_time1 = 0, deviation1 = 0;
+        
+        new_time1 = osal_GetSystemClock();
+        deviation1 = ABS((new_time1 - oldtime1) - SBP_CBTIMER_EVT_DELAY);
+        oldtime1 = new_time1;
+        SEGGER_SYSVIEW_PrintfHost("Tick = %d ms \r\n", deviation1);
+        printf("deviation1 = %d ms\r\n", deviation1);
         printf("cb timer %s\r\n", pData);
     }
 }
