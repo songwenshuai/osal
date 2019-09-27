@@ -39,6 +39,12 @@ void MX_GPIO_Init(void);
 
 /* USER CODE BEGIN Prototypes */
 
+void  BSP_LED_Red ( void );
+
+void  BSP_LED_Green ( void );
+
+void  BSP_LED_Toggle ( void );
+
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

@@ -60,6 +60,63 @@ void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 2 */
 
+/*
+*********************************************************************************************************
+*                                            BSP_LED_Red()
+*
+* Description : Turn ON a Red LED.
+*
+* Argument(s) : none.
+*
+* Return(s)   : none.
+*
+* Note(s)     : none.
+*********************************************************************************************************
+*/
+
+void  BSP_LED_Red ( void )
+{
+  HAL_GPIO_WritePin(LED_STLINK_GPIO_Port, LED_STLINK_Pin, GPIO_PIN_SET);
+}
+
+/*
+*********************************************************************************************************
+*                                            BSP_LED_Green()
+*
+* Description : Turn ON a Green LED.
+*
+* Argument(s) : none.
+*
+* Return(s)   : none.
+*
+* Note(s)     : none.
+*********************************************************************************************************
+*/
+
+void  BSP_LED_Green ( void )
+{
+  HAL_GPIO_WritePin(LED_STLINK_GPIO_Port, LED_STLINK_Pin, GPIO_PIN_RESET);
+}
+
+/*
+*********************************************************************************************************
+*                                          BSP_LED_Toggle()
+*
+* Description : Toggles LED.
+*
+* Argument(s) : none.
+*
+* Return(s)   : none.
+*
+* Note(s)     : none.
+*********************************************************************************************************
+*/
+
+void  BSP_LED_Toggle ( void )
+{
+  HAL_GPIO_TogglePin(LED_STLINK_GPIO_Port, LED_STLINK_Pin);
+}
+
 /* USER CODE END 2 */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

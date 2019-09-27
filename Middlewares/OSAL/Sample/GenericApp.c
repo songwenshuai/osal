@@ -11,7 +11,7 @@
 /*********************************************************************
  * INCLUDES
  */
-#include "main.h"
+#include "gpio.h"
 
 #include "OSAL.h"
 
@@ -187,7 +187,7 @@ static void Periodic_Event(void)
     SEGGER_SYSVIEW_PrintfHost("Tick = %d ms \r\n", deviation);
     printf("deviation = %d ms\r\n", deviation);
 //------------------------------- gpio test --------------------------------------
-    HAL_GPIO_TogglePin(LED_STLINK_GPIO_Port, LED_STLINK_Pin);
+    BSP_LED_Toggle();
 //------------------------------- nv test --------------------------------------
     static uint32 flag = 0;
     static char nvDataWrite[13] = {0};
