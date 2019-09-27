@@ -170,6 +170,14 @@ static void msg_send_str( _byte *str_ptr )
  */
 static void Periodic_Event(void)
 {
+//------------------------------- hard fault test ------------------------------------
+#if 0
+    volatile unsigned int *p;
+    unsigned int n;
+    p = (unsigned int *)0xCCCCCCCC;
+    n = *p;
+    n = n;
+#endif
 //------------------------------- time test ------------------------------------
     static int32 oldtime = 0, new_time = 0, deviation = 0;
 
