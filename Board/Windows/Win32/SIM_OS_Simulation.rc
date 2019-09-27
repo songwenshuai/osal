@@ -1,0 +1,84 @@
+/*********************************************************************
+*                   (c) SEGGER Microcontroller GmbH                  *
+*                        The Embedded Experts                        *
+*                           www.segger.com                           *
+**********************************************************************
+
+-------------------------- END-OF-HEADER -----------------------------
+
+File    : OS_Simulation.rc
+Purpose : embOS simulation specific resources for the Win32 window.
+*/
+
+#include "SIM_OS_Resource.h"
+#include "windows.h"
+
+/*********************************************************************
+*
+*       Icons
+*
+**********************************************************************
+*/
+
+SIM_OS_IDI_ICON ICON DISCARDABLE "SIM_OS_Simulation.ico"
+
+/*********************************************************************
+*
+*       Menu
+*
+**********************************************************************
+*/
+
+SIM_OS_IDC_CONTEXTMENU MENU DISCARDABLE
+BEGIN
+  POPUP "&File"
+  BEGIN
+    MENUITEM "&About\tF1",    SIM_OS_IDM_ABOUT
+    MENUITEM SEPARATOR
+    MENUITEM "E&xit\tALT-F4", SIM_OS_IDM_EXIT
+  END
+END
+
+/*********************************************************************
+*
+*       Dialog
+*
+**********************************************************************
+*/
+
+OS_IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 230, 71
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About embOS Simulation"
+FONT 8, "MS Sans Serif"
+BEGIN
+  ICON            SIM_OS_IDI_ICON,               SIM_OS_IDC_STATIC,  10, 10,  20, 20
+  LTEXT           "embOS Simulation",            SIM_OS_IDC_STATIC,  40, 10, 100,  8, SS_NOPREFIX
+  LTEXT           "Compile date",                SIM_OS_ID_DATE,     40, 19, 100,  8, SS_NOPREFIX
+  LTEXT           "Copyright (C) 2003-2019",     SIM_OS_IDC_STATIC,  40, 35, 130,  8
+  LTEXT           "SEGGER Microcontroller GmbH", SIM_OS_IDC_STATIC,  40, 44, 160,  8
+  LTEXT           "www.segger.com",              SIM_OS_IDC_STATIC,  40, 52, 130,  8
+  DEFPUSHBUTTON   "OK",                          IDOK,              177,  7,  45, 14, WS_GROUP
+END
+
+/*********************************************************************
+*
+*       Bitmap
+*
+**********************************************************************
+*/
+
+SIM_OS_IDB_DEVICE BITMAP DISCARDABLE "SIM_OS_Device.bmp"
+
+/*********************************************************************
+*
+*       Accelerators
+*
+**********************************************************************
+*/
+
+SIM_OS_IDC_WINMAIN ACCELERATORS MOVEABLE PURE
+BEGIN
+  VK_F1, SIM_OS_IDM_ABOUT, VIRTKEY, NOINVERT
+END
+
+/*************************** End of file ****************************/
