@@ -22,7 +22,7 @@
 
 /* USER CODE BEGIN 0 */
 
-#if defined(HAL_UART_MODULE_ENABLED)
+#if defined(_NO_PRINTF)
 #define UART_TIMEOUT_VALUE   1000
 #ifdef __GNUC__
 /* With GCC, small printf (option LD Linker->Libraries->Small printf
@@ -31,7 +31,7 @@
 #else
 #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
 #endif /* __GNUC__ */
-#endif /* HAL_UART_MODULE_ENABLED */
+#endif /* _NO_PRINTF */
 
 /* USER CODE END 0 */
 
@@ -114,7 +114,7 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 } 
 
 /* USER CODE BEGIN 1 */
-
+#if defined(_NO_PRINTF)
 /**
   * @brief  Retargets the C library printf function to the USART2.
   * @param  ch: character to send
@@ -144,6 +144,7 @@ int fgetc(FILE * f)
 
   return ch;
 }
+#endif /* _NO_PRINTF */
 
 /* USER CODE END 1 */
 

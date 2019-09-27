@@ -23,7 +23,7 @@ extern "C"
  * OPTION
  */
 
-//#define USE_SYSTICK_IRQ                1
+#define USE_SYSTICK_IRQ                1
 
 /*********************************************************************
  * COMPILER

@@ -21,7 +21,7 @@ extern "C"
 /*********************************************************************
  * MACROS
  */
-#define POWER_SAVING            1
+//#define POWER_SAVING            1
 
 //
 // helSleep() 在单片机上参考此函数实现睡眠函数.

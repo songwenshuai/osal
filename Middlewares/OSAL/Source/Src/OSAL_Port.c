@@ -9,8 +9,7 @@
 /*********************************************************************
  * INCLUDES
  */
-#include <windows.h>
-#include <stdio.h>
+#include "usart.h"
 
 #include "OSAL.h"
 
@@ -139,12 +138,10 @@ void SysTickIntDisable(void)
  **/
 void _putchar(char character)
 {
-    // send char to console etc.
-    uint8 c = (uint8)character;
+  /* Place your implementation of fputc here */
+  /* e.g. write a character to the USART2 and Loop until the end of transmission */
+  HAL_UART_Transmit(&huart2, (uint8_t *)&character, 1, 1000);
 
-    if (c == '\n')
-        putchar('\r');
-    putchar(c);
 }
 
 /**
@@ -154,5 +151,5 @@ void _putchar(char character)
 void Delay(uint32 delay)
 {
     //Delay the task for the specified duration
-    Sleep(delay);
+    HAL_Delay(delay);
 }

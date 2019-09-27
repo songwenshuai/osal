@@ -11,6 +11,8 @@
 /*********************************************************************
  * INCLUDES
  */
+#include "main.h"
+
 #include "OSAL.h"
 
 #include "OSAL_Printf.h"
@@ -168,6 +170,9 @@ static void msg_send_str( _byte *str_ptr )
  */
 static void Periodic_Event(void)
 {
+    SEGGER_SYSVIEW_PrintfHost("Tick = %d \r\n", HAL_GetTick());
+    printf("Tick = %d \r\n", HAL_GetTick());
+    HAL_GPIO_TogglePin(LED_STLINK_GPIO_Port, LED_STLINK_Pin);
 //------------------------------- nv test --------------------------------------
     static uint32 flag = 0;
     static char nvDataWrite[13] = {0};

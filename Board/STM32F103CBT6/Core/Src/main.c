@@ -25,6 +25,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+  
+#include "OSAL.h"
 
 /* USER CODE END Includes */
 
@@ -94,6 +96,18 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
 
+  // Turn off interrupts
+  osal_int_disable(INTS_ALL);
+
+  // Initialize the operating system
+  osal_init_system();
+
+  // Allow interrupts
+  osal_int_enable(INTS_ALL);
+
+  // No Return from here
+  osal_start_system();
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -103,10 +117,6 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    SEGGER_SYSVIEW_PrintfHost("Tick = %d \r\n", HAL_GetTick());
-    printf("Tick = %d \r\n", HAL_GetTick());
-    HAL_GPIO_TogglePin(LED_STLINK_GPIO_Port, LED_STLINK_Pin);
-    HAL_Delay(1000);
   }
   /* USER CODE END 3 */
 }

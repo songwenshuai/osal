@@ -357,6 +357,8 @@
           <state>$PROJ_DIR$/../Drivers/CMSIS/Include</state>
           <state>$PROJ_DIR$\..\Middlewares\SystemView\Config</state>
           <state>$PROJ_DIR$\..\Middlewares\SystemView\SEGGER</state>
+          <state>$PROJ_DIR$\..\Middlewares\OSAL\App</state>
+          <state>$PROJ_DIR$\..\Middlewares\OSAL\Core\Inc</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -1146,6 +1148,114 @@
   </group>
   <group>
     <name>Middlewares</name>
+    <group>
+      <name>OSAL</name>
+      <group>
+        <name>App</name>
+        <file>
+          <name>$PROJ_DIR$\..\Middlewares\OSAL\App\GenericApp.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\Middlewares\OSAL\App\GenericApp.h</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\Middlewares\OSAL\App\OSAL_GenericApp.c</name>
+        </file>
+      </group>
+      <group>
+        <name>Core</name>
+        <group>
+          <name>Inc</name>
+          <file>
+            <name>$PROJ_DIR$\..\Middlewares\OSAL\Core\Inc\OSAL.h</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\Middlewares\OSAL\Core\Inc\OSAL_Bufmgr.h</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\Middlewares\OSAL\Core\Inc\OSAL_Cbtimer.h</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\Middlewares\OSAL\Core\Inc\OSAL_Clock.h</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\Middlewares\OSAL\Core\Inc\OSAL_Comdef.h</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\Middlewares\OSAL\Core\Inc\OSAL_Debug.h</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\Middlewares\OSAL\Core\Inc\OSAL_List.h</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\Middlewares\OSAL\Core\Inc\OSAL_Memory.h</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\Middlewares\OSAL\Core\Inc\OSAL_Nv.h</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\Middlewares\OSAL\Core\Inc\OSAL_Printf.h</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\Middlewares\OSAL\Core\Inc\OSAL_PwrMgr.h</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\Middlewares\OSAL\Core\Inc\OSAL_Queue.h</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\Middlewares\OSAL\Core\Inc\OSAL_Ring.h</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\Middlewares\OSAL\Core\Inc\OSAL_Tasks.h</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\Middlewares\OSAL\Core\Inc\OSAL_Timers.h</name>
+          </file>
+        </group>
+        <group>
+          <name>Src</name>
+          <file>
+            <name>$PROJ_DIR$\..\Middlewares\OSAL\Core\Src\OSAL.c</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\Middlewares\OSAL\Core\Src\OSAL_Bufmgr.c</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\Middlewares\OSAL\Core\Src\OSAL_Cbtimer.c</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\Middlewares\OSAL\Core\Src\OSAL_Clock.c</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\Middlewares\OSAL\Core\Src\OSAL_List.c</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\Middlewares\OSAL\Core\Src\OSAL_Memory.c</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\Middlewares\OSAL\Core\Src\OSAL_Nv.c</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\Middlewares\OSAL\Core\Src\OSAL_Port.c</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\Middlewares\OSAL\Core\Src\OSAL_Printf.c</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\Middlewares\OSAL\Core\Src\OSAL_PwrMgr.c</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\Middlewares\OSAL\Core\Src\OSAL_Queue.c</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\Middlewares\OSAL\Core\Src\OSAL_Ring.c</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\Middlewares\OSAL\Core\Src\OSAL_Timers.c</name>
+          </file>
+        </group>
+      </group>
+    </group>
     <group>
       <name>SystemView</name>
       <group>
