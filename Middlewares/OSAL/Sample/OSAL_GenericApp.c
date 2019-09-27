@@ -18,6 +18,7 @@
 #include "OSAL_Tasks.h"
 
 #include "GenericApp.h"
+#include "HalApp.h"
 
 /*********************************************************************
  * GLOBAL VARIABLES
@@ -25,6 +26,10 @@
 
 // The order in this table must be identical to the task initialization calls below in osalInitTask.
 const pTaskEventHandlerFn tasksArr[] = {
+  
+  /* Hal Tasks */
+  Hal_ProcessEvent,
+
   /* Callback Timer Tasks */
   OSAL_CBTIMER_PROCESS_EVENT( osal_CbTimerProcessEvent ),
   
@@ -63,6 +68,9 @@ void osalInitTasks( void )
   {
     HAL_ASSERT_FORCED();
   }
+
+  /* Hal Tasks */
+  Hal_Init( taskID++ );
 
   /* Callback Timer Tasks */
   osal_CbTimerInit( taskID );
