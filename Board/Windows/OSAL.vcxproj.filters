@@ -2,39 +2,63 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Board">
-      <UniqueIdentifier>{e15167c5-a699-43e2-be34-b8317e59bc0e}</UniqueIdentifier>
+      <UniqueIdentifier>{3bc860d6-b45b-4482-b1ab-62089e123776}</UniqueIdentifier>
     </Filter>
     <Filter Include="Middlewares">
-      <UniqueIdentifier>{c749bb04-fa85-4f3f-95ab-d92ce91bea63}</UniqueIdentifier>
+      <UniqueIdentifier>{d2fdb6a3-ebd2-418f-8979-8cbca4a09aa9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Board\Windows">
-      <UniqueIdentifier>{398d09ae-9fa3-4750-b3c2-2fd4c9c97ed7}</UniqueIdentifier>
+      <UniqueIdentifier>{f60e46dc-1631-4310-8e35-b2c98bb402ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Board\Windows\Application">
+      <UniqueIdentifier>{ab8d1b74-81fe-4faa-95b0-be1864d0af38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Board\Windows\Setup">
+      <UniqueIdentifier>{f53d4e96-c359-4ee7-8b9a-18f3a2262e57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Board\Windows\Win32">
+      <UniqueIdentifier>{658a592f-fb40-47f8-bacb-ec428115acb6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Middlewares\OSAL">
-      <UniqueIdentifier>{a2779d56-7e80-455e-b228-2bb4fc99e677}</UniqueIdentifier>
+      <UniqueIdentifier>{b7387436-ada8-46b2-964d-dac5a13d61ee}</UniqueIdentifier>
     </Filter>
     <Filter Include="Middlewares\OSAL\Sample">
-      <UniqueIdentifier>{749eb735-1aaf-4dd8-98ca-b00752d1996a}</UniqueIdentifier>
+      <UniqueIdentifier>{20195f94-bae2-459f-9128-fb30135ec663}</UniqueIdentifier>
     </Filter>
     <Filter Include="Middlewares\OSAL\Source">
-      <UniqueIdentifier>{2f4fbe01-6765-4195-8376-1338fe28332a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Middlewares\OSAL\Source\Inc">
-      <UniqueIdentifier>{71489792-8699-4eb0-a364-06db31ba68ea}</UniqueIdentifier>
+      <UniqueIdentifier>{ed93e481-6b53-406b-b68b-0cb6a580628d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Middlewares\OSAL\Source\Src">
-      <UniqueIdentifier>{43893444-8ba9-4c2a-bc25-63e2cdb8af34}</UniqueIdentifier>
+      <UniqueIdentifier>{3be701df-e3e0-4dd7-a80a-ab20fa8449a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Middlewares\OSAL\Source\Inc">
+      <UniqueIdentifier>{f5026142-6d70-49db-8003-1d5999e4b71d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Middlewares\OSAL\Sample\Hal">
+      <UniqueIdentifier>{35f99da1-b2b7-4be8-9875-7c12176fc195}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Middlewares\OSAL\Sample\Hal\Target">
+      <UniqueIdentifier>{763ab504-c43f-433b-a0d4-086339469e4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Middlewares\OSAL\Sample\App">
+      <UniqueIdentifier>{0ae39ca7-2f07-48a2-bf1e-46fbd7ef9efc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.c">
-      <Filter>Board\Windows</Filter>
+    <ClCompile Include="Setup\BSP.c">
+      <Filter>Board\Windows\Setup</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Middlewares\OSAL\Sample\GenericApp.c">
-      <Filter>Middlewares\OSAL\Sample</Filter>
+    <ClCompile Include="Setup\RTOSInit.c">
+      <Filter>Board\Windows\Setup</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Middlewares\OSAL\Sample\OSAL_GenericApp.c">
-      <Filter>Middlewares\OSAL\Sample</Filter>
+    <ClCompile Include="Win32\WinMain.c">
+      <Filter>Board\Windows\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\OS_StartLEDBlink.c">
+      <Filter>Board\Windows\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Win32\SIM_OS.c">
+      <Filter>Board\Windows\Win32</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL.c">
       <Filter>Middlewares\OSAL\Source\Src</Filter>
@@ -75,10 +99,36 @@
     <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_Timers.c">
       <Filter>Middlewares\OSAL\Source\Src</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Middlewares\OSAL\Sample\App\GenericApp.c">
+      <Filter>Middlewares\OSAL\Sample\App</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Middlewares\OSAL\Sample\Hal\hal_drivers.c">
+      <Filter>Middlewares\OSAL\Sample\Hal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Middlewares\OSAL\Sample\Hal\Target\hal_led.c">
+      <Filter>Middlewares\OSAL\Sample\Hal\Target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Middlewares\OSAL\Sample\OSAL_GenericApp.c">
+      <Filter>Middlewares\OSAL\Sample</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Middlewares\OSAL\Sample\GenericApp.h">
-      <Filter>Middlewares\OSAL\Sample</Filter>
+    <None Include="Win32\SIM_OS_Simulation.ico">
+      <Filter>Board\Windows\Win32</Filter>
+    </None>
+    <None Include="Win32\SIM_OS_Device.bmp">
+      <Filter>Board\Windows\Win32</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Win32\SIM_OS_Resource.h">
+      <Filter>Board\Windows\Win32</Filter>
+    </ClInclude>
+    <ClInclude Include="Win32\SIM_OS.h">
+      <Filter>Board\Windows\Win32</Filter>
+    </ClInclude>
+    <ClInclude Include="Setup\BSP.h">
+      <Filter>Board\Windows\Setup</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL.h">
       <Filter>Middlewares\OSAL\Source\Inc</Filter>
@@ -93,6 +143,9 @@
       <Filter>Middlewares\OSAL\Source\Inc</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Comdef.h">
+      <Filter>Middlewares\OSAL\Source\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Cpu.h">
       <Filter>Middlewares\OSAL\Source\Inc</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Debug.h">
@@ -125,5 +178,19 @@
     <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Timers.h">
       <Filter>Middlewares\OSAL\Source\Inc</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Middlewares\OSAL\Sample\App\GenericApp.h">
+      <Filter>Middlewares\OSAL\Sample\App</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Middlewares\OSAL\Sample\Hal\hal_drivers.h">
+      <Filter>Middlewares\OSAL\Sample\Hal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Middlewares\OSAL\Sample\Hal\Target\hal_led.h">
+      <Filter>Middlewares\OSAL\Sample\Hal\Target</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Win32\SIM_OS_Simulation.rc">
+      <Filter>Board\Windows\Win32</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

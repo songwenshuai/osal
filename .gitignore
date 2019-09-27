@@ -65,3 +65,6 @@ settings/
 *.dep
 .mxproject
 *.ewt
+
+SIM_OS_Simulation.aps
+Release/
