@@ -31,7 +31,7 @@ extern HAL_TickFreqTypeDef uwTickFreq;  /* 1KHz */
  * EXTERN FUNCTIONS
  */
 
-extern int __putchar(int ch);
+extern int putc(int ch);
 
  /*********************************************************************
   * FUNCTIONS
@@ -104,7 +104,7 @@ void halSleep( uint32 osal_timeout )
  * 
  * @note This function is declared as __weak to be overwritten in case of other
  *      implementations in user file.
- *
+ * 
  * @brief   The Systick Interrupt module
  *
  * @param   None
@@ -134,6 +134,6 @@ void _putchar(char character)
   int c = (int)character;
 
   if (c == '\n')
-    __putchar('\r');
-  __putchar(c);
+    putc('\r');
+  putc(c);
 }

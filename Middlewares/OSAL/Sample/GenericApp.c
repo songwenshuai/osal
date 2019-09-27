@@ -186,7 +186,7 @@ static void Periodic_Event(void)
 //------------------------------- time test ------------------------------------
     static int32 oldtime = 0, new_time = 0, deviation = 0;
 
-    new_time = HAL_GetTick();
+    new_time = osal_GetSystemClock();
     deviation = ((new_time - oldtime) > 1000) ? ((new_time - oldtime) - 1000) : (1000 - (new_time - oldtime));
     oldtime = new_time;
     SEGGER_SYSVIEW_PrintfHost("Tick = %d ms \r\n", deviation);

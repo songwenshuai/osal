@@ -153,7 +153,7 @@ int fgetc(FILE * f)
   * @param  f: pointer to file (not used)
   * @retval The character transmitted
   */
-int __putchar(int ch)
+int putc(int ch)
 {
   /* Place your implementation of fputc here */
   /* e.g. write a character to the USART2 and Loop until the end of transmission */
