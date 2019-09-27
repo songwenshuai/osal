@@ -94,9 +94,6 @@ int main(void)
   MX_LPUART1_UART_Init();
   /* USER CODE BEGIN 2 */
 
-  // Initialize the operating system
-  osal_init_system();
-
   // No Return from here
   osal_start_system();
 

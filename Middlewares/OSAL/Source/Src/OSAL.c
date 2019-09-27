@@ -1592,6 +1592,9 @@ uint8 osal_init_system( void )
  */
 void osal_start_system( void )
 {
+  // Initialize the operating system
+  osal_init_system();
+  
   for(;;)  // Forever Loop
   {
     osal_run_system();
