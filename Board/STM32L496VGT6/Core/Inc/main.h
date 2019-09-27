@@ -33,6 +33,11 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
+#include "OSAL.h"
+
+#include "SEGGER_SYSVIEW_Conf.h"
+#include "SEGGER_SYSVIEW.h"
+
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

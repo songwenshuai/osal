@@ -11,7 +11,7 @@
 /*********************************************************************
  * INCLUDES
  */
-#include "gpio.h"
+#include "main.h"
 
 #include "OSAL.h"
 
@@ -191,8 +191,6 @@ static void Periodic_Event(void)
     oldtime = new_time;
     SEGGER_SYSVIEW_PrintfHost("Tick = %d ms \r\n", deviation);
     printf("deviation = %d ms\r\n", deviation);
-//------------------------------- gpio test --------------------------------------
-    BSP_LED_Toggle();
 //------------------------------- nv test --------------------------------------
     static uint32 flag = 0;
     static char nvDataWrite[13] = {0};

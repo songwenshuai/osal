@@ -85,12 +85,20 @@ int main(void)
 
   /* USER CODE BEGIN SysInit */
 
+  SEGGER_SYSVIEW_Conf();            /* Configure and initialize SystemView  */
+
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_LPUART1_UART_Init();
   /* USER CODE BEGIN 2 */
+
+  // Initialize the operating system
+  osal_init_system();
+
+  // No Return from here
+  osal_start_system();
 
   /* USER CODE END 2 */
 
