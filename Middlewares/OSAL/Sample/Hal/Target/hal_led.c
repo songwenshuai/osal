@@ -45,7 +45,7 @@
 
 #include "OSAL_Timers.h"
 #include "hal_led.h"
-#include "HalApp.h"
+#include "hal_drivers.h"
 #include "bsp_led.h"
 
 /***************************************************************************************************

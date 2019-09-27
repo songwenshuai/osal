@@ -18,7 +18,7 @@
 #include "OSAL_Tasks.h"
 
 #include "GenericApp.h"
-#include "HalApp.h"
+#include "hal_drivers.h"
 
 /*********************************************************************
  * GLOBAL VARIABLES

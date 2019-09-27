@@ -355,15 +355,16 @@
           <state>$PROJ_DIR$/../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy</state>
           <state>$PROJ_DIR$/../Drivers/CMSIS/Device/ST/STM32L4xx/Include</state>
           <state>$PROJ_DIR$/../Drivers/CMSIS/Include</state>
-          <state>$PROJ_DIR$/../../../Middlewares\HardFault\Source</state>
-          <state>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Sample\App</state>
-          <state>$PROJ_DIR$/../../../Middlewares\OSAL\Sample\Hal</state>
-          <state>$PROJ_DIR$/../../../Middlewares\OSAL\Source\Inc</state>
-          <state>$PROJ_DIR$/../../../Middlewares\SystemView\Config</state>
-          <state>$PROJ_DIR$/../../../Middlewares\SystemView\SEGGER</state>
-          <state>$PROJ_DIR$/../../../Middlewares\Bsp\BUTTON</state>
-          <state>$PROJ_DIR$/../../../Middlewares\Bsp\LED</state>
-          <state>$PROJ_DIR$/../../../Middlewares\FlexibleButton\Source</state>
+          <state>$PROJ_DIR$/../../../Middlewares/HardFault/Source</state>
+          <state>$PROJ_DIR$/../../../Middlewares/OSAL/Sample/App</state>
+          <state>$PROJ_DIR$/../../../Middlewares/OSAL/Sample/Hal</state>
+          <state>$PROJ_DIR$/../../../Middlewares/OSAL/Sample/Hal/Target</state>
+          <state>$PROJ_DIR$/../../../Middlewares/OSAL/Source/Inc</state>
+          <state>$PROJ_DIR$/../../../Middlewares/SystemView/Config</state>
+          <state>$PROJ_DIR$/../../../Middlewares/SystemView/SEGGER</state>
+          <state>$PROJ_DIR$/../../../Middlewares/Bsp/BUTTON</state>
+          <state>$PROJ_DIR$/../../../Middlewares/Bsp/LED</state>
+          <state>$PROJ_DIR$/../../../Middlewares/FlexibleButton/Source</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -1234,17 +1235,20 @@
         </group>
         <group>
           <name>Hal</name>
+          <group>
+            <name>Target</name>
+            <file>
+              <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Sample\Hal\Target\hal_led.c</name>
+            </file>
+            <file>
+              <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Sample\Hal\Target\hal_led.h</name>
+            </file>
+          </group>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Sample\Hal\Hal_led.c</name>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Sample\Hal\hal_drivers.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Sample\Hal\Hal_led.h</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Sample\Hal\HalApp.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Sample\Hal\HalApp.h</name>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Sample\Hal\hal_drivers.h</name>
           </file>
         </group>
         <file>
