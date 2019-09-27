@@ -355,10 +355,10 @@
           <state>$PROJ_DIR$/../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy</state>
           <state>$PROJ_DIR$/../Drivers/CMSIS/Device/ST/STM32F1xx/Include</state>
           <state>$PROJ_DIR$/../Drivers/CMSIS/Include</state>
-          <state>$PROJ_DIR$\..\..\..\Middlewares\SystemView\Config</state>
-          <state>$PROJ_DIR$\..\..\..\Middlewares\SystemView\SEGGER</state>
-          <state>$PROJ_DIR$\..\..\..\Middlewares\OSAL\App</state>
-          <state>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Inc</state>
+          <state>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\Config</state>
+          <state>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\SEGGER</state>
+          <state>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\App</state>
+          <state>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Inc</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -624,8 +624,8 @@
         </option>
         <option>
           <name>AUserIncludes</name>
-          <state>$PROJ_DIR$\..\..\..\Middlewares\SystemView\Config</state>
-          <state>$PROJ_DIR$\..\..\..\Middlewares\SystemView\SEGGER</state>
+          <state>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\Config</state>
+          <state>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\SEGGER</state>
         </option>
         <option>
           <name>AExtraOptionsCheckV2</name>
@@ -1153,10 +1153,10 @@
       <group>
         <name>Source</name>
         <file>
-          <name>$PROJ_DIR$\..\..\..\Middlewares\HardFault\Source\HardFaultHandler.S</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\HardFault\Source\HardFaultHandler.S</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\Middlewares\HardFault\Source\SEGGER_HardFaultHandler.c</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\HardFault\Source\SEGGER_HardFaultHandler.c</name>
         </file>
       </group>
     </group>
@@ -1165,13 +1165,13 @@
       <group>
         <name>App</name>
         <file>
-          <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\App\GenericApp.c</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\App\GenericApp.c</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\App\GenericApp.h</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\App\GenericApp.h</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\App\OSAL_GenericApp.c</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\App\OSAL_GenericApp.c</name>
         </file>
       </group>
       <group>
@@ -1179,91 +1179,91 @@
         <group>
           <name>Inc</name>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Inc\OSAL.h</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Inc\OSAL.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Bufmgr.h</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Bufmgr.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Cbtimer.h</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Cbtimer.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Clock.h</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Clock.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Comdef.h</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Comdef.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Debug.h</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Debug.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_List.h</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_List.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Memory.h</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Memory.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Nv.h</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Nv.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Printf.h</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Printf.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_PwrMgr.h</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_PwrMgr.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Queue.h</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Queue.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Ring.h</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Ring.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Tasks.h</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Tasks.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Timers.h</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Timers.h</name>
           </file>
         </group>
         <group>
           <name>Src</name>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Src\OSAL.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Src\OSAL.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Src\OSAL_Bufmgr.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Src\OSAL_Bufmgr.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Src\OSAL_Cbtimer.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Src\OSAL_Cbtimer.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Src\OSAL_Clock.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Src\OSAL_Clock.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Src\OSAL_List.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Src\OSAL_List.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Src\OSAL_Memory.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Src\OSAL_Memory.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Src\OSAL_Nv.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Src\OSAL_Nv.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Src\OSAL_Port.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Src\OSAL_Port.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Src\OSAL_Printf.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Src\OSAL_Printf.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Src\OSAL_PwrMgr.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Src\OSAL_PwrMgr.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Src\OSAL_Queue.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Src\OSAL_Queue.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Src\OSAL_Ring.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Src\OSAL_Ring.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Src\OSAL_Timers.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Src\OSAL_Timers.c</name>
           </file>
         </group>
       </group>
@@ -1273,13 +1273,13 @@
       <group>
         <name>Config</name>
         <file>
-          <name>$PROJ_DIR$\..\..\..\Middlewares\SystemView\Config\Global.h</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\Config\Global.h</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\Middlewares\SystemView\Config\SEGGER_RTT_Conf.h</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\Config\SEGGER_RTT_Conf.h</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\Middlewares\SystemView\Config\SEGGER_SYSVIEW_Conf.h</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\Config\SEGGER_SYSVIEW_Conf.h</name>
         </file>
       </group>
       <group>
@@ -1291,7 +1291,7 @@
             <group>
               <name>Cortex-M</name>
               <file>
-                <name>$PROJ_DIR$\..\..\..\Middlewares\SystemView\Sample\NoOS\Config\Cortex-M\SEGGER_SYSVIEW_Config_NoOS.c</name>
+                <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\Sample\NoOS\Config\Cortex-M\SEGGER_SYSVIEW_Config_NoOS.c</name>
               </file>
             </group>
           </group>
@@ -1300,43 +1300,43 @@
       <group>
         <name>SEGGER</name>
         <file>
-          <name>$PROJ_DIR$\..\..\..\Middlewares\SystemView\SEGGER\SEGGER.h</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\SEGGER\SEGGER.h</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_RTT.c</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_RTT.c</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_RTT.h</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_RTT.h</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_RTT_ASM_ARMv7M.S</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_RTT_ASM_ARMv7M.S</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_RTT_printf.c</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_RTT_printf.c</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_RTT_Syscalls_GCC.c</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_RTT_Syscalls_GCC.c</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_RTT_Syscalls_IAR.c</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_RTT_Syscalls_IAR.c</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_RTT_Syscalls_KEIL.c</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_RTT_Syscalls_KEIL.c</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_RTT_Syscalls_SES.c</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_RTT_Syscalls_SES.c</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_SYSVIEW.c</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_SYSVIEW.c</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_SYSVIEW.h</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_SYSVIEW.h</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_SYSVIEW_ConfDefaults.h</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_SYSVIEW_ConfDefaults.h</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_SYSVIEW_Int.h</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_SYSVIEW_Int.h</name>
         </file>
       </group>
     </group>
