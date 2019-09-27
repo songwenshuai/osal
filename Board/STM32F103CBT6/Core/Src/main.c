@@ -25,9 +25,6 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-  
-#include "OSAL.h"
-
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/

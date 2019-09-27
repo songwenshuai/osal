@@ -21,12 +21,10 @@ extern "C"
 /*********************************************************************
  * MACROS
  */
-//#define POWER_SAVING            1
+#define POWER_SAVING            1
 
-//
-// helSleep() 在单片机上参考此函数实现睡眠函数.
-//
-#define OSAL_SET_CPU_INTO_SLEEP(timeout)  st( if (timeout > 50) Delay( timeout - 20 ); ) /* Called from OSAL_PwrMgr */
+// Power conservation
+#define OSAL_SET_CPU_INTO_SLEEP(timeout) halSleep(timeout);  /* Called from OSAL_PwrMgr */
 
 /*********************************************************************
  * TYPEDEFS

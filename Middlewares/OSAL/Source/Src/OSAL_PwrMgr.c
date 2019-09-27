@@ -43,7 +43,7 @@ pwrmgr_attribute_t pwrmgr_attribute;
 /*********************************************************************
  * EXTERNAL FUNCTIONS
  */
-extern void Delay(uint32 delay);
+extern void halSleep( uint32 osal_timeout );
 
 /*********************************************************************
  * LOCAL VARIABLES

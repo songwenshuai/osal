@@ -23,7 +23,7 @@
  * ------------------------------------------------------------------------------------------------
  */
 // Memory Allocation Heap
-#define MAXMEMHEAP                 2048   /* Typically, 1.0-6.0K */
+#define MAXMEMHEAP                 4096   /* Typically, 1.0-6.0K */
 
 #define OSALMEM_IN_USE             0x8000
 #if (MAXMEMHEAP & OSALMEM_IN_USE)

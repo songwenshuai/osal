@@ -170,8 +170,15 @@ static void msg_send_str( _byte *str_ptr )
  */
 static void Periodic_Event(void)
 {
-    SEGGER_SYSVIEW_PrintfHost("Tick = %d \r\n", HAL_GetTick());
-    printf("Tick = %d \r\n", HAL_GetTick());
+//------------------------------- time test ------------------------------------
+    static int32 oldtime = 0, new_time = 0, deviation = 0;
+
+    new_time = HAL_GetTick();
+    deviation = ((new_time - oldtime) > 1000) ? ((new_time - oldtime) - 1000) : (1000 - (new_time - oldtime));
+    oldtime = new_time;
+    SEGGER_SYSVIEW_PrintfHost("Tick = %d ms \r\n", deviation);
+    printf("deviation = %d ms\r\n", deviation);
+//------------------------------- gpio test --------------------------------------
     HAL_GPIO_TogglePin(LED_STLINK_GPIO_Port, LED_STLINK_Pin);
 //------------------------------- nv test --------------------------------------
     static uint32 flag = 0;
@@ -187,8 +194,8 @@ static void Periodic_Event(void)
 //------------------------------- message test ------------------------------------
     msg_send_str("message");
 //------------------------------- ltoa test ------------------------------------
-    uint8 ltoa_str[11] = { 0 };
-    uint32 ltoa_num = 2147483648;
+    static uint8 ltoa_str[11] = { 0 };
+    static uint32 ltoa_num = 2147483648;
 
     osal_ltoa(ltoa_num, ltoa_str, 10);
     printf("ltoa_num  = %s\r\n", ltoa_str);

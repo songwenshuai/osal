@@ -536,6 +536,7 @@ typedef union
  */
 extern void SysTickIntDisable(void);
 extern void SysTickIntEnable(void);
+extern void SysTickIntHandler(void);
 
 extern uint32 CPUcpsie(void);
 extern uint32 CPUcpsid(void);

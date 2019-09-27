@@ -31,6 +31,8 @@
 #else
 #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
 #endif /* __GNUC__ */
+#else
+#define UART_TIMEOUT_VALUE   1000
 #endif /* _NO_PRINTF */
 
 /* USER CODE END 0 */
@@ -141,6 +143,21 @@ int fgetc(FILE * f)
   /* We received the charracter on the handler of the USART2 */
   /* The handler must be initialise before */
   HAL_UART_Receive(&huart2, (uint8_t *)&ch, 1, UART_TIMEOUT_VALUE);
+
+  return ch;
+}
+#else
+/**
+  * @brief  Retargets the C library printf function to the USART2.
+  * @param  ch: character to send
+  * @param  f: pointer to file (not used)
+  * @retval The character transmitted
+  */
+int __putchar(int ch)
+{
+  /* Place your implementation of fputc here */
+  /* e.g. write a character to the USART2 and Loop until the end of transmission */
+  HAL_UART_Transmit(&huart2, (uint8_t *)&ch, 1, UART_TIMEOUT_VALUE);
 
   return ch;
 }

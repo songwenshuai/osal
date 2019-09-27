@@ -9,147 +9,113 @@
 /*********************************************************************
  * INCLUDES
  */
-#include "usart.h"
-
 #include "OSAL.h"
+#include "OSAL_Clock.h"
+
+/*********************************************************************
+ * MACROS
+ */
+
+#define TICK_IN_MS 1 /* 1 millisecond */ 
+
+/*********************************************************************
+ * EXTERN FUNCTIONS
+ */
+
+extern int __putchar(int ch);
 
  /*********************************************************************
   * FUNCTIONS
   */
 
-#if defined(__IAR_SYSTEMS_ICC__)
-
-/**
- * @brief
- **/
-uint32 CPUcpsid(void)
-{
-    //
-    // Read PRIMASK and disable interrupts.
-    //
-    __asm("    mrs     r0, PRIMASK\n"
-          "    cpsid   i\n");
-
-    //
-    // "Warning[Pe940]: missing return statement at end of non-void function"
-    // is suppressed here to avoid putting a "bx lr" in the inline assembly
-    // above and a superfluous return statement here.
-    //
-#pragma diag_suppress = Pe940
-}
-#pragma diag_default = Pe940
-#endif
-
-#if defined(__KEIL__) || defined(__ARMCC_VERSION)
-
-/**
- * @brief
- **/
-__asm uint32 CPUcpsid(void)
-{
-    //
-    // Read PRIMASK and disable interrupts.
-    //
-    mrs r0, PRIMASK;
-    cpsid i;
-    bx lr
-}
-#endif
-
-#if defined(_WIN32)
-
-/**
- * @brief
- **/
-uint32 CPUcpsid(void)
-{
-    return 0;
-}
-#endif
-
-#if defined(__IAR_SYSTEMS_ICC__)
-
-/**
- * @brief
- **/
-uint32 CPUcpsie(void)
-{
-    //
-    // Read PRIMASK and enable interrupts.
-    //
-    __asm("    mrs     r0, PRIMASK\n"
-          "    cpsie   i\n");
-
-    //
-    // "Warning[Pe940]: missing return statement at end of non-void function"
-    // is suppressed here to avoid putting a "bx lr" in the inline assembly
-    // above and a superfluous return statement here.
-    //
-#pragma diag_suppress = Pe940
-}
-#pragma diag_default = Pe940
-#endif
-
-#if defined(__KEIL__) || defined(__ARMCC_VERSION)
-
-/**
- * @brief
- **/
-__asm uint32 CPUcpsie(void)
-{
-    //
-    // Read PRIMASK and enable interrupts.
-    //
-    mrs r0, PRIMASK;
-    cpsie i;
-    bx lr
-}
-#endif
-
-#if defined(_WIN32)
-
-/**
- * @brief
- **/
-uint32 CPUcpsie(void)
-{
-    return 0;
-}
-#endif
-
-
-/**
- * @brief
- **/
+/***************************************************************************************************
+ * @fn      SysTickIntEnable
+ *
+ * @brief   put char to console
+ *
+ * @param   None
+ *
+ * @return  None
+ ***************************************************************************************************/
 void SysTickIntEnable(void)
 {
+    return;
 }
 
 
-/**
- * @brief 
- **/
+/***************************************************************************************************
+ * @fn      SysTickIntDisable
+ *
+ * @brief   put char to console
+ *
+ * @param   None
+ *
+ * @return  None
+ ***************************************************************************************************/
 void SysTickIntDisable(void)
 {
+    return;
 }
 
-/**
- * @brief put char to console
- **/
+/*******************************************************************************
+ * @fn          halSleep
+ *
+ * @brief       This function is called from the OSAL task loop using and
+ *              existing OSAL interface. It determines if an OSAL timer is
+ *              pending, in which case it sets up the RTC to wake the device
+ *              for that event, and puts the device to sleep. The OSAL timers
+ *              are adjusted upon wake in case the device was awoken sooner due
+ *              to some other interrupt. If no OSAL timer event is pending,
+ *              then the device is put to sleep.
+ *
+ *              Note: Presently, only CM3 is powered down.
+ *
+ * input parameters
+ *
+ * @param       osal_timeout - Next OSAL timer timeout, in msec.
+ *
+ * output parameters
+ *
+ * @param       None.
+ *
+ * @return      None.
+ */
+void halSleep( uint32 osal_timeout )
+{
+    //Sleep the task for the specified duration
+    return;
+}
+
+/***************************************************************************************************
+ * @fn      SysTickIntHandler
+ *
+ * @brief   The Systick Interrupt module
+ *
+ * @param   None
+ *
+ * @return  None
+ ***************************************************************************************************/
+void SysTickIntHandler(void)
+{
+  /* Update OSAL timer and clock */
+  osalAdjustTimer(TICK_IN_MS);
+}
+
+/***************************************************************************************************
+ * @fn      _putchar
+ *
+ * @brief   put char to console
+ *
+ * @param   None
+ *
+ * @return  None
+ ***************************************************************************************************/
 void _putchar(char character)
 {
-  /* Place your implementation of fputc here */
-  /* e.g. write a character to the USART2 and Loop until the end of transmission */
-  HAL_UART_Transmit(&huart2, (uint8_t *)&character, 1, 1000);
+  // send char to console etc.
+  int c = (int)character;
 
-}
-
-/**
- * @brief Delay routine
- * @param[in] delay Amount of time for which the calling task should block
- **/
-void Delay(uint32 delay)
-{
-    //Delay the task for the specified duration
-    HAL_Delay(delay);
+  if (c == '\n')
+    __putchar('\r');
+  __putchar(c);
 }
