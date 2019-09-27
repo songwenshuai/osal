@@ -102,9 +102,14 @@ uint16 App_ProcessEvent(uint8 task_id, uint16 events)
 
     if (events & SBP_PERIODIC_EVT)
     {
+        // Restart timer
+        if ( SBP_PERIODIC_EVT_DELAY )
+        {
+            osal_start_timerEx(App_TaskID, SBP_PERIODIC_EVT, SBP_PERIODIC_EVT_DELAY);
+        }
+        
+        // Perform periodic application task
         Periodic_Event();
-
-        osal_start_timerEx(App_TaskID, SBP_PERIODIC_EVT, SBP_PERIODIC_EVT_DELAY);
 
         return (events ^ SBP_PERIODIC_EVT);
     }
