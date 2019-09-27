@@ -1301,9 +1301,6 @@
         </file>
         <file>
           <name>$PROJ_DIR$\..\Middlewares\SystemView\SEGGER\SEGGER_RTT_ASM_ARMv7M.S</name>
-          <excluded>
-            <configuration>STM32F103CBT6</configuration>
-          </excluded>
         </file>
         <file>
           <name>$PROJ_DIR$\..\Middlewares\SystemView\SEGGER\SEGGER_RTT_printf.c</name>
