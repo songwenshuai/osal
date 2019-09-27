@@ -1278,6 +1278,9 @@
             <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Comdef.h</name>
           </file>
           <file>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Cpu.h</name>
+          </file>
+          <file>
             <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Debug.h</name>
           </file>
           <file>
