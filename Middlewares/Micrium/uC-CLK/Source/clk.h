@@ -195,7 +195,6 @@
 */
 
 #include  <cpu.h>                                               /* CPU Configuration       (see Note #2)                */
-#include  <cpu_core.h>                                          /* CPU Core Library                                     */
 
 #include  <lib_def.h>                                           /* Standard        Defines (see Note #3a)               */
 #include  <lib_str.h>                                           /* Standard String Library (see Note #3a)               */

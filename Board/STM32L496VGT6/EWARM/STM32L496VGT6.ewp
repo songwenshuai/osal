@@ -374,6 +374,8 @@
           <state>$PROJ_DIR$/../../../Middlewares/Micrium/uC-Common/Collections</state>
           <state>$PROJ_DIR$/../../../Middlewares/Micrium/uC-Common/KAL</state>
           <state>$PROJ_DIR$/../../../Middlewares/Micrium/uC-Common</state>
+          <state>$PROJ_DIR$/../../../Middlewares/Micrium/uC-CLK/Cfg/Template</state>
+          <state>$PROJ_DIR$/../../../Middlewares/Micrium/uC-CLK/Source</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -1219,6 +1221,27 @@
     </group>
     <group>
       <name>Micrium</name>
+      <group>
+        <name>uC-CLK</name>
+        <group>
+          <name>Cfg</name>
+          <group>
+            <name>Template</name>
+            <file>
+              <name>$PROJ_DIR$\..\..\..\Middlewares\Micrium\uC-CLK\Cfg\Template\clk_cfg.h</name>
+            </file>
+          </group>
+        </group>
+        <group>
+          <name>Source</name>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\Micrium\uC-CLK\Source\clk.c</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\Micrium\uC-CLK\Source\clk.h</name>
+          </file>
+        </group>
+      </group>
       <group>
         <name>uC-Common</name>
         <group>
