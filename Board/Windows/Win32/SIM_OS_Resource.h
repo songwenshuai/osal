@@ -37,7 +37,7 @@ Purpose : embOS simulation specific definitions for the Win32 window.
 #define SIM_OS_IDI_ICON                         2000
 #define SIM_OS_IDB_DEVICE                       2001
 #define SIM_OS_IDC_CONTEXTMENU                  2002
-#define SIM_OS_IDD_ABOUTBOX                     2003
+#define OS_IDD_ABOUTBOX                         2003
 #define SIM_OS_IDM_ABOUT                        2004
 #define SIM_OS_IDM_EXIT                         2005
 #define SIM_OS_IDC_WINMAIN                      2006

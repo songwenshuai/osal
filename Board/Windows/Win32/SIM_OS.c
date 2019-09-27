@@ -410,7 +410,7 @@ static void _OnCommand(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam) {
   //
   switch (wmId) {
   case SIM_OS_IDM_ABOUT:
-    DialogBox(_hInst, (LPCTSTR)SIM_OS_IDD_ABOUTBOX, hWnd, (DLGPROC)_cbAbout);
+    DialogBox(_hInst, (LPCTSTR)OS_IDD_ABOUTBOX, hWnd, (DLGPROC)_cbAbout);
     break;
   case SIM_OS_IDM_EXIT:
     DestroyWindow(hWnd);

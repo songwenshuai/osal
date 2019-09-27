@@ -14,6 +14,14 @@
 #include "stm32l4xx_hal.h"
 #endif
 
+#ifdef STM32F103xB
+#include "stm32f1xx_hal.h"
+#endif
+
+#ifdef _WIN32
+#include "Windows.h"
+#endif
+
 #include "OSAL.h"
 #include "OSAL_Clock.h"
 
@@ -30,6 +38,11 @@
 #ifdef STM32L496xx
 extern __IO uint32_t uwTick;
 extern uint32_t uwTickFreq;  /* 1KHz */
+#endif
+
+#ifdef STM32F103xB
+extern __IO uint32_t uwTick;
+extern HAL_TickFreqTypeDef uwTickFreq;  /* 1KHz */
 #endif
 
 /*********************************************************************
@@ -103,6 +116,8 @@ void halSleep( uint32 osal_timeout )
     //Sleep the task for the specified duration
 #ifndef _WIN32
     HAL_Delay(osal_timeout);
+#else
+    Sleep(osal_timeout);
 #endif
 }
 

@@ -21,9 +21,8 @@ extern "C"
 /*********************************************************************
  * MACROS
  */
-#ifndef _WIN32
+
 #define POWER_SAVING            1
-#endif
 
 // Power conservation
 #define OSAL_SET_CPU_INTO_SLEEP(timeout) halSleep(timeout);  /* Called from OSAL_PwrMgr */
