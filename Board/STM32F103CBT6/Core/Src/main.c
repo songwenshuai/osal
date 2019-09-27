@@ -93,14 +93,8 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
 
-  // Turn off interrupts
-  osal_int_disable(INTS_ALL);
-
   // Initialize the operating system
   osal_init_system();
-
-  // Allow interrupts
-  osal_int_enable(INTS_ALL);
 
   // No Return from here
   osal_start_system();

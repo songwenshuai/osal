@@ -1239,9 +1239,6 @@
             <name>$PROJ_DIR$\..\Middlewares\OSAL\Core\Src\OSAL_Clock.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\Middlewares\OSAL\Core\Src\OSAL_Critical.c</name>
-          </file>
-          <file>
             <name>$PROJ_DIR$\..\Middlewares\OSAL\Core\Src\OSAL_List.c</name>
           </file>
           <file>

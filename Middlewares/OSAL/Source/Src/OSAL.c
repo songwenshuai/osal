@@ -56,6 +56,8 @@ osal_msg_q_t osal_qHead;
 
 // Index of active task
 static uint8 activeTaskID = TASK_NO_TASK;
+// osal_int_enable state
+static halIntState_t osal_int_state;
 
 /*********************************************************************
  * LOCAL FUNCTION PROTOTYPES
@@ -1542,6 +1544,9 @@ uint8 osal_int_disable( uint8 interrupt_id )
  */
 uint8 osal_init_system( void )
 {
+  // Turn off interrupts
+  osal_int_disable(INTS_ALL);
+
   // Initialize NV System
   osal_nv_init(NULL);
 
@@ -1566,6 +1571,9 @@ uint8 osal_init_system( void )
 
   // Setup efficient search for the first free block of heap.
   osal_mem_kick();
+
+  // Allow interrupts
+  osal_int_enable(INTS_ALL);
 
   return ( SUCCESS );
 }

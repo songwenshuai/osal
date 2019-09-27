@@ -9,6 +9,8 @@
 /*********************************************************************
  * INCLUDES
  */
+#include "stm32f1xx_hal.h"
+
 #include "OSAL.h"
 #include "OSAL_Clock.h"
 
@@ -39,7 +41,7 @@ extern int __putchar(int ch);
  ***************************************************************************************************/
 void SysTickIntEnable(void)
 {
-    return;
+    HAL_ResumeTick();
 }
 
 
@@ -54,7 +56,7 @@ void SysTickIntEnable(void)
  ***************************************************************************************************/
 void SysTickIntDisable(void)
 {
-    return;
+    HAL_SuspendTick();
 }
 
 /*******************************************************************************
@@ -83,7 +85,7 @@ void SysTickIntDisable(void)
 void halSleep( uint32 osal_timeout )
 {
     //Sleep the task for the specified duration
-    return;
+    HAL_Delay(osal_timeout);
 }
 
 /***************************************************************************************************
