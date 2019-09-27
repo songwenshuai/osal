@@ -356,14 +356,14 @@
           <state>$PROJ_DIR$/../Drivers/CMSIS/Device/ST/STM32L4xx/Include</state>
           <state>$PROJ_DIR$/../Drivers/CMSIS/Include</state>
           <state>$PROJ_DIR$/../../../Middlewares\HardFault\Source</state>
-          <state>$PROJ_DIR$/../../../Middlewares\OSAL\App</state>
-          <state>$PROJ_DIR$/../../../Middlewares\OSAL\Core\Inc</state>
+          <state>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Sample\App</state>
+          <state>$PROJ_DIR$/../../../Middlewares\OSAL\Sample\Hal</state>
+          <state>$PROJ_DIR$/../../../Middlewares\OSAL\Source\Inc</state>
           <state>$PROJ_DIR$/../../../Middlewares\SystemView\Config</state>
           <state>$PROJ_DIR$/../../../Middlewares\SystemView\SEGGER</state>
           <state>$PROJ_DIR$/../../../Middlewares\Bsp\BUTTON</state>
           <state>$PROJ_DIR$/../../../Middlewares\Bsp\LED</state>
           <state>$PROJ_DIR$/../../../Middlewares\FlexibleButton\Source</state>
-          <state>$PROJ_DIR$/../../../Middlewares\OSAL\App\Hal</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -1222,122 +1222,125 @@
     <group>
       <name>OSAL</name>
       <group>
-        <name>App</name>
+        <name>Sample</name>
+        <group>
+          <name>App</name>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Sample\App\GenericApp.c</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Sample\App\GenericApp.h</name>
+          </file>
+        </group>
         <group>
           <name>Hal</name>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\App\Hal\Hal_led.c</name>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Sample\Hal\Hal_led.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\App\Hal\Hal_led.h</name>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Sample\Hal\Hal_led.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\App\Hal\HalApp.c</name>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Sample\Hal\HalApp.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\App\Hal\HalApp.h</name>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Sample\Hal\HalApp.h</name>
           </file>
         </group>
         <file>
-          <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\App\GenericApp.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\App\GenericApp.h</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\App\OSAL_GenericApp.c</name>
+          <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Sample\OSAL_GenericApp.c</name>
         </file>
       </group>
       <group>
-        <name>Core</name>
+        <name>Source</name>
         <group>
           <name>Inc</name>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Inc\OSAL.h</name>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Source\Inc\OSAL.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Bufmgr.h</name>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Bufmgr.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Cbtimer.h</name>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Cbtimer.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Clock.h</name>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Clock.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Comdef.h</name>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Comdef.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Debug.h</name>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Debug.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_List.h</name>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_List.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Memory.h</name>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Memory.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Nv.h</name>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Nv.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Printf.h</name>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Printf.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_PwrMgr.h</name>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_PwrMgr.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Queue.h</name>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Queue.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Ring.h</name>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Ring.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Tasks.h</name>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Tasks.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Timers.h</name>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Timers.h</name>
           </file>
         </group>
         <group>
           <name>Src</name>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Src\OSAL.c</name>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Source\Src\OSAL.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Src\OSAL_Bufmgr.c</name>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Bufmgr.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Src\OSAL_Cbtimer.c</name>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Cbtimer.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Src\OSAL_Clock.c</name>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Clock.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Src\OSAL_List.c</name>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Source\Src\OSAL_List.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Src\OSAL_Memory.c</name>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Memory.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Src\OSAL_Nv.c</name>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Nv.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Src\OSAL_Port.c</name>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Port.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Src\OSAL_Printf.c</name>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Printf.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Src\OSAL_PwrMgr.c</name>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Source\Src\OSAL_PwrMgr.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Src\OSAL_Queue.c</name>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Queue.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Src\OSAL_Ring.c</name>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Ring.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Core\Src\OSAL_Timers.c</name>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Timers.c</name>
           </file>
         </group>
       </group>
