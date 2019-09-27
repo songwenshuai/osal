@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Board">
+      <UniqueIdentifier>{e15167c5-a699-43e2-be34-b8317e59bc0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Middlewares">
+      <UniqueIdentifier>{c749bb04-fa85-4f3f-95ab-d92ce91bea63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Board\Windows">
+      <UniqueIdentifier>{398d09ae-9fa3-4750-b3c2-2fd4c9c97ed7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Middlewares\OSAL">
+      <UniqueIdentifier>{a2779d56-7e80-455e-b228-2bb4fc99e677}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Middlewares\OSAL\Sample">
+      <UniqueIdentifier>{749eb735-1aaf-4dd8-98ca-b00752d1996a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Middlewares\OSAL\Source">
+      <UniqueIdentifier>{2f4fbe01-6765-4195-8376-1338fe28332a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Middlewares\OSAL\Source\Inc">
+      <UniqueIdentifier>{71489792-8699-4eb0-a364-06db31ba68ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Middlewares\OSAL\Source\Src">
+      <UniqueIdentifier>{43893444-8ba9-4c2a-bc25-63e2cdb8af34}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.c">
+      <Filter>Board\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Middlewares\OSAL\Sample\GenericApp.c">
+      <Filter>Middlewares\OSAL\Sample</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Middlewares\OSAL\Sample\OSAL_GenericApp.c">
+      <Filter>Middlewares\OSAL\Sample</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL.c">
+      <Filter>Middlewares\OSAL\Source\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_Bufmgr.c">
+      <Filter>Middlewares\OSAL\Source\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_Cbtimer.c">
+      <Filter>Middlewares\OSAL\Source\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_Clock.c">
+      <Filter>Middlewares\OSAL\Source\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_List.c">
+      <Filter>Middlewares\OSAL\Source\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_Memory.c">
+      <Filter>Middlewares\OSAL\Source\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_Nv.c">
+      <Filter>Middlewares\OSAL\Source\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_Port.c">
+      <Filter>Middlewares\OSAL\Source\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_Printf.c">
+      <Filter>Middlewares\OSAL\Source\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_PwrMgr.c">
+      <Filter>Middlewares\OSAL\Source\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_Queue.c">
+      <Filter>Middlewares\OSAL\Source\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_Ring.c">
+      <Filter>Middlewares\OSAL\Source\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_Timers.c">
+      <Filter>Middlewares\OSAL\Source\Src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Middlewares\OSAL\Sample\GenericApp.h">
+      <Filter>Middlewares\OSAL\Sample</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL.h">
+      <Filter>Middlewares\OSAL\Source\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Bufmgr.h">
+      <Filter>Middlewares\OSAL\Source\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Cbtimer.h">
+      <Filter>Middlewares\OSAL\Source\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Clock.h">
+      <Filter>Middlewares\OSAL\Source\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Comdef.h">
+      <Filter>Middlewares\OSAL\Source\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Debug.h">
+      <Filter>Middlewares\OSAL\Source\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_List.h">
+      <Filter>Middlewares\OSAL\Source\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Memory.h">
+      <Filter>Middlewares\OSAL\Source\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Nv.h">
+      <Filter>Middlewares\OSAL\Source\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Printf.h">
+      <Filter>Middlewares\OSAL\Source\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_PwrMgr.h">
+      <Filter>Middlewares\OSAL\Source\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Queue.h">
+      <Filter>Middlewares\OSAL\Source\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Ring.h">
+      <Filter>Middlewares\OSAL\Source\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Tasks.h">
+      <Filter>Middlewares\OSAL\Source\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Timers.h">
+      <Filter>Middlewares\OSAL\Source\Inc</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

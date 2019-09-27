@@ -18,6 +18,42 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Middlewares\OSAL\Sample\GenericApp.c" />
+    <ClCompile Include="..\..\Middlewares\OSAL\Sample\OSAL_GenericApp.c" />
+    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL.c" />
+    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_Bufmgr.c" />
+    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_Cbtimer.c" />
+    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_Clock.c" />
+    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_List.c" />
+    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_Memory.c" />
+    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_Nv.c" />
+    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_Port.c" />
+    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_Printf.c" />
+    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_PwrMgr.c" />
+    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_Queue.c" />
+    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_Ring.c" />
+    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_Timers.c" />
+    <ClCompile Include="Main.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Middlewares\OSAL\Sample\GenericApp.h" />
+    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL.h" />
+    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Bufmgr.h" />
+    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Cbtimer.h" />
+    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Clock.h" />
+    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Comdef.h" />
+    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Debug.h" />
+    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_List.h" />
+    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Memory.h" />
+    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Nv.h" />
+    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Printf.h" />
+    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_PwrMgr.h" />
+    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Queue.h" />
+    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Ring.h" />
+    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Tasks.h" />
+    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Timers.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{C3A41E68-C2D1-4699-ACB0-91156927C9E9}</ProjectGuid>
@@ -82,7 +118,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_CRT_ERRNO_DEFINED;_DONT_USE_WINSOCK;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>App;Core\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Middlewares\OSAL\Sample;..\..\Middlewares\OSAL\Source\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -108,7 +144,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_CRT_ERRNO_DEFINED;_DONT_USE_WINSOCK;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>App;Core\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Middlewares\OSAL\Sample;..\..\Middlewares\OSAL\Source\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -131,42 +167,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="App\GenericApp.c" />
-    <ClCompile Include="App\OSAL_GenericApp.c" />
-    <ClCompile Include="App\OSAL_Main.c" />
-    <ClCompile Include="Core\Src\OSAL.c" />
-    <ClCompile Include="Core\Src\OSAL_Bufmgr.c" />
-    <ClCompile Include="Core\Src\OSAL_Cbtimer.c" />
-    <ClCompile Include="Core\Src\OSAL_Clock.c" />
-    <ClCompile Include="Core\Src\OSAL_List.c" />
-    <ClCompile Include="Core\Src\OSAL_Memory.c" />
-    <ClCompile Include="Core\Src\OSAL_Nv.c" />
-    <ClCompile Include="Core\Src\OSAL_Port.c" />
-    <ClCompile Include="Core\Src\OSAL_Printf.c" />
-    <ClCompile Include="Core\Src\OSAL_PwrMgr.c" />
-    <ClCompile Include="Core\Src\OSAL_Queue.c" />
-    <ClCompile Include="Core\Src\OSAL_Ring.c" />
-    <ClCompile Include="Core\Src\OSAL_Timers.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="App\GenericApp.h" />
-    <ClInclude Include="Core\Inc\OSAL.h" />
-    <ClInclude Include="Core\Inc\OSAL_Bufmgr.h" />
-    <ClInclude Include="Core\Inc\OSAL_Cbtimer.h" />
-    <ClInclude Include="Core\Inc\OSAL_Clock.h" />
-    <ClInclude Include="Core\Inc\OSAL_Comdef.h" />
-    <ClInclude Include="Core\Inc\OSAL_Debug.h" />
-    <ClInclude Include="Core\Inc\OSAL_List.h" />
-    <ClInclude Include="Core\Inc\OSAL_Memory.h" />
-    <ClInclude Include="Core\Inc\OSAL_Nv.h" />
-    <ClInclude Include="Core\Inc\OSAL_Printf.h" />
-    <ClInclude Include="Core\Inc\OSAL_PwrMgr.h" />
-    <ClInclude Include="Core\Inc\OSAL_Queue.h" />
-    <ClInclude Include="Core\Inc\OSAL_Ring.h" />
-    <ClInclude Include="Core\Inc\OSAL_Tasks.h" />
-    <ClInclude Include="Core\Inc\OSAL_Timers.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
