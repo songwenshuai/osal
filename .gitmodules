@@ -1,0 +1,3 @@
+[submodule "Middlewares/FlexibleButton"]
+	path = Middlewares/FlexibleButton
+	url = https://github.com/murphyzhao/FlexibleButton.git
