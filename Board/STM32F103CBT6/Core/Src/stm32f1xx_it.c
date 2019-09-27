@@ -187,8 +187,6 @@ void SysTick_Handler(void)
 
   SEGGER_SYSVIEW_RecordEnterISR();
 
-  SysTickIntHandler();
-
   /* USER CODE END SysTick_IRQn 0 */
   HAL_IncTick();
   /* USER CODE BEGIN SysTick_IRQn 1 */

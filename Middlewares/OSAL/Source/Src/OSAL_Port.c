@@ -21,6 +21,13 @@
 #define TICK_IN_MS 1 /* 1 millisecond */ 
 
 /*********************************************************************
+ * GLOBAL VARIABLES
+ */
+
+extern __IO uint32_t uwTick;
+extern HAL_TickFreqTypeDef uwTickFreq;  /* 1KHz */
+
+/*********************************************************************
  * EXTERN FUNCTIONS
  */
 
@@ -89,7 +96,14 @@ void halSleep( uint32 osal_timeout )
 }
 
 /***************************************************************************************************
- * @fn      SysTickIntHandler
+ * @fn      This function is called to increment  a global variable "uwTick"
+ *          used as application time base.
+ *
+ * @note    In the default implementation, this variable is incremented each 1ms
+ *          in SysTick ISR.
+ * 
+ * @note This function is declared as __weak to be overwritten in case of other
+ *      implementations in user file.
  *
  * @brief   The Systick Interrupt module
  *
@@ -97,8 +111,10 @@ void halSleep( uint32 osal_timeout )
  *
  * @return  None
  ***************************************************************************************************/
-void SysTickIntHandler(void)
+void HAL_IncTick(void)
 {
+  uwTick += uwTickFreq;
+
   /* Update OSAL timer and clock */
   osalAdjustTimer(TICK_IN_MS);
 }

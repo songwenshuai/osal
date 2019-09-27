@@ -746,7 +746,6 @@ typedef union
  */
 extern void SysTickIntDisable(void);
 extern void SysTickIntEnable(void);
-extern void SysTickIntHandler(void);
 
 /* Enable interrupts */
 #define HAL_ENABLE_INTERRUPTS()        OSAL_IRQ_LOCK(osal_int_state);
