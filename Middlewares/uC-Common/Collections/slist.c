@@ -45,7 +45,6 @@
 
 #include  "slist.h"
 #include  <lib_def.h>
-#include  <cpu_core.h>
 
 
 /*
