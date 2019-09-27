@@ -56,3 +56,12 @@ Debug/
 .vscode/
 OSAL.sln
 OSAL.vcxproj.user
+
+Obj/
+Exe/
+List/
+settings/
+
+*.dep
+.mxproject
+*.ewt

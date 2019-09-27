@@ -364,7 +364,7 @@
           <state>$PROJ_DIR$/../../../../Middlewares/SEGGER/SystemView/SEGGER</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Bsp/BUTTON</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Bsp/LED</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/FlexibleButton/Source</state>
+          <state>$PROJ_DIR$/../../../../Middlewares/FlexibleButton</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-LIB/Config</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-LIB/Ports</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-LIB/Source</state>
@@ -1195,6 +1195,9 @@
         <file>
           <name>$PROJ_DIR$\..\..\..\..\Middlewares\Bsp\Button\bsp_pb.h</name>
         </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\Bsp\Button\flexible_button_demo.c</name>
+        </file>
       </group>
       <group>
         <name>LED</name>
@@ -1208,21 +1211,12 @@
     </group>
     <group>
       <name>FlexibleButton</name>
-      <group>
-        <name>Sample</name>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\FlexibleButton\Sample\flexible_button_demo.c</name>
-        </file>
-      </group>
-      <group>
-        <name>Source</name>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\FlexibleButton\Source\flexible_button.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\FlexibleButton\Source\flexible_button.h</name>
-        </file>
-      </group>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\..\Middlewares\FlexibleButton\flexible_button.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\..\Middlewares\FlexibleButton\flexible_button.h</name>
+      </file>
     </group>
     <group>
       <name>Micrium</name>
