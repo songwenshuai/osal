@@ -12,6 +12,7 @@
  * INCLUDES
  */
 #include "main.h"
+#include "usart.h"
 
 #include "OSAL.h"
 
@@ -111,7 +112,7 @@ uint16 App_ProcessEvent(uint8 task_id, uint16 events)
     {
         // Set timer for first periodic event
         osal_start_timerEx(App_TaskID, SBP_PERIODIC_EVT, SBP_PERIODIC_EVT_DELAY);
-
+        
         // Set timer for Button Process
         osal_start_timerEx(App_TaskID, BTN_PROCESS_EVT, SBP_BUTTON_EVT_DELAY);
 
@@ -299,6 +300,66 @@ static void App_ProcessOSALMsg(DebugStr_t *pInMsg)
         break;
     }
 }
+
+#if defined(_NO_PRINTF)
+#define UART_TIMEOUT_VALUE   1000
+#ifdef __GNUC__
+/* With GCC, small printf (option LD Linker->Libraries->Small printf
+   set to 'Yes') calls __io_putchar() */
+#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+#else
+#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
+#endif /* __GNUC__ */
+#else
+#define UART_TIMEOUT_VALUE   1000
+#endif /* _NO_PRINTF */
+
+#if defined(_NO_PRINTF)
+/**
+  * @brief  Retargets the C library printf function to the USART2.
+  * @param  ch: character to send
+  * @param  f: pointer to file (not used)
+  * @retval The character transmitted
+  */
+PUTCHAR_PROTOTYPE
+{
+  /* Place your implementation of fputc here */
+  /* e.g. write a character to the USART2 and Loop until the end of transmission */
+  HAL_UART_Transmit(&hlpuart1, (uint8_t *)&ch, 1, UART_TIMEOUT_VALUE);
+
+  return ch;
+}
+
+/**
+  * @brief  Retargets the C library scanf function to the USART2.
+  * @param  f: pointer to file (not used)
+  * @retval The character received
+  */
+int fgetc(FILE * f)
+{
+  uint8_t ch = 0;
+  /* We received the charracter on the handler of the USART2 */
+  /* The handler must be initialise before */
+  HAL_UART_Receive(&hlpuart1, (uint8_t *)&ch, 1, UART_TIMEOUT_VALUE);
+
+  return ch;
+}
+#else
+/**
+  * @brief  Retargets the C library printf function to the USART2.
+  * @param  ch: character to send
+  * @param  f: pointer to file (not used)
+  * @retval The character transmitted
+  */
+int putc(int ch)
+{
+  /* Place your implementation of fputc here */
+  /* e.g. write a character to the USART2 and Loop until the end of transmission */
+  HAL_UART_Transmit(&hlpuart1, (uint8_t *)&ch, 1, UART_TIMEOUT_VALUE);
+
+  return ch;
+}
+#endif /* _NO_PRINTF */
 
 /*********************************************************************
 *********************************************************************/
