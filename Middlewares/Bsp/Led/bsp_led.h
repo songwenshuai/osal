@@ -97,6 +97,7 @@ void  BSP_LED_Off   (BSP_LED  led);
 
 void  BSP_LED_Toggle(BSP_LED  led);
 
+uint32  BSP_LED_Read (BSP_LED  led);
 
 /*
 *********************************************************************************************************

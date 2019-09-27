@@ -82,6 +82,14 @@ extern "C"
  * TYPEDEFS
  */
 
+typedef struct {
+    uint8  inc;    // step value (4-8)
+    uint8  bdir;   // Switch from light to dark or from dark to light
+    uint16 min;    // minimum brightness (not 0)
+    uint16 max;    // maximum brightness
+    uint16 out;    // Brightness output
+    uint32 cal;    // initial brightness (not 0)
+} HalledBreath_t;
 
 /*********************************************************************
  * GLOBAL VARIABLES
@@ -103,9 +111,24 @@ extern uint8 HalLedSet( uint8 led, uint8 mode );
 extern void HalLedBlink( uint8 leds, uint8 cnt, uint8 duty, uint16 time );
 
 /*
+ * Put LEDs in sleep state - store current values
+ */
+extern void HalLedEnterSleep( void );
+
+/*
+ * Retore LEDs from sleep state
+ */
+extern void HalLedExitSleep( void );
+
+/*
  * Return LED state
  */
 extern uint8 HalLedGetState ( void );
+
+/*
+ * Breath led
+ */
+extern uint32 HalledBreathHandle(HalledBreath_t* breath);
 
 /*********************************************************************
 *********************************************************************/

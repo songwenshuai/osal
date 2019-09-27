@@ -74,6 +74,11 @@ extern void Hal_Init ( uint8 task_id );
 extern uint16 Hal_ProcessEvent ( uint8 task_id, uint16 events );
 
 /*
+ * Process Polls
+ */
+extern void Hal_ProcessPoll (void);
+
+/*
  * Initialize HW
  */
 extern void HalDriverInit (void);

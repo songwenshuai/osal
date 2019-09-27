@@ -50,6 +50,11 @@ osal_msg_q_t osal_qHead;
  * EXTERNAL FUNCTIONS
  */
 
+/*
+ * Process Polls
+ */
+extern void Hal_ProcessPoll (void);
+
 /*********************************************************************
  * LOCAL VARIABLES
  */
@@ -1623,6 +1628,8 @@ void osal_run_system( void )
   osalTimeUpdate();
 #endif
 
+  Hal_ProcessPoll();
+  
   do {
     if (tasksEvents[idx])  // Task is highest priority that is ready.
     {

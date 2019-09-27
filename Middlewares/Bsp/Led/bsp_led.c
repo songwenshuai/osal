@@ -34,10 +34,11 @@
 *********************************************************************************************************
 */
 
-#include  "bsp_led.h"
-
 #include "stm32l4xx_hal.h"
 
+#include "OSAL_Comdef.h"
+
+#include "bsp_led.h"
 
 /*
 *********************************************************************************************************
@@ -197,6 +198,53 @@ void  BSP_LED_Off (BSP_LED  led)
     }
 }
 
+
+/*
+*********************************************************************************************************
+*                                          BSP_LED_Read()
+*
+* Description : Toggles a specific LED.
+*
+* Argument(s) : led    The ID of the LED to control.
+*
+* Return(s)   : none.
+*
+* Note(s)     : none.
+*********************************************************************************************************
+*/
+
+uint32  BSP_LED_Read (BSP_LED  led)
+{
+    uint8_t LedState = 0;
+    switch (led) {
+        case USER_LED_ALL:
+             LedState |= HAL_GPIO_ReadPin(USER_LED1_GPIO_PORT, USER_LD1_GPIOB_PIN);
+             LedState |= HAL_GPIO_ReadPin(USER_LED2_GPIO_PORT, USER_LD2_GPIOE_PIN) << 1;
+             LedState |= HAL_GPIO_ReadPin(USER_LED3_GPIO_PORT, USER_LD3_GPIOD_PIN) << 2;
+             break;
+
+
+        case USER_LD1:
+             LedState =  HAL_GPIO_ReadPin(USER_LED1_GPIO_PORT, USER_LD1_GPIOB_PIN);
+             break;
+
+
+        case USER_LD2:
+             LedState =  HAL_GPIO_ReadPin(USER_LED2_GPIO_PORT, USER_LD2_GPIOE_PIN);
+             break;
+
+
+        case USER_LD3:
+             LedState =  HAL_GPIO_ReadPin(USER_LED3_GPIO_PORT, USER_LD3_GPIOD_PIN);
+             break;
+
+
+        default:
+             break;
+    }
+    
+    return LedState;
+}
 
 /*
 *********************************************************************************************************
