@@ -376,6 +376,11 @@
           <state>$PROJ_DIR$/../../../Middlewares/Micrium/uC-Common</state>
           <state>$PROJ_DIR$/../../../Middlewares/Micrium/uC-CLK/Cfg/Template</state>
           <state>$PROJ_DIR$/../../../Middlewares/Micrium/uC-CLK/Source</state>
+          <state>$PROJ_DIR$/../../../Middlewares/Micrium/uC-Shell/Cfg/Template</state>
+          <state>$PROJ_DIR$/../../../Middlewares/Micrium/uC-Shell/Cmd/General</state>
+          <state>$PROJ_DIR$/../../../Middlewares/Micrium/uC-Shell/Source</state>
+          <state>$PROJ_DIR$/../../../Middlewares/Micrium/uC-Shell/Terminal/Cfg/Template</state>
+          <state>$PROJ_DIR$/../../../Middlewares/Micrium/uC-Shell/Terminal/Source</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -1360,6 +1365,78 @@
           <file>
             <name>$PROJ_DIR$\..\..\..\Middlewares\Micrium\uC-LIB\Source\lib_str.h</name>
           </file>
+        </group>
+      </group>
+      <group>
+        <name>uC-Shell</name>
+        <group>
+          <name>Cfg</name>
+          <group>
+            <name>Template</name>
+            <file>
+              <name>$PROJ_DIR$\..\..\..\Middlewares\Micrium\uC-Shell\Cfg\Template\shell_cfg.h</name>
+            </file>
+          </group>
+        </group>
+        <group>
+          <name>Cmd</name>
+          <group>
+            <name>General</name>
+            <file>
+              <name>$PROJ_DIR$\..\..\..\Middlewares\Micrium\uC-Shell\Cmd\General\sh_shell.c</name>
+            </file>
+            <file>
+              <name>$PROJ_DIR$\..\..\..\Middlewares\Micrium\uC-Shell\Cmd\General\sh_shell.h</name>
+            </file>
+          </group>
+        </group>
+        <group>
+          <name>Source</name>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\Micrium\uC-Shell\Source\shell.c</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\Middlewares\Micrium\uC-Shell\Source\shell.h</name>
+          </file>
+        </group>
+        <group>
+          <name>Terminal</name>
+          <group>
+            <name>Cfg</name>
+            <group>
+              <name>Template</name>
+              <file>
+                <name>$PROJ_DIR$\..\..\..\Middlewares\Micrium\uC-Shell\Terminal\Cfg\Template\terminal_cfg.h</name>
+              </file>
+            </group>
+          </group>
+          <group>
+            <name>Mode</name>
+            <group>
+              <name>VT100</name>
+              <file>
+                <name>$PROJ_DIR$\..\..\..\Middlewares\Micrium\uC-Shell\Terminal\Mode\VT100\terminal_mode.c</name>
+              </file>
+            </group>
+          </group>
+          <group>
+            <name>Serial</name>
+            <group>
+              <name>Template</name>
+              <file>
+                <name>$PROJ_DIR$\..\..\..\Middlewares\Micrium\uC-Shell\Terminal\Serial\Template\terminal_serial.c</name>
+              </file>
+            </group>
+          </group>
+          <group>
+            <name>Source</name>
+            <file>
+              <name>$PROJ_DIR$\..\..\..\Middlewares\Micrium\uC-Shell\Terminal\Source\terminal.c</name>
+            </file>
+            <file>
+              <name>$PROJ_DIR$\..\..\..\Middlewares\Micrium\uC-Shell\Terminal\Source\terminal.h</name>
+            </file>
+          </group>
         </group>
       </group>
     </group>
