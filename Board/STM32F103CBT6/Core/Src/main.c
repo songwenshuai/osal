@@ -85,6 +85,8 @@ int main(void)
 
   /* USER CODE BEGIN SysInit */
 
+  SEGGER_SYSVIEW_Conf();            /* Configure and initialize SystemView  */
+
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -101,7 +103,9 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    printf("\n\r welcome !!!\n\r");
+    SEGGER_SYSVIEW_PrintfHost("Tick = %d \r\n", HAL_GetTick());
+    printf("Tick = %d \r\n", HAL_GetTick());
+    HAL_GPIO_TogglePin(LED_STLINK_GPIO_Port, LED_STLINK_Pin);
     HAL_Delay(1000);
   }
   /* USER CODE END 3 */
