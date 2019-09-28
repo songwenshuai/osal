@@ -667,16 +667,16 @@ void SIM_OS_PaintWindow(void* hDC) {
   //
   // Position parameters for LEDs. These depend on the image used.
   //
-  x  = 213;
-  y  = 46;
-  w  = 10;
-  h  = 20;
-  dx = 17.3;
+  x  = 280;
+  y  = 35;
+  w  = 20;
+  h  = 10;
+  dx = 30;
   //
   // Draw LEDs
   //
-  for (i = 0; i < 8; i++) {
-    Color = BSP_GetLEDState(i) ? 0x00FF80 : 0x005000;    // Select color depending on state of LED
+  for (i = 0; i < 3; i++) {
+    Color = BSP_GetLEDState(i) ? 0x00A5FF : 0xFFFFFF;    // Select color depending on state of LED
     _DrawLED((HDC)hDC, (int)(x + i * dx), y, w, h, Color);
   }
 }
