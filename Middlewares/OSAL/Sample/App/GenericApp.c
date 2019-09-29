@@ -138,18 +138,18 @@ uint16 App_ProcessEvent(uint8 task_id, uint16 events)
  *   This feature will most likely be compiled out in the production
  *   code in order to save code space.
  *
- * @param   _byte *str_ptr - pointer to null-terminated string
+ * @param   uint8 *str_ptr - pointer to null-terminated string
  *
  * @return  void
  */
-static void msg_send_str( _byte *str_ptr )
+static void msg_send_str( uint8 *str_ptr )
 {
   DebugStr_t *msg;
-  _byte mln;
-  _byte strLen;
+  uint8 mln;
+  uint8 strLen;
 
   // Text string length
-  strLen = (_byte)osal_strlen( (void*)str_ptr );
+  strLen = (uint8)osal_strlen( (void*)str_ptr );
 
   // Debug string message length
   mln = sizeof ( DebugStr_t ) + strLen;
@@ -200,13 +200,13 @@ static void Periodic_Event(void)
 #ifndef _WIN32
     SEGGER_SYSVIEW_PrintfHost("Tick = %d ms \r\n", deviation);
 #endif
-    printf("deviation = %d ms\r\n", deviation);
+    printf("deviation  = %d ms\r\n", deviation);
 //------------------------------- nv test --------------------------------------
     static uint32 flag = 0;
     static char nvDataWrite[13] = {0};
     static char nvDataRead[13] = {0};
 
-    sprintf(nvDataWrite, "nv  = %04d\r\n", ++flag);
+    sprintf(nvDataWrite, "nv   = %04d\r\n", ++flag);
     osal_nv_item_init(NV_APPID, sizeof(nvDataWrite), nvDataWrite);
     osal_nv_write(NV_APPID, 0, osal_nv_item_len(NV_APPID), nvDataWrite);
     printf("weite_%s", nvDataWrite);
@@ -219,12 +219,12 @@ static void Periodic_Event(void)
     static uint32 ltoa_num = 2147483648;
 
     osal_ltoa(ltoa_num, ltoa_str, 10);
-    printf("ltoa_num  = %s\r\n", ltoa_str);
+    printf("ltoa_num   = %s\r\n", ltoa_str);
 
     osal_ltoa(ltoa_num, ltoa_str, 16);
-    printf("ltoa_num  = 0x%s\r\n", ltoa_str);
+    printf("ltoa_num   = 0x%s\r\n", ltoa_str);
 //------------------------------- osal rand ------------------------------------
-    printf("rand      = %d\r\n", osal_rand());
+    printf("rand       = %d\r\n", osal_rand());
 }
 
 /*********************************************************************
@@ -248,8 +248,8 @@ static void App_TimerCB(uint8* pData)
 #ifndef _WIN32
         SEGGER_SYSVIEW_PrintfHost("Tick = %d ms \r\n", deviation1);
 #endif
-        printf("deviation1 = %d ms\r\n", deviation1);
         printf("cb timer %s\r\n", pData);
+        printf("deviation1 = %d ms\r\n", deviation1);
     }
 }
 
@@ -269,8 +269,8 @@ static void App_ProcessOSALMsg(DebugStr_t *pInMsg)
     switch (pInMsg->hdr.event)
     {
     case APP_MESSAGE:
-        printf("messages  = %04d\r\n", ++rcv);
-        printf("rcv       = %s\r\n", pInMsg->pString);
+        printf("messages   = %04d\r\n", ++rcv);
+        printf("rcv        = %s\r\n", pInMsg->pString);
         printf("\r\n");
         break;
     default:

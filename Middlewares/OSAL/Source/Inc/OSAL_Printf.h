@@ -37,9 +37,15 @@
 extern "C" {
 #endif
 
-typedef char* _va_list;
+typedef unsigned       int  _uintptr_t;
+typedef                int  _ptrdiff_t;
 
-#define _ADDRESSOF(v) (&(v))
+typedef          long long  _intmax_t;
+typedef unsigned long long  _uintmax_t;
+
+typedef                char *_va_list;
+
+#define _ADDRESSOF(v)          (&(v))
 #define _INTSIZEOF(n)          ((sizeof(n) + sizeof(int) - 1) & ~(sizeof(int) - 1))
 
 #define _va_start(ap, v)       ((void)(ap = (_va_list)_ADDRESSOF(v) + _INTSIZEOF(v)))

@@ -347,20 +347,20 @@ _size_t osal_strncpy_m(char *destStr, _size_t destSize, int nStrings, ...)
 int osal_strlen( const char* pString )
 {
     const char* p;
-    const unsigned long* lp;
+    const unsigned long int* lp;
 
     /* Magic numbers for the algorithm */
-    static const unsigned long mask01 = 0x01010101;
-    static const unsigned long mask80 = 0x80808080;
+    static const unsigned long int mask01 = 0x01010101;
+    static const unsigned long int mask80 = 0x80808080;
 
 #define LONGPTR_MASK (sizeof(long) - 1)
 
     /* Skip the first few bytes until we have an aligned p */
-    for (p = pString; (_uintptr_t)p & LONGPTR_MASK; p++)
+    for (p = pString; (unsigned long int)p & LONGPTR_MASK; p++)
     {
         if (*p == '\0')
         {
-            return ((_uintptr_t)p - (_uintptr_t)pString);
+            return ((unsigned long int)p - (unsigned long int)pString);
         }
     }
 
@@ -368,16 +368,16 @@ int osal_strlen( const char* pString )
      * Helper macro to return string length if we caught the zero
      * byte.
      */
-#define testbyte(x)                               \
-  do                                              \
-  {                                               \
-    if(p[x] == '\0')                              \
-      return ((_uintptr_t)p - (_uintptr_t)pString + x); \
+#define testbyte(x)                                                   \
+  do                                                                  \
+  {                                                                   \
+    if(p[x] == '\0')                                                  \
+      return ((unsigned long int)p - (unsigned long int)pString + x); \
   } while(0)
 
     /* Scan the rest of the string using word sized operation */
     // Cast to void to prevent alignment warning
-    for (lp = (const unsigned long*)(const void*)p;; lp++)
+    for (lp = (const unsigned long int*)(const void*)p;; lp++)
     {
         if ((*lp - mask01) & mask80)
         {
@@ -677,10 +677,10 @@ void *osal_memset( void *dest, uint8 value, int len )
    * already took care of any head/tail that get cut off
    * by the alignment. */
 
-  k = (_uintptr_t)s & 3;
+  k = (unsigned long int)s & 3;
   s += k;
   len -= k;
-  len &= (unsigned long)-4;
+  len &= (unsigned long int)-4;
   len /= 4;
 
   // Cast to void first to prevent alignment warning

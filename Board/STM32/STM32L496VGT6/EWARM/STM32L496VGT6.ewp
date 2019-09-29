@@ -1521,6 +1521,9 @@
           <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Timers.h</name>
           </file>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Type.h</name>
+          </file>
         </group>
         <group>
           <name>Src</name>
