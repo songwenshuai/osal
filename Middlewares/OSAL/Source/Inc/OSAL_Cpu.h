@@ -18,11 +18,13 @@ extern "C"
 /*********************************************************************
  * INCLUDES
  */
-
+#ifndef _WIN32
 #ifdef __IAR_SYSTEMS_ICC__
   #include <intrinsics.h>
 #endif
-
+#else
+  #include <BSP.h>
+#endif
 /*********************************************************************
  * OPTION
  */
@@ -500,12 +502,22 @@ typedef union
 *
 *       OSAL lock configuration fallback
 */
+#ifdef _WIN32
+  #define OSAL_IRQ_LOCK(LockState)                (void)LockState   // Lock OSAL (nestable)   (i.e. disable interrupts)
+
+  #define OSAL_IRQ_UNLOCK(LockState)              (void)LockState   // Unlock OSAL (nestable) (i.e. enable previous interrupt lock state)
+#endif
+
+/*********************************************************************
+*
+*       OSAL lock configuration fallback
+*/
 #ifndef   OSAL_IRQ_LOCK
-  #define OSAL_IRQ_LOCK(LockState)                (void)(LockState)   // Lock OSAL (nestable)   (i.e. disable interrupts)
+  #define OSAL_IRQ_LOCK(LockState)                // Lock OSAL (nestable)   (i.e. disable interrupts)
 #endif
 
 #ifndef   OSAL_IRQ_UNLOCK
-  #define OSAL_IRQ_UNLOCK(LockState)              (void)(LockState)   // Unlock OSAL (nestable) (i.e. enable previous interrupt lock state)
+  #define OSAL_IRQ_UNLOCK(LockState)              // Unlock OSAL (nestable) (i.e. enable previous interrupt lock state)
 #endif
 
 /*********************************************************************

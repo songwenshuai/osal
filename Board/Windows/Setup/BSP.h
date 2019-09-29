@@ -88,19 +88,6 @@ Purpose : BSP (Board support package)
   #endif
 #endif
 
-
-//
-// Make it possible to place const data in RAM via
-// define and therefore via command line. This is required
-// for some smaller CPUs in small memory models
-// It is defined to be "const" by default, but can be defined to nothing
-// by simply adding a -DOS_CONST_DATA on the commandline
-//
-
-#ifndef   OS_CODE_SECTION_ATTRIBUTE
-  #define OS_CODE_SECTION_ATTRIBUTE
-#endif
-
 /*********************************************************************
 *
 *       Core / compiler specific settings
@@ -118,7 +105,11 @@ Purpose : BSP (Board support package)
 *
 **********************************************************************
 */
-void   OS_InitHW          (void)            OS_CODE_SECTION_ATTRIBUTE;
+void   OS_InitHW            (void);
+OS_U32 macMcuPrecisionCount (void);
+OS_U32 GetSecondTamp           (void);
+OS_U32 GetMillisecondTamp      (void);
+OS_U32 GetMicrosecondTamp      (void);
 
 /*********************************************************************
 *

@@ -41,7 +41,7 @@ Purpose : embOS sample program running two simple tasks, each toggling
 *
 **********************************************************************
 */
-extern void SysTickSetup(void);
+extern void TimesTampInit(void);
 
 /*********************************************************************
 *
@@ -49,9 +49,8 @@ extern void SysTickSetup(void);
 */
 int main(void) {
 
-  SysTickSetup();  // Initialize ticks
-
-  BSP_Init();   // Initialize LED ports
+  OS_InitHW();     // Initialize Thread
+  BSP_Init();      // Initialize LED ports
 
   // No Return from here
   osal_start_system();

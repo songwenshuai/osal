@@ -10,6 +10,7 @@
  * INCLUDES
  */
 
+#ifndef _WIN32
 #ifdef STM32L496xx
 #include "stm32l4xx_hal.h"
 #endif
@@ -17,9 +18,9 @@
 #ifdef STM32F103xB
 #include "stm32f1xx_hal.h"
 #endif
-
-#ifdef _WIN32
+#else
 #include "Windows.h"
+#include "stdio.h"
 #endif
 
 #include "OSAL.h"
@@ -48,8 +49,9 @@ extern HAL_TickFreqTypeDef uwTickFreq;  /* 1KHz */
 /*********************************************************************
  * EXTERN FUNCTIONS
  */
-
+#ifndef _WIN32
 extern int putc(int ch);
+#endif
 
  /*********************************************************************
   * FUNCTIONS
@@ -165,5 +167,12 @@ void _putchar(char character)
   if (c == '\n')
     putc('\r');
   putc(c);
+#else
+  // send char to console etc.
+  int c = (int)character;
+
+  if (c == '\n')
+    putchar('\r');
+  putchar(c);
 #endif
 }

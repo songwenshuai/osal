@@ -278,6 +278,7 @@ static void App_ProcessOSALMsg(DebugStr_t *pInMsg)
     }
 }
 
+#ifndef _WIN32
 #if defined(_NO_PRINTF)
 #define UART_TIMEOUT_VALUE   1000
 #ifdef __GNUC__
@@ -321,14 +322,16 @@ int fgetc(FILE * f)
 
   return ch;
 }
+
 #else
+
 /**
   * @brief  Retargets the C library printf function to the USART2.
   * @param  ch: character to send
   * @param  f: pointer to file (not used)
   * @retval The character transmitted
   */
-#ifndef _WIN32
+
 int putc(int ch)
 {
   /* Place your implementation of fputc here */
@@ -337,8 +340,8 @@ int putc(int ch)
 
   return ch;
 }
-#endif
 #endif /* _NO_PRINTF */
+#endif
 
 /*********************************************************************
 *********************************************************************/
