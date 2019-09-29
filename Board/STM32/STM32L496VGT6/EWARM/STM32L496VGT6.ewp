@@ -367,7 +367,7 @@
           <state>$PROJ_DIR$/../../../../Middlewares/FlexibleButton</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-LIB/Config</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-LIB/Ports</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-LIB/Source</state>
+          <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-LIB</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-CRC/Cfg/Template</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-CRC/Source</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-Common/Auth</state>
@@ -1333,31 +1333,31 @@
         <group>
           <name>Source</name>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-LIB\Source\lib_ascii.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-LIB\lib_ascii.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-LIB\Source\lib_ascii.h</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-LIB\lib_ascii.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-LIB\Source\lib_def.h</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-LIB\lib_def.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-LIB\Source\lib_math.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-LIB\lib_math.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-LIB\Source\lib_math.h</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-LIB\lib_math.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-LIB\Source\lib_mem.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-LIB\lib_mem.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-LIB\Source\lib_mem.h</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-LIB\lib_mem.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-LIB\Source\lib_str.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-LIB\lib_str.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-LIB\Source\lib_str.h</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-LIB\lib_str.h</name>
           </file>
         </group>
       </group>

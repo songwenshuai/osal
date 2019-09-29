@@ -174,9 +174,6 @@ static  const  CPU_CHAR *  const  Clk_StrDayOfWk[DEF_TIME_NBR_DAY_PER_WK] = {
 
 #if    (CLK_CFG_EXT_EN    != DEF_ENABLED)
 static  CLK_TS_SEC    Clk_TS_UTC_sec;
-#if    (CLK_CFG_SIGNAL_EN == DEF_ENABLED)
-static  CLK_TICK_CTR  Clk_TickCtr;
-#endif
 #endif
 static  CLK_TZ_SEC    Clk_TZ_sec;
 
@@ -303,15 +300,8 @@ void  Clk_Init (CLK_ERR  *p_err)
     Clk_ExtTS_Init();
 
 #else                                                           /* ------------------- CLK/OS INIT -------------------- */
-    Clk_OS_Init(p_err);
-    if (*p_err != CLK_OS_ERR_NONE) {
-         return;
-    }
                                                                 /* ---------------- INIT CLK VARIABLES ---------------- */
     Clk_TS_UTC_sec = CLK_TS_SEC_NONE;                           /* Clk epoch = 2000-01-01 00:00:00 UTC                  */
-#if (CLK_CFG_SIGNAL_EN == DEF_ENABLED)
-    Clk_TickCtr         = CLK_TICK_NONE;
-#endif
 #endif
     Clk_TZ_sec          = CLK_CFG_TZ_DFLT_SEC;                  /* Clk TZ = UTC offset                                  */
     Clk_CacheMonth      = CLK_MONTH_NONE;
@@ -346,78 +336,14 @@ void  Clk_Init (CLK_ERR  *p_err)
 #if (CLK_CFG_EXT_EN != DEF_ENABLED)
 void  Clk_TaskHandler (void)
 {
-    CLK_ERR  err;
     CPU_SR_ALLOC();
-
-
-    while (DEF_ON) {
-                                                                /* --------------- WAIT FOR CLK SIGNAL ---------------- */
-        do {
-            Clk_OS_Wait(&err);
-        } while (err != CLK_OS_ERR_NONE);
 
                                                                 /* -------------------- UPDATE TS --------------------- */
-        CPU_CRITICAL_ENTER();
-        if (Clk_TS_UTC_sec < CLK_TS_SEC_MAX) {
-            Clk_TS_UTC_sec++;
-        }
-        CPU_CRITICAL_EXIT();
-    }
-}
-#endif
-
-
-/*
-*********************************************************************************************************
-*                                           Clk_SignalClk()
-*
-* Description : (1) Increment the clock tick counter :
-*
-*                   (a) Increment the clock tick counter
-*                   (b) Signal the clock task when one second has elapsed
-*
-*
-* Argument(s) : p_err       Pointer to variable that will receive the return error code from this function :
-*
-*                               CLK_ERR_NONE                    Clock     successfully signaled.
-*
-*                                                               - RETURNED BY Clk_OS_Signal() : -
-*                               CLK_OS_ERR_SIGNAL               Clock NOT successfully signaled.
-*
-* Return(s)   : none.
-*
-* Note(s)     : (1) CLK_CFG_SIGNAL_FREQ_HZ must be set to the number of times Clk_SignalClk() will be
-*                   called every second.
-*
-*               (2) 'Clk_TickCtr' MUST ALWAYS be accessed exclusively in critical sections.
-*********************************************************************************************************
-*/
-
-#if ((CLK_CFG_EXT_EN    != DEF_ENABLED) &&  \
-     (CLK_CFG_SIGNAL_EN == DEF_ENABLED))
-void  Clk_SignalClk (CLK_ERR  *p_err)
-{
-    CPU_BOOLEAN  signal;
-    CPU_SR_ALLOC();
-
-
-    signal = DEF_NO;
-    CPU_CRITICAL_ENTER();                                       /* See Note #2.                                         */
-    Clk_TickCtr++;
-    if (Clk_TickCtr >= CLK_CFG_SIGNAL_FREQ_HZ) {
-        Clk_TickCtr -= CLK_CFG_SIGNAL_FREQ_HZ;                  /* See Note #1.                                         */
-        signal       = DEF_YES;
+    CPU_CRITICAL_ENTER();
+    if (Clk_TS_UTC_sec < CLK_TS_SEC_MAX) {
+        Clk_TS_UTC_sec++;
     }
     CPU_CRITICAL_EXIT();
-
-    if (signal == DEF_YES) {
-        Clk_OS_Signal(p_err);
-        if (*p_err != CLK_OS_ERR_NONE) {
-             return;
-        }
-    }
-
-   *p_err = CLK_ERR_NONE;
 }
 #endif
 

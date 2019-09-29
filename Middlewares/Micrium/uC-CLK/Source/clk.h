@@ -660,23 +660,6 @@ CPU_BOOLEAN  Clk_IsUnixDateTimeValid(CLK_DATE_TIME  *p_date_time);
 /*
 *********************************************************************************************************
 *                                         FUNCTION PROTOTYPES
-*                                      RTOS INTERFACE FUNCTIONS
-*                                    (see specific OS'S  clk_os.c)
-*********************************************************************************************************
-*/
-
-#ifdef  CLK_OS_MODULE_PRESENT
-void    Clk_OS_Init  (CLK_ERR  *p_err);
-
-void    Clk_OS_Wait  (CLK_ERR  *p_err);
-
-void    Clk_OS_Signal(CLK_ERR  *p_err);
-#endif
-
-
-/*
-*********************************************************************************************************
-*                                         FUNCTION PROTOTYPES
 *                                      DEFINED IN PRODUCT'S BSP
 *********************************************************************************************************
 */
