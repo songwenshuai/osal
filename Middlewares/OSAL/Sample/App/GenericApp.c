@@ -395,7 +395,7 @@ static void Clock_Test(void)
         CLK_FLAG = 1;
 	}
 	Clk_GetDateTime(&date_time);
-	printf("seconds is %d\n\r", date_time.Sec);
+
 	valid = Clk_DateTimeToStr(&date_time, CLK_STR_FMT_YYYY_MM_DD_HH_MM_SS,str, 128);
 	
 	if (valid == DEF_OK) {

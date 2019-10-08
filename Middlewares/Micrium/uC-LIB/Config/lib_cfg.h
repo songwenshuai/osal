@@ -111,13 +111,13 @@
                                                                 /* Heap memory size (in bytes).                         */
                                                                 /* Configure the desired size of the heap memory. ...   */
                                                                 /* ... Set to 0 to disable heap allocation features.    */
-#define  LIB_MEM_CFG_HEAP_SIZE                  1024u
+#define  LIB_MEM_CFG_HEAP_SIZE          0u
 
 
                                                                 /* Heap memory padding alignment (in bytes).            */
                                                                 /* Configure the desired size of padding alignment ...  */
                                                                 /* ... of each buffer allocated from the heap.          */
-#define  LIB_MEM_CFG_HEAP_PADDING_ALIGN    LIB_MEM_PADDING_ALIGN_NONE
+#define  LIB_MEM_CFG_HEAP_PADDING_ALIGN LIB_MEM_PADDING_ALIGN_NONE
 
 #if 0                                                           /* Remove this to have heap alloc at specified addr.    */
 #define  LIB_MEM_CFG_HEAP_BASE_ADDR       0x00000000            /* Configure heap memory base address (see Note #2b).   */
