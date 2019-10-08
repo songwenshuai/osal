@@ -372,7 +372,6 @@
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-CRC/Source</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-Common/Auth</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-Common/Collections</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-Common/KAL</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-Common</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-CLK/Cfg/Template</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-CLK/Source</state>
@@ -1261,15 +1260,6 @@
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-Common\Collections\slist.h</name>
           </file>
         </group>
-        <group>
-          <name>KAL</name>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-Common\KAL\kal.h</name>
-          </file>
-        </group>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-Common\common.h</name>
-        </file>
         <file>
           <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-Common\common_err.h</name>
         </file>

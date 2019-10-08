@@ -46,7 +46,6 @@
 */
 
 #include  <lib_str.h>
-#include  <KAL/kal.h>
 #include  "auth.h"
 
 
@@ -85,8 +84,6 @@ AUTH_USER  Auth_RootUser = {
 *********************************************************************************************************
 *********************************************************************************************************
 */
-
-static  KAL_LOCK_HANDLE        Auth_LockHandle;
 
 static  CPU_SIZE_T             Auth_UserNbr = 1;
 
@@ -147,13 +144,6 @@ CPU_BOOLEAN  Auth_Init (RTOS_ERR  *p_err)
     CPU_BOOLEAN  res = DEF_OK;
 
 
-    Auth_LockHandle = KAL_LockCreate("Auth Lock",
-                                      KAL_OPT_CREATE_NONE,
-                                      p_err);
-    if (*p_err != RTOS_ERR_NONE) {
-        res = DEF_FAIL;
-    }
-
     return (res);
 }
 
@@ -198,31 +188,25 @@ CPU_BOOLEAN  Auth_CreateUser (const  CPU_CHAR   *p_name,
     CPU_SIZE_T              i;
     CPU_INT16S              cmp_result;
     CPU_BOOLEAN             result     = DEF_FAIL;
-    RTOS_ERR                local_err;
 
-
-    KAL_LockAcquire(Auth_LockHandle, KAL_OPT_PEND_NONE, KAL_TIMEOUT_INFINITE, p_err);
-    if (*p_err != RTOS_ERR_NONE) {
-        goto exit;
-    }
 
     name_len = Str_Len_N(p_name, AUTH_NAME_MAX_LENGTH + 1);
     pwd_len  = Str_Len_N(p_pwd,  AUTH_PWD_MAX_LENGTH  + 1);
 
     if (name_len > AUTH_NAME_MAX_LENGTH) {
        *p_err = RTOS_ERR_INVALID_STR_LEN;
-        goto exit_release;
+        goto exit;
     }
 
     if (pwd_len > AUTH_PWD_MAX_LENGTH) {
        *p_err = RTOS_ERR_INVALID_STR_LEN;
-        goto exit_release;
+        goto exit;
     }
 
 
     if (Auth_UserNbr >= AUTH_NB_USERS_MAX) {
        *p_err = RTOS_ERR_NO_MORE_RSRC;
-        goto exit_release;
+        goto exit;
     }
 
     for (i = 0; i < Auth_UserNbr; ++i) {
@@ -230,7 +214,7 @@ CPU_BOOLEAN  Auth_CreateUser (const  CPU_CHAR   *p_name,
         cmp_result = Str_Cmp_N(Auth_UsersCredentials[i].User.Name, p_name, name_len);
         if (cmp_result == 0) {
            *p_err = RTOS_ERR_ALREADY_EXISTS;
-            goto exit_release;
+            goto exit;
         }
     }
 
@@ -260,10 +244,6 @@ CPU_BOOLEAN  Auth_CreateUser (const  CPU_CHAR   *p_name,
     result = DEF_OK;
    *p_err  = RTOS_ERR_NONE;
 
-
-exit_release:
-    KAL_LockRelease(Auth_LockHandle, &local_err);
-    (void)local_err;
 
 exit:
     return (result);
@@ -311,26 +291,20 @@ CPU_BOOLEAN  Auth_ChangePassword (       AUTH_USER  *p_user,
     CPU_SIZE_T    i;
     CPU_INT16S    cmp_result;
     CPU_BOOLEAN   result     = DEF_FAIL;
-    RTOS_ERR      local_err;
 
-
-    KAL_LockAcquire(Auth_LockHandle, KAL_OPT_PEND_NONE, KAL_TIMEOUT_INFINITE, p_err);
-    if (*p_err != RTOS_ERR_NONE) {
-        goto exit;
-    }
 
     name_len = Str_Len_N(p_user->Name, AUTH_NAME_MAX_LENGTH + 1);
     pwd_len  = Str_Len_N(p_pwd,  AUTH_PWD_MAX_LENGTH  + 1);
 
     if (pwd_len > AUTH_PWD_MAX_LENGTH) {
        *p_err = RTOS_ERR_INVALID_STR_LEN;
-        goto exit_release;
+        goto exit;
     }
 
     if ((Str_Cmp(p_as_user->Name, p_user->Name)             != 0)      &&
         (DEF_BIT_IS_CLR(p_as_user->Rights, AUTH_RIGHT_ROOT) == DEF_YES)) {
        *p_err = RTOS_ERR_PERMISSION;
-        goto exit_release;
+        goto exit;
     }
 
     for (i = 0; i < Auth_UserNbr; ++i) {
@@ -344,16 +318,12 @@ CPU_BOOLEAN  Auth_ChangePassword (       AUTH_USER  *p_user,
 
             result = DEF_OK;
            *p_err  = RTOS_ERR_NONE;
-            goto exit_release;
+            goto exit;
         }
     }
 
    *p_err = RTOS_ERR_NOT_FOUND;
 
-
-exit_release:
-    KAL_LockRelease(Auth_LockHandle, &local_err);
-    (void)local_err;
 
 exit:
     return (result);
@@ -393,21 +363,11 @@ CPU_BOOLEAN  Auth_GetUser (const  CPU_CHAR   *p_name,
                                   RTOS_ERR   *p_err)
 {
     CPU_BOOLEAN  result;
-    RTOS_ERR     local_err;
 
-
-    KAL_LockAcquire(Auth_LockHandle, KAL_OPT_PEND_NONE, KAL_TIMEOUT_INFINITE, p_err);
-    if (*p_err != RTOS_ERR_NONE) {
-        result = DEF_FAIL;
-        goto exit;
-    }
 
     result = Auth_GetUserHandler(p_name, p_user, p_err);
 
-    KAL_LockRelease(Auth_LockHandle, &local_err);
-    (void)local_err;
 
-exit:
     return (result);
 }
 
@@ -450,25 +410,19 @@ CPU_BOOLEAN  Auth_ValidateCredentials (const  CPU_CHAR   *p_name,
     CPU_SIZE_T   i;
     CPU_INT16S   cmp_result;
     CPU_BOOLEAN  result     = DEF_FAIL;
-    RTOS_ERR     local_err;
 
-
-    KAL_LockAcquire(Auth_LockHandle, KAL_OPT_PEND_NONE, KAL_TIMEOUT_INFINITE, p_err);
-    if (*p_err != RTOS_ERR_NONE) {
-        goto exit;
-    }
 
     name_len = Str_Len_N(p_name, AUTH_NAME_MAX_LENGTH + 1);
     pwd_len  = Str_Len_N(p_pwd,  AUTH_PWD_MAX_LENGTH  + 1);
 
     if (name_len > AUTH_NAME_MAX_LENGTH) {
        *p_err = RTOS_ERR_INVALID_STR_LEN;
-        goto exit_release;
+        goto exit;
     }
 
     if (pwd_len > AUTH_PWD_MAX_LENGTH) {
        *p_err = RTOS_ERR_INVALID_STR_LEN;
-        goto exit_release;
+        goto exit;
     }
 
     for (i = 0; i < Auth_UserNbr; ++i) {
@@ -484,7 +438,7 @@ CPU_BOOLEAN  Auth_ValidateCredentials (const  CPU_CHAR   *p_name,
 
                 result = DEF_OK;
                *p_err  = RTOS_ERR_NONE;
-                goto exit_release;
+                goto exit;
             }
             break;
         }
@@ -492,10 +446,6 @@ CPU_BOOLEAN  Auth_ValidateCredentials (const  CPU_CHAR   *p_name,
 
    *p_err = RTOS_ERR_INVALID_CREDENTIALS;
 
-
-exit_release:
-    KAL_LockRelease(Auth_LockHandle, &local_err);
-    (void)local_err;
 
 exit:
     return (result);
@@ -542,24 +492,18 @@ CPU_BOOLEAN  Auth_GrantRight (AUTH_RIGHT   right,
     CPU_SIZE_T   i;
     CPU_INT16S   cmp_result;
     CPU_BOOLEAN  result     = DEF_FAIL;
-    RTOS_ERR     local_err;
 
-
-    KAL_LockAcquire(Auth_LockHandle, KAL_OPT_PEND_NONE, KAL_TIMEOUT_INFINITE, p_err);
-    if (*p_err != RTOS_ERR_NONE) {
-        goto exit;
-    }
 
     (void)Auth_GetUserHandler(p_as_user->Name, p_as_user, p_err);
     if (*p_err != RTOS_ERR_NONE) {
-        goto exit_release;
+        goto exit;
     }
 
     if (((DEF_BIT_IS_SET(p_as_user->Rights, AUTH_RIGHT_MNG)  == DEF_NO)  ||
          (DEF_BIT_IS_SET(p_as_user->Rights, right)           == DEF_NO)) &&
         (DEF_BIT_IS_SET(p_as_user->Rights, AUTH_RIGHT_ROOT)  == DEF_NO))  {
        *p_err = RTOS_ERR_PERMISSION;
-        goto exit_release;
+        goto exit;
     }
 
     name_len = Str_Len_N(p_user->Name, AUTH_NAME_MAX_LENGTH + 1);
@@ -575,16 +519,12 @@ CPU_BOOLEAN  Auth_GrantRight (AUTH_RIGHT   right,
 
             result = DEF_OK;
            *p_err  = RTOS_ERR_NONE;
-            goto exit_release;
+            goto exit;
         }
     }
 
    *p_err = RTOS_ERR_NOT_FOUND;
 
-
-exit_release:
-    KAL_LockRelease(Auth_LockHandle, &local_err);
-    (void)local_err;
 
 exit:
     return (result);
@@ -631,17 +571,11 @@ CPU_BOOLEAN  Auth_RevokeRight (AUTH_RIGHT   right,
     CPU_SIZE_T   i;
     CPU_INT16S   cmp_result;
     CPU_BOOLEAN  result     = DEF_FAIL;
-    RTOS_ERR     local_err;
 
-
-    KAL_LockAcquire(Auth_LockHandle, KAL_OPT_PEND_NONE, KAL_TIMEOUT_INFINITE, p_err);
-    if (*p_err != RTOS_ERR_NONE) {
-        goto exit;
-    }
 
     (void)Auth_GetUserHandler(p_as_user->Name, p_as_user, p_err);
     if (*p_err != RTOS_ERR_NONE) {
-        goto exit_release;
+        goto exit;
     }
 
                                                                 /* This implementation allows the ROOT user ...         */
@@ -650,7 +584,7 @@ CPU_BOOLEAN  Auth_RevokeRight (AUTH_RIGHT   right,
          (DEF_BIT_IS_SET(p_as_user->Rights, right)           == DEF_NO)   ) &&
         (DEF_BIT_IS_SET(p_as_user->Rights, AUTH_RIGHT_ROOT)  == DEF_NO    )    ) {
        *p_err = RTOS_ERR_PERMISSION;
-        goto exit_release;
+        goto exit;
     }
 
     name_len = Str_Len_N(p_user->Name, AUTH_NAME_MAX_LENGTH + 1);
@@ -666,16 +600,12 @@ CPU_BOOLEAN  Auth_RevokeRight (AUTH_RIGHT   right,
 
             result = DEF_OK;
            *p_err  = RTOS_ERR_NONE;
-            goto exit_release;
+            goto exit;
         }
     }
 
    *p_err = RTOS_ERR_NOT_FOUND;
 
-
-exit_release:
-    KAL_LockRelease(Auth_LockHandle, &local_err);
-    (void)local_err;
 
 exit:
     return (result);
