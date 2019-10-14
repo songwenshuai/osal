@@ -34,8 +34,9 @@ extern "C"
 
 #define SBP_START_DEVICE_EVT  0x0002
 #define SBP_PERIODIC_EVT      0x0004  
+#ifndef _WIN32
 #define SBP_CLOCK_EVT         0x0008  
-
+#endif
 #define NV_APPID              0x100
 
 /*********************************************************************

@@ -25,7 +25,9 @@
 
 #include "GenericApp.h"
 
+#ifndef _WIN32
 #include "clk.h"
+#endif
 
 /*********************************************************************
  * GLOBAL VARIABLES
@@ -47,8 +49,9 @@ uint8 App_TaskID;
 static void App_ProcessOSALMsg( DebugStr_t *pInMsg );
 static void Periodic_Event(void);
 static void App_TimerCB(uint8* pData);
+#ifndef _WIN32
 static void Clock_Test(void);
-
+#endif
 
 /*********************************************************************
  * @fn          App_Init
@@ -61,7 +64,10 @@ static void Clock_Test(void);
  */
 void App_Init(uint8 task_id)
 {
+#ifndef _WIN32
     CLK_ERR err;
+#endif
+
     App_TaskID = task_id;
 
     // Setup a delayed profile startup
@@ -70,7 +76,9 @@ void App_Init(uint8 task_id)
     // Setup Cb Timer
     osal_CbTimerStartReload(App_TimerCB, (uint8*)"TEST", SBP_CBTIMER_EVT_DELAY, NULL);
 
+#ifndef _WIN32
     Clk_Init(&err);
+#endif
 }
 
 /*********************************************************************
@@ -109,8 +117,9 @@ uint16 App_ProcessEvent(uint8 task_id, uint16 events)
     {
         // Set timer for first periodic event
         osal_start_timerEx(App_TaskID, SBP_PERIODIC_EVT, SBP_PERIODIC_EVT_DELAY);
+#ifndef _WIN32
         osal_start_timerEx(App_TaskID, SBP_CLOCK_EVT, SBP_CLOCK_EVT_DELAY);
-
+#endif
         return (events ^ SBP_START_DEVICE_EVT);
     }
 
@@ -128,6 +137,7 @@ uint16 App_ProcessEvent(uint8 task_id, uint16 events)
         return (events ^ SBP_PERIODIC_EVT);
     }
 
+#ifndef _WIN32
     if (events & SBP_CLOCK_EVT)
     {
         // Restart timer
@@ -141,7 +151,7 @@ uint16 App_ProcessEvent(uint8 task_id, uint16 events)
 
         return (events ^ SBP_CLOCK_EVT);
     }
-
+#endif
     // Discard unknown events
     return 0;
 }
@@ -211,8 +221,11 @@ static void Periodic_Event(void)
     n = *p;
     n = n;
 #endif
+
     /* Get local time */
+#ifndef _WIN32
     Clock_Test();
+#endif
 //------------------------------- time test ------------------------------------
     static int32 oldtime = 0, new_time = 0, deviation = 0;
 
@@ -309,6 +322,7 @@ static void App_ProcessOSALMsg(DebugStr_t *pInMsg)
  *
  * @return  none
  */
+#ifndef _WIN32
 static void Clock_Test(void)
 {
     static CLK_DATE_TIME   date_time;
@@ -404,6 +418,7 @@ static void Clock_Test(void)
 		printf("Clock date/time to string failed\r\n");
 	}
 }
+#endif
 
 #ifndef _WIN32
 #if defined(_NO_PRINTF)
