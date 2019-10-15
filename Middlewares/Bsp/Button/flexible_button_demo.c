@@ -30,8 +30,8 @@
 #include "OSAL.h"
 
 #include "OSAL_Debug.h"
-#include "OSAL_Printf.h"
 
+#include "printf.h"
 #include "flexible_button.h"
 #include <stdint.h>
 

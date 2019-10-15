@@ -15,8 +15,9 @@
 
 #include "OSAL.h"
 
-#include "OSAL_Printf.h"
 #include "OSAL_Memory.h"
+
+#include "printf.h"
 
 /* ------------------------------------------------------------------------------------------------
  *                                           Constants

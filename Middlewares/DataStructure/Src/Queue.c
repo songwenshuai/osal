@@ -12,7 +12,7 @@
  */
 #include "OSAL.h"
 
-#include "OSAL_Printf.h"
+#include "printf.h"
 #include "Queue.h"
 
 #define QUEUE_CHECKING    1

@@ -1,3 +1,7 @@
 [submodule "Middlewares/FlexibleButton"]
 	path = Middlewares/FlexibleButton
 	url = https://github.com/murphyzhao/FlexibleButton.git
+
+[submodule "Middlewares/Printf"]
+	path = Middlewares/Printf
+	url = https://github.com/mpaland/printf.git
