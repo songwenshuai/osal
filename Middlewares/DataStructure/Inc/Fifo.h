@@ -47,6 +47,9 @@ typedef struct wFIFO{
  * MACROS
  */
 
+/* Memory set functions */
+#define FIFO_MEMSET                      osal_memset
+
 /* generic error */
 #define ERR_SUCCESS	 			(0)         /*!< ok */
 #define ERR_UNDEFINE			(-1)        /*!< unknown error */

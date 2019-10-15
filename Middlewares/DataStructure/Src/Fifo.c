@@ -57,7 +57,7 @@ int bFIFO_Init(bFIFO_t *pfifo, uint8 *pbuffer, uint32 len, uint8 intLine)
 	pfifo->pBuffer = pbuffer;
 	pfifo->intLine = intLine;
 	pfifo->length = 0;	/* there is no valid data length */
-	osal_memset(pfifo->pBuffer, 0, pfifo->size);
+	FIFO_MEMSET(pfifo->pBuffer, 0, pfifo->size);
 	pfifo->pWrite = pfifo->pRead = pfifo->pBuffer; /* write head = read head = buffer head on no valid data */
 	
 	return ERR_SUCCESS;
@@ -74,7 +74,7 @@ int bFIFO_Clear(bFIFO_t *pfifo)
 
     /* clear the buffer */
 	pfifo->length = 0;	
-	osal_memset(pfifo->pBuffer, 0, pfifo->size);
+	FIFO_MEMSET(pfifo->pBuffer, 0, pfifo->size);
 	pfifo->pWrite = pfifo->pRead = pfifo->pBuffer;
 
 	FIFO_IntEnable(pfifo->intLine);/* enable the interrupt */
@@ -208,7 +208,7 @@ int wFIFO_Init(wFIFO_t *pfifo, uint16 *pbuffer, uint32 len, uint8 intLine)
 	pfifo->pBuffer = pbuffer;
 	pfifo->intLine = intLine;
 	pfifo->length = 0;	
-	osal_memset(pfifo->pBuffer, 0, pfifo->size);
+	FIFO_MEMSET(pfifo->pBuffer, 0, pfifo->size);
 	pfifo->pWrite = pfifo->pRead = pfifo->pBuffer;
 	
 	return ERR_SUCCESS;
@@ -224,7 +224,7 @@ int wFIFO_Clear(wFIFO_t *pfifo)
 	FIFO_IntDisable(pfifo->intLine);
 
 	pfifo->length = 0;	
-	osal_memset(pfifo->pBuffer, 0, pfifo->size);
+	FIFO_MEMSET(pfifo->pBuffer, 0, pfifo->size);
 	pfifo->pWrite = pfifo->pRead = pfifo->pBuffer;
 
 	FIFO_IntEnable(pfifo->intLine);
