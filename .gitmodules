@@ -9,3 +9,7 @@
 [submodule "Middlewares/CmBacktrace"]
 	path = Middlewares/CmBacktrace
 	url =	https://github.com/armink/CmBacktrace.git
+
+[submodule "Middlewares/EasyFlash"]
+	path = Middlewares/EasyFlash
+	url =	https://github.com/armink/EasyFlash.git
