@@ -1,5 +1,5 @@
 /**************************************************************************************************
-  Filename:       OSAL_Fifo.c
+  Filename:       Fifo.c
   Revised:        $Date: 2014-11-04 15:36:27 -0800 (Tue, 04 Nov 2014) $
   Revision:       $Revision: 40989 $
 
@@ -12,7 +12,7 @@
  */
 #include "OSAL.h"
 
-#include "OSAL_Fifo.h"
+#include "Fifo.h"
 
 /*********************************************************************
  * LOCAL VARIABLES

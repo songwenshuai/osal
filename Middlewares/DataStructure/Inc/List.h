@@ -5,7 +5,7 @@
  *****************************************************************************/
 
 /**
- *  @file  OSAL_List.h
+ *  @file  List.h
  *  @brief      Linked List interface for use in the stack
  *
  *  This module provides simple doubly-link list implementation. There are two
@@ -81,8 +81,8 @@
  *  ============================================================================
  */
 
-#ifndef OSAL_LIST_H
-#define OSAL_LIST_H
+#ifndef LIST_H
+#define LIST_H
 
 #ifdef __cplusplus
 extern "C"
@@ -234,4 +234,4 @@ extern osal_list_elem *osal_list_tail(osal_list_list *list);
 }
 #endif
 
-#endif /* OSAL_LIST_H */
+#endif /* LIST_H */

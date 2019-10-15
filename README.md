@@ -39,13 +39,13 @@
     │  │      OSAL_Clock.h
     │  │      OSAL_Comdef.h
     │  │      OSAL_Debug.h
-    │  │      OSAL_List.h
+    │  │      List.h
     │  │      OSAL_Memory.h
     │  │      OSAL_Nv.h
     │  │      OSAL_Printf.h
     │  │      OSAL_PwrMgr.h
-    │  │      OSAL_Queue.h
-    │  │      OSAL_Ring.h
+    │  │      Queue.h
+    │  │      Ring.h
     │  │      OSAL_Tasks.h
     │  │      OSAL_Timers.h
     │  │
@@ -54,14 +54,14 @@
     │          OSAL_Bufmgr.c
     │          OSAL_Cbtimer.c
     │          OSAL_Clock.c
-    │          OSAL_List.c
+    │          List.c
     │          OSAL_Memory.c
     │          OSAL_Nv.c
     │          OSAL_Port.c
     │          OSAL_Printf.c
     │          OSAL_PwrMgr.c
-    │          OSAL_Queue.c
-    │          OSAL_Ring.c
+    │          Queue.c
+    │          Ring.c
     │          OSAL_Timers.c
     │
     └─Doc

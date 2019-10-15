@@ -32,7 +32,7 @@
  */
 #include "OSAL.h"
 
-#include "OSAL_Ring.h"
+#include "Ring.h"
 
 /* --- Buffer unique part starts --- */
 /* Prefix for all buffer functions and typedefs */

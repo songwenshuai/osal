@@ -1,5 +1,5 @@
 /**************************************************************************************************
-  Filename:       OSAL_Queue.c
+  Filename:       Queue.c
   Revised:        $Date: 2014-11-21 16:17:37 -0800 (Fri, 21 Nov 2014) $
   Revision:       $Revision: 41218 $
 
@@ -13,7 +13,7 @@
 #include "OSAL.h"
 
 #include "OSAL_Printf.h"
-#include "OSAL_Queue.h"
+#include "Queue.h"
 
 #define QUEUE_CHECKING    1
 

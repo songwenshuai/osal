@@ -1,5 +1,5 @@
 /**
- * \file            ringbuff.h
+ * \file            Ring.h
  * \brief           Ring buffer manager
  */
 
@@ -30,8 +30,8 @@
  *
  * Author:          Tilen MAJERLE <tilen@majerle.eu>
  */
-#ifndef RINGBUFF_HDR_H
-#define RINGBUFF_HDR_H
+#ifndef RING_H
+#define RING_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -99,4 +99,4 @@ _size_t      BUF_PREF(buff_advance)(BUF_PREF(buff_t)* buff, _size_t len);
 }
 #endif
 
-#endif /* RINGBUFF_HDR_H */
+#endif /* RING_H */

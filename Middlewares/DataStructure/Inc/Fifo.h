@@ -1,13 +1,13 @@
 /**************************************************************************************************
-  Filename:       OSAL_Fifo.h
+  Filename:       Fifo.h
   Revised:        $Date: 2014-06-16 15:12:16 -0700 (Mon, 16 Jun 2014) $
   Revision:       $Revision: 39036 $
 
   Description:    This file contains the OSAL Task definition and manipulation functions.
 **************************************************************************************************/
 
-#ifndef OSAL_FIFO_H
-#define OSAL_FIFO_H
+#ifndef FIFO_H
+#define FIFO_H
 
 #ifdef __cplusplus
 extern "C"
@@ -185,4 +185,4 @@ int bFIFO_PutString(bFIFO_t *pfifo, uint8 *data, uint16 len);
 }
 #endif
 
-#endif /* OSAL_FIFO_H */
+#endif /* FIFO_H */

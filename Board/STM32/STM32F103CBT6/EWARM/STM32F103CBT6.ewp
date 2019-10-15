@@ -1197,7 +1197,7 @@
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Debug.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_List.h</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Inc\List.h</name>
           </file>
           <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Memory.h</name>
@@ -1212,10 +1212,10 @@
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_PwrMgr.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Queue.h</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Inc\Queue.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Ring.h</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Inc\Ring.h</name>
           </file>
           <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Inc\OSAL_Tasks.h</name>
@@ -1239,7 +1239,7 @@
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Src\OSAL_Clock.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Src\OSAL_List.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Src\List.c</name>
           </file>
           <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Src\OSAL_Memory.c</name>
@@ -1257,10 +1257,10 @@
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Src\OSAL_PwrMgr.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Src\OSAL_Queue.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Src\Queue.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Src\OSAL_Ring.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Src\Ring.c</name>
           </file>
           <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Core\Src\OSAL_Timers.c</name>

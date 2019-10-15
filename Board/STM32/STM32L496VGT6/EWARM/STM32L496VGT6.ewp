@@ -1214,31 +1214,31 @@
       <group>
         <name>Inc</name>
         <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Inc\OSAL_Fifo.h</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Inc\Fifo.h</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Inc\OSAL_List.h</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Inc\List.h</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Inc\OSAL_Queue.h</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Inc\Queue.h</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Inc\OSAL_Ring.h</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Inc\Ring.h</name>
         </file>
       </group>
       <group>
         <name>Src</name>
         <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Src\OSAL_Fifo.c</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Src\Fifo.c</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Src\OSAL_List.c</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Src\List.c</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Src\OSAL_Queue.c</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Src\Queue.c</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Src\OSAL_Ring.c</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Src\Ring.c</name>
         </file>
       </group>
     </group>

@@ -1,13 +1,13 @@
  /**************************************************************************************************
-   Filename:       OSAL_Queue.h
+   Filename:       Queue.h
    Revised:        $Date: 2014-06-16 15:12:16 -0700 (Mon, 16 Jun 2014) $
    Revision:       $Revision: 39036 $
 
    Description:    Software Definitions for the basic queing package. 
  **************************************************************************************************/
 
-#ifndef _OSAL_QUEUE_H_
-#define  _OSAL_QUEUE_H_ 1
+#ifndef QUEUE_H
+#define QUEUE_H
 
 struct   q_elt    {     /* queue element: cast to right type */
    struct   q_elt   *   qe_next; /* it's just a pointer to next elt */
@@ -91,6 +91,6 @@ qp       qdel(queue*, void*);    /* delete an item from a queue */
 #define  q_deq(q) getq(q)
 #define  aq_deq(q)   getq(q)     /* putq() and getq() are always atomic */
 
-#endif   /* _OSAL_QUEUE_H_ */
+#endif   /* QUEUE_H */
 
 

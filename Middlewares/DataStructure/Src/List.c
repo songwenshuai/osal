@@ -1,5 +1,5 @@
 /**************************************************************************************************
-  Filename:       OSAL_List.c
+  Filename:       List.c
   Revised:        $Date: 2014-11-04 15:36:27 -0800 (Tue, 04 Nov 2014) $
   Revision:       $Revision: 40989 $
 
@@ -12,7 +12,7 @@
  */
 #include "OSAL.h"
 
-#include "OSAL_List.h"
+#include "List.h"
 
 /**
  *  @brief  Function to initialize the contents of an osal_list_list
