@@ -1485,6 +1485,9 @@
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Debug.h</name>
           </file>
           <file>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Fifo.h</name>
+          </file>
+          <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_List.h</name>
           </file>
           <file>
@@ -1531,6 +1534,9 @@
           </file>
           <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Clock.c</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Fifo.c</name>
           </file>
           <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_List.c</name>
