@@ -15,12 +15,12 @@
 #include "List.h"
 
 /**
- *  @brief  Function to initialize the contents of an osal_list_list
+ *  @brief  Function to initialize the contents of an list_list
  *
- *  @param  list Pointer to an osal_list_list structure that will be used to
+ *  @param  list Pointer to an list_list structure that will be used to
  *               maintain a linked list
  */
-void osal_list_clearList(osal_list_list *list)
+void list_clearList(list_list *list)
 {
   list->head = list->tail = NULL;
 }
@@ -32,7 +32,7 @@ void osal_list_clearList(osal_list_list *list)
  *
  *  @return true if empty, false if not empty
  */
-bool osal_list_empty(osal_list_list *list)
+bool list_empty(list_list *list)
 {
   return (list->head == NULL);
 }
@@ -44,9 +44,9 @@ bool osal_list_empty(osal_list_list *list)
  *
  *  @return Pointer the first elem in the linked list or NULL if empty
  */
-osal_list_elem *osal_list_get(osal_list_list *list)
+list_elem *list_get(list_list *list)
 {
-  osal_list_elem *elem;
+  list_elem *elem;
 
   elem = list->head;
 
@@ -78,7 +78,7 @@ osal_list_elem *osal_list_get(osal_list_list *list)
  *
  *  @return Pointer to the first elem in the linked list or NULL if empty
  */
-osal_list_elem *osal_list_head(osal_list_list *list)
+list_elem *list_head(list_list *list)
 {
   return (list->head);
 }
@@ -93,8 +93,8 @@ osal_list_elem *osal_list_head(osal_list_list *list)
  *  @param  curElem Elem to insert the newElem in front of.
  *          This value cannot be NULL.
  */
-void osal_list_insert(osal_list_list *list, osal_list_elem *newElem,
-                     osal_list_elem *curElem)
+void list_insert(list_list *list, list_elem *newElem,
+                     list_elem *curElem)
 {
   newElem->next = curElem;
   newElem->prev = curElem->prev;
@@ -121,7 +121,7 @@ void osal_list_insert(osal_list_list *list, osal_list_elem *newElem,
  *
  *  @return Pointer to the next elem in linked list or NULL if at the end
  */
-osal_list_elem *osal_list_next(osal_list_elem *elem)
+list_elem *list_next(list_elem *elem)
 {
   return (elem->next);
 }
@@ -137,7 +137,7 @@ osal_list_elem *osal_list_next(osal_list_elem *elem)
  *  @return Pointer to the previous elem in linked list or NULL if at the
  *  beginning
  */
-osal_list_elem *osal_list_prev(osal_list_elem *elem)
+list_elem *list_prev(list_elem *elem)
 {
   return (elem->prev);
 }
@@ -149,7 +149,7 @@ osal_list_elem *osal_list_prev(osal_list_elem *elem)
  *
  *  @param  elem Element to place onto the end of the linked list
  */
-void osal_list_put(osal_list_list *list, osal_list_elem *elem)
+void list_put(list_list *list, list_elem *elem)
 {
   elem->next = NULL;
   elem->prev = list->tail;
@@ -173,7 +173,7 @@ void osal_list_put(osal_list_list *list, osal_list_elem *elem)
  *
  *  @param  elem Element to place onto the beginning of the linked list
  */
-void osal_list_putHead(osal_list_list *list, osal_list_elem *elem)
+void list_putHead(list_list *list, list_elem *elem)
 {
   elem->next = list->head;
   elem->prev = NULL;
@@ -197,7 +197,7 @@ void osal_list_putHead(osal_list_list *list, osal_list_elem *elem)
  *
  *  @param  elem Element to be removed from a linked list
  */
-void osal_list_remove(osal_list_list *list, osal_list_elem *elem)
+void list_remove(list_list *list, list_elem *elem)
 {
   /* Handle the case where the elem to remove is the last one */
   if(elem->next == NULL)
@@ -230,7 +230,7 @@ void osal_list_remove(osal_list_list *list, osal_list_elem *elem)
  *
  *  @return Pointer to the last elem in the linked list or NULL if empty
  */
-osal_list_elem *osal_list_tail(osal_list_list *list)
+list_elem *list_tail(list_list *list)
 {
   return (list->tail);
 }
