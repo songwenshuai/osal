@@ -355,10 +355,10 @@
           <state>$PROJ_DIR$/../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy</state>
           <state>$PROJ_DIR$/../Drivers/CMSIS/Device/ST/STM32L4xx/Include</state>
           <state>$PROJ_DIR$/../Drivers/CMSIS/Include</state>
+          <state>$PROJ_DIR$/../../../../Sample/App</state>
+          <state>$PROJ_DIR$/../../../../Sample/Hal</state>
+          <state>$PROJ_DIR$/../../../../Sample/Hal/Target</state>
           <state>$PROJ_DIR$/../../../../Middlewares/SEGGER/HardFault/Source</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/OSAL/Sample/App</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/OSAL/Sample/Hal</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/OSAL/Sample/Hal/Target</state>
           <state>$PROJ_DIR$/../../../../Middlewares/OSAL/Source/Inc</state>
           <state>$PROJ_DIR$/../../../../Middlewares/SEGGER/SystemView/Config</state>
           <state>$PROJ_DIR$/../../../../Middlewares/SEGGER/SystemView/SEGGER</state>
@@ -1461,39 +1461,6 @@
     <group>
       <name>OSAL</name>
       <group>
-        <name>Sample</name>
-        <group>
-          <name>App</name>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Sample\App\GenericApp.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Sample\App\GenericApp.h</name>
-          </file>
-        </group>
-        <group>
-          <name>Hal</name>
-          <group>
-            <name>Target</name>
-            <file>
-              <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Sample\Hal\Target\hal_led.c</name>
-            </file>
-            <file>
-              <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Sample\Hal\Target\hal_led.h</name>
-            </file>
-          </group>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Sample\Hal\hal_drivers.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Sample\Hal\hal_drivers.h</name>
-          </file>
-        </group>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Sample\OSAL_GenericApp.c</name>
-        </file>
-      </group>
-      <group>
         <name>Source</name>
         <group>
           <name>Inc</name>
@@ -1668,6 +1635,39 @@
         </group>
       </group>
     </group>
+  </group>
+  <group>
+    <name>Sample</name>
+    <group>
+      <name>App</name>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\..\Sample\App\GenericApp.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\..\Sample\App\GenericApp.h</name>
+      </file>
+    </group>
+    <group>
+      <name>Hal</name>
+      <group>
+        <name>Target</name>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Sample\Hal\Target\hal_led.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Sample\Hal\Target\hal_led.h</name>
+        </file>
+      </group>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\..\Sample\Hal\hal_drivers.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\..\Sample\Hal\hal_drivers.h</name>
+      </file>
+    </group>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\Sample\OSAL_GenericApp.c</name>
+    </file>
   </group>
 </project>
 
