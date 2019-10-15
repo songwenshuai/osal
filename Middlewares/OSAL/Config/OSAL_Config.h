@@ -20,7 +20,6 @@ extern "C"
  */
 
 #define USE_SYSTICK_IRQ                1
-#define OSAL_CBTIMER_NUM_TASKS         1
 #define POWER_SAVING                   1
 
 

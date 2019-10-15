@@ -10,6 +10,7 @@
  * INCLUDES
  */
 #include "OSAL.h"
+
 #include "OSAL_Memory.h"
 #include "OSAL_Mutex.h"
 

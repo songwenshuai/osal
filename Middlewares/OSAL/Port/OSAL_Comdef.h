@@ -18,6 +18,8 @@ extern "C"
 /*********************************************************************
  * INCLUDES
  */
+#include "OSAL_Config.h"
+#include "OSAL_Debug.h"
 #include "OSAL_Type.h"
 #include "OSAL_Cpu.h"
 
