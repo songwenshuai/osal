@@ -30,28 +30,28 @@ osal_mutex_t *osal_mutex_head = NULL;
  */
 osal_mutex_t* osalMutexCreate( void )
 {
-	osal_mutex_t *ptr;
-	osal_mutex_t *pseach;
-	ptr = (osal_mutex_t*)osal_mem_alloc( sizeof(osal_mutex_t) );
-	if( ptr != NULL )
-	{
-		ptr->next_mutex = NULL;
-		ptr->mutex_value = FALSE;
-		if( osal_mutex_head == NULL )
-		{
-			osal_mutex_head = ptr;
-		}
-		else
-		{
-			pseach = osal_mutex_head;
-			while( pseach->next_mutex != NULL )
-			{
-				pseach = pseach->next_mutex;
-			}
-			pseach->next_mutex = ptr;
-		}
-	}
-	return ptr;
+    osal_mutex_t *ptr;
+    osal_mutex_t *pseach;
+    ptr = (osal_mutex_t*)osal_mem_alloc( sizeof(osal_mutex_t) );
+    if( ptr != NULL )
+    {
+        ptr->next_mutex = NULL;
+        ptr->mutex_value = FALSE;
+        if( osal_mutex_head == NULL )
+        {
+            osal_mutex_head = ptr;
+        }
+        else
+        {
+            pseach = osal_mutex_head;
+            while( pseach->next_mutex != NULL )
+            {
+                pseach = pseach->next_mutex;
+            }
+            pseach->next_mutex = ptr;
+        }
+    }
+    return ptr;
 }
 
 /*********************************************************************
@@ -65,29 +65,29 @@ osal_mutex_t* osalMutexCreate( void )
  */
 void osalMutexDelete( osal_mutex_t** mutex )
 {
-	osal_mutex_t* pseach = osal_mutex_head;
-	if( pseach == NULL )
-		return;
-	if( pseach == *mutex )
-	{
-		osal_mutex_head = (*mutex)->next_mutex;
-		osal_mem_free( (uint8*)(*mutex) );
-		*mutex = NULL;
+    osal_mutex_t* pseach = osal_mutex_head;
+    if( pseach == NULL )
+        return;
+    if( pseach == *mutex )
+    {
+        osal_mutex_head = (*mutex)->next_mutex;
+        osal_mem_free( (uint8*)(*mutex) );
+        *mutex = NULL;
 
-	}
-	else
-	{
-		while( (pseach->next_mutex != *mutex) && (pseach->next_mutex != NULL) )
-		{
-			pseach = pseach->next_mutex;
-		}
-		if( pseach->next_mutex == *mutex )
-		{
-			pseach->next_mutex = (*mutex)->next_mutex;
-			osal_mem_free((uint8*)(*mutex));
-			*mutex = NULL;
-		}
-	}
+    }
+    else
+    {
+        while( (pseach->next_mutex != *mutex) && (pseach->next_mutex != NULL) )
+        {
+            pseach = pseach->next_mutex;
+        }
+        if( pseach->next_mutex == *mutex )
+        {
+            pseach->next_mutex = (*mutex)->next_mutex;
+            osal_mem_free((uint8*)(*mutex));
+            *mutex = NULL;
+        }
+    }
 }
 /*********************************************************************
  * @fn      osalMutexTake
@@ -100,14 +100,14 @@ void osalMutexDelete( osal_mutex_t** mutex )
  */
 void osalMutexTake( osal_mutex_t** mutex,uint32 mutex_overtime )
 {
-	if( *mutex == NULL )
-	{
-		*mutex = osalMutexCreate();
-	}
-	if( *mutex != NULL )
-	{
-		(*mutex)->mutex_value = mutex_overtime;
-	}
+    if( *mutex == NULL )
+    {
+        *mutex = osalMutexCreate();
+    }
+    if( *mutex != NULL )
+    {
+        (*mutex)->mutex_value = mutex_overtime;
+    }
 }
 /*********************************************************************
  * @fn      osalMutexCheck
@@ -120,11 +120,11 @@ void osalMutexTake( osal_mutex_t** mutex,uint32 mutex_overtime )
  */
 uint32 osalMutexCheck( osal_mutex_t* mutex )
 {
-	if( mutex == NULL )
-		return FALSE;
-	if( mutex->mutex_value != 0 ) 
-		return TRUE;
-	return FALSE;
+    if( mutex == NULL )
+        return FALSE;
+    if( mutex->mutex_value != 0 ) 
+        return TRUE;
+    return FALSE;
 }
 /*********************************************************************
  * @fn      osalMutexRelease
@@ -137,10 +137,10 @@ uint32 osalMutexCheck( osal_mutex_t* mutex )
  */
 void osalMutexRelease( osal_mutex_t** mutex )
 {
-	if( (*mutex) == NULL ) 
-		return;
-	(*mutex)->mutex_value = 0;
-	osalMutexDelete(mutex);
+    if( (*mutex) == NULL ) 
+        return;
+    (*mutex)->mutex_value = 0;
+    osalMutexDelete(mutex);
 }
 
 
@@ -155,16 +155,16 @@ void osalMutexRelease( osal_mutex_t** mutex )
  */
 void osalMutexUpdate( uint32 mutexTime )
 {
-	osal_mutex_t *pseach;
-	pseach = osal_mutex_head;
-	while( pseach != NULL )
-	{
-		if( pseach->mutex_value > 0 )
-		{
-			pseach->mutex_value--;
-		}
-		pseach = pseach->next_mutex;
-	}
+    osal_mutex_t *pseach;
+    pseach = osal_mutex_head;
+    while( pseach != NULL )
+    {
+        if( pseach->mutex_value > 0 )
+        {
+            pseach->mutex_value--;
+        }
+        pseach = pseach->next_mutex;
+    }
 }
 
 

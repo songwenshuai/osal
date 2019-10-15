@@ -22,12 +22,12 @@ extern "C"
  * \brief fifo, data size is byte
  */
 typedef struct bFIFO{
-	uint32 size;          /*!< fifo size */
-	uint32 length;        /*!< valid data length */
-	uint32 intLine;       /*!< interrupt line */
-	uint8  *pBuffer;      /*!< fifo buffer */
-	uint8  *pWrite;       /*!< pointer to pos for writing */
-	uint8  *pRead;        /*!< pointer to pos for reading */
+    uint32 size;          /*!< fifo size */
+    uint32 length;        /*!< valid data length */
+    uint32 intLine;       /*!< interrupt line */
+    uint8  *pBuffer;      /*!< fifo buffer */
+    uint8  *pWrite;       /*!< pointer to pos for writing */
+    uint8  *pRead;        /*!< pointer to pos for reading */
 } bFIFO_t;
 
 
@@ -35,12 +35,12 @@ typedef struct bFIFO{
  * \brief fifo, data size is word(16bit)
  */
 typedef struct wFIFO{
-	uint32 size;
-	uint32 length;
-	uint32 intLine;
-	uint16 *pBuffer;
-	uint16 *pWrite;
-	uint16 *pRead;
+    uint32 size;
+    uint32 length;
+    uint32 intLine;
+    uint16 *pBuffer;
+    uint16 *pWrite;
+    uint16 *pRead;
 } wFIFO_t;
 
 /*********************************************************************
@@ -48,13 +48,13 @@ typedef struct wFIFO{
  */
 
 /* Memory set functions */
-#define FIFO_MEMSET                      osal_memset
+#define FIFO_MEMSET             osal_memset
 
 /* generic error */
-#define ERR_SUCCESS	 			(0)         /*!< ok */
-#define ERR_UNDEFINE			(-1)        /*!< unknown error */
-#define ERR_PARAMETER			(-2)        /*!< invalid parameter */
-#define ERR_TIME_OUT			(-3)        /*!< time is out */
+#define ERR_SUCCESS             (0)         /*!< ok */
+#define ERR_UNDEFINE            (-1)        /*!< unknown error */
+#define ERR_PARAMETER           (-2)        /*!< invalid parameter */
+#define ERR_TIME_OUT            (-3)        /*!< time is out */
 #define ERR_PARITY              (-4)        /* */
 
 /* buffer error */
@@ -63,9 +63,9 @@ typedef struct wFIFO{
 #define ERR_BUFFER_FULL         (-12)       /*!< buffer is full */
 
 /* macro definition */
-#define NONE_IRQn	(0xff)                      /*!< invalid interrupt line */
-#define bFIFO_GetLength(a)	((a)->length)       /*!< get data length in fifo */
-#define wFIFO_GetLength(a)	((a)->length)       /*!< get data length in fifo */
+#define NONE_IRQn               (0xff)                      /*!< invalid interrupt line */
+#define bFIFO_GetLength(a)      ((a)->length)       /*!< get data length in fifo */
+#define wFIFO_GetLength(a)      ((a)->length)       /*!< get data length in fifo */
 
 /*********************************************************************
  * FUNCTIONS

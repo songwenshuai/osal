@@ -223,16 +223,16 @@ char* osal_strcpy(char* dst, const char* src)
  */
 _size_t osal_strnlen(const char* str, _size_t maxlen)
 {
-	const char* cp;
+    const char* cp;
 
-	for(cp = str; maxlen != 0 && *cp != '\0'; cp++, maxlen--)
-	{
-		{
-			;
-		}
-	}
+    for(cp = str; maxlen != 0 && *cp != '\0'; cp++, maxlen--)
+    {
+        {
+            ;
+        }
+    }
 
-	return (_size_t)(cp - str);
+    return (_size_t)(cp - str);
 }
 
 /*********************************************************************
@@ -250,23 +250,23 @@ _size_t osal_strnlen(const char* str, _size_t maxlen)
  */
 char* osal_strncpy(char* dst, const char* src, _size_t maxlen)
 {
-	const _size_t srclen = osal_strnlen(src, maxlen);
-	if(srclen < maxlen)
-	{
-		//  The stpncpy() and strncpy() functions copy at most maxlen
-		//  characters from src into dst.
-		osal_memcpy(dst, src, srclen);
-		//  If src is less than maxlen characters long, the remainder
-		//  of dst is filled with '\0' characters.
-		osal_memset(dst + srclen, 0, maxlen - srclen);
-	}
-	else
-	{
-		//  Otherwise, dst is not terminated.
-		osal_memcpy(dst, src, maxlen);
-	}
-	//  The strcpy() and strncpy() functions return dst.
-	return dst;
+    const _size_t srclen = osal_strnlen(src, maxlen);
+    if(srclen < maxlen)
+    {
+        //  The stpncpy() and strncpy() functions copy at most maxlen
+        //  characters from src into dst.
+        osal_memcpy(dst, src, srclen);
+        //  If src is less than maxlen characters long, the remainder
+        //  of dst is filled with '\0' characters.
+        osal_memset(dst + srclen, 0, maxlen - srclen);
+    }
+    else
+    {
+        //  Otherwise, dst is not terminated.
+        osal_memcpy(dst, src, maxlen);
+    }
+    //  The strcpy() and strncpy() functions return dst.
+    return dst;
 }
 
 /*****************************************************************************

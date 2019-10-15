@@ -59,14 +59,14 @@ extern "C" {
  * \brief           Buffer structure
  */
 typedef struct {
-    uint8* buff;                              /*!< Pointer to buffer data.
-                                                    Buffer is considered initialized when `buff != NULL` and `size` */
+    uint8* buff;                                 /*!< Pointer to buffer data.
+                                                      Buffer is considered initialized when `buff != NULL` and `size` */
     _size_t size;                                /*!< Size of buffer data. Size of actual buffer is `1` byte less than value holds */
     _size_t r;                                   /*!< Next read pointer. Buffer is considered empty when `r == w` and full when `w == r - 1` */
     _size_t w;                                   /*!< Next write pointer. Buffer is considered empty when `r == w` and full when `w == r - 1` */
 } BUF_PREF(buff_t);
 
-uint8     BUF_PREF(buff_init)(BUF_PREF(buff_t)* buff, void* buffdata, _size_t size);
+uint8      BUF_PREF(buff_init)(BUF_PREF(buff_t)* buff, void* buffdata, _size_t size);
 void        BUF_PREF(buff_free)(BUF_PREF(buff_t)* buff);
 void        BUF_PREF(buff_reset)(BUF_PREF(buff_t)* buff);
 
@@ -80,12 +80,12 @@ _size_t      BUF_PREF(buff_get_free)(BUF_PREF(buff_t)* buff);
 _size_t      BUF_PREF(buff_get_full)(BUF_PREF(buff_t)* buff);
 
 /* Read data block management */
-void *      BUF_PREF(buff_get_linear_block_read_address)(BUF_PREF(buff_t)* buff);
+void *       BUF_PREF(buff_get_linear_block_read_address)(BUF_PREF(buff_t)* buff);
 _size_t      BUF_PREF(buff_get_linear_block_read_length)(BUF_PREF(buff_t)* buff);
 _size_t      BUF_PREF(buff_skip)(BUF_PREF(buff_t)* buff, _size_t len);
 
 /* Write data block management */
-void *      BUF_PREF(buff_get_linear_block_write_address)(BUF_PREF(buff_t)* buff);
+void *       BUF_PREF(buff_get_linear_block_write_address)(BUF_PREF(buff_t)* buff);
 _size_t      BUF_PREF(buff_get_linear_block_write_length)(BUF_PREF(buff_t)* buff);
 _size_t      BUF_PREF(buff_advance)(BUF_PREF(buff_t)* buff, _size_t len);
 

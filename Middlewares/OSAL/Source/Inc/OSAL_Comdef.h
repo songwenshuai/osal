@@ -196,12 +196,12 @@ extern "C"
 // Write the 32bit value of 'val' in little endian format to the buffer pointed 
 // to by pBuf, and increment pBuf by 4
 #define UINT32_TO_BUF_LITTLE_ENDIAN(pBuf,val) \
-	do { \
-		*(pBuf)++ = ((((uint32)(val)) >>  0) & 0xFF); \
-		*(pBuf)++ = ((((uint32)(val)) >>  8) & 0xFF); \
-		*(pBuf)++ = ((((uint32)(val)) >> 16) & 0xFF); \
-		*(pBuf)++ = ((((uint32)(val)) >> 24) & 0xFF); \
-	} while (0)
+    do { \
+        *(pBuf)++ = ((((uint32)(val)) >>  0) & 0xFF); \
+        *(pBuf)++ = ((((uint32)(val)) >>  8) & 0xFF); \
+        *(pBuf)++ = ((((uint32)(val)) >> 16) & 0xFF); \
+        *(pBuf)++ = ((((uint32)(val)) >> 24) & 0xFF); \
+    } while (0)
 
 // Return the 32bit little-endian formatted value pointed to by pBuf, and increment pBuf by 4
 #define BUF_TO_UINT32_LITTLE_ENDIAN(pBuf) (((pBuf) += 4), BUILD_UINT32((pBuf)[-4], (pBuf)[-3], (pBuf)[-2], (pBuf)[-1]))

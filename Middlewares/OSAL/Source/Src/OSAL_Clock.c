@@ -19,15 +19,15 @@
  * MACROS
  */
 
-#define	YearLength(yr)	((uint16)(IsLeapYear(yr) ? 366 : 365))
+#define    YearLength(yr)    ((uint16)(IsLeapYear(yr) ? 366 : 365))
 
 /*********************************************************************
  * CONSTANTS
  */
 
-#define	BEGYEAR  2000     //  UTC started at 00:00:00 January 1, 2000
+#define    BEGYEAR  2000     //  UTC started at 00:00:00 January 1, 2000
 
-#define	DAY      86400UL  // 24 hours * 60 minutes * 60 seconds
+#define    DAY      86400UL  // 24 hours * 60 minutes * 60 seconds
                                   
 /* Check Below for an explanation */
 #define COUNTER_TICK320US 204775UL 
@@ -313,9 +313,9 @@ static uint8 monthLength( uint8 lpyr, uint8 mon )
 {
   uint8 days = 31;
 
-	if ( mon == 1 ) // feb
+  if ( mon == 1 ) // feb
   {
-		days = ( 28 + lpyr );
+    days = ( 28 + lpyr );
   }
   else
   {
@@ -330,7 +330,7 @@ static uint8 monthLength( uint8 lpyr, uint8 mon )
     }
   }
 
-	return ( days );
+  return ( days );
 }
 
 /*********************************************************************

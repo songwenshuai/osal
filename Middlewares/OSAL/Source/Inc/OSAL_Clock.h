@@ -22,7 +22,7 @@ extern "C"
  * MACROS
  */
 
-#define	IsLeapYear(yr)	(!((yr) % 400) || (((yr) % 100) && !((yr) % 4)))
+#define    IsLeapYear(yr)    (!((yr) % 400) || (((yr) % 100) && !((yr) % 4)))
 
 /*********************************************************************
  * CONSTANTS
