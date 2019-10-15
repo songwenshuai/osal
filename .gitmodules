@@ -5,3 +5,7 @@
 [submodule "Middlewares/Printf"]
 	path = Middlewares/Printf
 	url = https://github.com/mpaland/printf.git
+
+[submodule "Middlewares/CmBacktrace"]
+	path = Middlewares/CmBacktrace
+	url =	https://github.com/armink/CmBacktrace.git
