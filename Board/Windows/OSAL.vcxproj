@@ -58,7 +58,7 @@
       <Optimization>MaxSpeed</Optimization>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>Win32;Setup;..\..\Middlewares\OSAL\Source\Inc;..\..\Middlewares\OSAL\Sample\App;..\..\Middlewares\OSAL\Sample\Hal;..\..\Middlewares\OSAL\Sample\Hal\Target;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Setup;Win32;..\..\Sample\App;..\..\Sample\Hal;..\..\Sample\Hal\Target;..\..\Middlewares\OSAL\Source\Inc;..\..\Middlewares\DataStructure\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS;</PreprocessorDefinitions>
       <AssemblerListingLocation>.\Output\Release\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>.\Output\Release\OSAL.pch</PrecompiledHeaderOutputFile>
@@ -96,7 +96,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <WarningLevel>Level3</WarningLevel>
       <MinimalRebuild>false</MinimalRebuild>
-      <AdditionalIncludeDirectories>Win32;Setup;..\..\Middlewares\OSAL\Source\Inc;..\..\Middlewares\OSAL\Sample\App;..\..\Middlewares\OSAL\Sample\Hal;..\..\Middlewares\OSAL\Sample\Hal\Target;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Setup;Win32;..\..\Sample\App;..\..\Sample\Hal;..\..\Sample\Hal\Target;..\..\Middlewares\OSAL\Source\Inc;..\..\Middlewares\DataStructure\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_WINDOWS;WIN32;_DEBUG;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS;</PreprocessorDefinitions>
       <AssemblerListingLocation>.\Output\Debug\</AssemblerListingLocation>
       <BrowseInformation>true</BrowseInformation>
@@ -129,23 +129,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Middlewares\OSAL\Sample\App\GenericApp.c" />
-    <ClCompile Include="..\..\Middlewares\OSAL\Sample\Hal\hal_drivers.c" />
-    <ClCompile Include="..\..\Middlewares\OSAL\Sample\Hal\Target\hal_led.c" />
-    <ClCompile Include="..\..\Middlewares\OSAL\Sample\OSAL_GenericApp.c" />
-    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL.c" />
-    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_Bufmgr.c" />
-    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_Cbtimer.c" />
-    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_Clock.c" />
-    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_List.c" />
-    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_Memory.c" />
-    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_Nv.c" />
-    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_Port.c" />
-    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_Printf.c" />
-    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_PwrMgr.c" />
-    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_Queue.c" />
-    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_Ring.c" />
-    <ClCompile Include="..\..\Middlewares\OSAL\Source\Src\OSAL_Timers.c" />
+    <ClCompile Include="..\..\Middlewares\DataStructure\Src\Fifo.c" />
+    <ClCompile Include="..\..\Middlewares\DataStructure\Src\List.c" />
+    <ClCompile Include="..\..\Middlewares\DataStructure\Src\Queue.c" />
+    <ClCompile Include="..\..\Middlewares\DataStructure\Src\Ring.c" />
+    <ClCompile Include="..\..\Sample\App\GenericApp.c" />
+    <ClCompile Include="..\..\Sample\Hal\hal_drivers.c" />
+    <ClCompile Include="..\..\Sample\Hal\Target\hal_led.c" />
+    <ClCompile Include="..\..\Sample\OSAL_GenericApp.c" />
     <ClCompile Include="Application\OS_StartLEDBlink.c" />
     <ClCompile Include="Setup\BSP.c" />
     <ClCompile Include="Setup\RTOSInit.c" />
@@ -157,25 +148,13 @@
     <None Include="Win32\SIM_OS_Simulation.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Middlewares\OSAL\Sample\App\GenericApp.h" />
-    <ClInclude Include="..\..\Middlewares\OSAL\Sample\Hal\hal_drivers.h" />
-    <ClInclude Include="..\..\Middlewares\OSAL\Sample\Hal\Target\hal_led.h" />
-    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL.h" />
-    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Bufmgr.h" />
-    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Cbtimer.h" />
-    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Clock.h" />
-    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Comdef.h" />
-    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Cpu.h" />
-    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Debug.h" />
-    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_List.h" />
-    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Memory.h" />
-    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Nv.h" />
-    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Printf.h" />
-    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_PwrMgr.h" />
-    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Queue.h" />
-    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Ring.h" />
-    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Tasks.h" />
-    <ClInclude Include="..\..\Middlewares\OSAL\Source\Inc\OSAL_Timers.h" />
+    <ClInclude Include="..\..\Middlewares\DataStructure\Inc\Fifo.h" />
+    <ClInclude Include="..\..\Middlewares\DataStructure\Inc\List.h" />
+    <ClInclude Include="..\..\Middlewares\DataStructure\Inc\Queue.h" />
+    <ClInclude Include="..\..\Middlewares\DataStructure\Inc\Ring.h" />
+    <ClInclude Include="..\..\Sample\App\GenericApp.h" />
+    <ClInclude Include="..\..\Sample\Hal\hal_drivers.h" />
+    <ClInclude Include="..\..\Sample\Hal\Target\hal_led.h" />
     <ClInclude Include="Setup\BSP.h" />
     <ClInclude Include="Win32\SIM_OS.h" />
     <ClInclude Include="Win32\SIM_OS_Resource.h" />

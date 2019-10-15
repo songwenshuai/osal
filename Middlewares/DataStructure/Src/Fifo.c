@@ -24,7 +24,7 @@ static halIntState_t intState;
  */
 
 /* enable the interrupt */
-static void FIFO_IntEnable(uint8 intLine)
+static void FIFO_IntEnable(uint32 intLine)
 {
     if(intLine != NONE_IRQn )
     { 
@@ -33,7 +33,7 @@ static void FIFO_IntEnable(uint8 intLine)
 }
 
 /* disable the interrupt */
-static void FIFO_IntDisable(uint8 intLine)
+static void FIFO_IntDisable(uint32 intLine)
 {
     if(intLine != NONE_IRQn)
     {
