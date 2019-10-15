@@ -13,3 +13,7 @@
 [submodule "Middlewares/EasyFlash"]
 	path = Middlewares/EasyFlash
 	url =	https://github.com/armink/EasyFlash.git
+
+[submodule "Middlewares/EasyLogger"]
+	path = Middlewares/EasyLogger
+	url =	https://github.com/armink/EasyLogger.git
