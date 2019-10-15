@@ -17,25 +17,6 @@ extern "C"
  * INCLUDES
  */
 
-  /*********************************************************************
- * OPTION
- */
-
-#define OSAL_CBTIMER_NUM_TASKS         1
-
-/*********************************************************************
- * MACROS
- */
-
-#if ( OSAL_CBTIMER_NUM_TASKS == 0 )
-  #error Callback Timer module shouldn_t be included (no callback timer is needed)!
-#elif ( OSAL_CBTIMER_NUM_TASKS == 1 )
-  #define OSAL_CBTIMER_PROCESS_EVENT( a )          ( a )
-#elif ( OSAL_CBTIMER_NUM_TASKS == 2 )
-  #define OSAL_CBTIMER_PROCESS_EVENT( a )          ( a ), ( a )
-#else
-  #error Maximum of 2 callback timer tasks are supported! Modify it here.
-#endif
 
 /*********************************************************************
  * TYPEDEFS

@@ -24,9 +24,13 @@
  * ------------------------------------------------------------------------------------------------
  */
 // Memory Allocation Heap
+#ifndef MAXMEMHEAP
 #define MAXMEMHEAP                 4096   /* Typically, 1.0-6.0K */
+#endif
 
+#ifndef OSALMEM_IN_USE
 #define OSALMEM_IN_USE             0x8000
+#endif
 #if (MAXMEMHEAP & OSALMEM_IN_USE)
 #error MAXMEMHEAP is too big to manage!
 #endif
