@@ -13,6 +13,7 @@
 
 #include "OSAL_Timers.h"
 #include "OSAL_Clock.h"
+#include "OSAL_Mutex.h"
 
 /*********************************************************************
  * MACROS
@@ -168,6 +169,7 @@ void osalTimeUpdate( void )
       // Update OSAL Clock and Timers
       osalClockUpdate( elapsedMSec );
       osalTimerUpdate( elapsedMSec );
+      osalMutexUpdate( elapsedMSec );
     }
   }
 }
@@ -216,6 +218,7 @@ void osalAdjustTimer(uint32 Msec )
   
   osalClockUpdate(Msec);
   osalTimerUpdate(Msec);
+  osalMutexUpdate(Msec);
   
   /* Enable SysTick interrupts */ 
   SysTickIntEnable(); 

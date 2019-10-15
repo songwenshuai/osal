@@ -77,7 +77,7 @@ static const uint16 hotIds[OSAL_NV_MAX_HOT] = {
 /* Greatest-multiple-of-4 <= addr */
 #define aligned_address(addr) ((uint32)addr & ~3)
 
-#define OSAL_NV_CHECK_BUS_VOLTAGE  OnBoard_CheckVoltage()
+/* #define OSAL_NV_CHECK_BUS_VOLTAGE  OnBoard_CheckVoltage() */
 
 #define OSAL_NV_DATA_SIZE( LEN )  \
      ((((LEN) + OSAL_NV_WORD_SIZE - 1) / OSAL_NV_WORD_SIZE) * OSAL_NV_WORD_SIZE)
