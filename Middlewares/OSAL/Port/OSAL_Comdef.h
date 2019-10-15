@@ -18,15 +18,8 @@ extern "C"
 /*********************************************************************
  * INCLUDES
  */
-
 #include "OSAL_Type.h"
 #include "OSAL_Cpu.h"
-
-/*********************************************************************
- * OPTION
- */
-
-#define USE_SYSTICK_IRQ                1
 
 /*********************************************************************
  * COMPILER
@@ -109,7 +102,7 @@ extern "C"
  * TYPEDEFS
  */
 
-typedef                char *_va_list;
+typedef                        char *_va_list;
 
 #define _ADDRESSOF(v)          (&(v))
 #define _INTSIZEOF(n)          ((sizeof(n) + sizeof(int) - 1) & ~(sizeof(int) - 1))

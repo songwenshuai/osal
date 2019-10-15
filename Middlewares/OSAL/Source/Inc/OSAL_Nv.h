@@ -17,6 +17,7 @@ extern "C"
 /*********************************************************************
  * INCLUDES
  */
+#include "OSAL_Config.h"
 
 /*********************************************************************
  * CONSTANTS
@@ -31,7 +32,7 @@ extern "C"
 #define ZCD_NV_NWK_ACTIVE_KEY_INFO        0x003A
 #define ZCD_NV_NWK_ALTERN_KEY_INFO        0x003B
 
-#define NV_FLASH_BASE                        ((uint32)nvDataBuf)                      // Flash 
+#define NV_FLASH_BASE                     ((uint32)nvDataBuf)                      // Flash 
 #define HAL_NV_PAGE_END                   (HAL_NV_PAGE_CNT - 1)                    // 0-5 six page
 
 // Flash consists of 256 pages of 2 KB.

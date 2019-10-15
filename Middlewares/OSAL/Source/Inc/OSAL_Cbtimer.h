@@ -12,14 +12,15 @@
 extern "C"
 {
 #endif
+
 /*********************************************************************
  * INCLUDES
  */
-  
+#include "OSAL_Config.h"
+
 /*********************************************************************
  * MACROS
  */
-#define OSAL_CBTIMER_NUM_TASKS  1
 
 #if ( OSAL_CBTIMER_NUM_TASKS == 0 )
   #error Callback Timer module shouldn_t be included (no callback timer is needed)!

@@ -17,12 +17,11 @@ extern "C"
 /*********************************************************************
  * INCLUDES
  */
- 
+#include "OSAL_Config.h"
+
 /*********************************************************************
  * MACROS
  */
-
-#define POWER_SAVING            1
 
 // Power conservation
 #define OSAL_SET_CPU_INTO_SLEEP(timeout) halSleep(timeout);  /* Called from OSAL_PwrMgr */
