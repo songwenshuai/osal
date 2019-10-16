@@ -18,9 +18,6 @@ extern "C"
 /*********************************************************************
  * OPTION
  */
-//#define USE_NV8BIT                     1
-
-#define USE_NV32BIT                    1
 
 #define USE_SYSTICK_IRQ                1
 

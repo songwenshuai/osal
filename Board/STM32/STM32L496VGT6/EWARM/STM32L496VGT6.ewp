@@ -1481,6 +1481,12 @@
           <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Port\OSAL_Debug.h</name>
         </file>
         <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Port\OSAL_Flashutil.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Port\OSAL_Flashutil.h</name>
+        </file>
+        <file>
           <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Port\OSAL_Port.c</name>
         </file>
         <file>
@@ -1543,7 +1549,7 @@
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Mutex.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Nv.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Nv32.c</name>
           </file>
           <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_PwrMgr.c</name>
