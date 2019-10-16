@@ -227,10 +227,7 @@ void *osal_bm_adjust_tail( void *payload_ptr, int16 size )
  */
 static bm_desc_t *bm_desc_from_payload ( uint8 *payload_ptr )
 {
-  halIntState_t cs;
   bm_desc_t *loop_ptr;
-
-  HAL_ENTER_CRITICAL_SECTION(cs);
 
   loop_ptr = bm_list_ptr;
   while ( loop_ptr != NULL )
@@ -246,8 +243,6 @@ static bm_desc_t *bm_desc_from_payload ( uint8 *payload_ptr )
     loop_ptr = loop_ptr->next_ptr;
   }
 
-  HAL_EXIT_CRITICAL_SECTION(cs);
-  
   return ( loop_ptr );
 }
 

@@ -87,6 +87,7 @@ static Status_t cbTimerSetup( pfnCbTimer_t  pfnCbTimer,
  * API FUNCTIONS
  */
 
+
 /*********************************************************************
  * @fn          osal_CbTimerInit
  *
@@ -134,9 +135,9 @@ uint16 osal_CbTimerProcessEvent( uint8 taskId, uint16 events )
   {
     uint8 i;
     uint16 event = 0;
-    halIntState_t intState;
+    halIntState_t cs;
 
-    HAL_ENTER_CRITICAL_SECTION(intState);
+    HAL_ENTER_CRITICAL_SECTION(cs);
 
     // Process event timers
     for ( i = 0; i < NUM_CBTIMERS_PER_TASK; i++ )
@@ -171,7 +172,7 @@ uint16 osal_CbTimerProcessEvent( uint8 taskId, uint16 events )
       }
     }
 
-    HAL_EXIT_CRITICAL_SECTION(intState);
+    HAL_EXIT_CRITICAL_SECTION(cs);
 
     // return unprocessed events
     return ( events ^ event );
@@ -265,9 +266,9 @@ Status_t osal_CbTimerStartReload( pfnCbTimer_t  pfnCbTimer,
  */
 Status_t osal_CbTimerUpdate( uint8 timerId, uint32 timeout )
 {
-  halIntState_t intState;
+  halIntState_t cs;
 
-  HAL_ENTER_CRITICAL_SECTION(intState);
+  HAL_ENTER_CRITICAL_SECTION(cs);
 
   // Look for the existing timer
   if ( timerId < NUM_CBTIMERS )
@@ -280,14 +281,14 @@ Status_t osal_CbTimerUpdate( uint8 timerId, uint32 timeout )
         // Timer exists; update it
         osal_start_timerEx( TASK_ID( timerId ), EVENT_ID( timerId ), timeout );
 
-        HAL_EXIT_CRITICAL_SECTION(intState);
+        HAL_EXIT_CRITICAL_SECTION(cs);
 
         return (  SUCCESS );
       }
     }
   }
 
-  HAL_EXIT_CRITICAL_SECTION(intState);
+  HAL_EXIT_CRITICAL_SECTION(cs);
 
   // Timer not found
   return ( INVALIDPARAMETER );
@@ -307,9 +308,9 @@ Status_t osal_CbTimerUpdate( uint8 timerId, uint32 timeout )
  */
 Status_t osal_CbTimerStop( uint8 timerId )
 {
-  halIntState_t intState;
+  halIntState_t cs;
 
-  HAL_ENTER_CRITICAL_SECTION(intState);
+  HAL_ENTER_CRITICAL_SECTION(cs);
 
   // Look for the existing timer
   if ( timerId < NUM_CBTIMERS )
@@ -325,13 +326,13 @@ Status_t osal_CbTimerStop( uint8 timerId )
       // Null out data pointer
       cbTimers[timerId].pData = NULL;
 
-      HAL_EXIT_CRITICAL_SECTION(intState);
+      HAL_EXIT_CRITICAL_SECTION(cs);
 
       return ( SUCCESS );
     }
   }
 
-  HAL_EXIT_CRITICAL_SECTION(intState);
+  HAL_EXIT_CRITICAL_SECTION(cs);
 
   // Timer not found
   return ( INVALIDPARAMETER );
@@ -368,14 +369,14 @@ static Status_t cbTimerSetup( pfnCbTimer_t  pfnCbTimer,
                               uint8         reload )
 {
   uint8 i;
-  halIntState_t intState;
+  halIntState_t cs;
 
-  HAL_ENTER_CRITICAL_SECTION(intState);
+  HAL_ENTER_CRITICAL_SECTION(cs);
 
   // Validate input parameters
   if ( pfnCbTimer == NULL )
   {
-    HAL_EXIT_CRITICAL_SECTION(intState);
+    HAL_EXIT_CRITICAL_SECTION(cs);
 
     return ( INVALIDPARAMETER );
   }
@@ -403,14 +404,14 @@ static Status_t cbTimerSetup( pfnCbTimer_t  pfnCbTimer,
           *pTimerId = i;
         }
 
-        HAL_EXIT_CRITICAL_SECTION(intState);
+        HAL_EXIT_CRITICAL_SECTION(cs);
 
         return ( SUCCESS );
       }
     }
   }
 
-  HAL_EXIT_CRITICAL_SECTION(intState);
+  HAL_EXIT_CRITICAL_SECTION(cs);
 
   // No timer available
   return ( NO_TIMER_AVAIL );

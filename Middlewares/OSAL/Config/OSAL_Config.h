@@ -28,20 +28,11 @@ extern "C"
 // Memory Allocation Heap
 #define MAXMEMHEAP                 4096   /* Typically, 1.0-6.0K */
 #define OSALMEM_IN_USE             0x8000
+ //#define DPRINTF_OSALHEAPTRACE   1
 
 /*********************************************************************
  * MACROS
  */
-
-#if ( OSAL_CBTIMER_NUM_TASKS == 0 )
-  #error Callback Timer module shouldn_t be included (no callback timer is needed)!
-#elif ( OSAL_CBTIMER_NUM_TASKS == 1 )
-  #define OSAL_CBTIMER_PROCESS_EVENT( a )          ( a )
-#elif ( OSAL_CBTIMER_NUM_TASKS == 2 )
-  #define OSAL_CBTIMER_PROCESS_EVENT( a )          ( a ), ( a )
-#else
-  #error Maximum of 2 callback timer tasks are supported! Modify it here.
-#endif
 
 // ++ sws add start
 #define ZCD_NV_NWKKEY                     0x0082
@@ -62,6 +53,9 @@ extern "C"
 #define HAL_NV_START_ADDR                 NV_FLASH_BASE
 
 // ++ sws add end
+
+// Power conservation
+#define OSAL_SET_CPU_INTO_SLEEP(timeout) halSleep(timeout);  /* Called from OSAL_PwrMgr */
 
 /*********************************************************************
 *********************************************************************/

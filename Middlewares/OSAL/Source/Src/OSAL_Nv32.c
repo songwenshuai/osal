@@ -204,7 +204,6 @@ static uint8  writeItem( uint8 pg, uint16 id, uint16 len, void *buf, uint8 flag 
 static uint8  hotItem(uint16 id);
 static void   hotItemUpdate(uint8 pg, uint16 off, uint16 id);
 
-
 /******************************************************************************
  * @fn      initNV
  *
@@ -223,7 +222,6 @@ static uint8 initNV( void )
 
   /* ++ sws add */
   initFlash();
-
   pgRes = OSAL_NV_PAGE_NULL;
 
   for ( pg = 0; pg < OSAL_NV_PAGES_USED; pg++ )

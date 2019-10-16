@@ -155,6 +155,7 @@ typedef void * osal_msg_q_t;
    */
   extern uint8 osal_clear_event( uint8 task_id, uint16 event_flag );
 
+
   /*** Interrupt Management  ***/
 
   /*
@@ -185,7 +186,6 @@ typedef void * osal_msg_q_t;
    * System Processing Loop
    */
   extern void osal_start_system( void );
-
 
   /*
    * One Pass Throu the OSAL Processing Loop

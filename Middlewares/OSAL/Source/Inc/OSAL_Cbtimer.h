@@ -5,8 +5,8 @@
 
   Description:    OSAL Clock definition and manipulation functions.
 ******************************************************************************/
-#ifndef __OSAL_CBTIMER_H_
-#define __OSAL_CBTIMER_H_
+#ifndef OSAL_CBTIMER_H
+#define OSAL_CBTIMER_H
 
 #ifdef __cplusplus
 extern "C"
@@ -17,6 +17,31 @@ extern "C"
  * INCLUDES
  */
 
+/*********************************************************************
+ * CONSTANTS
+ */
+// Invalid timer id
+#define INVALID_TIMER_ID                           0xFF
+
+// Timed out timer
+#define TIMEOUT_TIMER_ID                           0xFE
+
+/*********************************************************************
+ * VARIABLES
+ */
+
+/*********************************************************************
+ * MACROS
+ */
+#if ( OSAL_CBTIMER_NUM_TASKS == 0 )
+  #error Callback Timer module shouldn't be included (no callback timer is needed)!
+#elif ( OSAL_CBTIMER_NUM_TASKS == 1 )
+  #define OSAL_CBTIMER_PROCESS_EVENT( a )          ( a )
+#elif ( OSAL_CBTIMER_NUM_TASKS == 2 )
+  #define OSAL_CBTIMER_PROCESS_EVENT( a )          ( a ), ( a )
+#else
+  #error Maximum of 2 callback timer tasks are supported! Modify it here.
+#endif
 
 /*********************************************************************
  * TYPEDEFS
@@ -75,7 +100,6 @@ extern Status_t osal_CbTimerUpdate( uint8  timerId,
  */
 extern Status_t osal_CbTimerStop( uint8 timerId );
 
-  
 /*********************************************************************
 *********************************************************************/
 
@@ -83,4 +107,4 @@ extern Status_t osal_CbTimerStop( uint8 timerId );
 }
 #endif
 
-#endif /* __OSAL_CBTIMER_H_ */
+#endif /* OSAL_CBTIMER_H */

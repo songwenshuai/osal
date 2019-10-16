@@ -22,14 +22,11 @@ extern "C"
  * MACROS
  */
 
-// Power conservation
-#define OSAL_SET_CPU_INTO_SLEEP(timeout) halSleep(timeout);  /* Called from OSAL_PwrMgr */
-
 /*********************************************************************
  * TYPEDEFS
  */
 
-/* These attributes define sleep beheaver. The attributes can be changed
+/* These attributes define sleep behavior. The attributes can be changed
  * for each sleep cycle or when the device characteristic change.
  */
 typedef struct

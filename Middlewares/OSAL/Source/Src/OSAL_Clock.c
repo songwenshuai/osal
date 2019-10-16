@@ -60,6 +60,8 @@
 extern uint32 macMcuPrecisionCount(void);
 #endif
 
+#if (defined HAL_MCU_CC2430) || (defined HAL_MCU_CC2530) || (defined HAL_MCU_CC2533)
+
 /*  This function is used to divide a 31 bit dividend by a 16 bit
  *  divisor and return a packed 16 bit quotient and 16 bit
  *  remainder.
@@ -72,6 +74,36 @@ extern uint32 macMcuPrecisionCount(void);
  *
  *  return - MSW divisor; LSW quotient
  */
+  extern __near_func uint32 osalMcuDivide31By16To16( uint32 dividend, uint16 divisor );
+
+  #define CONVERT_320US_TO_MS_ELAPSED_REMAINDER( x, y, z ) st( \
+                                                               \
+    /* The 16 bit quotient is in MSW and */                    \
+    /* the 16 bit remainder is in LSW. */                      \
+    x = osalMcuDivide31By16To16( x, 25 );                      \
+                                                               \
+    /* Add quotient to y */                                    \
+    y += (x >> 16);                                            \
+                                                               \
+    /* Copy remainder to z */                                  \
+    z = (uint16)(x & 0x0FFFF);                                 \
+  )
+  
+  #define CONVERT_MS_TO_S_ELAPSED_REMAINDER( x, y, z ) st(     \
+                                                               \
+    /* The 16 bit quotient is in MSW and */                    \
+    /* the 16 bit remainder is in LSW. */                      \
+    x = osalMcuDivide31By16To16( x, 1000 );                    \
+                                                               \
+    /* Add quotient to y */                                    \
+    y += (x >> 16);                                            \
+                                                               \
+    /* Copy remainder to z */                                  \
+    z = (uint16)(x & 0x0FFFF);                                 \
+  )
+
+#else /* (defined HAL_MCU_CC2430) || (defined HAL_MCU_CC2530) || (defined HAL_MCU_CC2533) */
+
 #define CONVERT_320US_TO_MS_ELAPSED_REMAINDER( x, y, z ) st( \
   y += x / 25;                                               \
   z = x % 25;                                                \
@@ -81,6 +113,7 @@ extern uint32 macMcuPrecisionCount(void);
   y += x / 1000;                                             \
   z = x % 1000;                                              \
 )
+#endif /* (defined HAL_MCU_CC2430) || (defined HAL_MCU_CC2530) || (defined HAL_MCU_CC2533) */
 
 /*********************************************************************
  * LOCAL VARIABLES

@@ -607,7 +607,7 @@ void *osal_memdup( const void GENERIC *src, unsigned int len )
  *
  *   Generic memory compare.
  *
- * @param   src1 - source 1 addrexx
+ * @param   src1 - source 1 address
  * @param   src2 - source 2 address
  * @param   len - number of bytes to compare
  *

@@ -49,7 +49,7 @@ extern uint16 *tasksEvents;
  */
 
 /*
- * Call each of the tasks initailization functions.
+ * Call each of the tasks initialization functions.
  */
 extern void osalInitTasks( void );
 
