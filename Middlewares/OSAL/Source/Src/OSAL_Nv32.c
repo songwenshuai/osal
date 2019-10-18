@@ -18,7 +18,7 @@
 #include "OSAL.h"
 
 #include "OSAL_Nv.h"
-#include "OSAL_Flashutil.h"
+#include "OSAL_Flashutil32.h"
 
 /*********************************************************************
  * CONSTANTS

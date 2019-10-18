@@ -379,6 +379,7 @@
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-Shell/Terminal/Source</state>
           <state>$PROJ_DIR$/../../../../Middlewares/OSAL/Config</state>
           <state>$PROJ_DIR$/../../../../Middlewares/OSAL/Port</state>
+          <state>$PROJ_DIR$/../../../../Middlewares/OSAL/Port/Flash</state>
           <state>$PROJ_DIR$/../../../../Middlewares/OSAL/Source/Inc</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Printf</state>
           <state>$PROJ_DIR$/../../../../Middlewares/SEGGER/HardFault/Source</state>
@@ -1471,6 +1472,15 @@
       </group>
       <group>
         <name>Port</name>
+          <group>
+            <name>Flash</name>
+              <file>
+                <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Port\Flash\OSAL_Flashutil32.c</name>
+              </file>
+              <file>
+                <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Port\Flash\OSAL_Flashutil32.h</name>
+              </file>
+          </group>
         <file>
           <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Port\OSAL_Comdef.h</name>
         </file>
@@ -1479,12 +1489,6 @@
         </file>
         <file>
           <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Port\OSAL_Debug.h</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Port\OSAL_Flashutil.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Port\OSAL_Flashutil.h</name>
         </file>
         <file>
           <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Port\OSAL_Port.c</name>
