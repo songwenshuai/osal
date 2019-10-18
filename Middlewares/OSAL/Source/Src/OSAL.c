@@ -849,6 +849,39 @@ uint8* osal_ltoa(uint32 l, uint8* buf, uint8 radix)
 }
 
 /*********************************************************************
+ * @fn      osal_atol
+ *
+ * @brief
+ *
+ *   convert a string int to a long unsigned.
+ *
+ * @param  s - buffer to convert to
+ *
+ * @return  long unsigned
+ */
+long osal_atol(const char *s)
+{
+    long r = 0;
+    int neg = 0;
+    switch (*s)
+    {
+    case '-':
+        neg = 1;
+    case '+':
+        s++;
+        break;
+    }
+    while (*s >= '0' && *s <= '9')
+    {
+        int n = *s++ - '0';
+        if (neg)
+            n = -n;
+        r = r * 10 + n;
+    }
+    return r;
+}
+
+/*********************************************************************
  * @fn        osal_rand
  *
  * @brief    Random number generator

@@ -286,6 +286,11 @@ typedef void * osal_msg_q_t;
   extern uint8 *osal_ltoa( uint32 l, uint8 * buf, uint8 radix );
 
   /*
+   * convert a string int to a long unsigned.
+   */
+  extern long osal_atol(const char *s);
+
+  /*
    * Random number generator
    */
   extern uint32 osal_rand(void);
