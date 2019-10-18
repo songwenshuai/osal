@@ -19,7 +19,7 @@
 #include "OSAL.h"
 
 #include "OSAL_Nv.h"
-#include "OSAL_Flashutil.h"
+#include "OSAL_Flashutil8.h"
 
 /*********************************************************************
  * CONSTANTS
@@ -58,6 +58,7 @@ static const uint16 hotIds[OSAL_NV_MAX_HOT] = {
  * MACROS
  */
 
+/* -- sws del
 #if (defined HAL_MCU_CC2530 || defined HAL_MCU_CC2531)
 #define OSAL_NV_CHECK_BUS_VOLTAGE  OnBoard_CheckVoltage()
 #elif defined HAL_MCU_CC2533
@@ -66,6 +67,7 @@ static const uint16 hotIds[OSAL_NV_MAX_HOT] = {
 # warning No implementation of a low Vdd check.
 # define  OSAL_NV_CHECK_BUS_VOLTAGE
 #endif
+*/
 
 #define OSAL_NV_DATA_SIZE( LEN )                      \
   (((LEN) >= ((uint16)(65536UL - OSAL_NV_WORD_SIZE))) ? \
@@ -1194,7 +1196,7 @@ uint8 osal_nv_item_init( uint16 id, uint16 len, void *buf )
 {
   uint16 offset;
 
-  if ( ( hotItem( id ) < OSAL_NV_MAX_HOT ) && ( !OSAL_NV_CHECK_BUS_VOLTAGE ) )
+  if ( ( hotItem( id ) < OSAL_NV_MAX_HOT ) /* && ( !OSAL_NV_CHECK_BUS_VOLTAGE ) -- sws del */ )
   {
     return NV_OPER_FAILED;
   }
@@ -1262,11 +1264,14 @@ uint8 osal_nv_write( uint16 id, uint16 ndx, uint16 len, void *buf )
 {
   uint8 rtrn = SUCCESS;
 
+/*  -- sws del
   if ( !OSAL_NV_CHECK_BUS_VOLTAGE )
   {
     return NV_OPER_FAILED;
   }
   else if ( len != 0 )
+*/
+  if ( len != 0 ) //-- sws add
   {
     osalNvHdr_t hdr;
     uint16 origOff, srcOff;

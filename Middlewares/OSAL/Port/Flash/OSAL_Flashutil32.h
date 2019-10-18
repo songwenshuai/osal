@@ -21,6 +21,9 @@
 /*********************************************************************
  * MACROS
  */
+#define NV_FLASH_BASE                     ((uint32)nvDataBuf)                      // Flash 
+
+#define HAL_NV_START_ADDR                 NV_FLASH_BASE
 
 /*********************************************************************
  * TYPEDEFS

@@ -16,9 +16,22 @@
  * MACROS
  */
 
+/* Remainder when divided by 4 */
+#define byte_offset(addr)               ((uint32)addr & 3)
+
+/* Greatest-multiple-of-4 <= addr */
+#define aligned_address(addr)           ((uint32)addr & ~3)
+
+#define HAL_NV_ADDR_OFFSET(p_addr)      (((uint32)p_addr) - HAL_NV_START_ADDR)
+#define OSAL_NV_PTR_TO_PAGE( p_addr )   (HAL_NV_ADDR_OFFSET(p_addr) / HAL_FLASH_PAGE_SIZE)
+#define OSAL_NV_PTR_TO_OFFSET( p_addr ) (HAL_NV_ADDR_OFFSET(p_addr) % HAL_FLASH_PAGE_SIZE)
+
 /*********************************************************************
  * GLOBAL VARIABLES
  */
+
+uint8 nvDataBuf[HAL_NV_PAGE_CNT][HAL_FLASH_PAGE_SIZE];
+
 /*********************************************************************
  * GLOBAL FUNCTION
  */
@@ -30,10 +43,10 @@
  *
  * input parameters
  *
- * @param       pg - Valid HAL flash page number (ie < 128).
- * @param       offset - Valid offset into the page (so < HAL_NV_PAGE_SIZE and byte-aligned is ok).
- * @param       buf - Valid buffer space at least as big as the 'cnt' parameter.
- * @param       cnt - Valid number of bytes to read: a read cannot cross into the next 32KB bank.
+ * @param       pg - A valid flash page number.
+ * @param       offset - A valid offset into the page.
+ * @param       buf - A valid buffer space at least as big as the 'cnt' parameter.
+ * @param       cnt - A valid number of bytes to read.
  *
  * output parameters
  *
@@ -42,17 +55,21 @@
  * @return      None.
  **************************************************************************************************
  */
+void HalFlashRead(uint8 pg, uint16 offset, uint8 *buf, uint16 cnt)
+{
+
+}
 
 /**************************************************************************************************
  * @fn          HalFlashWrite
  *
- * @brief       This function reads 'cnt' bytes from the internal flash.
+ * @brief       This function writes 'cnt' bytes to the internal flash.
  *
  * input parameters
  *
  * @param       addr - Valid HAL flash write address: actual addr / 4 and quad-aligned.
- * @param       buf - Valid buffer space at least as big as the 'cnt' parameter.
- * @param       cnt - Valid number of bytes to write: a write cannot cross into the next 32KB bank.
+ * @param       buf - Valid buffer space at least as big as 'cnt' X 4.
+ * @param       cnt - Number of 4-byte blocks to write.
  *
  * output parameters
  *
@@ -61,15 +78,19 @@
  * @return      None.
  **************************************************************************************************
  */
+void HalFlashWrite(uint16 addr, uint8 *buf, uint16 cnt)
+{
+
+}
 
 /**************************************************************************************************
  * @fn          HalFlashErase
  *
- * @brief       This function erases 'cnt' pages of the internal flash.
+ * @brief       This function erases the specified page of the internal flash.
  *
  * input parameters
  *
- * @param       pg - Valid HAL flash page number (ie < 128) to erase.
+ * @param       pg - A valid flash page number to erase.
  *
  * output parameters
  *
@@ -78,6 +99,10 @@
  * @return      None.
  **************************************************************************************************
  */
+void HalFlashErase(uint8 pg)
+{
+
+}
 
 /*********************************************************************
 *********************************************************************/
