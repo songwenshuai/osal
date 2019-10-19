@@ -24,7 +24,7 @@ extern "C"
  */
 
 #define SBP_CLOCK_EVT_DELAY     1000
-#define SBP_PERIODIC_EVT_DELAY  5000
+#define SBP_PERIODIC_EVT_DELAY  2000
 #define SBP_CBTIMER_EVT_DELAY   5000
 
 /*********************************************************************

@@ -26,6 +26,8 @@
 
 #include "printf.h"
 
+#include "easyflash.h"
+
 #ifndef _WIN32
 #include "clk.h"
 #endif
@@ -53,6 +55,7 @@ static void App_TimerCB(uint8* pData);
 #ifndef _WIN32
 static void Clock_Test(void);
 #endif
+static void test_env(void);
 
 /*********************************************************************
  * @fn          App_Init
@@ -80,6 +83,9 @@ void App_Init(uint8 task_id)
 #ifndef _WIN32
     Clk_Init(&err);
 #endif
+    if (easyflash_init() != EF_NO_ERR) {
+        printf("EasyFlash Init Error\n");
+    }
 }
 
 /*********************************************************************
@@ -227,6 +233,8 @@ static void Periodic_Event(void)
 #ifndef _WIN32
     Clock_Test();
 #endif
+    /* test Env demo */
+    test_env();
 //------------------------------- time test ------------------------------------
     static int32 oldtime = 0, new_time = 0, deviation = 0;
 
@@ -420,6 +428,27 @@ static void Clock_Test(void)
 	}
 }
 #endif
+
+/**
+ * Env demo.
+ */
+static void test_env(void) {
+    uint32_t i_boot_times = NULL;
+    char *c_old_boot_times, c_new_boot_times[11] = {0};
+
+    /* get the boot count number from Env */
+    c_old_boot_times = ef_get_env("boot_times");
+    assert_param(c_old_boot_times);
+    i_boot_times = osal_atol(c_old_boot_times);
+    /* boot count +1 */
+    i_boot_times ++;
+    printf("The system now boot %d times\n\r", i_boot_times);
+    /* interger to string */
+    sprintf(c_new_boot_times,"%ld", i_boot_times);
+    /* set and store the boot count number to Env */
+    ef_set_env("boot_times", c_new_boot_times);
+    ef_save_env();
+}
 
 #ifndef _WIN32
 #if defined(_NO_PRINTF)
