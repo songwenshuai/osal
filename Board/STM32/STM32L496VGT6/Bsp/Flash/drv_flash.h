@@ -43,18 +43,6 @@ enum
 
 /* Exported macro ------------------------------------------------------------*/
 
-#define STM32_FLASH_START_ADRESS               ((uint32_t)0x08000000)
-#define STM32_FLASH_PAGE_SIZE                  ((uint32_t)0x800)
-#define STM32_FLASH_SIZE                       (1024 * 1024)
-#define STM32_FLASH_END_ADDRESS                ((uint32_t)(STM32_FLASH_START_ADRESS + STM32_FLASH_SIZE))
-
-#define STM32_FLASH_PAGE_TO_PTR( page )        (STM32_FLASH_START_ADRESS + ( page * STM32_FLASH_PAGE_SIZE)
-#define STM32_FLASH_ADDR_OFFSET( p_addr )      (((uint32)p_addr) - STM32_FLASH_START_ADRESS)
-#define STM32_FLASH_PTR_TO_PAGE( p_addr )      (STM32_FLASH_ADDR_OFFSET(p_addr) / STM32_FLASH_PAGE_SIZE)
-#define STM32_FLASH_PTR_TO_OFFSET( p_addr )    (STM32_FLASH_ADDR_OFFSET(p_addr) % STM32_FLASH_PAGE_SIZE)
-
-#define STM32_FLASH_PAGE_NBPERBANK             256
-#define STM32_FLASH_BANK_NUMBER                2
 
 /* Exported functions ------------------------------------------------------- */
 

@@ -1256,7 +1256,7 @@
         <group>
           <name>Port</name>
           <file>
-            <name>$PROJ_DIR$\..\Bsp\Flash\Armink\Fal\port\fal_flash_stm32f2_port.c</name>
+            <name>$PROJ_DIR$\..\Bsp\Flash\Armink\Fal\port\fal_flash_stm32l4_port.c</name>
           </file>
         </group>
         <group>

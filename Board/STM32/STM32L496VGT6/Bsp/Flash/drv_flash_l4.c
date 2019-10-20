@@ -24,13 +24,25 @@
 /* Includes ------------------------------------------------------------------*/
 #include "drv_flash.h"
 #include "printf.h"
-
-#ifdef BSP_USING_ON_CHIP_FLASH
+#include <fal.h>
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
-
 /* Private macro -------------------------------------------------------------*/
+
+#define STM32_FLASH_START_ADRESS               ((uint32_t)0x08000000)
+#define STM32_FLASH_PAGE_SIZE                  ((uint32_t)0x800)
+#define STM32_FLASH_SIZE                       (1024 * 1024)
+#define STM32_FLASH_END_ADDRESS                ((uint32_t)(STM32_FLASH_START_ADRESS + STM32_FLASH_SIZE))
+
+#define STM32_FLASH_PAGE_TO_PTR( page )        (STM32_FLASH_START_ADRESS + ( page * STM32_FLASH_PAGE_SIZE)
+#define STM32_FLASH_ADDR_OFFSET( p_addr )      (((uint32)p_addr) - STM32_FLASH_START_ADRESS)
+#define STM32_FLASH_PTR_TO_PAGE( p_addr )      (STM32_FLASH_ADDR_OFFSET(p_addr) / STM32_FLASH_PAGE_SIZE)
+#define STM32_FLASH_PTR_TO_OFFSET( p_addr )    (STM32_FLASH_ADDR_OFFSET(p_addr) % STM32_FLASH_PAGE_SIZE)
+
+#define STM32_FLASH_PAGE_NBPERBANK             256
+#define STM32_FLASH_BANK_NUMBER                2
+
 /* Private variables ---------------------------------------------------------*/
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
@@ -280,8 +292,6 @@ __exit:
     return size;
 }
 
-#if defined(PKG_USING_FAL)
-
 static int fal_flash_read(long offset, uint8_t *buf, size_t size);
 static int fal_flash_write(long offset, const uint8_t *buf, size_t size);
 static int fal_flash_erase(long offset, size_t size);
@@ -302,9 +312,6 @@ static int fal_flash_erase(long offset, size_t size)
 {
     return stm32_flash_erase(stm32_onchip_flash.addr + offset, size);
 }
-
-#endif
-#endif /* BSP_USING_ON_CHIP_FLASH */
 
 /* Public functions ---------------------------------------------------------*/
 
