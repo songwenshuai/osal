@@ -17,3 +17,12 @@
 [submodule "Middlewares/EasyLogger"]
 	path = Middlewares/EasyLogger
 	url =	https://github.com/armink/EasyLogger.git
+
+[submodule "Middlewares/Fal"]
+	path = Middlewares/Fal
+	url =	https://github.com/RT-Thread-packages/fal.git
+
+[submodule "Middlewares/SFUD"]
+	path = Middlewares/SFUD
+	url =	https://github.com/armink/SFUD.git
+	
