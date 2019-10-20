@@ -350,6 +350,10 @@
         </option>
         <option>
           <name>CCIncludePath2</name>
+          <state>$PROJ_DIR$/../Bsp/Button</state>
+          <state>$PROJ_DIR$/../Bsp/Flash</state>
+          <state>$PROJ_DIR$/../Bsp/Flash/EasyFlash/inc</state>
+          <state>$PROJ_DIR$/../Bsp/Led</state>
           <state>$PROJ_DIR$/../Core/Inc</state>
           <state>$PROJ_DIR$/../Drivers/STM32L4xx_HAL_Driver/Inc</state>
           <state>$PROJ_DIR$/../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy</state>
@@ -358,12 +362,8 @@
           <state>$PROJ_DIR$/../../../../Sample/App</state>
           <state>$PROJ_DIR$/../../../../Sample/Hal</state>
           <state>$PROJ_DIR$/../../../../Sample/Hal/Target</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/Bsp/BUTTON</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/Bsp/Flash</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/Bsp/Flash/EasyFlash/inc</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/Bsp/LED</state>
+          <state>$PROJ_DIR$/../../../../Middlewares/Armink/EasyFlash/easyflash/inc</state>
           <state>$PROJ_DIR$/../../../../Middlewares/DataStructure/Inc</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/EasyFlash/easyflash/inc</state>
           <state>$PROJ_DIR$/../../../../Middlewares/FlexibleButton</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-LIB/Config</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-LIB/Ports</state>
@@ -380,7 +380,7 @@
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-Shell/Source</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-Shell/Terminal/Cfg/Template</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-Shell/Terminal/Source</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/OSAL/Config</state>
+          <state>$PROJ_DIR$/../../../../Middlewares/OSAL/Cfg</state>
           <state>$PROJ_DIR$/../../../../Middlewares/OSAL/Port</state>
           <state>$PROJ_DIR$/../../../../Middlewares/OSAL/Port/Flash</state>
           <state>$PROJ_DIR$/../../../../Middlewares/OSAL/Source/Inc</state>
@@ -1094,6 +1094,39 @@
   <group>
     <name>Application</name>
     <group>
+      <name>Bsp</name>
+      <group>
+        <name>BUTTON</name>
+        <file>
+          <name>$PROJ_DIR$\..\Bsp\Button\bsp_pb.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\Bsp\Button\bsp_pb.h</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\Bsp\Button\flexible_button_demo.c</name>
+        </file>
+      </group>
+      <group>
+        <name>Flash</name>
+        <file>
+          <name>$PROJ_DIR$\..\Bsp\Flash\flash_if.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\Bsp\Flash\flash_if.h</name>
+        </file>
+      </group>
+      <group>
+        <name>LED</name>
+        <file>
+          <name>$PROJ_DIR$\..\Bsp\Led\bsp_led.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\Bsp\Led\bsp_led.h</name>
+        </file>
+      </group>
+    </group>
+    <group>
       <name>EWARM</name>
       <file>
         <name>$PROJ_DIR$\startup_stm32l496xx.s</name>
@@ -1193,36 +1226,27 @@
   <group>
     <name>Middlewares</name>
     <group>
-      <name>Bsp</name>
+      <name>Armink</name>
       <group>
-        <name>BUTTON</name>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\Bsp\Button\bsp_pb.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\Bsp\Button\bsp_pb.h</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\Bsp\Button\flexible_button_demo.c</name>
-        </file>
-      </group>
-      <group>
-        <name>Flash</name>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\Bsp\Flash\flash_if.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\Bsp\Flash\flash_if.h</name>
-        </file>
-      </group>
-      <group>
-        <name>LED</name>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\Bsp\Led\bsp_led.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\Bsp\Led\bsp_led.h</name>
-        </file>
+        <name>EasyFlash</name>
+        <group>
+          <name>Port</name>
+          <file>
+            <name>$PROJ_DIR$\..\Bsp\Flash\EasyFlash\port\ef_port.c</name>
+          </file>
+        </group>
+        <group>
+          <name>Src</name>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Armink\EasyFlash\easyflash\src\easyflash.c</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Armink\EasyFlash\easyflash\src\ef_env.c</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Armink\EasyFlash\easyflash\src\ef_utils.c</name>
+          </file>
+        </group>
       </group>
     </group>
     <group>
@@ -1255,30 +1279,6 @@
         </file>
         <file>
           <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Src\Ring.c</name>
-        </file>
-      </group>
-    </group>
-    <group>
-      <name>EasyFlash</name>
-      <group>
-        <name>Port</name>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\Bsp\Flash\EasyFlash\port\ef_port.c</name>
-        </file>
-      </group>
-      <group>
-        <name>Src</name>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\EasyFlash\easyflash\src\easyflash.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\EasyFlash\easyflash\src\ef_env.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\EasyFlash\easyflash\src\ef_iap.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\EasyFlash\easyflash\src\ef_utils.c</name>
         </file>
       </group>
     </group>

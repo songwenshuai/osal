@@ -5,3 +5,24 @@
 [submodule "Middlewares/Printf"]
 	path = Middlewares/Printf
 	url = https://github.com/mpaland/printf.git
+
+[submodule "Middlewares/Armink/CmBacktrace"]
+	path = Middlewares/Armink/CmBacktrace
+	url =	https://github.com/armink/CmBacktrace.git
+
+[submodule "Middlewares/Armink/EasyFlash"]
+	path = Middlewares/Armink/EasyFlash
+	url =	https://github.com/armink/EasyFlash.git
+
+[submodule "Middlewares/Armink/EasyLogger"]
+	path = Middlewares/Armink/EasyLogger
+	url =	https://github.com/armink/EasyLogger.git
+
+[submodule "Middlewares/Armink/Fal"]
+	path = Middlewares/Armink/Fal
+	url =	https://github.com/RT-Thread-packages/fal.git
+
+[submodule "Middlewares/Armink/SFUD"]
+	path = Middlewares/Armink/SFUD
+	url =	https://github.com/armink/SFUD.git
+	
