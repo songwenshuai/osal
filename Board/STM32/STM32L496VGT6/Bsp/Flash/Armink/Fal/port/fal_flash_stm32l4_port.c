@@ -12,7 +12,7 @@
 #ifdef FAL_FLASH_PORT_DRIVER_STM32L4
 #include <stm32l4xx_hal.h>
 
-// #define STM32L4_FLASH_DEBUG
+#define STM32L4_FLASH_DEBUG
 
 #define FLASH_START_ADRESS     ((uint32_t)0x08000000)
 #define FLASH_END_ADDRESS      ((uint32_t)(0x08000000 + 512 * 1024))

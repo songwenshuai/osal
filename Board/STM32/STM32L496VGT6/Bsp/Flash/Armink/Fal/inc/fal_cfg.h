@@ -9,9 +9,7 @@
 #ifndef _FAL_CFG_H_
 #define _FAL_CFG_H_
 
-
-#define FAL_DEBUG 1
-#define FAL_PART_HAS_TABLE_CFG
+#include <rtconfig.h>
 
 /* enable stm32l4 onchip flash driver sample */
 #define FAL_FLASH_PORT_DRIVER_STM32L4

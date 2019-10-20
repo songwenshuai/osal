@@ -31,12 +31,7 @@
 #define EF_CFG_H_
 
 #include "stm32l4xx_hal.h"
-
-#define PKG_EASYFLASH_ENV
-#define PKG_EASYFLASH_ERASE_GRAN 2048
-#define PKG_EASYFLASH_WRITE_GRAN 32
-#define PKG_EASYFLASH_START_ADDR 0
-#define PKG_EASYFLASH_DEBUG
+#include <rtconfig.h>
 
 /* using ENV function */
 #ifdef PKG_EASYFLASH_ENV
