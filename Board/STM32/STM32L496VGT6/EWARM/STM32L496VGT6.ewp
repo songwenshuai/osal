@@ -1235,7 +1235,7 @@
         <group>
           <name>Port</name>
           <file>
-            <name>$PROJ_DIR$\..\Bsp\Flash\Armink\EasyFlash\port\ef_port.c</name>
+            <name>$PROJ_DIR$\..\Bsp\Flash\Armink\EasyFlash\port\ef_fal_port.c</name>
           </file>
         </group>
         <group>
