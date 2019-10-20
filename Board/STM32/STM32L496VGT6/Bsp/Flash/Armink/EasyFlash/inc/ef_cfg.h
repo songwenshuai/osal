@@ -35,7 +35,7 @@
 
 /* using ENV function */
 #ifdef PKG_EASYFLASH_ENV
-#define EF_USING_ENV
+//#define EF_USING_ENV
 
 #ifdef PKG_EASYFLASH_ENV_AUTO_UPDATE
 /* Auto update ENV to latest default when current ENV version number is changed. */

@@ -26,7 +26,9 @@
 
 #include "printf.h"
 
+#if defined(EF_USING_ENV)
 #include "easyflash.h"
+#endif
 
 #ifndef _WIN32
 #include "clk.h"
@@ -55,7 +57,10 @@ static void App_TimerCB(uint8* pData);
 #ifndef _WIN32
 static void Clock_Test(void);
 #endif
+
+#if defined(EF_USING_ENV)
 static void test_env(void);
+#endif
 
 /*********************************************************************
  * @fn          App_Init
@@ -83,9 +88,11 @@ void App_Init(uint8 task_id)
 #ifndef _WIN32
     Clk_Init(&err);
 #endif
+#if defined(EF_USING_ENV)
     if (easyflash_init() != EF_NO_ERR) {
         printf("EasyFlash Init Error\n");
     }
+#endif
 }
 
 /*********************************************************************
@@ -234,7 +241,9 @@ static void Periodic_Event(void)
     Clock_Test();
 #endif
     /* test Env demo */
+#if defined(EF_USING_ENV)
     test_env();
+#endif
 //------------------------------- time test ------------------------------------
     static int32 oldtime = 0, new_time = 0, deviation = 0;
 
@@ -432,6 +441,7 @@ static void Clock_Test(void)
 /**
  * Env demo.
  */
+#if defined(EF_USING_ENV)
 static void test_env(void) {
     uint32_t i_boot_times = NULL;
     char *c_old_boot_times, c_new_boot_times[11] = {0};
@@ -449,6 +459,7 @@ static void test_env(void) {
     ef_set_env("boot_times", c_new_boot_times);
     ef_save_env();
 }
+#endif
 
 #ifndef _WIN32
 #if defined(_NO_PRINTF)
