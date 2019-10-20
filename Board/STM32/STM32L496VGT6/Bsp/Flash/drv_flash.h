@@ -24,6 +24,10 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32l4xx_hal.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 
@@ -53,9 +57,15 @@ enum
 #define STM32_FLASH_BANK_NUMBER                2
 
 /* Exported functions ------------------------------------------------------- */
-int stm32_flash_erase(uint32_t addr, size_t size);
-int stm32_flash_write(uint32_t addr, const uint8_t *buf, size_t size);
+
+
 int stm32_flash_read(uint32_t addr, uint8_t *buf, size_t size);
+int stm32_flash_write(uint32_t addr, const uint8_t *buf, size_t size);
+int stm32_flash_erase(uint32_t addr, size_t size);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif  /* __FLASH_IF_H */
 

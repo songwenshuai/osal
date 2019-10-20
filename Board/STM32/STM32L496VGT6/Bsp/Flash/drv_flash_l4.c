@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * @file    IAP_Main/Src/flash_if.c 
+  * @file    drv_flash.c 
   * @author  MCD Application Team
   * @brief   This file provides all the memory related operation functions.
   ******************************************************************************
@@ -22,8 +22,10 @@
   */
 
 /* Includes ------------------------------------------------------------------*/
-#include "flash_if.h"
+#include "drv_flash.h"
 #include "printf.h"
+
+#ifdef BSP_USING_ON_CHIP_FLASH
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -64,7 +66,9 @@ static uint32_t GetPage(uint32_t Addr)
 static uint32_t GetBank(uint32_t Addr)
 {
     uint32_t bank = 0;
-
+#if defined (STM32L432xx)
+	bank = FLASH_BANK_1;
+#else
     if (READ_BIT(SYSCFG->MEMRMP, SYSCFG_MEMRMP_FB_MODE) == 0)
     {
         /* No Bank swap */
@@ -89,6 +93,7 @@ static uint32_t GetBank(uint32_t Addr)
             bank = FLASH_BANK_1;
         }
     }
+#endif
     return bank;
 }
 
@@ -109,7 +114,7 @@ int stm32_flash_read(uint32_t addr, uint8_t *buf, size_t size)
     if ((addr + size) > STM32_FLASH_END_ADDRESS)
     {
         printf("read outrange flash size! addr is (0x%p)\n", (void*)(addr + size));
-        return FLASHIF_EINVAL;
+        return -FLASHIF_EINVAL;
     }
 
     for (i = 0; i < size; i++, buf++, addr++)
@@ -141,19 +146,19 @@ int stm32_flash_write(uint32_t addr, const uint8_t *buf, size_t size)
     if ((addr + size) > STM32_FLASH_END_ADDRESS)
     {
         printf("ERROR: write outrange flash size! addr is (0x%p)\n", (void*)(addr + size));
-        return FLASHIF_EINVAL;
+        return -FLASHIF_EINVAL;
     }
-    
+
     if(addr % 8 != 0)
     {
         printf("write addr must be 8-byte alignment\n");
-        return FLASHIF_EINVAL;
+        return -FLASHIF_EINVAL;
     }
 
     if (size < 1)
     {
         printf("write error[1]: addr (0x%p), size %d\n", (void*)addr, size);
-        return FLASHIF_ERASEKO;
+        return -FLASHIF_ERASEKO;
     }
 
     HAL_FLASH_Unlock();
@@ -188,14 +193,14 @@ int stm32_flash_write(uint32_t addr, const uint8_t *buf, size_t size)
             if (*(uint64_t*)addr != write_data)
             {
                 printf("ERROR: write data != read data\n");
-                result = FLASHIF_ERASEKO;
+                result = -FLASHIF_ERASEKO;
                 goto __exit;
             }
         }
         else
         {
             printf("write error: addr (0x%p), size %d, error code %x\n", (void*)addr, size, pFlash.ErrorCode);
-            result = FLASHIF_ERASEKO;
+            result = -FLASHIF_ERASEKO;
             goto __exit;
         }
 
@@ -207,8 +212,12 @@ int stm32_flash_write(uint32_t addr, const uint8_t *buf, size_t size)
 
 __exit:
     HAL_FLASH_Lock();
+    if (result != 0)
+    {
+        return result;
+    }
 
-    return result;
+    return size;
 }
 
 /**
@@ -230,7 +239,7 @@ int stm32_flash_erase(uint32_t addr, size_t size)
     if ((addr + size) > STM32_FLASH_END_ADDRESS)
     {
         printf("ERROR: erase outrange flash size! addr is (0x%p)\n", (void*)(addr + size));
-        return FLASHIF_EINVAL;
+        return -FLASHIF_EINVAL;
     }
 
     /*Variable used for Erase procedure*/
@@ -255,17 +264,47 @@ int stm32_flash_erase(uint32_t addr, size_t size)
     if (HAL_FLASHEx_Erase(&EraseInitStruct, &PAGEError) != HAL_OK)
     {
         printf("erase error: addr (0x%p), size %d\n", (void*)addr, size);
-        result = FLASHIF_ERASEKO;
+        result = -FLASHIF_ERASEKO;
         goto __exit;
     }
 
 __exit:
     HAL_FLASH_Lock();
 
-    printf("erase done: addr (0x%p), size %d", (void*)addr, size);
+    if (result != FLASHIF_OK)
+    {
+        return result;
+    }
 
-    return result;
+    printf("erase done: addr (0x%p), size %d", (void*)addr, size);
+    return size;
 }
+
+#if defined(PKG_USING_FAL)
+
+static int fal_flash_read(long offset, uint8_t *buf, size_t size);
+static int fal_flash_write(long offset, const uint8_t *buf, size_t size);
+static int fal_flash_erase(long offset, size_t size);
+
+const struct fal_flash_dev stm32_onchip_flash = { "onchip_flash", STM32_FLASH_START_ADRESS, STM32_FLASH_SIZE, 2048, {NULL, fal_flash_read, fal_flash_write, fal_flash_erase} };
+
+static int fal_flash_read(long offset, uint8_t *buf, size_t size)
+{
+    return stm32_flash_read(stm32_onchip_flash.addr + offset, buf, size);
+}
+
+static int fal_flash_write(long offset, const uint8_t *buf, size_t size)
+{
+    return stm32_flash_write(stm32_onchip_flash.addr + offset, buf, size);
+}
+
+static int fal_flash_erase(long offset, size_t size)
+{
+    return stm32_flash_erase(stm32_onchip_flash.addr + offset, size);
+}
+
+#endif
+#endif /* BSP_USING_ON_CHIP_FLASH */
 
 /* Public functions ---------------------------------------------------------*/
 
