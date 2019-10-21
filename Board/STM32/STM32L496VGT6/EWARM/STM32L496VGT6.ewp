@@ -352,6 +352,7 @@
           <name>CCIncludePath2</name>
           <state>$PROJ_DIR$/../Bsp/Button</state>
           <state>$PROJ_DIR$/../Bsp/Flash/Armink</state>
+          <state>$PROJ_DIR$/../Bsp/Flash/Armink/CmBacktrace</state>
           <state>$PROJ_DIR$/../Bsp/Flash/Armink/EasyFlash/inc</state>
           <state>$PROJ_DIR$/../Bsp/Flash/Armink/Fal/inc</state>
           <state>$PROJ_DIR$/../Bsp/Flash/Armink/Easylogger/inc</state>
@@ -369,6 +370,7 @@
           <state>$PROJ_DIR$/../../../../Middlewares/Armink/Fal/inc</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Armink/EasyLogger/easylogger/inc</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Armink/EasyLogger/easylogger/plugins/flash</state>
+          <state>$PROJ_DIR$/../../../../Middlewares/Armink/CmBacktrace/cm_backtrace</state>
           <state>$PROJ_DIR$/../../../../Middlewares/DataStructure/Inc</state>
           <state>$PROJ_DIR$/../../../../Middlewares/FlexibleButton</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-LIB/Config</state>
@@ -1225,6 +1227,15 @@
     <group>
       <name>Armink</name>
       <group>
+        <name>CmBacktrace</name>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\Armink\CmBacktrace\cm_backtrace\cm_backtrace.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\Armink\CmBacktrace\cm_backtrace\fault_handler\iar\cmb_fault.S</name>
+        </file>
+      </group>
+      <group>
         <name>EasyFlash</name>
         <group>
           <name>Port</name>
@@ -1676,6 +1687,9 @@
       <name>SEGGER</name>
       <group>
         <name>HardFault</name>
+        <excluded>
+          <configuration>STM32L496VGT6</configuration>
+        </excluded>
         <group>
           <name>Source</name>
           <file>
