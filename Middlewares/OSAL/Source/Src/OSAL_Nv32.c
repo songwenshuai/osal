@@ -154,8 +154,6 @@ __no_init uint8 _nvBuf[OSAL_NV_PAGES_USED * OSAL_NV_PAGE_SIZE];
 #pragma required=_nvBuf
 #endif // OAD_KEEP_NV_PAGES
 
-extern uint8 nvDataBuf[HAL_NV_PAGE_CNT][HAL_FLASH_PAGE_SIZE];
-
 /******************************************************************************
  * LOCAL VARIABLES
  */
