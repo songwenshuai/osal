@@ -354,6 +354,8 @@
           <state>$PROJ_DIR$/../Bsp/Flash/Armink</state>
           <state>$PROJ_DIR$/../Bsp/Flash/Armink/EasyFlash/inc</state>
           <state>$PROJ_DIR$/../Bsp/Flash/Armink/Fal/inc</state>
+          <state>$PROJ_DIR$/../Bsp/Flash/Armink/Easylogger/inc</state>
+          <state>$PROJ_DIR$/../Bsp/Flash/Armink/Easylogger/plugins/flash</state>
           <state>$PROJ_DIR$/../Bsp/Led</state>
           <state>$PROJ_DIR$/../Core/Inc</state>
           <state>$PROJ_DIR$/../Drivers/STM32L4xx_HAL_Driver/Inc</state>
@@ -365,6 +367,8 @@
           <state>$PROJ_DIR$/../../../../Sample/Hal/Target</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Armink/EasyFlash/easyflash/inc</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Armink/Fal/inc</state>
+          <state>$PROJ_DIR$/../../../../Middlewares/Armink/EasyLogger/easylogger/inc</state>
+          <state>$PROJ_DIR$/../../../../Middlewares/Armink/EasyLogger/easylogger/plugins/flash</state>
           <state>$PROJ_DIR$/../../../../Middlewares/DataStructure/Inc</state>
           <state>$PROJ_DIR$/../../../../Middlewares/FlexibleButton</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-LIB/Config</state>
@@ -1247,6 +1251,42 @@
           </file>
           <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\Armink\EasyFlash\easyflash\src\ef_utils.c</name>
+          </file>
+        </group>
+      </group>
+      <group>
+        <name>Easylogger</name>
+        <group>
+          <name>Plugins</name>
+          <group>
+            <name>Flash</name>
+            <file>
+              <name>$PROJ_DIR$\..\..\..\..\Middlewares\Armink\EasyLogger\easylogger\plugins\flash\elog_flash.c</name>
+            </file>
+            <file>
+              <name>$PROJ_DIR$\..\Bsp\Flash\Armink\Easylogger\plugins\flash\elog_flash_port.c</name>
+            </file>
+          </group>
+        </group>
+        <group>
+          <name>Port</name>
+          <file>
+            <name>$PROJ_DIR$\..\Bsp\Flash\Armink\Easylogger\port\elog_port.c</name>
+          </file>
+        </group>
+        <group>
+          <name>Src</name>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Armink\EasyLogger\easylogger\src\elog.c</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Armink\EasyLogger\easylogger\src\elog_async.c</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Armink\EasyLogger\easylogger\src\elog_buf.c</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Armink\EasyLogger\easylogger\src\elog_utils.c</name>
           </file>
         </group>
       </group>
