@@ -169,6 +169,22 @@ int putc(int ch)
 
   return ch;
 }
+
+/**
+  * @brief  Retargets the C library scanf function to the USART2.
+  * @param  f: pointer to file (not used)
+  * @retval The character received
+  */
+int fgetc(void)
+{
+  uint8_t ch = 0;
+  /* We received the charracter on the handler of the USART2 */
+  /* The handler must be initialise before */
+  HAL_UART_Receive(&hlpuart1, (uint8_t *)&ch, 1, UART_TIMEOUT_VALUE);
+
+  return ch;
+}
+
 #endif /* _NO_PRINTF */
 
 /* USER CODE END 1 */

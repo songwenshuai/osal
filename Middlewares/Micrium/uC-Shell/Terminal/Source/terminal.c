@@ -85,6 +85,12 @@ static  CPU_BOOLEAN  Terminal_HistoryEmpty;
 static  CPU_INT16U   Terminal_HistoryCnt;
 #endif
 
+SHELL_CMD_PARAM  cmd_param;
+static  CPU_CHAR         cmd[TERMINAL_CFG_MAX_CMD_LEN + 1u];
+static  CPU_SIZE_T       cmd_len;
+static  CPU_INT16S       cmp_val;
+static  CPU_SIZE_T       cursor_pos;
+static  CPU_BOOLEAN      ins;
 
 /*
 *********************************************************************************************************
@@ -176,34 +182,26 @@ CPU_BOOLEAN  Terminal_Init (void)
 
 /*
 *********************************************************************************************************
-*                                           Terminal_Task()
+*                                         Terminal_OS_Init()
 *
-* Description : Terminal task.
+* Description : Initialize the terminal task.
 *
-* Argument(s) : p_arg       Argument passed to the task (ignored).
+* Argument(s) : p_arg       Argument to pass to the task.
 *
-* Return(s)   : none.
+* Return(s)   : DEF_FAIL    Initialize task failed.
+*               DEF_OK      Initialize task successful.
 *
-* Caller(s)   : Terminal OS port.
+* Caller(s)   : Terminal_Init()
 *
-* Note(s)     : none.
+* Note(s)     : The RTOS needs to create Terminal_OS_Task().
 *********************************************************************************************************
 */
 
-void  Terminal_Task (void *p_arg)
+CPU_BOOLEAN  Terminal_OS_Init (void *p_arg)
 {
-    CPU_CHAR         cmd[TERMINAL_CFG_MAX_CMD_LEN + 1u];
-    CPU_SIZE_T       cmd_len;
-    SHELL_CMD_PARAM  cmd_param;
-    CPU_INT16S       cmp_val;
-    CPU_SIZE_T       cursor_pos;
     CPU_CHAR         cwd_path[TERMINAL_CFG_MAX_PATH_LEN + 1u];
     SHELL_ERR        err;
-    CPU_INT08U       esc_type;
-    CPU_BOOLEAN      ins;
 
-
-    (void)p_arg;
 
                                                                 /* --------------------- INIT VARS -------------------- */
     Mem_Set((void     *)&cwd_path[0],                           /* Clr cur working dir path.                            */
@@ -230,107 +228,126 @@ void  Terminal_Task (void *p_arg)
 
     TerminalMode_Prompt();                                      /* Show first prompt.                                   */
 
+    return (DEF_OK);
+}
 
+/*
+*********************************************************************************************************
+*                                           Terminal_Task()
+*
+* Description : Terminal task.
+*
+* Argument(s) : p_arg       Argument passed to the task (ignored).
+*
+* Return(s)   : none.
+*
+* Caller(s)   : Terminal OS port.
+*
+* Note(s)     : none.
+*********************************************************************************************************
+*/
 
-
-    while (DEF_TRUE) {
+void  Terminal_Task (void *p_arg)
+{
+    (void)p_arg;
+    SHELL_ERR        err;
+    CPU_INT08U       esc_type;
                                                                 /* -------------------- RD NEW LINE ------------------- */
-        esc_type = TerminalMode_RdLine(&cmd[0],
-                                        TERMINAL_CFG_MAX_CMD_LEN,
-                                       &cursor_pos,
-                                        ins);
-        cmd_len  = Str_Len(&cmd[0]);
+    esc_type = TerminalMode_RdLine(&cmd[0],
+                                    TERMINAL_CFG_MAX_CMD_LEN,
+                                   &cursor_pos,
+                                    ins);
+    cmd_len  = Str_Len(&cmd[0]);
 
 
-        switch (esc_type) {
+    switch (esc_type) {
 #if (TERMINAL_CFG_HISTORY_EN == DEF_ENABLED)
-            case TERMINAL_ESC_TYPE_UP:                          /* ------------- MOVE TO PREV HISTORY ITEM ------------ */
-                 TerminalMode_Clr(cmd_len, cursor_pos);         /* Clr terminal line.                                   */
-                 Terminal_HistoryPrevGet(cmd);                  /* Get prev history item.                               */
-                 cmd_len    = Str_Len(cmd);
-                 cursor_pos = cmd_len;                          /* Cursor at end of line.                               */
-                 Terminal_WrStr(cmd, cmd_len);                  /* Wr  prev history item to terminal.                   */
-                 break;
+        case TERMINAL_ESC_TYPE_UP:                          /* ------------- MOVE TO PREV HISTORY ITEM ------------ */
+             TerminalMode_Clr(cmd_len, cursor_pos);         /* Clr terminal line.                                   */
+             Terminal_HistoryPrevGet(cmd);                  /* Get prev history item.                               */
+             cmd_len    = Str_Len(cmd);
+             cursor_pos = cmd_len;                          /* Cursor at end of line.                               */
+             Terminal_WrStr(cmd, cmd_len);                  /* Wr  prev history item to terminal.                   */
+             break;
 
 
 
-            case TERMINAL_ESC_TYPE_DOWN:                        /* ------------- MOVE TO NEXT HISTORY ITEM ------------ */
-                 TerminalMode_Clr(cmd_len, cursor_pos);         /* Clr terminal line.                                   */
-                 Terminal_HistoryNextGet(cmd);                  /* Get next history item.                               */
-                 cmd_len    = Str_Len(cmd);
-                 cursor_pos = cmd_len;                          /* Cursor at end of line.                               */
-                 Terminal_WrStr(cmd, cmd_len);                  /* Wr  next history item to terminal.                   */
-                 break;
+        case TERMINAL_ESC_TYPE_DOWN:                        /* ------------- MOVE TO NEXT HISTORY ITEM ------------ */
+             TerminalMode_Clr(cmd_len, cursor_pos);         /* Clr terminal line.                                   */
+             Terminal_HistoryNextGet(cmd);                  /* Get next history item.                               */
+             cmd_len    = Str_Len(cmd);
+             cursor_pos = cmd_len;                          /* Cursor at end of line.                               */
+             Terminal_WrStr(cmd, cmd_len);                  /* Wr  next history item to terminal.                   */
+             break;
 #else
 
 
 
 
-            case TERMINAL_ESC_TYPE_UP:                          /* ---------------- UNSUPPORTED UP/DOWN --------------- */
-            case TERMINAL_ESC_TYPE_DOWN:
-                 TerminalMode_Clr(cmd_len, cursor_pos);         /* Clear line.                                          */
-                 Str_Copy(cmd, (CPU_CHAR *)"");
-                 break;
+        case TERMINAL_ESC_TYPE_UP:                          /* ---------------- UNSUPPORTED UP/DOWN --------------- */
+        case TERMINAL_ESC_TYPE_DOWN:
+             TerminalMode_Clr(cmd_len, cursor_pos);         /* Clear line.                                          */
+             Str_Copy(cmd, (CPU_CHAR *)"");
+             break;
 #endif
 
 
 
-            case TERMINAL_ESC_TYPE_INS:                         /* ---------------- TOGGLE INSERT MODE ---------------- */
-                 if (ins == DEF_YES) {
-                     ins = DEF_NO;
-                 } else {
-                     ins = DEF_YES;
-                 }
-                 break;
+        case TERMINAL_ESC_TYPE_INS:                         /* ---------------- TOGGLE INSERT MODE ---------------- */
+             if (ins == DEF_YES) {
+                 ins = DEF_NO;
+             } else {
+                 ins = DEF_YES;
+             }
+             break;
 
 
 
-            case TERMINAL_ESC_TYPE_NONE:                        /* --------------------- EXEC CMD --------------------- */
-            default:
+        case TERMINAL_ESC_TYPE_NONE:                        /* --------------------- EXEC CMD --------------------- */
+        default:
 #if (TERMINAL_CFG_HISTORY_EN == DEF_ENABLED)
-                 Terminal_HistoryPut(cmd);                      /* Put line into history.                               */
+             Terminal_HistoryPut(cmd);                      /* Put line into history.                               */
 #endif
 
-                 cmp_val = Str_Cmp(cmd, (CPU_CHAR *)"");
-                 if (cmp_val != 0) {
-                     TerminalMode_NewLine();                    /* Move to new line.                                    */
+             cmp_val = Str_Cmp(cmd, (CPU_CHAR *)"");
+             if (cmp_val != 0) {
+                 TerminalMode_NewLine();                    /* Move to new line.                                    */
 
-                     cmp_val = Str_Cmp(cmd, (CPU_CHAR *)"?");
-                     if (cmp_val == 0) {
-                        (void)Terminal_Help( Terminal_OutFnct,  /* List all cmds ...                                    */
-                                            &cmd_param);
+                 cmp_val = Str_Cmp(cmd, (CPU_CHAR *)"?");
+                 if (cmp_val == 0) {
+                    (void)Terminal_Help( Terminal_OutFnct,  /* List all cmds ...                                    */
+                                        &cmd_param);
 
 
-                     } else {
-                        (void)Shell_Exec( cmd,                  /* ... OR exec cmd.                                     */
-                                          Terminal_OutFnct,
-                                         &cmd_param,
-                                         &err);
+                 } else {
+                    (void)Shell_Exec( cmd,                  /* ... OR exec cmd.                                     */
+                                      Terminal_OutFnct,
+                                     &cmd_param,
+                                     &err);
 
-                         switch (err) {
-                             case SHELL_ERR_CMD_NOT_FOUND:
-                             case SHELL_ERR_CMD_SEARCH:
-                             case SHELL_ERR_ARG_TBL_FULL:
-                                  Terminal_WrStr((CPU_CHAR *)"Command not found\r\n", 19);
-                                  break;
+                     switch (err) {
+                         case SHELL_ERR_CMD_NOT_FOUND:
+                         case SHELL_ERR_CMD_SEARCH:
+                         case SHELL_ERR_ARG_TBL_FULL:
+                              Terminal_WrStr((CPU_CHAR *)"Command not found\r\n", 19);
+                              break;
 
-                             case SHELL_ERR_NONE:
-                             case SHELL_ERR_NULL_PTR:
-                             case SHELL_ERR_CMD_EXEC:
-                             default:
-                                  break;
-                         }
+                         case SHELL_ERR_NONE:
+                         case SHELL_ERR_NULL_PTR:
+                         case SHELL_ERR_CMD_EXEC:
+                         default:
+                              break;
                      }
                  }
+             }
 
 
 
-                                                                /* ------------------ DISP NEW PROMPT ----------------- */
-                 TerminalMode_Prompt();                         /* Show new prompt.                                     */
-                 Str_Copy(cmd, (CPU_CHAR *)"");                 /* Clear cmd.                                           */
-                 cursor_pos = 0u;                               /* Cursor pos'd at beginning of line.                   */
-                 break;
-        }
+                                                            /* ------------------ DISP NEW PROMPT ----------------- */
+             TerminalMode_Prompt();                         /* Show new prompt.                                     */
+             Str_Copy(cmd, (CPU_CHAR *)"");                 /* Clear cmd.                                           */
+             cursor_pos = 0u;                               /* Cursor pos'd at beginning of line.                   */
+             break;
     }
 }
 

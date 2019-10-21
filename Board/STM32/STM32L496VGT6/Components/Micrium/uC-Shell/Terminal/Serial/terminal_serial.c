@@ -62,6 +62,8 @@
 *********************************************************************************************************
 */
 
+extern int fgetc(void);
+extern int putc(int ch);
 
 /*
 *********************************************************************************************************
@@ -82,7 +84,7 @@
 
 CPU_BOOLEAN  TerminalSerial_Init (void)
 {
-    return (DEF_FAIL);
+    return (DEF_OK);
 }
 
 
@@ -129,7 +131,17 @@ void  TerminalSerial_Exit (void)
 CPU_INT16S  TerminalSerial_Wr (void        *pbuf,
                                CPU_SIZE_T   buf_len)
 {
-    return (-1);
+    CPU_SIZE_T idx;
+    char *cbuf;
+
+    if (pbuf == NULL) {
+        return (-1);
+    }
+
+    for (idx = 0, cbuf = (char *)pbuf; idx < buf_len; idx++) {
+        putc(cbuf[idx]);
+    }
+    return (buf_len);
 }
 
 
@@ -151,7 +163,7 @@ CPU_INT16S  TerminalSerial_Wr (void        *pbuf,
 
 CPU_INT08U  TerminalSerial_RdByte (void)
 {
-    return (0u);
+    return fgetc();
 }
 
 
@@ -173,5 +185,5 @@ CPU_INT08U  TerminalSerial_RdByte (void)
 
 void  TerminalSerial_WrByte (CPU_INT08U  c)
 {
-
+    putc((char)c);
 }

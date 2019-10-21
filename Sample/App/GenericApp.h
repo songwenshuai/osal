@@ -24,7 +24,7 @@ extern "C"
  */
 
 #define SBP_CLOCK_EVT_DELAY     1000
-#define SBP_PERIODIC_EVT_DELAY  2000
+#define SBP_PERIODIC_EVT_DELAY  10
 #define SBP_CBTIMER_EVT_DELAY   6000
 
 /*********************************************************************
@@ -38,6 +38,11 @@ extern "C"
 #define SBP_CLOCK_EVT         0x0008  
 #endif
 #define NV_APPID              0x100
+
+/*********************************************************************
+ * GLOBAL VARIABLES
+ */
+extern uint8 App_TaskID;
 
 /*********************************************************************
  * TYPEDEF
