@@ -127,7 +127,7 @@ extern void list_clearList(list_list *list);
  *
  *  @return true if empty, false if not empty
  */
-extern bool list_empty(list_list *list);
+extern _bool list_empty(list_list *list);
 
 /**
  *  @brief  Function to atomically get the first elem in a linked list

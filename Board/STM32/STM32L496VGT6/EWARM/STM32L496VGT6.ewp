@@ -353,11 +353,18 @@
           <state>$PROJ_DIR$/../Bsp/Button</state>
           <state>$PROJ_DIR$/../Bsp/Led</state>
           <state>$PROJ_DIR$/../Components/Armink</state>
-          <state>$PROJ_DIR$/../Components/Armink/CmBacktrace</state>
+          <state>$PROJ_DIR$/../Components/Armink/CmBacktrace/inc</state>
           <state>$PROJ_DIR$/../Components/Armink/EasyFlash/inc</state>
           <state>$PROJ_DIR$/../Components/Armink/Fal/inc</state>
           <state>$PROJ_DIR$/../Components/Armink/Easylogger/inc</state>
           <state>$PROJ_DIR$/../Components/Armink/Easylogger/plugins/flash</state>
+          <state>$PROJ_DIR$/../Components/Micrium/uC-CLK/Cfg</state>
+          <state>$PROJ_DIR$/../Components/Micrium/uC-CRC/Cfg</state>
+          <state>$PROJ_DIR$/../Components/Micrium/uC-CLK/Cfg</state>
+          <state>$PROJ_DIR$/../Components/Micrium/uC-LIB/Config</state>
+          <state>$PROJ_DIR$/../Components/Micrium/uC-LIB/Ports</state>
+          <state>$PROJ_DIR$/../Components/Micrium/uC-Shell/Cfg</state>
+          <state>$PROJ_DIR$/../Components/Micrium/uC-Shell/Terminal/Cfg</state>
           <state>$PROJ_DIR$/../Core/Inc</state>
           <state>$PROJ_DIR$/../Drivers/STM32L4xx_HAL_Driver/Inc</state>
           <state>$PROJ_DIR$/../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy</state>
@@ -373,20 +380,14 @@
           <state>$PROJ_DIR$/../../../../Middlewares/Armink/CmBacktrace/cm_backtrace</state>
           <state>$PROJ_DIR$/../../../../Middlewares/DataStructure/Inc</state>
           <state>$PROJ_DIR$/../../../../Middlewares/FlexibleButton</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-LIB/Config</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-LIB/Ports</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-LIB</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-CRC/Cfg/Template</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-CRC/Source</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-Common/Auth</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-Common/Collections</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-Common</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-CLK/Cfg/Template</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-CLK/Source</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-Shell/Cfg/Template</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-Shell/Cmd/General</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-Shell/Source</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-Shell/Terminal/Cfg/Template</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-Shell/Terminal/Source</state>
           <state>$PROJ_DIR$/../../../../Middlewares/OSAL/Cfg</state>
           <state>$PROJ_DIR$/../../../../Middlewares/OSAL/Port</state>
@@ -1371,12 +1372,9 @@
         <name>uC-CLK</name>
         <group>
           <name>Cfg</name>
-          <group>
-            <name>Template</name>
-            <file>
-              <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-CLK\Cfg\Template\clk_cfg.h</name>
-            </file>
-          </group>
+          <file>
+            <name>$PROJ_DIR$\..\Components\Micrium\uC-CLK\Cfg\clk_cfg.h</name>
+          </file>
         </group>
         <group>
           <name>Source</name>
@@ -1416,12 +1414,9 @@
         <name>uC-CRC</name>
         <group>
           <name>Cfg</name>
-          <group>
-            <name>Template</name>
-            <file>
-              <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-CRC\Cfg\Template\crc_cfg.h</name>
-            </file>
-          </group>
+          <file>
+            <name>$PROJ_DIR$\..\Components\Micrium\uC-CRC\Cfg\crc_cfg.h</name>
+          </file>
         </group>
         <group>
           <name>Source</name>
@@ -1453,7 +1448,7 @@
         <group>
           <name>Config</name>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-LIB\Config\lib_cfg.h</name>
+            <name>$PROJ_DIR$\..\Components\Micrium\uC-LIB\Config\lib_cfg.h</name>
           </file>
         </group>
         <group>
@@ -1465,7 +1460,7 @@
             </file>
           </group>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-LIB\Ports\cpu.h</name>
+            <name>$PROJ_DIR$\..\Components\Micrium\uC-LIB\Ports\cpu.h</name>
           </file>
         </group>
         <group>
@@ -1503,12 +1498,9 @@
         <name>uC-Shell</name>
         <group>
           <name>Cfg</name>
-          <group>
-            <name>Template</name>
-            <file>
-              <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-Shell\Cfg\Template\shell_cfg.h</name>
-            </file>
-          </group>
+          <file>
+            <name>$PROJ_DIR$\..\Components\Micrium\uC-Shell\Cfg\shell_cfg.h</name>
+          </file>
         </group>
         <group>
           <name>Cmd</name>
@@ -1535,12 +1527,9 @@
           <name>Terminal</name>
           <group>
             <name>Cfg</name>
-            <group>
-              <name>Template</name>
-              <file>
-                <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-Shell\Terminal\Cfg\Template\terminal_cfg.h</name>
-              </file>
-            </group>
+            <file>
+              <name>$PROJ_DIR$\..\Components\Micrium\uC-Shell\Terminal\Cfg\terminal_cfg.h</name>
+            </file>
           </group>
           <group>
             <name>Mode</name>
@@ -1553,12 +1542,9 @@
           </group>
           <group>
             <name>Serial</name>
-            <group>
-              <name>Template</name>
-              <file>
-                <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-Shell\Terminal\Serial\Template\terminal_serial.c</name>
-              </file>
-            </group>
+            <file>
+              <name>$PROJ_DIR$\..\Components\Micrium\uC-Shell\Terminal\Serial\terminal_serial.c</name>
+            </file>
           </group>
           <group>
             <name>Source</name>

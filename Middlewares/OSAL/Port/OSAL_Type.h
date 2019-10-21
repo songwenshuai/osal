@@ -39,8 +39,8 @@ typedef   signed long long  int64;
 typedef unsigned long long  uint64;
 
 typedef             uint32  _size_t;
-typedef              int32  bool;
-typedef               bool  halIntState_t;
+typedef              int32  _bool;
+typedef               _bool  halIntState_t;
 typedef             uint32  halDataAlign_t;
 typedef              uint8  Status_t;
  

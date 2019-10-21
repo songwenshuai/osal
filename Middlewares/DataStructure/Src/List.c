@@ -32,7 +32,7 @@ void list_clearList(list_list *list)
  *
  *  @return true if empty, false if not empty
  */
-bool list_empty(list_list *list)
+_bool list_empty(list_list *list)
 {
   return (list->head == NULL);
 }

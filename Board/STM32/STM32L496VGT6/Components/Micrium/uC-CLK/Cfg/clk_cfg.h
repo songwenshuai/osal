@@ -95,7 +95,7 @@
 
 
                                                                 /* Configure Clock NTP conversion features :            */
-#define  CLK_CFG_NTP_EN                         DEF_ENABLED
+#define  CLK_CFG_NTP_EN                         DEF_DISABLED
                                                                 /*   DEF_DISABLED   NTP conversions DISABLED            */
                                                                 /*   DEF_ENABLED    NTP conversions ENABLED             */
 

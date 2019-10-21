@@ -29,7 +29,8 @@ extern const struct fal_flash_dev stm32_onchip_flash;
 #define FAL_PART_TABLE                                                                                                     \
 {                                                                                                                          \
     {FAL_PART_MAGIC_WROD,        "app", ONCHIP_FLASH_DEV_NAME,                                    0,       384 * 1024, 0}, \
-    {FAL_PART_MAGIC_WROD,      "param", ONCHIP_FLASH_DEV_NAME,                           384 * 1024,       128 * 1024, 0}, \
+    {FAL_PART_MAGIC_WROD,      "param", ONCHIP_FLASH_DEV_NAME,                           384 * 1024,        64 * 1024, 0}, \
+    {FAL_PART_MAGIC_WROD,   "download", ONCHIP_FLASH_DEV_NAME,                           448 * 1024,        64 * 1024, 0}, \
     {FAL_PART_MAGIC_WROD,  "easyflash", ONCHIP_FLASH_DEV_NAME,                           512 * 1024,       512 * 1024, 0}, \
 }
 #endif /* FAL_PART_HAS_TABLE_CFG */
