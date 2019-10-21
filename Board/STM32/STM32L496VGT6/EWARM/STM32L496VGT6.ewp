@@ -1234,7 +1234,16 @@
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\Armink\EasyFlash\easyflash\src\easyflash.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Armink\EasyFlash\easyflash\src\ef_env.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Armink\EasyFlash\easyflash\src\ef_env_legacy.c</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Armink\EasyFlash\easyflash\src\ef_env_legacy_wl.c</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Armink\EasyFlash\easyflash\src\ef_iap.c</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Armink\EasyFlash\easyflash\src\ef_log.c</name>
           </file>
           <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\Armink\EasyFlash\easyflash\src\ef_utils.c</name>

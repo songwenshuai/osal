@@ -37,6 +37,30 @@
 #ifdef PKG_EASYFLASH_ENV
 #define EF_USING_ENV
 
+/* using wear leveling mode for ENV */
+#ifdef PKG_EASYFLASH_ENV_USING_LEGACY_MODE
+#define EF_ENV_USING_LEGACY_MODE
+#endif
+
+/* using wear leveling mode for ENV */
+#ifdef PKG_EASYFLASH_ENV_USING_WL_MODE
+#define EF_ENV_USING_WL_MODE
+#endif
+
+/* using power fail safeguard mode for ENV */
+#ifdef PKG_EASYFLASH_ENV_USING_PFS_MODE
+#define EF_ENV_USING_PFS_MODE
+#endif
+
+/* using wear leveling and power fail safeguard mode for ENV */
+#ifdef PKG_EASYFLASH_ENV_USING_WL_PFS_MODE
+#define EF_ENV_USING_WL_MODE
+#define EF_ENV_USING_PFS_MODE
+#endif
+
+/* the user setting size of ENV, must be word alignment */
+#define ENV_USER_SETTING_SIZE     (PKG_EASYFLASH_ENV_SETTING_SIZE)
+
 #ifdef PKG_EASYFLASH_ENV_AUTO_UPDATE
 /* Auto update ENV to latest default when current ENV version number is changed. */
 #define EF_ENV_AUTO_UPDATE
@@ -93,7 +117,23 @@
 #define EF_START_ADDR             PKG_EASYFLASH_START_ADDR
 
 /* ENV area size. It's at least one empty sector for GC. So it's definition must more then or equal 2 flash sector size. */
-#define ENV_AREA_SIZE             (EF_ERASE_MIN_SIZE * 2) /* default is the double erase min size */
+#ifndef EF_ENV_USING_PFS_MODE
+    #ifndef EF_ENV_USING_WL_MODE
+        /* ENV area total bytes size in normal mode. */
+        #define ENV_AREA_SIZE          (1 * EF_ERASE_MIN_SIZE)
+    #else
+        /* ENV area total bytes size in wear leveling mode. */
+        #define ENV_AREA_SIZE          (4 * EF_ERASE_MIN_SIZE)
+    #endif
+#else
+    #ifndef EF_ENV_USING_WL_MODE
+        /* ENV area total bytes size in power fail safeguard mode. */
+        #define ENV_AREA_SIZE          (2 * EF_ERASE_MIN_SIZE)
+    #else
+        /* ENV area total bytes size in wear leveling and power fail safeguard mode. */
+        #define ENV_AREA_SIZE          (6 * EF_ERASE_MIN_SIZE)
+    #endif
+#endif
 
 /* print debug information of flash */
 #ifdef PKG_EASYFLASH_DEBUG

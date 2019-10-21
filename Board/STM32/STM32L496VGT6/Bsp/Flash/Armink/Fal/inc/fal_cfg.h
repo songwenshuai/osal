@@ -21,7 +21,7 @@ extern const struct fal_flash_dev stm32_onchip_flash;
 /* flash device table */
 #define FAL_FLASH_DEV_TABLE                                          \
 {                                                                    \
-    &stm32_onchip_flash,                                           \
+    &stm32_onchip_flash,                                             \
 }
 /* ====================== Partition Configuration ========================== */
 #ifdef FAL_PART_HAS_TABLE_CFG
