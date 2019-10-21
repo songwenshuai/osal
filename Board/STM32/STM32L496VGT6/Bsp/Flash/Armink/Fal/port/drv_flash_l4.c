@@ -288,7 +288,7 @@ __exit:
         return result;
     }
 
-    printf("erase done: addr (0x%p), size %d", (void*)addr, size);
+    printf("erase done: addr (0x%p), size %d\n", (void*)addr, size);
     return size;
 }
 

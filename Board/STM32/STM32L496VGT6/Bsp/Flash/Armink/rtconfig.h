@@ -1,30 +1,20 @@
 #ifndef RT_CONFIG_H__
 #define RT_CONFIG_H__
 
-
 /* tools packages */
 
-#define PKG_USING_EASYFLASH
 #define PKG_EASYFLASH_ENV
 #define PKG_EASYFLASH_WRITE_GRAN 64
-#define PKG_EASYFLASH_ENV_USING_PFS_MODE
-#define PKG_EASYFLASH_ENV_SETTING_SIZE 2048
 #define PKG_EASYFLASH_ENV_AUTO_UPDATE
 #define PKG_EASYFLASH_ENV_VER_NUM 0
 #define PKG_EASYFLASH_ERASE_GRAN 4096
 #define PKG_EASYFLASH_START_ADDR 0
-#define PKG_USING_EASYFLASH_V321
-#define PKG_EASYFLASH_VER_NUM 0x30201
 
 /* system packages */
 
-#define PKG_USING_FAL
-#define FAL_DEBUG 0
+#define FAL_DEBUG 1
 #define FAL_PART_HAS_TABLE_CFG
-#define PKG_USING_FAL_V00200
-
 
 /* Board extended module Drivers */
-
 
 #endif
