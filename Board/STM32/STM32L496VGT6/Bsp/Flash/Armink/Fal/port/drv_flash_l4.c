@@ -163,7 +163,7 @@ int stm32_flash_write(uint32_t addr, const uint8_t *buf, size_t size)
 
     if(addr % 8 != 0)
     {
-        printf("write addr must be 8-byte alignment\n");
+        printf("write addr must be 8-byte alignmentaddr is (0x%x)\n", addr);
         return -FLASHIF_EINVAL;
     }
 

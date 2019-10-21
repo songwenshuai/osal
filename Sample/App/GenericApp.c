@@ -31,9 +31,14 @@
 #define LOG_TAG    "APP"
 #include "elog_flash.h"
 
+#include <cm_backtrace.h>
+
 #ifndef _WIN32
 #include "clk.h"
 #endif
+
+#define HARDWARE_VERSION               "V1.0.0"
+#define SOFTWARE_VERSION               "V0.1.0"
 
 /*********************************************************************
  * GLOBAL VARIABLES
@@ -64,6 +69,8 @@ static void Clock_Test(void);
 static void test_env(void);
 static void test_elog(void);
 static void elog_user_assert_hook(const char* ex, const char* func, size_t line);
+static void fault_test_by_unalign(void);
+static void fault_test_by_div0(void);
 
 /*********************************************************************
  * @fn          App_Init
@@ -118,6 +125,11 @@ void App_Init(uint8 task_id)
         /* test logger output */
         test_elog();
     }
+
+    cm_backtrace_init("STM32L496VGT6", HARDWARE_VERSION, SOFTWARE_VERSION);
+
+    fault_test_by_unalign();
+    fault_test_by_div0();
 }
 
 /*********************************************************************
@@ -514,6 +526,37 @@ static void elog_user_assert_hook(const char* ex, const char* func, size_t line)
     while(1);
 }
 
+static void fault_test_by_unalign(void) {
+    volatile int * SCB_CCR = (volatile int *) 0xE000ED14; // SCB->CCR
+    volatile int * p;
+    volatile int value;
+
+    *SCB_CCR |= (1 << 3); /* bit3: UNALIGN_TRP. */
+
+    p = (int *) 0x00;
+    value = *p;
+    printf("addr:0x%02X value:0x%08X\r\n", (int) p, value);
+
+    p = (int *) 0x04;
+    value = *p;
+    printf("addr:0x%02X value:0x%08X\r\n", (int) p, value);
+
+    p = (int *) 0x03;
+    value = *p;
+    printf("addr:0x%02X value:0x%08X\r\n", (int) p, value);
+}
+
+static void fault_test_by_div0(void) {
+    volatile int * SCB_CCR = (volatile int *) 0xE000ED14; // SCB->CCR
+    int x, y, z;
+
+    *SCB_CCR |= (1 << 4); /* bit4: DIV_0_TRP. */
+
+    x = 10;
+    y = 0;
+    z = x / y;
+    printf("z:%d\n", z);
+}
 
 #ifndef _WIN32
 #if defined(_NO_PRINTF)
