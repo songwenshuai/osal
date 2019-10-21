@@ -35,9 +35,6 @@ extern "C" {
 
 #include "OSAL.h"
 
-#include "SEGGER_SYSVIEW_Conf.h"
-#include "SEGGER_SYSVIEW.h"
-
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

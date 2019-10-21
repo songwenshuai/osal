@@ -1586,6 +1586,9 @@ uint8 osal_init_system( void )
   // Turn off interrupts
   osal_int_disable(INTS_ALL);
 
+  // Hook Initialize
+  OSAL_Init_Hook();
+
   // Initialize NV System
   osal_nv_init(NULL);
 

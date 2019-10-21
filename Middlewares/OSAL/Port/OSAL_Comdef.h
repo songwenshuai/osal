@@ -278,6 +278,7 @@ typedef                        char *_va_list;
 /*********************************************************************
  * FUNCTIONS
  */
+extern void OSAL_Init_Hook(void);
 extern void SysTickIntDisable(void);
 extern void SysTickIntEnable(void);
 

@@ -85,8 +85,6 @@ int main(void)
 
   /* USER CODE BEGIN SysInit */
 
-  SEGGER_SYSVIEW_Conf();            /* Configure and initialize SystemView  */
-
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */

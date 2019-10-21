@@ -26,6 +26,9 @@
 #include "OSAL.h"
 #include "OSAL_Clock.h"
 
+#include "SEGGER_SYSVIEW_Conf.h"
+#include "SEGGER_SYSVIEW.h"
+
 /*********************************************************************
  * MACROS
  */
@@ -143,11 +146,31 @@ void halSleep( uint32 osal_timeout )
 void HAL_IncTick(void)
 {
 #ifndef _WIN32
+  SEGGER_SYSVIEW_RecordEnterISR();
+
   uwTick += uwTickFreq;
 
   /* Update OSAL timer and clock */
   osalAdjustTimer(TICK_IN_MS);
+
+  SEGGER_SYSVIEW_RecordExitISR();
 #endif
+}
+
+/***************************************************************************************************
+ * @fn      OSAL_Init_Hook
+ *
+ * @brief   Hook Osal init function
+ *
+ * @param   None
+ *
+ * @return  None
+ ***************************************************************************************************/
+void OSAL_Init_Hook(void)
+{
+
+  SEGGER_SYSVIEW_Conf();            /* Configure and initialize SystemView  */
+
 }
 
 /***************************************************************************************************

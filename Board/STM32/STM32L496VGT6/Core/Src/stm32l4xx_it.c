@@ -168,13 +168,9 @@ void SysTick_Handler(void)
 {
   /* USER CODE BEGIN SysTick_IRQn 0 */
 
-  SEGGER_SYSVIEW_RecordEnterISR();
-
   /* USER CODE END SysTick_IRQn 0 */
   HAL_IncTick();
   /* USER CODE BEGIN SysTick_IRQn 1 */
-
-  SEGGER_SYSVIEW_RecordExitISR();
 
   /* USER CODE END SysTick_IRQn 1 */
 }
@@ -193,13 +189,9 @@ void LPUART1_IRQHandler(void)
 {
   /* USER CODE BEGIN LPUART1_IRQn 0 */
 
-  SEGGER_SYSVIEW_RecordEnterISR();
-
   /* USER CODE END LPUART1_IRQn 0 */
   HAL_UART_IRQHandler(&hlpuart1);
   /* USER CODE BEGIN LPUART1_IRQn 1 */
-
-  SEGGER_SYSVIEW_RecordExitISR();
 
   /* USER CODE END LPUART1_IRQn 1 */
 }

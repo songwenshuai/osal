@@ -11,10 +11,6 @@
 /*********************************************************************
  * INCLUDES
  */
-#ifndef _WIN32
-#include "main.h"
-#include "usart.h"
-#endif
 
 #include "OSAL.h"
 
@@ -209,9 +205,6 @@ static void Periodic_Event(void)
     new_time = osal_GetSystemClock();
     deviation = ABS((new_time - oldtime) - SBP_PERIODIC_EVT_DELAY);
     oldtime = new_time;
-#ifndef _WIN32
-    SEGGER_SYSVIEW_PrintfHost("Tick = %d ms \r\n", deviation);
-#endif
     printf("deviation  = %d ms\r\n", deviation);
 //------------------------------- nv test --------------------------------------
     static uint32 flag = 0;
@@ -257,9 +250,6 @@ static void App_TimerCB(uint8* pData)
         new_time1 = osal_GetSystemClock();
         deviation1 = ABS((new_time1 - oldtime1) - SBP_CBTIMER_EVT_DELAY);
         oldtime1 = new_time1;
-#ifndef _WIN32
-        SEGGER_SYSVIEW_PrintfHost("Tick = %d ms \r\n", deviation1);
-#endif
         printf("cb timer %s\r\n", pData);
         printf("deviation1 = %d ms\r\n", deviation1);
     }
