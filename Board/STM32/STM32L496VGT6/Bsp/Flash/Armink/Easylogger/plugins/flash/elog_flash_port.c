@@ -27,10 +27,7 @@
  */
 
 #include "elog_flash.h"
-#include <rthw.h>
-#include <rtthread.h>
-
-static struct rt_semaphore flash_log_lock;
+#include "printf.h"
 
 /**
  * EasyLogger flash log pulgin port initialize
@@ -39,8 +36,6 @@ static struct rt_semaphore flash_log_lock;
  */
 ElogErrCode elog_flash_port_init(void) {
     ElogErrCode result = ELOG_NO_ERR;
-
-    rt_sem_init(&flash_log_lock, "elog flash lock", 1, RT_IPC_FLAG_PRIO);
 
     return result;
 }
@@ -53,19 +48,19 @@ ElogErrCode elog_flash_port_init(void) {
  */
 void elog_flash_port_output(const char *log, size_t size) {
     /* output to terminal */
-    rt_kprintf("%.*s", size, log);
+    printf("%.*s", size, log);
 }
 
 /**
  * flash log lock
  */
 void elog_flash_port_lock(void) {
-    rt_sem_take(&flash_log_lock, RT_WAITING_FOREVER);
+    __disable_irq();
 }
 
 /**
  * flash log unlock
  */
 void elog_flash_port_unlock(void) {
-    rt_sem_release(&flash_log_lock);
+    __enable_irq();
 }

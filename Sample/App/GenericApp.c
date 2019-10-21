@@ -28,6 +28,9 @@
 
 #include "easyflash.h"
 
+#define LOG_TAG    "APP"
+#include "elog_flash.h"
+
 #ifndef _WIN32
 #include "clk.h"
 #endif
@@ -59,6 +62,8 @@ static void Clock_Test(void);
 #endif
 
 static void test_env(void);
+static void test_elog(void);
+static void elog_user_assert_hook(const char* ex, const char* func, size_t line);
 
 /*********************************************************************
  * @fn          App_Init
@@ -91,6 +96,27 @@ void App_Init(uint8 task_id)
 
     if (easyflash_init() != EF_NO_ERR) {
         printf("EasyFlash Init Error\n");
+    }
+
+    /* initialize EasyFlash and EasyLogger */
+    if ((easyflash_init() == EF_NO_ERR)&&(elog_init() == ELOG_NO_ERR)) {
+        /* set EasyLogger log format */
+        elog_set_fmt(ELOG_LVL_ASSERT, ELOG_FMT_ALL & ~ELOG_FMT_P_INFO);
+        elog_set_fmt(ELOG_LVL_ERROR, ELOG_FMT_LVL | ELOG_FMT_TAG | ELOG_FMT_TIME);
+        elog_set_fmt(ELOG_LVL_WARN, ELOG_FMT_LVL | ELOG_FMT_TAG | ELOG_FMT_TIME);
+        elog_set_fmt(ELOG_LVL_INFO, ELOG_FMT_LVL | ELOG_FMT_TAG | ELOG_FMT_TIME);
+        elog_set_fmt(ELOG_LVL_DEBUG, ELOG_FMT_ALL & ~(ELOG_FMT_FUNC | ELOG_FMT_P_INFO));
+        elog_set_fmt(ELOG_LVL_VERBOSE, ELOG_FMT_ALL & ~(ELOG_FMT_FUNC | ELOG_FMT_P_INFO));
+        /* set EasyLogger assert hook */
+        elog_assert_set_hook(elog_user_assert_hook);
+        /* initialize EasyLogger Flash plugin */
+        elog_flash_init();
+        /* start EasyLogger */
+        elog_start();
+        /* set EasyLogger assert hook */
+        elog_assert_set_hook(elog_user_assert_hook);
+        /* test logger output */
+        test_elog();
     }
 }
 
@@ -456,6 +482,38 @@ static void test_env(void) {
     ef_set_env("boot_times", c_new_boot_times);
     ef_save_env();
 }
+
+/**
+ * Elog demo
+ */
+static void test_elog(void) {
+    /* output all saved log from flash */
+    elog_flash_output_all();
+    /* test log output for all level */
+    log_a("Hello EasyLogger!");
+    log_e("Hello EasyLogger!");
+    log_w("Hello EasyLogger!");
+    log_i("Hello EasyLogger!");
+    log_d("Hello EasyLogger!");
+    log_v("Hello EasyLogger!");
+    elog_raw("Hello EasyLogger!");
+    /* trigger assert. Now will run elog_user_assert_hook. All log information will save to flash. */
+//    ELOG_ASSERT(0);
+}
+
+static void elog_user_assert_hook(const char* ex, const char* func, size_t line) {
+//    rt_enter_critical();
+    /* disable logger output lock */
+    elog_output_lock_enabled(false);
+    /* disable flash plugin lock */
+    elog_flash_lock_enabled(false);
+    /* output assert information */
+    elog_a("elog", "(%s) has assert failed at %s:%ld.\n", ex, func, line);
+    /* write all buffered log to flash */
+    elog_flash_flush();
+    while(1);
+}
+
 
 #ifndef _WIN32
 #if defined(_NO_PRINTF)

@@ -29,6 +29,8 @@
 #ifndef _ELOG_CFG_H_
 #define _ELOG_CFG_H_
 
+#include "stm32l4xx_hal.h"
+
 /* enable log output. default open this macro */
 #define ELOG_OUTPUT_ENABLE
 /* setting static output log level */
@@ -46,11 +48,11 @@
 /* output newline sign */
 #define ELOG_NEWLINE_SIGN                    "\r\n"
 /* enable asynchronous output mode */
-#define ELOG_ASYNC_OUTPUT_ENABLE
+//#define ELOG_ASYNC_OUTPUT_ENABLE
 /* the highest output level for async mode, other level will sync output */
-#define ELOG_ASYNC_OUTPUT_LVL                ELOG_LVL_DEBUG
+//#define ELOG_ASYNC_OUTPUT_LVL                ELOG_LVL_DEBUG
 /* buffer size for asynchronous output mode */
-#define ELOG_ASYNC_OUTPUT_BUF_SIZE           (ELOG_LINE_BUF_SIZE * 10)
+//#define ELOG_ASYNC_OUTPUT_BUF_SIZE           (ELOG_LINE_BUF_SIZE * 10)
 /* each asynchronous output's log which must end with newline sign */
 //#define ELOG_ASYNC_LINE_OUTPUT
 /* asynchronous output mode using POSIX pthread implementation */

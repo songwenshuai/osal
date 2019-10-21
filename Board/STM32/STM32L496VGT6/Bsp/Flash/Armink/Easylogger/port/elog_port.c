@@ -28,10 +28,7 @@
 
 #include <elog.h>
 #include <elog_flash.h>
-#include <rthw.h>
-#include <rtthread.h>
-
-static struct rt_semaphore output_lock;
+#include "printf.h"
 
 #ifdef ELOG_ASYNC_OUTPUT_ENABLE
 static struct rt_semaphore output_notice;
@@ -47,8 +44,7 @@ static void async_output(void *arg);
 ElogErrCode elog_port_init(void) {
     ElogErrCode result = ELOG_NO_ERR;
 
-    rt_sem_init(&output_lock, "elog lock", 1, RT_IPC_FLAG_PRIO);
-    
+
 #ifdef ELOG_ASYNC_OUTPUT_ENABLE
     rt_thread_t async_thread = NULL;
     
@@ -71,7 +67,7 @@ ElogErrCode elog_port_init(void) {
  */
 void elog_port_output(const char *log, size_t size) {
     /* output to terminal */
-    rt_kprintf("%.*s", size, log);
+    printf("%.*s", size, log);
     /* output to flash */
     elog_flash_write(log, size);
 }
@@ -80,14 +76,14 @@ void elog_port_output(const char *log, size_t size) {
  * output lock
  */
 void elog_port_output_lock(void) {
-    rt_sem_take(&output_lock, RT_WAITING_FOREVER);
+    __disable_irq();
 }
 
 /**
  * output unlock
  */
 void elog_port_output_unlock(void) {
-    rt_sem_release(&output_lock);
+    __enable_irq();
 }
 
 /**
@@ -96,9 +92,7 @@ void elog_port_output_unlock(void) {
  * @return current time
  */
 const char *elog_port_get_time(void) {
-    static char cur_system_time[16] = { 0 };
-    rt_snprintf(cur_system_time, 16, "tick:%010d", rt_tick_get());
-    return cur_system_time;
+    return "10:08:12";
 }
 
 /**
@@ -107,7 +101,7 @@ const char *elog_port_get_time(void) {
  * @return current process name
  */
 const char *elog_port_get_p_info(void) {
-    return "";
+    return "pid:1008";
 }
 
 /**
@@ -116,7 +110,7 @@ const char *elog_port_get_p_info(void) {
  * @return current thread name
  */
 const char *elog_port_get_t_info(void) {
-    return rt_thread_self()->name;
+    return "tid:24";
 }
 
 #ifdef ELOG_ASYNC_OUTPUT_ENABLE
