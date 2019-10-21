@@ -351,13 +351,13 @@
         <option>
           <name>CCIncludePath2</name>
           <state>$PROJ_DIR$/../Bsp/Button</state>
-          <state>$PROJ_DIR$/../Bsp/Flash/Armink</state>
-          <state>$PROJ_DIR$/../Bsp/Flash/Armink/CmBacktrace</state>
-          <state>$PROJ_DIR$/../Bsp/Flash/Armink/EasyFlash/inc</state>
-          <state>$PROJ_DIR$/../Bsp/Flash/Armink/Fal/inc</state>
-          <state>$PROJ_DIR$/../Bsp/Flash/Armink/Easylogger/inc</state>
-          <state>$PROJ_DIR$/../Bsp/Flash/Armink/Easylogger/plugins/flash</state>
           <state>$PROJ_DIR$/../Bsp/Led</state>
+          <state>$PROJ_DIR$/../Components/Armink</state>
+          <state>$PROJ_DIR$/../Components/Armink/CmBacktrace</state>
+          <state>$PROJ_DIR$/../Components/Armink/EasyFlash/inc</state>
+          <state>$PROJ_DIR$/../Components/Armink/Fal/inc</state>
+          <state>$PROJ_DIR$/../Components/Armink/Easylogger/inc</state>
+          <state>$PROJ_DIR$/../Components/Armink/Easylogger/plugins/flash</state>
           <state>$PROJ_DIR$/../Core/Inc</state>
           <state>$PROJ_DIR$/../Drivers/STM32L4xx_HAL_Driver/Inc</state>
           <state>$PROJ_DIR$/../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy</state>
@@ -1240,7 +1240,7 @@
         <group>
           <name>Port</name>
           <file>
-            <name>$PROJ_DIR$\..\Bsp\Flash\Armink\EasyFlash\port\ef_fal_port.c</name>
+            <name>$PROJ_DIR$\..\Components\Armink\EasyFlash\port\ef_fal_port.c</name>
           </file>
         </group>
         <group>
@@ -1275,14 +1275,14 @@
               <name>$PROJ_DIR$\..\..\..\..\Middlewares\Armink\EasyLogger\easylogger\plugins\flash\elog_flash.c</name>
             </file>
             <file>
-              <name>$PROJ_DIR$\..\Bsp\Flash\Armink\Easylogger\plugins\flash\elog_flash_port.c</name>
+              <name>$PROJ_DIR$\..\Components\Armink\Easylogger\plugins\flash\elog_flash_port.c</name>
             </file>
           </group>
         </group>
         <group>
           <name>Port</name>
           <file>
-            <name>$PROJ_DIR$\..\Bsp\Flash\Armink\Easylogger\port\elog_port.c</name>
+            <name>$PROJ_DIR$\..\Components\Armink\Easylogger\port\elog_port.c</name>
           </file>
         </group>
         <group>
@@ -1306,7 +1306,7 @@
         <group>
           <name>Port</name>
           <file>
-            <name>$PROJ_DIR$\..\Bsp\Flash\Armink\Fal\port\drv_flash_l4.c</name>
+            <name>$PROJ_DIR$\..\Components\Armink\Fal\port\drv_flash_l4.c</name>
           </file>
         </group>
         <group>
