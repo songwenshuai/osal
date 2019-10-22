@@ -162,6 +162,8 @@ CPU_BOOLEAN  TerminalSerial_Init  (void);
 
 void         TerminalSerial_Exit  (void);
 
+CPU_BOOLEAN  TerminalSerial_Kbhit (void);
+
 CPU_INT08U   TerminalSerial_RdByte(void);
 
 CPU_INT16S   TerminalSerial_Wr    (void         *pbuf,

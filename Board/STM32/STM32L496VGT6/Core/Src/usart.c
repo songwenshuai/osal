@@ -31,8 +31,6 @@
 #else
 #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
 #endif /* __GNUC__ */
-#else
-#define UART_TIMEOUT_VALUE   1000
 #endif /* _NO_PRINTF */
 
 
@@ -163,11 +161,10 @@ int fgetc(FILE * f)
 
 int putc(int ch)
 {
-  /* Place your implementation of fputc here */
-  /* e.g. write a character to the USART2 and Loop until the end of transmission */
-  HAL_UART_Transmit(&hlpuart1, (uint8_t *)&ch, 1, UART_TIMEOUT_VALUE);
+  hlpuart1.Instance->TDR = ch;
+  while ((__HAL_UART_GET_FLAG(&hlpuart1, UART_FLAG_TC) == RESET));
 
-  return ch;
+  return 1;
 }
 
 /**
@@ -177,12 +174,30 @@ int putc(int ch)
   */
 int fgetc(void)
 {
-  uint8_t ch = 0;
-  /* We received the charracter on the handler of the USART2 */
-  /* The handler must be initialise before */
-  HAL_UART_Receive(&hlpuart1, (uint8_t *)&ch, 1, UART_TIMEOUT_VALUE);
+  int ch;
+
+  ch = -1;
+  if (__HAL_UART_GET_FLAG(&hlpuart1, UART_FLAG_RXNE) != RESET)
+    ch = hlpuart1.Instance->RDR & 0xff;
 
   return ch;
+}
+
+/* FUNCTION: kbhit()
+ *
+ * Tests if there is a character available from the keyboard
+ *
+ * PARAMS: none
+ *
+ * RETURN: TRUE if a character is available, otherwise FALSE
+ */
+int kbhit(void)
+{
+  if (__HAL_UART_GET_FLAG(&hlpuart1, UART_FLAG_RXNE) != RESET)
+  {
+    return TRUE;
+  }
+  return FALSE;
 }
 
 #endif /* _NO_PRINTF */

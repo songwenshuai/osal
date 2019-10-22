@@ -64,6 +64,7 @@
 
 extern int fgetc(void);
 extern int putc(int ch);
+extern int kbhit(void);
 
 /*
 *********************************************************************************************************
@@ -142,6 +143,35 @@ CPU_INT16S  TerminalSerial_Wr (void        *pbuf,
         putc(cbuf[idx]);
     }
     return (buf_len);
+}
+
+
+/*
+*********************************************************************************************************
+*                                       TerminalSerial_Kbhit()
+*
+* Description : if keyboard is hit.
+*
+* Argument(s) : none.
+*
+* Return(s)   : DEF_OK,   if keyboard is hit.
+*               DEF_FAIL, otherwise.
+*
+* Caller(s)   : various.
+*
+* Note(s)     : none.
+*********************************************************************************************************
+*/
+
+CPU_BOOLEAN  TerminalSerial_Kbhit (void)
+{
+    CPU_BOOLEAN status;
+
+    status = DEF_FAIL;
+    if (kbhit())
+        status = DEF_OK;
+
+    return status;
 }
 
 
