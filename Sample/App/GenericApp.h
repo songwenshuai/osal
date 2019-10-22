@@ -50,6 +50,13 @@ typedef struct
   uint8             *pString;
 } DebugStr_t;
 
+// LED Command info
+typedef struct
+{
+  uint16 connHandle;
+  uint8 code;
+} ledCmd_t;
+
 /*********************************************************************
  * FUNCTIONS
  */

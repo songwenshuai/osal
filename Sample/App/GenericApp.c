@@ -15,6 +15,7 @@
 #include "OSAL.h"
 
 #include "OSAL_Timers.h"
+#include "OSAL_Memory.h"
 #include "OSAL_Cbtimer.h"
 #include "OSAL_Nv.h"
 
@@ -59,9 +60,6 @@ void App_Init(uint8 task_id)
 
     // Setup a delayed profile startup
     osal_set_event(App_TaskID, SBP_START_DEVICE_EVT);
-
-    // Setup Cb Timer
-    osal_CbTimerStartReload(App_TimerCB, (uint8*)"TEST", SBP_CBTIMER_EVT_DELAY, NULL);
 }
 
 /*********************************************************************
@@ -98,6 +96,14 @@ uint16 App_ProcessEvent(uint8 task_id, uint16 events)
 
     if (events & SBP_START_DEVICE_EVT)
     {
+        ledCmd_t *pCmd = (ledCmd_t *)osal_mem_alloc( sizeof ( ledCmd_t ) );
+    
+        pCmd->connHandle = HAL_LED_MODE_BLINK;
+        pCmd->code = HAL_LED_3;
+    
+        // Setup Cb Timer
+        osal_CbTimerStartReload(App_TimerCB, (uint8*)pCmd, SBP_CBTIMER_EVT_DELAY, NULL);
+
         // Set timer for first periodic event
         osal_start_timerEx(App_TaskID, SBP_PERIODIC_EVT, SBP_PERIODIC_EVT_DELAY);
 
@@ -134,7 +140,9 @@ static void App_TimerCB(uint8* pData)
 {
     if (pData)
     {
-        HalLedSet(HAL_LED_3, HAL_LED_MODE_BLINK);
+        ledCmd_t *pCmd = (ledCmd_t *)pData;
+
+        HalLedSet(pCmd->code, pCmd->connHandle);
     }
 }
 
@@ -149,14 +157,10 @@ static void App_TimerCB(uint8* pData)
  */
 static void App_ProcessOSALMsg(DebugStr_t *pInMsg)
 {
-    static uint32 rcv;
-
     switch (pInMsg->hdr.event)
     {
     case APP_MESSAGE:
-        printf("messages   = %04d\r\n", ++rcv);
         printf("rcv        = %s\r\n", pInMsg->pString);
-        printf("\r\n");
         break;
     default:
         break;
