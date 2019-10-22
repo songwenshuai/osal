@@ -21,9 +21,8 @@
 #include "GenericApp.h"
 
 #include "printf.h"
-#include  <shell.h>
-#include  <sh_shell.h>
-#include  <terminal.h>
+
+#include "hal_led.h"
 
 /*********************************************************************
  * GLOBAL VARIABLES
@@ -38,17 +37,12 @@ uint8 App_TaskID;
   * GLOBAL FUNCTIONS
   */
 
-#ifndef _WIN32
-void  Clk_TaskHandler (void);
-#endif
-
  /*********************************************************************
   * FUNCTIONS
   */
 
 static void App_ProcessOSALMsg( DebugStr_t *pInMsg );
 static void App_TimerCB(uint8* pData);
-static CPU_BOOLEAN UCOS_Shell_Init (void);
 
 /*********************************************************************
  * @fn          App_Init
@@ -62,8 +56,6 @@ static CPU_BOOLEAN UCOS_Shell_Init (void);
 void App_Init(uint8 task_id)
 {
     App_TaskID = task_id;
-
-    UCOS_Shell_Init();
 
     // Setup a delayed profile startup
     osal_set_event(App_TaskID, SBP_START_DEVICE_EVT);
@@ -108,9 +100,7 @@ uint16 App_ProcessEvent(uint8 task_id, uint16 events)
     {
         // Set timer for first periodic event
         osal_start_timerEx(App_TaskID, SBP_PERIODIC_EVT, SBP_PERIODIC_EVT_DELAY);
-#ifndef _WIN32
-        osal_start_timerEx(App_TaskID, SBP_CLOCK_EVT, SBP_CLOCK_EVT_DELAY);
-#endif
+
         return (events ^ SBP_START_DEVICE_EVT);
     }
 
@@ -123,25 +113,10 @@ uint16 App_ProcessEvent(uint8 task_id, uint16 events)
         }
         
         // Perform periodic application task
-        Terminal_Task(NULL);
+
         return (events ^ SBP_PERIODIC_EVT);
     }
 
-#ifndef _WIN32
-    if (events & SBP_CLOCK_EVT)
-    {
-        // Restart timer
-        if ( SBP_CLOCK_EVT_DELAY )
-        {
-            osal_start_timerEx(App_TaskID, SBP_CLOCK_EVT, SBP_CLOCK_EVT_DELAY);
-        }
-        
-        // Perform clock task
-        Clk_TaskHandler();
-
-        return (events ^ SBP_CLOCK_EVT);
-    }
-#endif
     // Discard unknown events
     return 0;
 }
@@ -159,7 +134,7 @@ static void App_TimerCB(uint8* pData)
 {
     if (pData)
     {
-
+        HalLedSet(HAL_LED_3, HAL_LED_MODE_BLINK);
     }
 }
 
@@ -186,50 +161,6 @@ static void App_ProcessOSALMsg(DebugStr_t *pInMsg)
     default:
         break;
     }
-}
-
-/*
-*********************************************************************************************************
-*                                          UCOS Shell Init
-*
-* Description : This is an example of a startup task.  As mentioned in the book's text, you MUST
-*               initialize the ticker only once multitasking has started.
-*
-* Arguments   : p_arg   is the argument passed to 'AppTaskStart()' by 'OSTaskCreate()'.
-*
-* Returns     : none
-*
-* Notes       : 1) The first line of code is used to prevent a compiler warning because 'p_arg' is not
-*                  used.  The compiler should not generate any code for this statement.
-*********************************************************************************************************
-*/
-
-static CPU_BOOLEAN UCOS_Shell_Init (void)
-{
-    CPU_BOOLEAN err_shell, terminal;
-
-    printf(("Initializing uC/Shell.\r\n"));
-
-    err_shell = Shell_Init();
-
-    if (err_shell != DEF_OK) {
-        printf(("Error initializing uC/Shell.\r\n"));
-        return (DEF_FAIL);
-    }
-    err_shell = ShShell_Init();
-    if (err_shell != DEF_OK) {
-        printf(("Error initializing uC/Shell.\r\n"));
-        return (DEF_FAIL);
-    }
-
-    terminal = Terminal_Init();
-
-    if (terminal != DEF_OK) {
-        printf(("Error initializing uC/Terminal.\r\n"));
-        return (DEF_FAIL);
-    }
-
-    return (DEF_OK);
 }
 
 /*********************************************************************

@@ -95,7 +95,7 @@ void HalLedInit (void)
 
 #if (HAL_LED == TRUE)
   /* Initialize all LEDs to OFF */
-  HalLedSet (HAL_LED_ALL, HAL_LED_MODE_FLASH);
+  HalLedSet (HAL_LED_ALL, HAL_LED_MODE_OFF);
 #endif /* HAL_LED */
 #ifdef BLINK_LEDS
   /* Initialize sleepActive to FALSE */
