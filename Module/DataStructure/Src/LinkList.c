@@ -9,7 +9,7 @@
  *********************/
 #include "OSAL.h"
 
-#include "OSAL_Memory.h"
+#include "tlsf_malloc.h"
 
 #include "LinkList.h"
 
@@ -18,8 +18,8 @@
  *********************/
 #define LINK_LIST_BUF_MEMSET                      osal_memset
 #define LINK_LIST_BUF_MEMCPY                      osal_memcpy
-#define LINK_LIST_MEM_ALLOC                       osal_mem_alloc
-#define LINK_LIST_MEM_FREE                        osal_mem_free
+#define LINK_LIST_MEM_ALLOC                       tlsf_malloc_r
+#define LINK_LIST_MEM_FREE                        tlsf_free_r
 
 #define LL_NODE_META_SIZE (sizeof(ll_node_t *) + sizeof(ll_node_t *))
 #define LL_PREV_P_OFFSET(ll_p) (ll_p->n_size)
@@ -75,7 +75,7 @@ void * ll_ins_head(ll_t * ll_p)
 {
     ll_node_t * n_new;
 
-    n_new = LINK_LIST_MEM_ALLOC(ll_p->n_size + LL_NODE_META_SIZE);
+    n_new = LINK_LIST_MEM_ALLOC(&HEAP_SRAM,ll_p->n_size + LL_NODE_META_SIZE);
 
     if(n_new != NULL) {
         node_set_prev(ll_p, n_new, NULL);       /*No prev. before the new head*/
@@ -111,7 +111,7 @@ void * ll_ins_prev(ll_t * ll_p, void * n_act)
         n_new = ll_ins_head(ll_p);
         if(n_new == NULL) return NULL;
     } else {
-        n_new = LINK_LIST_MEM_ALLOC(ll_p->n_size + LL_NODE_META_SIZE);
+        n_new = LINK_LIST_MEM_ALLOC(&HEAP_SRAM,ll_p->n_size + LL_NODE_META_SIZE);
         if(n_new == NULL) return NULL;
 
         n_prev = ll_get_prev(ll_p, n_act);
@@ -133,7 +133,7 @@ void * ll_ins_tail(ll_t * ll_p)
 {
     ll_node_t * n_new;
 
-    n_new = LINK_LIST_MEM_ALLOC(ll_p->n_size + LL_NODE_META_SIZE);
+    n_new = LINK_LIST_MEM_ALLOC(&HEAP_SRAM,ll_p->n_size + LL_NODE_META_SIZE);
     if(n_new == NULL) return NULL;
 
     if(n_new != NULL) {
@@ -201,7 +201,7 @@ void ll_clear(ll_t * ll_p)
         i_next = ll_get_next(ll_p, i);
 
         ll_rem(ll_p, i);
-        LINK_LIST_MEM_FREE(i);
+        LINK_LIST_MEM_FREE(&HEAP_SRAM,i);
 
         i = i_next;
     }

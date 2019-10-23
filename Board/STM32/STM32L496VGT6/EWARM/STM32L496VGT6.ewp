@@ -366,6 +366,7 @@
           <state>$PROJ_DIR$/../Ports/Micrium/uC-Shell/Cfg</state>
           <state>$PROJ_DIR$/../Ports/Micrium/uC-Shell/Terminal/Cfg</state>
           <state>$PROJ_DIR$/../Ports/OSAL/Cfg</state>
+          <state>$PROJ_DIR$/../Ports/Tlsf/Cfg</state>
           <state>$PROJ_DIR$/../Core/Inc</state>
           <state>$PROJ_DIR$/../Drivers/STM32L4xx_HAL_Driver/Inc</state>
           <state>$PROJ_DIR$/../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy</state>
@@ -395,6 +396,7 @@
           <state>$PROJ_DIR$/../../../../Module/DataStructure/Inc</state>
           <state>$PROJ_DIR$/../../../../Module/FlexibleButton</state>
           <state>$PROJ_DIR$/../../../../Module/Printf</state>
+          <state>$PROJ_DIR$/../../../../Module/Tlsf</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -1536,16 +1538,10 @@
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Bufmgr.h</name>
-          </file>
-          <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Cbtimer.h</name>
           </file>
           <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Clock.h</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Memory.h</name>
           </file>
           <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Mutex.h</name>
@@ -1566,16 +1562,10 @@
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Bufmgr.c</name>
-          </file>
-          <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Cbtimer.c</name>
           </file>
           <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Clock.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Memory.c</name>
           </file>
           <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Mutex.c</name>
@@ -1744,6 +1734,30 @@
       <file>
         <name>$PROJ_DIR$\..\..\..\..\Module\Printf\printf.h</name>
       </file>
+    </group>
+    <group>
+      <name>Tlsf</name>
+      <group>
+        <name>Cfg</name>
+        <file>
+          <name>$PROJ_DIR$\..\Ports\Tlsf\Cfg\tlsf_malloc_arch.h</name>
+        </file>
+      </group>
+      <group>
+        <name>Port</name>
+        <file>
+          <name>$PROJ_DIR$\..\Ports\Tlsf\Port\tlsf_malloc_arch.c</name>
+        </file>
+      </group>
+      <group>
+        <name>Source</name>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Module\Tlsf\tlsf.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Module\Tlsf\tlsf.h</name>
+        </file>
+      </group>
     </group>
   </group>
   <group>

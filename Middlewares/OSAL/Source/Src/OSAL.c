@@ -16,9 +16,10 @@
 
 #include "OSAL_Tasks.h"
 #include "OSAL_Clock.h"
-#include "OSAL_Memory.h"
 #include "OSAL_Timers.h"
 #include "OSAL_PwrMgr.h"
+
+#include "tlsf_malloc.h"
 
 #include "printf.h"
 
@@ -577,7 +578,7 @@ done:
 /*********************************************************************
  * @fn      osal_memdup
  *
- * @brief   Allocates a buffer [with osal_mem_alloc()] and copies
+ * @brief   Allocates a buffer [with tlsf_malloc_r()] and copies
  *          the src buffer into the newly allocated space.
  *
  * @param   src - source address
@@ -590,7 +591,7 @@ void *osal_memdup( const void GENERIC *src, unsigned int len )
 {
   uint8 *pDst;
 
-  pDst = osal_mem_alloc( len );
+  pDst = tlsf_malloc_r( &HEAP_SRAM, len );
   if ( pDst )
   {
     osal_memcpy( pDst, src, len );
@@ -927,7 +928,7 @@ uint8 * osal_msg_allocate( uint16 len )
   if ( len == 0 )
     return ( NULL );
 
-  hdr = (osal_msg_hdr_t *) osal_mem_alloc( (short)(len + sizeof( osal_msg_hdr_t )) );
+  hdr = (osal_msg_hdr_t *) tlsf_malloc_r( &HEAP_SRAM, (short)(len + sizeof( osal_msg_hdr_t )) );
   if ( hdr )
   {
     hdr->next = NULL;
@@ -966,7 +967,7 @@ uint8 osal_msg_deallocate( uint8 *msg_ptr )
 
   x = (uint8 *)((uint8 *)msg_ptr - sizeof( osal_msg_hdr_t ));
 
-  osal_mem_free( (void *)x );
+  tlsf_free_r( &HEAP_SRAM, (void *)x );
 
   return ( SUCCESS );
 }
@@ -1589,7 +1590,7 @@ uint8 osal_init_system( void )
   OSAL_Init_Hook();
 
   // Initialize the Memory Allocation System
-  osal_mem_init();
+  tlsf_init_heaps();
 
   // Initialize the message queue
   osal_qHead = NULL;
@@ -1606,9 +1607,6 @@ uint8 osal_init_system( void )
 
   // Initialize the system tasks.
   osalInitTasks();
-
-  // Setup efficient search for the first free block of heap.
-  osal_mem_kick();
 
   // Allow interrupts
   osal_int_enable(INTS_ALL);

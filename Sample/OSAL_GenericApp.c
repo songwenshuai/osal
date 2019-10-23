@@ -13,8 +13,9 @@
 #include "OSAL.h"
 
 #include "OSAL_Cbtimer.h"
-#include "OSAL_Memory.h"
 #include "OSAL_Tasks.h"
+
+#include "tlsf_malloc.h"
 
 #include "GenericApp.h"
 #include "hal_drivers.h"
@@ -58,7 +59,7 @@ void osalInitTasks( void )
 {
   uint8 taskID = 0;
 
-  tasksEvents = (uint16 *)osal_mem_alloc( sizeof( uint16 ) * tasksCnt);
+  tasksEvents = (uint16 *)tlsf_malloc_r( &HEAP_SRAM, sizeof( uint16 ) * tasksCnt);
 
   /* The tasksEvents allocated pointer must be valid */
   if (tasksEvents != NULL)

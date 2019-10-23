@@ -11,8 +11,9 @@
  */
 #include "OSAL.h"
 
-#include "OSAL_Memory.h"
 #include "OSAL_Mutex.h"
+
+#include "tlsf_malloc.h"
 
 /*********************************************************************
  * GLOBAL VARIABLES
@@ -33,7 +34,7 @@ osal_mutex_t* osalMutexCreate( void )
 {
     osal_mutex_t *ptr;
     osal_mutex_t *pseach;
-    ptr = (osal_mutex_t*)osal_mem_alloc( sizeof(osal_mutex_t) );
+    ptr = (osal_mutex_t*)tlsf_malloc_r( &HEAP_SRAM, sizeof(osal_mutex_t) );
     if( ptr != NULL )
     {
         ptr->next_mutex = NULL;
@@ -72,7 +73,7 @@ void osalMutexDelete( osal_mutex_t** mutex )
     if( pseach == *mutex )
     {
         osal_mutex_head = (*mutex)->next_mutex;
-        osal_mem_free( (uint8*)(*mutex) );
+        tlsf_free_r( &HEAP_SRAM, (uint8*)(*mutex) );
         *mutex = NULL;
 
     }
@@ -85,7 +86,7 @@ void osalMutexDelete( osal_mutex_t** mutex )
         if( pseach->next_mutex == *mutex )
         {
             pseach->next_mutex = (*mutex)->next_mutex;
-            osal_mem_free((uint8*)(*mutex));
+            tlsf_free_r( &HEAP_SRAM,(uint8*)(*mutex));
             *mutex = NULL;
         }
     }
