@@ -1,11 +1,3 @@
-[submodule "Middlewares/FlexibleButton"]
-	path = Middlewares/FlexibleButton
-	url = https://github.com/murphyzhao/FlexibleButton.git
-
-[submodule "Middlewares/Printf"]
-	path = Middlewares/Printf
-	url = https://github.com/mpaland/printf.git
-
 [submodule "Middlewares/Armink/CmBacktrace"]
 	path = Middlewares/Armink/CmBacktrace
 	url =	https://github.com/armink/CmBacktrace.git
@@ -25,4 +17,3 @@
 [submodule "Middlewares/Armink/SFUD"]
 	path = Middlewares/Armink/SFUD
 	url =	https://github.com/armink/SFUD.git
-	
