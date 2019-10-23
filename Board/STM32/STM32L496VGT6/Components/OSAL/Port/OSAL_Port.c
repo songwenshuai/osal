@@ -35,6 +35,17 @@
 
 #define TICK_IN_MS 1 /* 1 millisecond */ 
 
+#if defined(_NO_PRINTF)
+#define UART_TIMEOUT_VALUE   1000
+#ifdef __GNUC__
+/* With GCC, small printf (option LD Linker->Libraries->Small printf
+   set to 'Yes') calls __io_putchar() */
+#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+#else
+#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
+#endif /* __GNUC__ */
+#endif /* _NO_PRINTF */
+
 /*********************************************************************
  * GLOBAL VARIABLES
  */
@@ -49,6 +60,7 @@ extern __IO uint32_t uwTick;
 extern HAL_TickFreqTypeDef uwTickFreq;  /* 1KHz */
 #endif
 
+extern UART_HandleTypeDef hlpuart1;
 
 /*********************************************************************
  * EXTERN FUNCTIONS
@@ -172,6 +184,89 @@ void OSAL_Init_Hook(void)
   SEGGER_SYSVIEW_Conf();            /* Configure and initialize SystemView  */
 
 }
+
+#if defined(_NO_PRINTF)
+/**
+  * @brief  Retargets the C library printf function to the USART2.
+  * @param  ch: character to send
+  * @param  f: pointer to file (not used)
+  * @retval The character transmitted
+  */
+PUTCHAR_PROTOTYPE
+{
+  /* Place your implementation of fputc here */
+  /* e.g. write a character to the USART2 and Loop until the end of transmission */
+  HAL_UART_Transmit(&hlpuart1, (uint8_t *)&ch, 1, UART_TIMEOUT_VALUE);
+
+  return ch;
+}
+
+/**
+  * @brief  Retargets the C library scanf function to the USART2.
+  * @param  f: pointer to file (not used)
+  * @retval The character received
+  */
+int fgetc(FILE * f)
+{
+  uint8_t ch = 0;
+  /* We received the charracter on the handler of the USART2 */
+  /* The handler must be initialise before */
+  HAL_UART_Receive(&hlpuart1, (uint8_t *)&ch, 1, UART_TIMEOUT_VALUE);
+
+  return ch;
+}
+
+#else
+
+/**
+  * @brief  Retargets the C library printf function to the USART2.
+  * @param  ch: character to send
+  * @param  f: pointer to file (not used)
+  * @retval The character transmitted
+  */
+
+int putc(int ch)
+{
+  hlpuart1.Instance->TDR = ch;
+  while ((__HAL_UART_GET_FLAG(&hlpuart1, UART_FLAG_TC) == RESET));
+
+  return 1;
+}
+
+/**
+  * @brief  Retargets the C library scanf function to the USART2.
+  * @param  f: pointer to file (not used)
+  * @retval The character received
+  */
+int fgetc(void)
+{
+  int ch;
+
+  ch = -1;
+  if (__HAL_UART_GET_FLAG(&hlpuart1, UART_FLAG_RXNE) != RESET)
+    ch = hlpuart1.Instance->RDR & 0xff;
+
+  return ch;
+}
+
+/* FUNCTION: kbhit()
+ *
+ * Tests if there is a character available from the keyboard
+ *
+ * PARAMS: none
+ *
+ * RETURN: TRUE if a character is available, otherwise FALSE
+ */
+int kbhit(void)
+{
+  if (__HAL_UART_GET_FLAG(&hlpuart1, UART_FLAG_RXNE) != RESET)
+  {
+    return TRUE;
+  }
+  return FALSE;
+}
+
+#endif /* _NO_PRINTF */
 
 /***************************************************************************************************
  * @fn      _putchar

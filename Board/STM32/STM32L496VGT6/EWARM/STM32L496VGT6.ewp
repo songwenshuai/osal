@@ -365,6 +365,7 @@
           <state>$PROJ_DIR$/../Components/Micrium/uC-LIB/Ports</state>
           <state>$PROJ_DIR$/../Components/Micrium/uC-Shell/Cfg</state>
           <state>$PROJ_DIR$/../Components/Micrium/uC-Shell/Terminal/Cfg</state>
+          <state>$PROJ_DIR$/../Components/OSAL/Cfg</state>
           <state>$PROJ_DIR$/../Core/Inc</state>
           <state>$PROJ_DIR$/../Drivers/STM32L4xx_HAL_Driver/Inc</state>
           <state>$PROJ_DIR$/../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy</state>
@@ -389,9 +390,6 @@
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-Shell/Cmd/General</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-Shell/Source</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-Shell/Terminal/Source</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/OSAL/Cfg</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/OSAL/Port</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/OSAL/Port/Flash</state>
           <state>$PROJ_DIR$/../../../../Middlewares/OSAL/Source/Inc</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Printf</state>
           <state>$PROJ_DIR$/../../../../Middlewares/SEGGER/HardFault/Source</state>
@@ -1563,34 +1561,13 @@
       <group>
         <name>Config</name>
         <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Config\OSAL_Config.h</name>
+          <name>$PROJ_DIR$\..\Components\OSAL\Cfg\OSAL_Config.h</name>
         </file>
       </group>
       <group>
         <name>Port</name>
-        <group>
-          <name>Flash</name>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Port\Flash\OSAL_Flashutil32.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Port\Flash\OSAL_Flashutil32.h</name>
-          </file>
-        </group>
         <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Port\OSAL_Comdef.h</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Port\OSAL_Cpu.h</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Port\OSAL_Debug.h</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Port\OSAL_Port.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Port\OSAL_Type.h</name>
+          <name>$PROJ_DIR$\..\Components\OSAL\Port\OSAL_Port.c</name>
         </file>
       </group>
       <group>
@@ -1614,9 +1591,6 @@
           </file>
           <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Mutex.h</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Nv.h</name>
           </file>
           <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_PwrMgr.h</name>
@@ -1647,9 +1621,6 @@
           </file>
           <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Mutex.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Nv32.c</name>
           </file>
           <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_PwrMgr.c</name>

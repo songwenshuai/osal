@@ -21,6 +21,9 @@ static void Periodic_Event(void)
     oldtime = new_time;
     printf("deviation  = %d ms\r\n", deviation);
 //------------------------------- nv test --------------------------------------
+    // Initialize NV System
+    osal_nv_init(NULL);
+
     static uint32 flag = 0;
     static char nvDataWrite[13] = {0};
     static char nvDataRead[13] = {0};

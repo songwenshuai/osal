@@ -14,7 +14,6 @@
  */
 #include "OSAL.h"
 
-#include "OSAL_Nv.h"
 #include "OSAL_Tasks.h"
 #include "OSAL_Clock.h"
 #include "OSAL_Memory.h"
@@ -1588,9 +1587,6 @@ uint8 osal_init_system( void )
 
   // Hook Initialize
   OSAL_Init_Hook();
-
-  // Initialize NV System
-  osal_nv_init(NULL);
 
   // Initialize the Memory Allocation System
   osal_mem_init();

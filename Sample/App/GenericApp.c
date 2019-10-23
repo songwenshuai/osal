@@ -17,7 +17,6 @@
 #include "OSAL_Timers.h"
 #include "OSAL_Memory.h"
 #include "OSAL_Cbtimer.h"
-#include "OSAL_Nv.h"
 
 #include "GenericApp.h"
 
