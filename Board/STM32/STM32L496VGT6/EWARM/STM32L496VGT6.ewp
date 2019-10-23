@@ -379,8 +379,6 @@
           <state>$PROJ_DIR$/../../../../Middlewares/Armink/EasyLogger/easylogger/inc</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Armink/EasyLogger/easylogger/plugins/flash</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Armink/CmBacktrace/cm_backtrace</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/DataStructure/Inc</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/FlexibleButton</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-LIB</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-CRC/Source</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-Common/Auth</state>
@@ -391,10 +389,12 @@
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-Shell/Source</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-Shell/Terminal/Source</state>
           <state>$PROJ_DIR$/../../../../Middlewares/OSAL/Source/Inc</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/Printf</state>
           <state>$PROJ_DIR$/../../../../Middlewares/SEGGER/HardFault/Source</state>
           <state>$PROJ_DIR$/../../../../Middlewares/SEGGER/SystemView/Config</state>
           <state>$PROJ_DIR$/../../../../Middlewares/SEGGER/SystemView/SEGGER</state>
+          <state>$PROJ_DIR$/../../../../Module/DataStructure/Inc</state>
+          <state>$PROJ_DIR$/../../../../Module/FlexibleButton</state>
+          <state>$PROJ_DIR$/../../../../Module/Printf</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -1323,48 +1323,6 @@
       </group>
     </group>
     <group>
-      <name>DataStructure</name>
-      <group>
-        <name>Inc</name>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Inc\Fifo.h</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Inc\List.h</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Inc\Queue.h</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Inc\Ring.h</name>
-        </file>
-      </group>
-      <group>
-        <name>Src</name>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Src\Fifo.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Src\List.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Src\Queue.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Src\Ring.c</name>
-        </file>
-      </group>
-    </group>
-    <group>
-      <name>FlexibleButton</name>
-      <file>
-        <name>$PROJ_DIR$\..\..\..\..\Middlewares\FlexibleButton\flexible_button.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$\..\..\..\..\Middlewares\FlexibleButton\flexible_button.h</name>
-      </file>
-    </group>
-    <group>
       <name>Micrium</name>
       <group>
         <name>uC-CLK</name>
@@ -1632,15 +1590,6 @@
       </group>
     </group>
     <group>
-      <name>Printf</name>
-      <file>
-        <name>$PROJ_DIR$\..\..\..\..\Middlewares\Printf\printf.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$\..\..\..\..\Middlewares\Printf\printf.h</name>
-      </file>
-    </group>
-    <group>
       <name>SEGGER</name>
       <group>
         <name>HardFault</name>
@@ -1729,6 +1678,60 @@
           </file>
         </group>
       </group>
+    </group>
+  </group>
+  <group>
+    <name>Module</name>
+    <group>
+      <name>DataStructure</name>
+      <group>
+        <name>Inc</name>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Module\DataStructure\Inc\Fifo.h</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Module\DataStructure\Inc\List.h</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Module\DataStructure\Inc\Queue.h</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Module\DataStructure\Inc\Ring.h</name>
+        </file>
+      </group>
+      <group>
+        <name>Src</name>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Module\DataStructure\Src\Fifo.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Module\DataStructure\Src\List.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Module\DataStructure\Src\Queue.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Module\DataStructure\Src\Ring.c</name>
+        </file>
+      </group>
+    </group>
+    <group>
+      <name>FlexibleButton</name>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\..\Module\FlexibleButton\flexible_button.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\..\Module\FlexibleButton\flexible_button.h</name>
+      </file>
+    </group>
+    <group>
+      <name>Printf</name>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\..\Module\Printf\printf.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\..\Module\Printf\printf.h</name>
+      </file>
     </group>
   </group>
   <group>
