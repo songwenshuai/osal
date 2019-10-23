@@ -6,6 +6,10 @@
 	path = Module/Printf
 	url = https://github.com/mpaland/printf.git
 
+[submodule "Module/Tlsf"]
+	path = Module/Tlsf
+	url = https://github.com/mattconte/tlsf.git
+
 [submodule "Middlewares/Armink/CmBacktrace"]
 	path = Middlewares/Armink/CmBacktrace
 	url =	https://github.com/armink/CmBacktrace.git
