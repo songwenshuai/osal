@@ -23,12 +23,12 @@ extern "C" {
  **********************/
 
 /** Dummy type to make handling easier*/
-typedef uint8_t ll_node_t;
+typedef uint8 ll_node_t;
 
 /** Description of a linked list*/
 typedef struct
 {
-    uint32_t n_size;
+    uint32 n_size;
     ll_node_t * head;
     ll_node_t * tail;
 } ll_t;
@@ -42,7 +42,7 @@ typedef struct
  * @param ll_dsc pointer to ll_dsc variable
  * @param node_size the size of 1 node in bytes
  */
-void ll_init(ll_t * ll_p, uint32_t node_size);
+void ll_init(ll_t * ll_p, uint32 node_size);
 
 /**
  * Add a new head to a linked list
@@ -88,7 +88,7 @@ void ll_clear(ll_t * ll_p);
  * @param head true: be the head in the new list
  *             false be the head in the new list
  */
-void ll_chg_list(ll_t * ll_ori_p, ll_t * ll_new_p, void * node, bool head);
+void ll_chg_list(ll_t * ll_ori_p, ll_t * ll_new_p, void * node, _bool head);
 
 /**
  * Return with head node of the linked list
@@ -125,7 +125,7 @@ void * ll_get_prev(const ll_t * ll_p, const void * n_act);
  * @param ll_p pointer to linked list
  * @return length of the linked list
  */
-uint32_t ll_get_len(const ll_t * ll_p);
+uint32 ll_get_len(const ll_t * ll_p);
 
 /**
  * Move a nodw before an other node in the same linked list
@@ -140,7 +140,7 @@ void ll_move_before(ll_t * ll_p, void * n_act, void * n_after);
  * @param ll_p pointer to a linked list
  * @return true: the linked list is empty; false: not empty
  */
-bool ll_is_empty(ll_t * ll_p);
+_bool ll_is_empty(ll_t * ll_p);
 /**********************
  *      MACROS
  **********************/

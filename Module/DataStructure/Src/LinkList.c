@@ -11,11 +11,6 @@
 
 #include "OSAL_Memory.h"
 
-#include <stdint.h>
-#include <string.h>
-#include <stddef.h>
-#include <stdbool.h>
-
 #include "LinkList.h"
 
 /*********************
@@ -57,7 +52,7 @@ static void node_set_next(ll_t * ll_p, ll_node_t * act, ll_node_t * next);
  * @param ll_dsc pointer to ll_dsc variable
  * @param node_size the size of 1 node in bytes
  */
-void ll_init(ll_t * ll_p, uint32_t node_size)
+void ll_init(ll_t * ll_p, uint32 node_size)
 {
     ll_p->head = NULL;
     ll_p->tail = NULL;
@@ -220,7 +215,7 @@ void ll_clear(ll_t * ll_p)
  * @param head true: be the head in the new list
  *             false be the head in the new list
  */
-void ll_chg_list(ll_t * ll_ori_p, ll_t * ll_new_p, void * node, bool head)
+void ll_chg_list(ll_t * ll_ori_p, ll_t * ll_new_p, void * node, _bool head)
 {
     ll_rem(ll_ori_p, node);
 
@@ -326,9 +321,9 @@ void * ll_get_prev(const ll_t * ll_p, const void * n_act)
  * @param ll_p pointer to linked list
  * @return length of the linked list
  */
-uint32_t ll_get_len(const ll_t * ll_p)
+uint32 ll_get_len(const ll_t * ll_p)
 {
-    uint32_t len = 0;
+    uint32 len = 0;
     void * node;
 
     for(node = ll_get_head(ll_p); node != NULL; node = ll_get_next(ll_p, node)) {
@@ -385,13 +380,13 @@ void ll_move_before(ll_t * ll_p, void * n_act, void * n_after)
  * @param ll_p pointer to a linked list
  * @return true: the linked list is empty; false: not empty
  */
-bool ll_is_empty(ll_t * ll_p)
+_bool ll_is_empty(ll_t * ll_p)
 {
-    if(ll_p == NULL) return true;
+    if(ll_p == NULL) return TRUE;
 
-    if(ll_p->head == NULL && ll_p->tail == NULL) return true;
+    if(ll_p->head == NULL && ll_p->tail == NULL) return TRUE;
 
-    return false;
+    return FALSE;
 }
 
 /**********************
@@ -408,7 +403,7 @@ static void node_set_prev(ll_t * ll_p, ll_node_t * act, ll_node_t * prev)
 {
     if(act == NULL) return; /*Can't set the prev node of `NULL`*/
 
-    uint32_t node_p_size = sizeof(ll_node_t *);
+    uint32 node_p_size = sizeof(ll_node_t *);
     if(prev)
         LINK_LIST_BUF_MEMCPY(act + LL_PREV_P_OFFSET(ll_p), &prev, node_p_size);
     else
@@ -425,7 +420,7 @@ static void node_set_next(ll_t * ll_p, ll_node_t * act, ll_node_t * next)
 {
     if(act == NULL) return; /*Can't set the next node of `NULL`*/
 
-    uint32_t node_p_size = sizeof(ll_node_t *);
+    uint32 node_p_size = sizeof(ll_node_t *);
     if(next)
         LINK_LIST_BUF_MEMCPY(act + LL_NEXT_P_OFFSET(ll_p), &next, node_p_size);
     else
