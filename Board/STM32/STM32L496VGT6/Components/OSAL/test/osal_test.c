@@ -101,3 +101,131 @@ static void msg_send_str( uint8 *str_ptr )
     osal_msg_send( App_TaskID, (uint8 *)msg );
   }
 } // msg_send_str()
+
+
+/*
+ * Put LEDs in sleep state - store current values
+ */
+extern void HalLedEnterSleep( void );
+
+/*
+ * Retore LEDs from sleep state
+ */
+extern void HalLedExitSleep( void );
+
+/*
+ * Return LED state
+ */
+extern uint8 HalLedGetState ( void );
+
+/*
+ * Breath led
+ */
+extern uint32 HalledBreathHandle(HalledBreath_t* breath);
+
+static uint8 HalSleepLedState;         // LED state at last set/clr/blink update
+
+/***************************************************************************************************
+ * @fn      HalLedEnterSleep
+ *
+ * @brief   Store current LEDs state before sleep
+ *
+ * @param   none
+ *
+ * @return  none
+ ***************************************************************************************************/
+void HalLedEnterSleep( void )
+{
+#ifdef BLINK_LEDS
+  /* Sleep ON */
+  HalLedStatusControl.sleepActive = TRUE;
+#endif /* BLINK_LEDS */
+
+#if (HAL_LED == TRUE)
+  /* Save the state of each led */
+  HalSleepLedState = 0;
+#ifndef _WIN32
+  HalSleepLedState |= BSP_LED_Read(USER_LD1);
+  HalSleepLedState |= BSP_LED_Read(USER_LD2) << 1;
+  HalSleepLedState |= BSP_LED_Read(USER_LD3) << 2;
+
+#else
+  HalSleepLedState |= BSP_GetLEDState(0);
+  HalSleepLedState |= BSP_GetLEDState(1) << 1;
+  HalSleepLedState |= BSP_GetLEDState(2) << 2;
+#endif
+  /* TURN OFF all LEDs to save power */
+  HalLedOnOff (HAL_LED_ALL, HAL_LED_MODE_OFF);
+#endif /* HAL_LED */
+
+}
+
+/***************************************************************************************************
+ * @fn      HalLedExitSleep
+ *
+ * @brief   Restore current LEDs state after sleep
+ *
+ * @param   none
+ *
+ * @return  none
+ ***************************************************************************************************/
+void HalLedExitSleep( void )
+{
+#if (HAL_LED == TRUE)
+  /* Load back the saved state */
+  HalLedOnOff(HalSleepLedState, HAL_LED_MODE_ON);
+
+  /* Restart - This takes care BLINKING LEDS */
+  HalLedUpdate();
+#endif /* HAL_LED */
+
+#ifdef BLINK_LEDS
+  /* Sleep OFF */
+  HalLedStatusControl.sleepActive = FALSE;
+#endif /* BLINK_LEDS */
+}
+
+/***************************************************************************************************
+ * @fn      HalledBreathHandle
+ *
+ * @brief   Breath LEDs
+ *
+ * @param   none
+ *
+ * @return  none
+ ***************************************************************************************************/
+uint32 HalledBreathHandle(HalledBreath_t* breath)
+{
+    uint32 min, max, cal;
+
+    cal = breath->cal;
+    min = (uint32)(breath->min << 8);
+    max = (uint32)(breath->max << 8);
+
+    if (breath->bdir)
+    {
+        if (cal < min)
+            cal = min;
+
+        cal += cal >> breath->inc;
+
+        if (cal >= max)
+        {
+            cal = max;
+            breath->bdir = 0;
+        }
+    }
+    else
+    {
+        cal -= cal >> breath->inc;
+
+        if (cal <= min)
+        {
+            cal = min;
+            breath->bdir = 1;
+        }
+    }
+    breath->cal = cal;
+    breath->out = (uint16)(cal >> 8);
+    return (breath->out);
+}

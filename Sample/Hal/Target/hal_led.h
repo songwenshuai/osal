@@ -80,26 +80,6 @@ extern uint8 HalLedSet( uint8 led, uint8 mode );
  */
 extern void HalLedBlink( uint8 leds, uint8 cnt, uint8 duty, uint16 time );
 
-/*
- * Put LEDs in sleep state - store current values
- */
-extern void HalLedEnterSleep( void );
-
-/*
- * Retore LEDs from sleep state
- */
-extern void HalLedExitSleep( void );
-
-/*
- * Return LED state
- */
-extern uint8 HalLedGetState ( void );
-
-/*
- * Breath led
- */
-extern uint32 HalledBreathHandle(HalledBreath_t* breath);
-
 /*********************************************************************
 *********************************************************************/
 

@@ -43,7 +43,8 @@ uint8 App_TaskID;
   */
 
 static void App_ProcessOSALMsg( DebugStr_t *pInMsg );
-static void App_TimerCB(uint8* pData);
+static void Periodic_Event( void );
+static void App_TimerCB( uint8* pData );
 
 /*********************************************************************
  * @fn          App_Init
@@ -119,12 +120,27 @@ uint16 App_ProcessEvent(uint8 task_id, uint16 events)
         }
         
         // Perform periodic application task
-
+        Periodic_Event();
+        
         return (events ^ SBP_PERIODIC_EVT);
     }
 
     // Discard unknown events
     return 0;
+}
+
+/*********************************************************************
+ * @fn          Periodic_Event
+ *
+ * @brief       Periodic Event.
+ *
+ * @param       none
+ *
+ * @return      none
+ */
+static void Periodic_Event(void)
+{
+
 }
 
 /*********************************************************************
