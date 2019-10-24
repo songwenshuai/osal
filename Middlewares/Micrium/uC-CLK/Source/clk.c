@@ -173,7 +173,7 @@ static  const  CPU_CHAR *  const  Clk_StrDayOfWk[DEF_TIME_NBR_DAY_PER_WK] = {
 */
 
 #if    (CLK_CFG_EXT_EN    != DEF_ENABLED)
-static  CLK_TS_SEC    Clk_TS_UTC_sec;
+CLK_TS_SEC    Clk_TS_UTC_sec;
 #endif
 static  CLK_TZ_SEC    Clk_TZ_sec;
 
