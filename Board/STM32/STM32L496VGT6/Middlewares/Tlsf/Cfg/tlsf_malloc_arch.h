@@ -31,7 +31,7 @@
 
 #define HEAP_SRAM          ccmHeap
 
-#define HEAP_SRAM_SIZE     16384
+#define HEAP_SRAM_SIZE     (300 * 1024)
 
 #define HEAP_SRAM_SECTION  FAST_SECTION
 

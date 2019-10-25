@@ -9,7 +9,8 @@
 #ifndef _FAL_CFG_H_
 #define _FAL_CFG_H_
 
-#include <rtconfig.h>
+#define FAL_DEBUG 1
+#define FAL_PART_HAS_TABLE_CFG
 
 #define ONCHIP_FLASH_DEV_NAME             "onchip_flash"
 
