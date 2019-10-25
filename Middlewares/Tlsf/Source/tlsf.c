@@ -7,6 +7,8 @@
 
 #include "tlsf.h"
 
+#pragma diag_suppress = Pe236
+
 #if defined(__cplusplus)
 #define tlsf_decl inline
 #else
@@ -1262,3 +1264,5 @@ void* tlsf_realloc(tlsf_t tlsf, void* ptr, size_t size)
 
 	return p;
 }
+
+#pragma diag_default = Pe236
