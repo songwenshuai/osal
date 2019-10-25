@@ -352,21 +352,21 @@
           <name>CCIncludePath2</name>
           <state>$PROJ_DIR$/../Bsp/Button</state>
           <state>$PROJ_DIR$/../Bsp/Led</state>
-          <state>$PROJ_DIR$/../Ports/Armink</state>
-          <state>$PROJ_DIR$/../Ports/Armink/CmBacktrace/inc</state>
-          <state>$PROJ_DIR$/../Ports/Armink/EasyFlash/inc</state>
-          <state>$PROJ_DIR$/../Ports/Armink/Fal/inc</state>
-          <state>$PROJ_DIR$/../Ports/Armink/Easylogger/inc</state>
-          <state>$PROJ_DIR$/../Ports/Armink/Easylogger/plugins/flash</state>
-          <state>$PROJ_DIR$/../Ports/Micrium/uC-CLK/Cfg</state>
-          <state>$PROJ_DIR$/../Ports/Micrium/uC-CRC/Cfg</state>
-          <state>$PROJ_DIR$/../Ports/Micrium/uC-CLK/Cfg</state>
-          <state>$PROJ_DIR$/../Ports/Micrium/uC-LIB/Config</state>
-          <state>$PROJ_DIR$/../Ports/Micrium/uC-LIB/Ports</state>
-          <state>$PROJ_DIR$/../Ports/Micrium/uC-Shell/Cfg</state>
-          <state>$PROJ_DIR$/../Ports/Micrium/uC-Shell/Terminal/Cfg</state>
-          <state>$PROJ_DIR$/../Ports/OSAL/Cfg</state>
-          <state>$PROJ_DIR$/../Ports/Tlsf/Cfg</state>
+          <state>$PROJ_DIR$/../Middlewares</state>
+          <state>$PROJ_DIR$/../Middlewares/CmBacktrace/Cfg</state>
+          <state>$PROJ_DIR$/../Middlewares/EasyFlash/Cfg</state>
+          <state>$PROJ_DIR$/../Middlewares/Easylogger/Cfg</state>
+          <state>$PROJ_DIR$/../Middlewares/Easylogger/Plugins/flash/Cfg</state>
+          <state>$PROJ_DIR$/../Middlewares/Fal/Cfg</state>
+          <state>$PROJ_DIR$/../Middlewares/Fal/Port</state>
+          <state>$PROJ_DIR$/../Middlewares/OSAL/Cfg</state>
+          <state>$PROJ_DIR$/../Middlewares/Tlsf/Cfg</state>
+          <state>$PROJ_DIR$/../Middlewares/uC-CLK/Cfg</state>
+          <state>$PROJ_DIR$/../Middlewares/uC-CRC/Cfg</state>
+          <state>$PROJ_DIR$/../Middlewares/uC-LIB/Cfg</state>
+          <state>$PROJ_DIR$/../Middlewares/uC-LIB/Port</state>
+          <state>$PROJ_DIR$/../Middlewares/uC-Shell/Cfg</state>
+          <state>$PROJ_DIR$/../Middlewares/uC-Shell/Terminal/Cfg</state>
           <state>$PROJ_DIR$/../Core/Inc</state>
           <state>$PROJ_DIR$/../Drivers/STM32L4xx_HAL_Driver/Inc</state>
           <state>$PROJ_DIR$/../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy</state>
@@ -375,28 +375,28 @@
           <state>$PROJ_DIR$/../../../../Sample/App</state>
           <state>$PROJ_DIR$/../../../../Sample/Hal</state>
           <state>$PROJ_DIR$/../../../../Sample/Hal/Target</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/Armink/EasyFlash/easyflash/inc</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/Armink/Fal/inc</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/Armink/EasyLogger/easylogger/inc</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/Armink/EasyLogger/easylogger/plugins/flash</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/Armink/CmBacktrace/cm_backtrace</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-LIB</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-CRC/Source</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-Common/Auth</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-Common/Collections</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-Common</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-CLK/Source</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-Shell/Cmd/General</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-Shell/Source</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/Micrium/uC-Shell/Terminal/Source</state>
+          <state>$PROJ_DIR$/../../../../Middlewares/CmBacktrace/Source</state>
+          <state>$PROJ_DIR$/../../../../Middlewares/DataStructure/Source/Inc</state>
+          <state>$PROJ_DIR$/../../../../Middlewares/EasyFlash/Source</state>
+          <state>$PROJ_DIR$/../../../../Middlewares/EasyLogger/Plugins/flash/Source</state>
+          <state>$PROJ_DIR$/../../../../Middlewares/EasyLogger/Source</state>
+          <state>$PROJ_DIR$/../../../../Middlewares/Fal/Source</state>
+          <state>$PROJ_DIR$/../../../../Middlewares/FlexibleButton/Source</state>
+          <state>$PROJ_DIR$/../../../../Middlewares/HardFault/Source</state>
           <state>$PROJ_DIR$/../../../../Middlewares/OSAL/Source/Inc</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/SEGGER/HardFault/Source</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/SEGGER/SystemView/Config</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/SEGGER/SystemView/SEGGER</state>
-          <state>$PROJ_DIR$/../../../../Module/DataStructure/Inc</state>
-          <state>$PROJ_DIR$/../../../../Module/FlexibleButton</state>
-          <state>$PROJ_DIR$/../../../../Module/Printf</state>
-          <state>$PROJ_DIR$/../../../../Module/Tlsf</state>
+          <state>$PROJ_DIR$/../../../../Middlewares/Printf/Source</state>
+          <state>$PROJ_DIR$/../../../../Middlewares/SystemView/Config</state>
+          <state>$PROJ_DIR$/../../../../Middlewares/SystemView/SEGGER</state>
+          <state>$PROJ_DIR$/../../../../Middlewares/Tlsf/Source</state>
+          <state>$PROJ_DIR$/../../../../Middlewares/uC-CLK/Source</state>
+          <state>$PROJ_DIR$/../../../../Middlewares/uC-Common/Auth</state>
+          <state>$PROJ_DIR$/../../../../Middlewares/uC-Common/Collections</state>
+          <state>$PROJ_DIR$/../../../../Middlewares/uC-Common</state>
+          <state>$PROJ_DIR$/../../../../Middlewares/uC-CRC/Source</state>
+          <state>$PROJ_DIR$/../../../../Middlewares/uC-LIB/Source</state>
+          <state>$PROJ_DIR$/../../../../Middlewares/uC-Shell/Cmd/General</state>
+          <state>$PROJ_DIR$/../../../../Middlewares/uC-Shell/Source</state>
+          <state>$PROJ_DIR$/../../../../Middlewares/uC-Shell/Terminal/Source</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -662,8 +662,8 @@
         </option>
         <option>
           <name>AUserIncludes</name>
-          <state>$PROJ_DIR$/../../../../Middlewares\SEGGER/SystemView\Config</state>
-          <state>$PROJ_DIR$/../../../../Middlewares\SEGGER/SystemView\SEGGER</state>
+          <state>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\Config</state>
+          <state>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\SEGGER</state>
         </option>
         <option>
           <name>AExtraOptionsCheckV2</name>
@@ -1112,9 +1112,6 @@
         <file>
           <name>$PROJ_DIR$\..\Bsp\Button\bsp_pb.h</name>
         </file>
-        <file>
-          <name>$PROJ_DIR$\..\Bsp\Button\flexible_button_demo.c</name>
-        </file>
       </group>
       <group>
         <name>LED</name>
@@ -1226,294 +1223,249 @@
   <group>
     <name>Middlewares</name>
     <group>
-      <name>Armink</name>
+      <name>CmBacktrace</name>
       <group>
-        <name>CmBacktrace</name>
+        <name>Cfg</name>
         <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\Armink\CmBacktrace\cm_backtrace\cm_backtrace.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\Armink\CmBacktrace\cm_backtrace\fault_handler\iar\cmb_fault.S</name>
+          <name>$PROJ_DIR$\..\Middlewares\CmBacktrace\Cfg\cmb_cfg.h</name>
         </file>
       </group>
       <group>
-        <name>EasyFlash</name>
+        <name>Source</name>
         <group>
-          <name>Port</name>
-          <file>
-            <name>$PROJ_DIR$\..\Ports\Armink\EasyFlash\port\ef_fal_port.c</name>
-          </file>
-        </group>
-        <group>
-          <name>Src</name>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Armink\EasyFlash\easyflash\src\easyflash.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Armink\EasyFlash\easyflash\src\ef_env_legacy.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Armink\EasyFlash\easyflash\src\ef_env_legacy_wl.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Armink\EasyFlash\easyflash\src\ef_iap.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Armink\EasyFlash\easyflash\src\ef_log.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Armink\EasyFlash\easyflash\src\ef_utils.c</name>
-          </file>
-        </group>
-      </group>
-      <group>
-        <name>Easylogger</name>
-        <group>
-          <name>Plugins</name>
+          <name>fault_handler</name>
           <group>
-            <name>Flash</name>
+            <name>iar</name>
             <file>
-              <name>$PROJ_DIR$\..\..\..\..\Middlewares\Armink\EasyLogger\easylogger\plugins\flash\elog_flash.c</name>
-            </file>
-            <file>
-              <name>$PROJ_DIR$\..\Ports\Armink\Easylogger\plugins\flash\elog_flash_port.c</name>
+              <name>$PROJ_DIR$\..\..\..\..\Middlewares\CmBacktrace\Source\fault_handler\iar\cmb_fault.S</name>
             </file>
           </group>
         </group>
-        <group>
-          <name>Port</name>
-          <file>
-            <name>$PROJ_DIR$\..\Ports\Armink\Easylogger\port\elog_port.c</name>
-          </file>
-        </group>
-        <group>
-          <name>Src</name>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Armink\EasyLogger\easylogger\src\elog.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Armink\EasyLogger\easylogger\src\elog_async.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Armink\EasyLogger\easylogger\src\elog_buf.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Armink\EasyLogger\easylogger\src\elog_utils.c</name>
-          </file>
-        </group>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\CmBacktrace\Source\cm_backtrace.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\CmBacktrace\Source\cm_backtrace.h</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\CmBacktrace\Source\cmb_def.h</name>
+        </file>
       </group>
+    </group>
+    <group>
+      <name>DataStructure</name>
       <group>
-        <name>Fal</name>
+        <name>Source</name>
         <group>
-          <name>Port</name>
+          <name>Inc</name>
           <file>
-            <name>$PROJ_DIR$\..\Ports\Armink\Fal\port\drv_flash_l4.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Source\Inc\Array.h</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Source\Inc\Fifo.h</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Source\Inc\LinkList.h</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Source\Inc\List.h</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Source\Inc\Queue.h</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Source\Inc\Ring.h</name>
           </file>
         </group>
         <group>
           <name>Src</name>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Armink\Fal\src\fal.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Source\Src\Array.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Armink\Fal\src\fal_flash.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Source\Src\Fifo.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Armink\Fal\src\fal_partition.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Source\Src\LinkList.c</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Source\Src\List.c</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Source\Src\Queue.c</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Source\Src\Ring.c</name>
           </file>
         </group>
       </group>
     </group>
     <group>
-      <name>Micrium</name>
+      <name>EasyFlash</name>
       <group>
-        <name>uC-CLK</name>
-        <group>
-          <name>Cfg</name>
-          <file>
-            <name>$PROJ_DIR$\..\Ports\Micrium\uC-CLK\Cfg\clk_cfg.h</name>
-          </file>
-        </group>
-        <group>
-          <name>Source</name>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-CLK\Source\clk.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-CLK\Source\clk.h</name>
-          </file>
-        </group>
-      </group>
-      <group>
-        <name>uC-Common</name>
-        <group>
-          <name>Auth</name>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-Common\Auth\auth.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-Common\Auth\auth.h</name>
-          </file>
-        </group>
-        <group>
-          <name>Collections</name>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-Common\Collections\slist.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-Common\Collections\slist.h</name>
-          </file>
-        </group>
+        <name>Cfg</name>
         <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-Common\common_err.h</name>
+          <name>$PROJ_DIR$\..\Middlewares\EasyFlash\Cfg\ef_cfg.h</name>
         </file>
       </group>
       <group>
-        <name>uC-CRC</name>
-        <group>
-          <name>Cfg</name>
-          <file>
-            <name>$PROJ_DIR$\..\Ports\Micrium\uC-CRC\Cfg\crc_cfg.h</name>
-          </file>
-        </group>
-        <group>
-          <name>Source</name>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-CRC\Source\crc_util.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-CRC\Source\crc_util.h</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-CRC\Source\ecc.h</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-CRC\Source\ecc_hamming.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-CRC\Source\ecc_hamming.h</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-CRC\Source\edc_crc.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-CRC\Source\edc_crc.h</name>
-          </file>
-        </group>
+        <name>Port</name>
+        <file>
+          <name>$PROJ_DIR$\..\Middlewares\EasyFlash\Port\ef_fal_port.c</name>
+        </file>
       </group>
       <group>
-        <name>uC-LIB</name>
-        <group>
-          <name>Config</name>
-          <file>
-            <name>$PROJ_DIR$\..\Ports\Micrium\uC-LIB\Config\lib_cfg.h</name>
-          </file>
-        </group>
-        <group>
-          <name>Ports</name>
-          <group>
-            <name>IAR</name>
-            <file>
-              <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-LIB\Ports\IAR\lib_mem_a.asm</name>
-            </file>
-          </group>
-          <file>
-            <name>$PROJ_DIR$\..\Ports\Micrium\uC-LIB\Ports\cpu.h</name>
-          </file>
-        </group>
-        <group>
-          <name>Source</name>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-LIB\lib_ascii.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-LIB\lib_ascii.h</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-LIB\lib_def.h</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-LIB\lib_math.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-LIB\lib_math.h</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-LIB\lib_mem.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-LIB\lib_mem.h</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-LIB\lib_str.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-LIB\lib_str.h</name>
-          </file>
-        </group>
+        <name>Source</name>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\EasyFlash\Source\easyflash.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\EasyFlash\Source\easyflash.h</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\EasyFlash\Source\ef_env_legacy.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\EasyFlash\Source\ef_env_legacy_wl.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\EasyFlash\Source\ef_iap.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\EasyFlash\Source\ef_log.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\EasyFlash\Source\ef_utils.c</name>
+        </file>
+      </group>
+    </group>
+    <group>
+      <name>Easylogger</name>
+      <group>
+        <name>Cfg</name>
+        <file>
+          <name>$PROJ_DIR$\..\Middlewares\Easylogger\Cfg\elog_cfg.h</name>
+        </file>
       </group>
       <group>
-        <name>uC-Shell</name>
+        <name>Plugins</name>
         <group>
-          <name>Cfg</name>
-          <file>
-            <name>$PROJ_DIR$\..\Ports\Micrium\uC-Shell\Cfg\shell_cfg.h</name>
-          </file>
-        </group>
-        <group>
-          <name>Cmd</name>
-          <group>
-            <name>General</name>
-            <file>
-              <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-Shell\Cmd\General\sh_shell.c</name>
-            </file>
-            <file>
-              <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-Shell\Cmd\General\sh_shell.h</name>
-            </file>
-          </group>
-        </group>
-        <group>
-          <name>Source</name>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-Shell\Source\shell.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-Shell\Source\shell.h</name>
-          </file>
-        </group>
-        <group>
-          <name>Terminal</name>
+          <name>flash</name>
           <group>
             <name>Cfg</name>
             <file>
-              <name>$PROJ_DIR$\..\Ports\Micrium\uC-Shell\Terminal\Cfg\terminal_cfg.h</name>
+              <name>$PROJ_DIR$\..\Middlewares\Easylogger\Plugins\flash\Cfg\elog_flash_cfg.h</name>
             </file>
           </group>
           <group>
-            <name>Mode</name>
-            <group>
-              <name>VT100</name>
-              <file>
-                <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-Shell\Terminal\Mode\VT100\terminal_mode.c</name>
-              </file>
-            </group>
-          </group>
-          <group>
-            <name>Serial</name>
+            <name>Port</name>
             <file>
-              <name>$PROJ_DIR$\..\Ports\Micrium\uC-Shell\Terminal\Serial\terminal_serial.c</name>
+              <name>$PROJ_DIR$\..\Middlewares\Easylogger\Plugins\flash\Port\elog_flash_port.c</name>
             </file>
           </group>
           <group>
             <name>Source</name>
             <file>
-              <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-Shell\Terminal\Source\terminal.c</name>
+              <name>$PROJ_DIR$\..\..\..\..\Middlewares\EasyLogger\Plugins\flash\Source\elog_flash.c</name>
             </file>
             <file>
-              <name>$PROJ_DIR$\..\..\..\..\Middlewares\Micrium\uC-Shell\Terminal\Source\terminal.h</name>
+              <name>$PROJ_DIR$\..\..\..\..\Middlewares\EasyLogger\Plugins\flash\Source\elog_flash.h</name>
             </file>
           </group>
         </group>
+      </group>
+      <group>
+        <name>Port</name>
+        <file>
+          <name>$PROJ_DIR$\..\Middlewares\Easylogger\Port\elog_port.c</name>
+        </file>
+      </group>
+      <group>
+        <name>Source</name>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\EasyLogger\Source\elog.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\EasyLogger\Source\elog.h</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\EasyLogger\Source\elog_async.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\EasyLogger\Source\elog_buf.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\EasyLogger\Source\elog_utils.c</name>
+        </file>
+      </group>
+    </group>
+    <group>
+      <name>Fal</name>
+      <group>
+        <name>Cfg</name>
+        <file>
+          <name>$PROJ_DIR$\..\Middlewares\Fal\Cfg\fal_cfg.h</name>
+        </file>
+      </group>
+      <group>
+        <name>Port</name>
+        <file>
+          <name>$PROJ_DIR$\..\Middlewares\Fal\Port\drv_flash.h</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\Middlewares\Fal\Port\drv_flash_l4.c</name>
+        </file>
+      </group>
+      <group>
+        <name>Source</name>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\Fal\Source\fal.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\Fal\Source\fal.h</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\Fal\Source\fal_def.h</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\Fal\Source\fal_flash.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\Fal\Source\fal_partition.c</name>
+        </file>
+      </group>
+    </group>
+    <group>
+      <name>FlexibleButton</name>
+      <group>
+        <name>Port</name>
+        <file>
+          <name>$PROJ_DIR$\..\Middlewares\FlexibleButton\Port\flexible_button_demo.c</name>
+        </file>
+      </group>
+      <group>
+        <name>Source</name>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\FlexibleButton\Source\flexible_button.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\FlexibleButton\Source\flexible_button.h</name>
+        </file>
+      </group>
+    </group>
+    <group>
+      <name>HardFault</name>
+      <excluded>
+        <configuration>STM32L496VGT6</configuration>
+      </excluded>
+      <group>
+        <name>Source</name>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\HardFault\Source\HardFaultHandler.S</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\HardFault\Source\SEGGER_HardFaultHandler.c</name>
+        </file>
       </group>
     </group>
     <group>
@@ -1521,13 +1473,13 @@
       <group>
         <name>Config</name>
         <file>
-          <name>$PROJ_DIR$\..\Ports\OSAL\Cfg\OSAL_Config.h</name>
+          <name>$PROJ_DIR$\..\Middlewares\OSAL\Cfg\OSAL_Config.h</name>
         </file>
       </group>
       <group>
         <name>Port</name>
         <file>
-          <name>$PROJ_DIR$\..\Ports\OSAL\Port\OSAL_Port.c</name>
+          <name>$PROJ_DIR$\..\Middlewares\OSAL\Port\OSAL_Port.c</name>
         </file>
       </group>
       <group>
@@ -1580,183 +1532,300 @@
       </group>
     </group>
     <group>
-      <name>SEGGER</name>
+      <name>Printf</name>
       <group>
-        <name>HardFault</name>
-        <excluded>
-          <configuration>STM32L496VGT6</configuration>
-        </excluded>
-        <group>
-          <name>Source</name>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\SEGGER\HardFault\Source\HardFaultHandler.S</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\SEGGER\HardFault\Source\SEGGER_HardFaultHandler.c</name>
-          </file>
-        </group>
+        <name>Source</name>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\Printf\Source\printf.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\Printf\Source\printf.h</name>
+        </file>
+      </group>
+    </group>
+    <group>
+      <name>SystemView</name>
+      <group>
+        <name>Config</name>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\Config\Global.h</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\Config\SEGGER_RTT_Conf.h</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\Config\SEGGER_SYSVIEW_Conf.h</name>
+        </file>
       </group>
       <group>
-        <name>SystemView</name>
+        <name>Sample</name>
         <group>
-          <name>Config</name>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\SEGGER\SystemView\Config\Global.h</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\SEGGER\SystemView\Config\SEGGER_RTT_Conf.h</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\SEGGER\SystemView\Config\SEGGER_SYSVIEW_Conf.h</name>
-          </file>
-        </group>
-        <group>
-          <name>Sample</name>
+          <name>NoOS</name>
           <group>
-            <name>NoOS</name>
+            <name>Config</name>
             <group>
-              <name>Config</name>
-              <group>
-                <name>Cortex-M</name>
-                <file>
-                  <name>$PROJ_DIR$\..\..\..\..\Middlewares\SEGGER\SystemView\Sample\NoOS\Config\Cortex-M\SEGGER_SYSVIEW_Config_NoOS.c</name>
-                </file>
-              </group>
+              <name>Cortex-M</name>
+              <file>
+                <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\Sample\NoOS\Config\Cortex-M\SEGGER_SYSVIEW_Config_NoOS.c</name>
+              </file>
             </group>
           </group>
         </group>
-        <group>
-          <name>SEGGER</name>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\SEGGER\SystemView\SEGGER\SEGGER.h</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\SEGGER\SystemView\SEGGER\SEGGER_RTT.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\SEGGER\SystemView\SEGGER\SEGGER_RTT.h</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\SEGGER\SystemView\SEGGER\SEGGER_RTT_ASM_ARMv7M.S</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\SEGGER\SystemView\SEGGER\SEGGER_RTT_printf.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\SEGGER\SystemView\SEGGER\SEGGER_RTT_Syscalls_GCC.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\SEGGER\SystemView\SEGGER\SEGGER_RTT_Syscalls_IAR.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\SEGGER\SystemView\SEGGER\SEGGER_RTT_Syscalls_KEIL.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\SEGGER\SystemView\SEGGER\SEGGER_RTT_Syscalls_SES.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\SEGGER\SystemView\SEGGER\SEGGER_SYSVIEW.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\SEGGER\SystemView\SEGGER\SEGGER_SYSVIEW.h</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\SEGGER\SystemView\SEGGER\SEGGER_SYSVIEW_ConfDefaults.h</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\SEGGER\SystemView\SEGGER\SEGGER_SYSVIEW_Int.h</name>
-          </file>
-        </group>
-      </group>
-    </group>
-  </group>
-  <group>
-    <name>Module</name>
-    <group>
-      <name>DataStructure</name>
-      <group>
-        <name>Inc</name>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Module\DataStructure\Inc\Array.h</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Module\DataStructure\Inc\Fifo.h</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Module\DataStructure\Inc\LinkList.h</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Module\DataStructure\Inc\List.h</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Module\DataStructure\Inc\Queue.h</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Module\DataStructure\Inc\Ring.h</name>
-        </file>
       </group>
       <group>
-        <name>Src</name>
+        <name>SEGGER</name>
         <file>
-          <name>$PROJ_DIR$\..\..\..\..\Module\DataStructure\Src\Array.c</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\SEGGER\SEGGER.h</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\..\Module\DataStructure\Src\Fifo.c</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_RTT.c</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\..\Module\DataStructure\Src\LinkList.c</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_RTT.h</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\..\Module\DataStructure\Src\List.c</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_RTT_ASM_ARMv7M.S</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\..\Module\DataStructure\Src\Queue.c</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_RTT_printf.c</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\..\Module\DataStructure\Src\Ring.c</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_RTT_Syscalls_GCC.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_RTT_Syscalls_IAR.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_RTT_Syscalls_KEIL.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_RTT_Syscalls_SES.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_SYSVIEW.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_SYSVIEW.h</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_SYSVIEW_ConfDefaults.h</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\SEGGER\SEGGER_SYSVIEW_Int.h</name>
         </file>
       </group>
-    </group>
-    <group>
-      <name>FlexibleButton</name>
-      <file>
-        <name>$PROJ_DIR$\..\..\..\..\Module\FlexibleButton\flexible_button.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$\..\..\..\..\Module\FlexibleButton\flexible_button.h</name>
-      </file>
-    </group>
-    <group>
-      <name>Printf</name>
-      <file>
-        <name>$PROJ_DIR$\..\..\..\..\Module\Printf\printf.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$\..\..\..\..\Module\Printf\printf.h</name>
-      </file>
     </group>
     <group>
       <name>Tlsf</name>
       <group>
         <name>Cfg</name>
         <file>
-          <name>$PROJ_DIR$\..\Ports\Tlsf\Cfg\tlsf_malloc_arch.h</name>
+          <name>$PROJ_DIR$\..\Middlewares\Tlsf\Cfg\tlsf_malloc_arch.h</name>
         </file>
       </group>
       <group>
         <name>Port</name>
         <file>
-          <name>$PROJ_DIR$\..\Ports\Tlsf\Port\tlsf_malloc_arch.c</name>
+          <name>$PROJ_DIR$\..\Middlewares\Tlsf\Port\tlsf_malloc_arch.c</name>
         </file>
       </group>
       <group>
         <name>Source</name>
         <file>
-          <name>$PROJ_DIR$\..\..\..\..\Module\Tlsf\tlsf.c</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\Tlsf\Source\tlsf.c</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\..\Module\Tlsf\tlsf.h</name>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\Tlsf\Source\tlsf.h</name>
         </file>
+      </group>
+    </group>
+    <group>
+      <name>uC-CLK</name>
+      <group>
+        <name>Cfg</name>
+        <file>
+          <name>$PROJ_DIR$\..\Middlewares\uC-CLK\Cfg\clk_cfg.h</name>
+        </file>
+      </group>
+      <group>
+        <name>Source</name>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-CLK\Source\clk.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-CLK\Source\clk.h</name>
+        </file>
+      </group>
+    </group>
+    <group>
+      <name>uC-Common</name>
+      <group>
+        <name>Auth</name>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-Common\Auth\auth.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-Common\Auth\auth.h</name>
+        </file>
+      </group>
+      <group>
+        <name>Collections</name>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-Common\Collections\slist.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-Common\Collections\slist.h</name>
+        </file>
+      </group>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-Common\common_err.h</name>
+      </file>
+    </group>
+    <group>
+      <name>uC-CRC</name>
+      <group>
+        <name>Cfg</name>
+        <file>
+          <name>$PROJ_DIR$\..\Middlewares\uC-CRC\Cfg\crc_cfg.h</name>
+        </file>
+      </group>
+      <group>
+        <name>Source</name>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-CRC\Source\crc_util.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-CRC\Source\crc_util.h</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-CRC\Source\ecc.h</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-CRC\Source\ecc_hamming.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-CRC\Source\ecc_hamming.h</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-CRC\Source\edc_crc.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-CRC\Source\edc_crc.h</name>
+        </file>
+      </group>
+    </group>
+    <group>
+      <name>uC-LIB</name>
+      <group>
+        <name>Cfg</name>
+        <file>
+          <name>$PROJ_DIR$\..\Middlewares\uC-LIB\Cfg\lib_cfg.h</name>
+        </file>
+      </group>
+      <group>
+        <name>Port</name>
+        <group>
+          <name>IAR</name>
+          <file>
+            <name>$PROJ_DIR$\..\Middlewares\uC-LIB\Port\IAR\lib_mem_a.asm</name>
+          </file>
+        </group>
+        <file>
+          <name>$PROJ_DIR$\..\Middlewares\uC-LIB\Port\cpu.h</name>
+        </file>
+      </group>
+      <group>
+        <name>Source</name>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-LIB\Source\lib_ascii.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-LIB\Source\lib_ascii.h</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-LIB\Source\lib_def.h</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-LIB\Source\lib_math.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-LIB\Source\lib_math.h</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-LIB\Source\lib_mem.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-LIB\Source\lib_mem.h</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-LIB\Source\lib_str.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-LIB\Source\lib_str.h</name>
+        </file>
+      </group>
+    </group>
+    <group>
+      <name>uC-Shell</name>
+      <group>
+        <name>Cfg</name>
+        <file>
+          <name>$PROJ_DIR$\..\Middlewares\uC-Shell\Cfg\shell_cfg.h</name>
+        </file>
+      </group>
+      <group>
+        <name>Cmd</name>
+        <group>
+          <name>General</name>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-Shell\Cmd\General\sh_shell.c</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-Shell\Cmd\General\sh_shell.h</name>
+          </file>
+        </group>
+      </group>
+      <group>
+        <name>Source</name>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-Shell\Source\shell.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-Shell\Source\shell.h</name>
+        </file>
+      </group>
+      <group>
+        <name>Terminal</name>
+        <group>
+          <name>Cfg</name>
+          <file>
+            <name>$PROJ_DIR$\..\Middlewares\uC-Shell\Terminal\Cfg\terminal_cfg.h</name>
+          </file>
+        </group>
+        <group>
+          <name>Mode</name>
+          <group>
+            <name>VT100</name>
+            <file>
+              <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-Shell\Terminal\Mode\VT100\terminal_mode.c</name>
+            </file>
+          </group>
+        </group>
+        <group>
+          <name>Serial</name>
+          <file>
+            <name>$PROJ_DIR$\..\Middlewares\uC-Shell\Terminal\Serial\terminal_serial.c</name>
+          </file>
+        </group>
+        <group>
+          <name>Source</name>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-Shell\Terminal\Source\terminal.c</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-Shell\Terminal\Source\terminal.h</name>
+          </file>
+        </group>
       </group>
     </group>
   </group>
