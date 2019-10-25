@@ -27,6 +27,9 @@
  * MACROS
  */
 
+#define OSAL_ALLOC                       tlsf_malloc_r
+#define OSAL_FREE                        tlsf_free_r
+
 /*********************************************************************
  * CONSTANTS
  */
@@ -578,7 +581,7 @@ done:
 /*********************************************************************
  * @fn      osal_memdup
  *
- * @brief   Allocates a buffer [with tlsf_malloc_r()] and copies
+ * @brief   Allocates a buffer [with OSAL_ALLOC()] and copies
  *          the src buffer into the newly allocated space.
  *
  * @param   src - source address
@@ -591,7 +594,7 @@ void *osal_memdup( const void GENERIC *src, unsigned int len )
 {
   uint8 *pDst;
 
-  pDst = tlsf_malloc_r( &HEAP_SRAM, len );
+  pDst = OSAL_ALLOC( &HEAP_SRAM, len );
   if ( pDst )
   {
     osal_memcpy( pDst, src, len );
@@ -928,7 +931,7 @@ uint8 * osal_msg_allocate( uint16 len )
   if ( len == 0 )
     return ( NULL );
 
-  hdr = (osal_msg_hdr_t *) tlsf_malloc_r( &HEAP_SRAM, (short)(len + sizeof( osal_msg_hdr_t )) );
+  hdr = (osal_msg_hdr_t *) OSAL_ALLOC( &HEAP_SRAM, (short)(len + sizeof( osal_msg_hdr_t )) );
   if ( hdr )
   {
     hdr->next = NULL;
@@ -967,7 +970,7 @@ uint8 osal_msg_deallocate( uint8 *msg_ptr )
 
   x = (uint8 *)((uint8 *)msg_ptr - sizeof( osal_msg_hdr_t ));
 
-  tlsf_free_r( &HEAP_SRAM, (void *)x );
+  OSAL_FREE( &HEAP_SRAM, (void *)x );
 
   return ( SUCCESS );
 }

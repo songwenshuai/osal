@@ -26,8 +26,16 @@
 #include "hal_led.h"
 
 /*********************************************************************
+ * MACROS
+ */
+
+#define GENERIC_APP_ALLOC                       tlsf_malloc_r
+#define GENERIC_APP_FREE                        tlsf_free_r
+
+/*********************************************************************
  * GLOBAL VARIABLES
  */
+
 uint8 App_TaskID;
 
 /*********************************************************************
@@ -97,7 +105,7 @@ uint16 App_ProcessEvent(uint8 task_id, uint16 events)
 
     if (events & SBP_START_DEVICE_EVT)
     {
-        ledCmd_t *pCmd = (ledCmd_t *)tlsf_malloc_r( &HEAP_SRAM, sizeof ( ledCmd_t ) );
+        ledCmd_t *pCmd = (ledCmd_t *)GENERIC_APP_ALLOC( &HEAP_SRAM, sizeof ( ledCmd_t ) );
     
         pCmd->connHandle = HAL_LED_MODE_BLINK;
         pCmd->code = HAL_LED_3;

@@ -23,6 +23,13 @@
 #include "printf.h"
 
 /*********************************************************************
+ * MACROS
+ */
+
+#define OSAL_GENERIC_APP_ALLOC                       tlsf_malloc_r
+#define OSAL_GENERIC_APP_FREE                        tlsf_free_r
+
+/*********************************************************************
  * GLOBAL VARIABLES
  */
 
@@ -59,7 +66,7 @@ void osalInitTasks( void )
 {
   uint8 taskID = 0;
 
-  tasksEvents = (uint16 *)tlsf_malloc_r( &HEAP_SRAM, sizeof( uint16 ) * tasksCnt);
+  tasksEvents = (uint16 *)OSAL_GENERIC_APP_ALLOC( &HEAP_SRAM, sizeof( uint16 ) * tasksCnt);
 
   /* The tasksEvents allocated pointer must be valid */
   if (tasksEvents != NULL)

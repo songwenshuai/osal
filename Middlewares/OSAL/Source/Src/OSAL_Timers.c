@@ -20,6 +20,9 @@
  * MACROS
  */
 
+#define TIMERS_ALLOC                       tlsf_malloc_r
+#define TIMERS_FREE                        tlsf_free_r
+
 /*********************************************************************
  * CONSTANTS
  */
@@ -117,7 +120,7 @@ osalTimerRec_t * osalAddTimer( uint8 task_id, uint16 event_flag, uint32 timeout 
   else
   {
     // New Timer
-    newTimer = tlsf_malloc_r( &HEAP_SRAM, sizeof( osalTimerRec_t ) );
+    newTimer = TIMERS_ALLOC( &HEAP_SRAM, sizeof( osalTimerRec_t ) );
 
     if ( newTimer )
     {
@@ -488,7 +491,7 @@ void osalTimerUpdate( uint32 updateTime )
         {
           osal_set_event( freeTimer->task_id, freeTimer->event_flag );
         }
-        tlsf_free_r(&HEAP_SRAM, freeTimer );
+        TIMERS_FREE(&HEAP_SRAM, freeTimer );
       }
     }
   }
