@@ -364,7 +364,6 @@
           <state>$PROJ_DIR$/../Middlewares/OSAL/Cfg</state>
           <state>$PROJ_DIR$/../Middlewares/SystemView/Config</state>
           <state>$PROJ_DIR$/../Middlewares/uC-CLK/Cfg</state>
-          <state>$PROJ_DIR$/../Middlewares/uC-CRC/Cfg</state>
           <state>$PROJ_DIR$/../Middlewares/uC-LIB/Cfg</state>
           <state>$PROJ_DIR$/../Middlewares/uC-LIB/Port</state>
           <state>$PROJ_DIR$/../Middlewares/uC-Shell/Cfg</state>
@@ -390,10 +389,6 @@
           <state>$PROJ_DIR$/../../../../Middlewares/Printf/Source</state>
           <state>$PROJ_DIR$/../../../../Middlewares/SystemView/SEGGER</state>
           <state>$PROJ_DIR$/../../../../Middlewares/uC-CLK/Source</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/uC-Common/Auth</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/uC-Common/Collections</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/uC-Common</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/uC-CRC/Source</state>
           <state>$PROJ_DIR$/../../../../Middlewares/uC-LIB/Source</state>
           <state>$PROJ_DIR$/../../../../Middlewares/uC-Shell/Cmd/General</state>
           <state>$PROJ_DIR$/../../../../Middlewares/uC-Shell/Source</state>
@@ -1455,21 +1450,6 @@
       </group>
     </group>
     <group>
-      <name>HardFault</name>
-      <excluded>
-        <configuration>STM32L496VGT6</configuration>
-      </excluded>
-      <group>
-        <name>Source</name>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\HardFault\Source\HardFaultHandler.S</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\HardFault\Source\SEGGER_HardFaultHandler.c</name>
-        </file>
-      </group>
-    </group>
-    <group>
       <name>Lwmem</name>
       <group>
         <name>Cfg</name>
@@ -1682,63 +1662,6 @@
         </file>
         <file>
           <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-CLK\Source\clk.h</name>
-        </file>
-      </group>
-    </group>
-    <group>
-      <name>uC-Common</name>
-      <group>
-        <name>Auth</name>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-Common\Auth\auth.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-Common\Auth\auth.h</name>
-        </file>
-      </group>
-      <group>
-        <name>Collections</name>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-Common\Collections\slist.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-Common\Collections\slist.h</name>
-        </file>
-      </group>
-      <file>
-        <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-Common\common_err.h</name>
-      </file>
-    </group>
-    <group>
-      <name>uC-CRC</name>
-      <group>
-        <name>Cfg</name>
-        <file>
-          <name>$PROJ_DIR$\..\Middlewares\uC-CRC\Cfg\crc_cfg.h</name>
-        </file>
-      </group>
-      <group>
-        <name>Source</name>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-CRC\Source\crc_util.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-CRC\Source\crc_util.h</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-CRC\Source\ecc.h</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-CRC\Source\ecc_hamming.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-CRC\Source\ecc_hamming.h</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-CRC\Source\edc_crc.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-CRC\Source\edc_crc.h</name>
         </file>
       </group>
     </group>

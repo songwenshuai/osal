@@ -234,4 +234,5 @@ _Case3:
 
 #endif  // defined (RTT_USE_ASM) && (RTT_USE_ASM == 1)
 
+        END
 /*************************** End of file ****************************/
