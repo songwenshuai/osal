@@ -19,7 +19,7 @@
 
 #include "GenericApp.h"
 
-#include "tlsf_malloc.h"
+#include "lwmem.h"
 
 #include "printf.h"
 
@@ -29,8 +29,8 @@
  * MACROS
  */
 
-#define GENERIC_APP_ALLOC                       tlsf_malloc_r
-#define GENERIC_APP_FREE                        tlsf_free_r
+#define GENERIC_APP_ALLOC                       lwmem_malloc
+#define GENERIC_APP_FREE                        lwmem_free
 
 /*********************************************************************
  * GLOBAL VARIABLES
@@ -105,7 +105,7 @@ uint16 App_ProcessEvent(uint8 task_id, uint16 events)
 
     if (events & SBP_START_DEVICE_EVT)
     {
-        ledCmd_t *pCmd = (ledCmd_t *)GENERIC_APP_ALLOC( &HEAP_SRAM, sizeof ( ledCmd_t ) );
+        ledCmd_t *pCmd = (ledCmd_t *)GENERIC_APP_ALLOC( sizeof ( ledCmd_t ) );
     
         pCmd->connHandle = HAL_LED_MODE_BLINK;
         pCmd->code = HAL_LED_3;

@@ -10,34 +10,34 @@
  */
 #include "OSAL.h"
 
-#include "tlsf_malloc.h"
+#include "lwmem.h"
 
 #include "array.h"
 
 #define ARRAY_BUF_MEMCPY                      osal_memcpy
-#define ARRAY_MEM_ALLOC                       tlsf_malloc_r
-#define ARRAY_MEM_FREE                        tlsf_free_r
-#define ARRAY_REALLOC                         tlsf_realloc_r
+#define ARRAY_MEM_ALLOC                       lwmem_malloc
+#define ARRAY_MEM_FREE                        lwmem_free
+#define ARRAY_REALLOC                         lwmem_realloc
 
 #define ARRAY_INIT_SIZE (4) // Size of one GC block.
 
 void array_alloc(array_t **a, array_dtor_t dtor)
 {
-    array_t *array = ARRAY_MEM_ALLOC(&HEAP_SRAM,sizeof(array_t));
+    array_t *array = ARRAY_MEM_ALLOC(sizeof(array_t));
     array->index  = 0;
     array->length = ARRAY_INIT_SIZE;
     array->dtor   = dtor;
-    array->data   = ARRAY_MEM_ALLOC(&HEAP_SRAM,ARRAY_INIT_SIZE * sizeof(void*));
+    array->data   = ARRAY_MEM_ALLOC(ARRAY_INIT_SIZE * sizeof(void*));
     *a = array;
 }
 
 void array_alloc_init(array_t **a, array_dtor_t dtor, int size)
 {
-    array_t *array = ARRAY_MEM_ALLOC(&HEAP_SRAM,sizeof(array_t));
+    array_t *array = ARRAY_MEM_ALLOC(sizeof(array_t));
     array->index  = 0;
     array->length = size;
     array->dtor   = dtor;
-    array->data   = ARRAY_MEM_ALLOC(&HEAP_SRAM,size * sizeof(void*));
+    array->data   = ARRAY_MEM_ALLOC(size * sizeof(void*));
     *a = array;
 }
 
@@ -48,7 +48,7 @@ void array_clear(array_t *array)
             array->dtor(array->data[i]);
         }
     }
-    ARRAY_MEM_FREE(&HEAP_SRAM,array->data);
+    ARRAY_MEM_FREE(array->data);
     array->index = 0;
     array->length = 0;
     array->data = NULL;
@@ -59,7 +59,7 @@ void array_clear(array_t *array)
 void array_free(array_t *array)
 {
     array_clear(array);
-    ARRAY_MEM_FREE(&HEAP_SRAM,array);
+    ARRAY_MEM_FREE(array);
 }
 
 int array_length(array_t *array)
@@ -76,7 +76,7 @@ void array_push_back(array_t *array, void *element)
 {
     if (array->index == array->length) {
         array->length += ARRAY_INIT_SIZE;
-        array->data    = ARRAY_REALLOC(&HEAP_SRAM,array->data, array->length * sizeof(void*));
+        array->data    = ARRAY_REALLOC(array->data, array->length * sizeof(void*));
     }
     array->data[array->index++] = element;
 }
@@ -125,7 +125,7 @@ void array_resize(array_t *array, int num)
             }
             // resize array
             array->length = num;
-            array->data = ARRAY_REALLOC(&HEAP_SRAM,array->data, array->length * sizeof(void*));
+            array->data = ARRAY_REALLOC(array->data, array->length * sizeof(void*));
         }
     }
 }

@@ -31,11 +31,11 @@
  * Author:          Tilen MAJERLE <tilen@majerle.eu>
  * Version:         $_version_$
  */
-#include "lwmem/lwmem.h"
+#include "lwmem.h"
 #include <limits.h>
 
 #if LWMEM_CFG_OS
-#include "system/lwmem_sys.h"
+#include "lwmem_sys.h"
 #endif /* LWMEM_CFG_OS */
 
 /* --- Memory unique part starts --- */

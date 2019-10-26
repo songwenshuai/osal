@@ -19,7 +19,7 @@
 #include "OSAL_Timers.h"
 #include "OSAL_PwrMgr.h"
 
-#include "tlsf_malloc.h"
+#include "lwmem.h"
 
 #include "printf.h"
 
@@ -27,8 +27,8 @@
  * MACROS
  */
 
-#define OSAL_ALLOC                       tlsf_malloc_r
-#define OSAL_FREE                        tlsf_free_r
+#define OSAL_ALLOC                       lwmem_malloc
+#define OSAL_FREE                        lwmem_free
 
 /*********************************************************************
  * CONSTANTS
@@ -53,6 +53,8 @@ osal_msg_q_t osal_qHead;
 /*********************************************************************
  * EXTERNAL FUNCTIONS
  */
+
+extern void lwmem_init(void);
 
 /*
  * Process Polls
@@ -594,7 +596,7 @@ void *osal_memdup( const void GENERIC *src, unsigned int len )
 {
   uint8 *pDst;
 
-  pDst = OSAL_ALLOC( &HEAP_SRAM, len );
+  pDst = OSAL_ALLOC( len );
   if ( pDst )
   {
     osal_memcpy( pDst, src, len );
@@ -931,7 +933,7 @@ uint8 * osal_msg_allocate( uint16 len )
   if ( len == 0 )
     return ( NULL );
 
-  hdr = (osal_msg_hdr_t *) OSAL_ALLOC( &HEAP_SRAM, (short)(len + sizeof( osal_msg_hdr_t )) );
+  hdr = (osal_msg_hdr_t *) OSAL_ALLOC( (short)(len + sizeof( osal_msg_hdr_t )) );
   if ( hdr )
   {
     hdr->next = NULL;
@@ -970,7 +972,7 @@ uint8 osal_msg_deallocate( uint8 *msg_ptr )
 
   x = (uint8 *)((uint8 *)msg_ptr - sizeof( osal_msg_hdr_t ));
 
-  OSAL_FREE( &HEAP_SRAM, (void *)x );
+  OSAL_FREE( (void *)x );
 
   return ( SUCCESS );
 }
@@ -1593,7 +1595,7 @@ uint8 osal_init_system( void )
   OSAL_Init_Hook();
 
   // Initialize the Memory Allocation System
-  tlsf_init_heaps();
+  lwmem_init();
 
   // Initialize the message queue
   osal_qHead = NULL;

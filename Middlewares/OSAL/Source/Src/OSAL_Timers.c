@@ -14,14 +14,14 @@
 #include "OSAL_PwrMgr.h"
 #include "OSAL_Timers.h"
 
-#include "tlsf_malloc.h"
+#include "lwmem.h"
 
 /*********************************************************************
  * MACROS
  */
 
-#define TIMERS_ALLOC                       tlsf_malloc_r
-#define TIMERS_FREE                        tlsf_free_r
+#define TIMERS_ALLOC                       lwmem_malloc
+#define TIMERS_FREE                        lwmem_free
 
 /*********************************************************************
  * CONSTANTS
@@ -120,7 +120,7 @@ osalTimerRec_t * osalAddTimer( uint8 task_id, uint16 event_flag, uint32 timeout 
   else
   {
     // New Timer
-    newTimer = TIMERS_ALLOC( &HEAP_SRAM, sizeof( osalTimerRec_t ) );
+    newTimer = TIMERS_ALLOC( sizeof( osalTimerRec_t ) );
 
     if ( newTimer )
     {
@@ -491,7 +491,7 @@ void osalTimerUpdate( uint32 updateTime )
         {
           osal_set_event( freeTimer->task_id, freeTimer->event_flag );
         }
-        TIMERS_FREE(&HEAP_SRAM, freeTimer );
+        TIMERS_FREE( freeTimer );
       }
     }
   }
