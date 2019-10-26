@@ -362,6 +362,7 @@
           <state>$PROJ_DIR$/../Middlewares/Lwmem/Cfg</state>
           <state>$PROJ_DIR$/../Middlewares/Lwmem/Port</state>
           <state>$PROJ_DIR$/../Middlewares/OSAL/Cfg</state>
+          <state>$PROJ_DIR$/../Middlewares/SystemView/Config</state>
           <state>$PROJ_DIR$/../Middlewares/uC-CLK/Cfg</state>
           <state>$PROJ_DIR$/../Middlewares/uC-CRC/Cfg</state>
           <state>$PROJ_DIR$/../Middlewares/uC-LIB/Cfg</state>
@@ -387,7 +388,6 @@
           <state>$PROJ_DIR$/../../../../Middlewares/Lwmem/Source</state>
           <state>$PROJ_DIR$/../../../../Middlewares/OSAL/Source/Inc</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Printf/Source</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/SystemView/Config</state>
           <state>$PROJ_DIR$/../../../../Middlewares/SystemView/SEGGER</state>
           <state>$PROJ_DIR$/../../../../Middlewares/uC-CLK/Source</state>
           <state>$PROJ_DIR$/../../../../Middlewares/uC-Common/Auth</state>
@@ -1600,13 +1600,13 @@
       <group>
         <name>Config</name>
         <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\Config\Global.h</name>
+          <name>$PROJ_DIR$\..\Middlewares\SystemView\Config\Global.h</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\Config\SEGGER_RTT_Conf.h</name>
+          <name>$PROJ_DIR$\..\Middlewares\SystemView\Config\SEGGER_RTT_Conf.h</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\Config\SEGGER_SYSVIEW_Conf.h</name>
+          <name>$PROJ_DIR$\..\Middlewares\SystemView\Config\SEGGER_SYSVIEW_Conf.h</name>
         </file>
       </group>
       <group>
@@ -1618,7 +1618,7 @@
             <group>
               <name>Cortex-M</name>
               <file>
-                <name>$PROJ_DIR$\..\..\..\..\Middlewares\SystemView\Sample\NoOS\Config\Cortex-M\SEGGER_SYSVIEW_Config_NoOS.c</name>
+                <name>$PROJ_DIR$\..\Middlewares\SystemView\Sample\NoOS\Config\Cortex-M\SEGGER_SYSVIEW_Config_NoOS.c</name>
               </file>
             </group>
           </group>

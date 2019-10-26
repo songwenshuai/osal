@@ -127,7 +127,7 @@ Revision: $Rev: 15024 $
 *
 *       SystemView buffer configuration
 */
-#define SEGGER_SYSVIEW_RTT_BUFFER_SIZE      1024                                // Number of bytes that SystemView uses for the buffer.
+#define SEGGER_SYSVIEW_RTT_BUFFER_SIZE      4096                                // Number of bytes that SystemView uses for the buffer.
 #define SEGGER_SYSVIEW_RTT_CHANNEL          1                                   // The RTT channel that SystemView will use. 0: Auto selection
 
 #define SEGGER_SYSVIEW_USE_STATIC_BUFFER    1                                   // Use a static buffer to generate events instead of a buffer on the stack
@@ -150,7 +150,7 @@ Revision: $Rev: 15024 $
 *
 *       SystemView Id configuration
 */
-#define SEGGER_SYSVIEW_ID_BASE         0x10000000                               // Default value for the lowest Id reported by the application. Can be overridden by the application via SEGGER_SYSVIEW_SetRAMBase(). (i.e. 0x20000000 when all Ids are an address in this RAM)
+#define SEGGER_SYSVIEW_ID_BASE         0x20000000                               // Default value for the lowest Id reported by the application. Can be overridden by the application via SEGGER_SYSVIEW_SetRAMBase(). (i.e. 0x20000000 when all Ids are an address in this RAM)
 #define SEGGER_SYSVIEW_ID_SHIFT        2                                        // Number of bits to shift the Id to save bandwidth. (i.e. 2 when Ids are 4 byte aligned)
 
 /*********************************************************************

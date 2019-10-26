@@ -10,18 +10,8 @@
  * INCLUDES
  */
 
-#ifndef _WIN32
-#ifdef STM32L496xx
 #include "stm32l4xx_hal.h"
-#endif
 
-#ifdef STM32F103xB
-#include "stm32f1xx_hal.h"
-#endif
-#else
-#include "Windows.h"
-#include "stdio.h"
-#endif
 
 #include "OSAL.h"
 #include "OSAL_Clock.h"
@@ -50,24 +40,16 @@
  * GLOBAL VARIABLES
  */
 
-#ifdef STM32L496xx
 extern __IO uint32_t uwTick;
 extern uint32_t uwTickFreq;  /* 1KHz */
-#endif
 
-#ifdef STM32F103xB
-extern __IO uint32_t uwTick;
-extern HAL_TickFreqTypeDef uwTickFreq;  /* 1KHz */
-#endif
 
 extern UART_HandleTypeDef hlpuart1;
 
 /*********************************************************************
  * EXTERN FUNCTIONS
  */
-#ifndef _WIN32
 extern int putc(int ch);
-#endif
 
  /*********************************************************************
   * FUNCTIONS
@@ -84,9 +66,7 @@ extern int putc(int ch);
  ***************************************************************************************************/
 void SysTickIntEnable(void)
 {
-#ifndef _WIN32
     HAL_ResumeTick();
-#endif
 }
 
 
@@ -101,9 +81,7 @@ void SysTickIntEnable(void)
  ***************************************************************************************************/
 void SysTickIntDisable(void)
 {
-#ifndef _WIN32
     HAL_SuspendTick();
-#endif
 }
 
 /*******************************************************************************
@@ -132,11 +110,7 @@ void SysTickIntDisable(void)
 void halSleep( uint32 osal_timeout )
 {
     //Sleep the task for the specified duration
-#ifndef _WIN32
     HAL_Delay(osal_timeout);
-#else
-    Sleep(osal_timeout);
-#endif
 }
 
 /***************************************************************************************************
@@ -157,7 +131,6 @@ void halSleep( uint32 osal_timeout )
  ***************************************************************************************************/
 void HAL_IncTick(void)
 {
-#ifndef _WIN32
   SEGGER_SYSVIEW_RecordEnterISR();
 
   uwTick += uwTickFreq;
@@ -166,7 +139,6 @@ void HAL_IncTick(void)
   osalAdjustTimer(TICK_IN_MS);
 
   SEGGER_SYSVIEW_RecordExitISR();
-#endif
 }
 
 /***************************************************************************************************
@@ -279,19 +251,10 @@ int kbhit(void)
  ***************************************************************************************************/
 void _putchar(char character)
 {
-#ifndef _WIN32
   // send char to console etc.
   int c = (int)character;
 
   if (c == '\n')
     putc('\r');
   putc(c);
-#else
-  // send char to console etc.
-  int c = (int)character;
-
-  if (c == '\n')
-    putchar('\r');
-  putchar(c);
-#endif
 }
