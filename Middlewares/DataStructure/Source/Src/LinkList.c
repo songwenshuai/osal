@@ -9,6 +9,8 @@
  *********************/
 #include "OSAL.h"
 
+#include "OSAL_Helper.h"
+
 #include "lwmem.h"
 
 #include "LinkList.h"

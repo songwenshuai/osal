@@ -32,6 +32,8 @@
  */
 #include "OSAL.h"
 
+#include "OSAL_Helper.h"
+
 #include "Ring.h"
 
 /* --- Buffer unique part starts --- */

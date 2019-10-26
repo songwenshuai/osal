@@ -29,6 +29,8 @@
 
 #include "OSAL.h"
 
+#include "OSAL_Helper.h"
+
 #include "printf.h"
 #include "flexible_button.h"
 #include <stdint.h>

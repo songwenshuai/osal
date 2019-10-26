@@ -12,6 +12,7 @@
  */
 #include "OSAL.h"
 
+#include "OSAL_Helper.h"
 #include "OSAL_Cbtimer.h"
 #include "OSAL_Tasks.h"
 
