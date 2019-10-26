@@ -14,6 +14,7 @@
 
 #include "OSAL.h"
 
+#include "OSAL_Message.h"
 #include "OSAL_Timers.h"
 #include "OSAL_Cbtimer.h"
 

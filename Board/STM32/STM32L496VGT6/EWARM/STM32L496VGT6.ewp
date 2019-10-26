@@ -1539,6 +1539,9 @@
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Helper.h</name>
           </file>
           <file>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Message.h</name>
+          </file>
+          <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Mutex.h</name>
           </file>
           <file>
@@ -1564,6 +1567,9 @@
           </file>
           <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Helper.c</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Message.c</name>
           </file>
           <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Mutex.c</name>
