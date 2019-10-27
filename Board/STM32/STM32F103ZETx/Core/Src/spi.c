@@ -22,6 +22,10 @@
 
 /* USER CODE BEGIN 0 */
 
+uint32_t SpixTimeout = EVAL_SPIx_TIMEOUT_MAX;        /*<! Value of Timeout when SPI communication fails */
+
+static void               SPIx_Error (void);
+
 /* USER CODE END 0 */
 
 SPI_HandleTypeDef hspi1;
@@ -108,6 +112,69 @@ void HAL_SPI_MspDeInit(SPI_HandleTypeDef* spiHandle)
 } 
 
 /* USER CODE BEGIN 1 */
+
+/**
+  * @brief SPI error treatment function
+  */
+static void SPIx_Error (void)
+{
+  /* De-initialize the SPI communication BUS */
+  HAL_SPI_DeInit(&hspi1);
+  
+  /* Re- Initiaize the SPI communication BUS */
+  MX_SPI1_Init();
+}
+
+/**
+  * @brief  Initializes the FLASH SPI and put it into StandBy State (Ready for 
+  *         data transfer).
+  */
+HAL_StatusTypeDef FLASH_SPI_IO_Init(void)
+{
+  HAL_StatusTypeDef Status = HAL_OK;
+  
+  GPIO_InitTypeDef  gpioinitstruct = {0};
+
+  /* EEPROM_CS_GPIO Periph clock enable */
+  __HAL_RCC_GPIOA_CLK_ENABLE();
+
+  /* Configure EEPROM_CS_PIN pin: EEPROM SPI CS pin */
+  gpioinitstruct.Pin    = GPIO_PIN_4;
+  gpioinitstruct.Mode   = GPIO_MODE_OUTPUT_PP;
+  gpioinitstruct.Pull   = GPIO_PULLUP;
+  gpioinitstruct.Speed  = GPIO_SPEED_FREQ_HIGH;
+  HAL_GPIO_Init(GPIOA, &gpioinitstruct);
+
+  /* SPI FLASH Config */
+  MX_SPI1_Init();
+  
+  /* EEPROM chip select high */
+  FLASH_SPI_CS_HIGH();
+  
+  return Status;
+}
+
+/**
+  * @brief  SPI Write a byte to device
+  * @param  WriteValue to be written
+  * @retval The value of the received byte.
+  */
+uint8_t SPIx_Write(uint8_t WriteValue)
+{
+  HAL_StatusTypeDef status = HAL_OK;
+  uint8_t ReadValue = 0;
+
+  status = HAL_SPI_TransmitReceive(&hspi1, (uint8_t*) &WriteValue, (uint8_t*) &ReadValue, 1, SpixTimeout);
+
+  /* Check the communication status */
+  if(status != HAL_OK)
+  {
+    /* Execute user timeout callback */
+    SPIx_Error();
+  }
+  
+   return ReadValue;
+}
 
 /* USER CODE END 1 */
 
