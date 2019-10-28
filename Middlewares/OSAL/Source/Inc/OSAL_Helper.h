@@ -20,10 +20,13 @@ extern "C"
 /*********************************************************************
  * INCLUDES
  */
+#include "clk.h"
 
 /*********************************************************************
  * MACROS
  */
+
+#define IsLeapYear(yr)  (!((yr) % 400) || (((yr) % 100) && !((yr) % 4)))
 
 /*********************************************************************
  * CONSTANTS
@@ -33,6 +36,18 @@ extern "C"
 /*********************************************************************
  * TYPEDEFS
  */
+
+// To be used with
+typedef struct
+{
+  uint8 seconds;  // 0-59
+  uint8 minutes;  // 0-59
+  uint8 hour;     // 0-23
+  uint8 day;      // 0-30
+  uint8 month;    // 0-11
+  uint16 year;    // 2000+
+} UTCTimeStruct;
+
 
 /*********************************************************************
  * GLOBAL VARIABLES
@@ -159,6 +174,39 @@ extern "C"
    * Convert an interger to an ascii string
    */
   extern void osal_itoa( uint16 num, uint8 *buf, uint8 radix );
+
+  /*
+   * Converts CLK_TS_SEC to UTCTimeStruct
+   *
+   * secTime - number of seconds since 0 hrs, 0 minutes,
+   *          0 seconds, on the 1st of January 2000 UTC
+   * tm - pointer to breakdown struct
+   */
+  extern void osal_ConvertUTCTime( UTCTimeStruct *tm, CLK_TS_SEC secTime );
+
+  /*
+   * Converts UTCTimeStruct to CLK_TS_SEC (seconds since 00:00:00 01/01/2000)
+   *
+   * tm - pointer to UTC time struct
+   */
+  extern CLK_TS_SEC osal_ConvertUTCSecs( UTCTimeStruct *tm );
+
+  /*
+   * Set the new time.  This will only set the seconds portion
+   * of time and doesn't change the factional second counter.
+   *     newTime - number of seconds since 0 hrs, 0 minutes,
+   *               0 seconds, on the 1st of January 2000 UTC
+   */
+  extern void osal_setClock( CLK_TS_SEC newTime );
+
+  /*
+   * Gets the current time.  This will only return the seconds
+   * portion of time and doesn't include the factional second counter.
+   *     returns: number of seconds since 0 hrs, 0 minutes,
+   *              0 seconds, on the 1st of January 2000 UTC
+   */
+  extern CLK_TS_SEC osal_getClock( void );
+
 
 /*********************************************************************
 *********************************************************************/
