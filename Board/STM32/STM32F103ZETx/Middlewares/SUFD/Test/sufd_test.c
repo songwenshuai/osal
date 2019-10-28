@@ -1,7 +1,11 @@
 #include <sfud.h>
+#include <cm_backtrace.h>
+
 #include <printf.h>
 
 #define SFUD_DEMO_TEST_BUFFER_SIZE                     1024
+#define HARDWARE_VERSION               "V1.0.0"
+#define SOFTWARE_VERSION               "V0.1.0"
 
 static void sfud_demo(uint32_t addr, size_t size, uint8_t *data);
 
@@ -9,6 +13,8 @@ static uint8_t sfud_demo_test_buf[SFUD_DEMO_TEST_BUFFER_SIZE];
 
 
 void sufd_test(void) {
+    cm_backtrace_init("STM32F103ZET6", HARDWARE_VERSION, SOFTWARE_VERSION);
+
     /* SFUD initialize */
     if (sfud_init() == SFUD_SUCCESS) {
         sfud_demo(0, sizeof(sfud_demo_test_buf), sfud_demo_test_buf);

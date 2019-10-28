@@ -1,15 +1,22 @@
 #define LOG_TAG    "APP"
-#include "easyflash.h"
+#include <sfud.h>
+#include <easyflash.h>
+#include <cm_backtrace.h>
 #include "elog_flash.h"
 #include <fal.h>
 #include <printf.h>
+
+#define HARDWARE_VERSION               "V1.0.0"
+#define SOFTWARE_VERSION               "V0.1.0"
 
 static void test_elog(void);
 static void elog_user_assert_hook(const char* ex, const char* func, size_t line);
 
 void easylogger_test( void ) {
+    cm_backtrace_init("STM32F103ZET6", HARDWARE_VERSION, SOFTWARE_VERSION);
+
     /* initialize EasyFlash and EasyLogger */
-    if ((fal_init() > 0)&&(easyflash_init() == EF_NO_ERR)&&(elog_init() == ELOG_NO_ERR)) {
+    if ((sfud_init() == SFUD_SUCCESS) && (fal_init() > 0)&&(easyflash_init() == EF_NO_ERR)&&(elog_init() == ELOG_NO_ERR)) {
         /* set EasyLogger log format */
         elog_set_fmt(ELOG_LVL_ASSERT, ELOG_FMT_ALL & ~ELOG_FMT_P_INFO);
         elog_set_fmt(ELOG_LVL_ERROR, ELOG_FMT_LVL | ELOG_FMT_TAG | ELOG_FMT_TIME);

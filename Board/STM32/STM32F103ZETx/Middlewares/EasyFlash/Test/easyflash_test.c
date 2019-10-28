@@ -4,6 +4,7 @@
 #include <cm_backtrace.h>
 
 #include <printf.h>
+#include <OSAL.h>
 #include <OSAL_Helper.h>
 
 #define HARDWARE_VERSION               "V1.0.0"

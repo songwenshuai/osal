@@ -10,7 +10,7 @@ static void fault_test_by_div0(void);
 
 void backtrace_test( void )
 {
-    cm_backtrace_init("STM32L496VGT6", HARDWARE_VERSION, SOFTWARE_VERSION);
+    cm_backtrace_init("STM32F103ZET6", HARDWARE_VERSION, SOFTWARE_VERSION);
 
     fault_test_by_unalign();
     fault_test_by_div0();

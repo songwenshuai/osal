@@ -21,14 +21,14 @@ int fal_test(void)
         printf("Fal init success!\r\n");
     }
 
-    if (test("bl") == 0)
-    {
-        printf("Fal partition (%s) test success!\r\n", "bl");
-    }
-    else
-    {
-        printf("Fal partition (%s) test failed!\r\n", "bl");
-    }
+//    if (test("bl") == 0)
+//    {
+//        printf("Fal partition (%s) test success!\r\n", "bl");
+//    }
+//    else
+//    {
+//        printf("Fal partition (%s) test failed!\r\n", "bl");
+//    }
 
     if (test("app") == 0)
     {
