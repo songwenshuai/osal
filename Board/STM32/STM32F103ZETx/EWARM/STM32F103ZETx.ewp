@@ -359,6 +359,8 @@
           <state>$PROJ_DIR$/../Drivers/CMSIS/Include</state>
           <state>$PROJ_DIR$/../Middlewares/CmBacktrace/Cfg</state>
           <state>$PROJ_DIR$/../Middlewares/EasyFlash/Cfg</state>
+          <state>$PROJ_DIR$/../Middlewares/Easylogger/Cfg</state>
+          <state>$PROJ_DIR$/../Middlewares/Easylogger/Plugins/flash/Cfg</state>
           <state>$PROJ_DIR$/../Middlewares/Fal/Cfg</state>
           <state>$PROJ_DIR$/../Middlewares/Fal/Port</state>
           <state>$PROJ_DIR$/../Middlewares/Lwmem/Cfg</state>
@@ -371,6 +373,8 @@
           <state>$PROJ_DIR$/../Middlewares/uC-LIB/Port</state>
           <state>$PROJ_DIR$/../../../../Middlewares/CmBacktrace/Source</state>
           <state>$PROJ_DIR$/../../../../Middlewares/EasyFlash/Source</state>
+          <state>$PROJ_DIR$/../../../../Middlewares/EasyLogger/Plugins/flash/Source</state>
+          <state>$PROJ_DIR$/../../../../Middlewares/EasyLogger/Source</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Fal/Source</state>
           <state>$PROJ_DIR$/../../../../Middlewares/FlexibleButton/Source</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Lwmem/Source</state>
@@ -1262,6 +1266,66 @@
         </file>
         <file>
           <name>$PROJ_DIR$\..\..\..\..\Middlewares\EasyFlash\Source\ef_utils.c</name>
+        </file>
+      </group>
+    </group>
+    <group>
+      <name>Easylogger</name>
+      <group>
+        <name>Cfg</name>
+        <file>
+          <name>$PROJ_DIR$\..\Middlewares\Easylogger\Cfg\elog_cfg.h</name>
+        </file>
+      </group>
+      <group>
+        <name>Plugins</name>
+        <group>
+          <name>flash</name>
+          <group>
+            <name>Cfg</name>
+            <file>
+              <name>$PROJ_DIR$\..\Middlewares\Easylogger\Plugins\flash\Cfg\elog_flash_cfg.h</name>
+            </file>
+          </group>
+          <group>
+            <name>Port</name>
+            <file>
+              <name>$PROJ_DIR$\..\Middlewares\Easylogger\Plugins\flash\Port\elog_flash_port.c</name>
+            </file>
+          </group>
+          <group>
+            <name>Source</name>
+            <file>
+              <name>$PROJ_DIR$\..\..\..\..\Middlewares\EasyLogger\Plugins\flash\Source\elog_flash.c</name>
+            </file>
+            <file>
+              <name>$PROJ_DIR$\..\..\..\..\Middlewares\EasyLogger\Plugins\flash\Source\elog_flash.h</name>
+            </file>
+          </group>
+        </group>
+      </group>
+      <group>
+        <name>Port</name>
+        <file>
+          <name>$PROJ_DIR$\..\Middlewares\Easylogger\Port\elog_port.c</name>
+        </file>
+      </group>
+      <group>
+        <name>Source</name>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\EasyLogger\Source\elog.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\EasyLogger\Source\elog.h</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\EasyLogger\Source\elog_async.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\EasyLogger\Source\elog_buf.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\EasyLogger\Source\elog_utils.c</name>
         </file>
       </group>
     </group>
