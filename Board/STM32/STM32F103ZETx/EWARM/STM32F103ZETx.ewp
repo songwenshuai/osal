@@ -371,6 +371,8 @@
           <state>$PROJ_DIR$/../Middlewares/uC-CLK/Cfg</state>
           <state>$PROJ_DIR$/../Middlewares/uC-LIB/Cfg</state>
           <state>$PROJ_DIR$/../Middlewares/uC-LIB/Port</state>
+          <state>$PROJ_DIR$/../Middlewares/uC-Shell/Cfg</state>
+          <state>$PROJ_DIR$/../Middlewares/uC-Shell/Terminal/Cfg</state>
           <state>$PROJ_DIR$/../../../../Middlewares/CmBacktrace/Source</state>
           <state>$PROJ_DIR$/../../../../Middlewares/EasyFlash/Source</state>
           <state>$PROJ_DIR$/../../../../Middlewares/EasyLogger/Plugins/flash/Source</state>
@@ -384,6 +386,9 @@
           <state>$PROJ_DIR$/../../../../Middlewares/SystemView/SEGGER</state>
           <state>$PROJ_DIR$/../../../../Middlewares/uC-CLK/Source</state>
           <state>$PROJ_DIR$/../../../../Middlewares/uC-LIB/Source</state>
+          <state>$PROJ_DIR$/../../../../Middlewares/uC-Shell/Cmd/General</state>
+          <state>$PROJ_DIR$/../../../../Middlewares/uC-Shell/Source</state>
+          <state>$PROJ_DIR$/../../../../Middlewares/uC-Shell/Terminal/Source</state>
           <state>$PROJ_DIR$/../../../../Sample/App</state>
           <state>$PROJ_DIR$/../../../../Sample/Hal</state>
           <state>$PROJ_DIR$/../../../../Sample/Hal/Target</state>
@@ -1684,6 +1689,69 @@
         <file>
           <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-LIB\Source\lib_str.h</name>
         </file>
+      </group>
+    </group>
+    <group>
+      <name>uC-Shell</name>
+      <group>
+        <name>Cfg</name>
+        <file>
+          <name>$PROJ_DIR$\..\Middlewares\uC-Shell\Cfg\shell_cfg.h</name>
+        </file>
+      </group>
+      <group>
+        <name>Cmd</name>
+        <group>
+          <name>General</name>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-Shell\Cmd\General\sh_shell.c</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-Shell\Cmd\General\sh_shell.h</name>
+          </file>
+        </group>
+      </group>
+      <group>
+        <name>Source</name>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-Shell\Source\shell.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-Shell\Source\shell.h</name>
+        </file>
+      </group>
+      <group>
+        <name>Terminal</name>
+        <group>
+          <name>Cfg</name>
+          <file>
+            <name>$PROJ_DIR$\..\Middlewares\uC-Shell\Terminal\Cfg\terminal_cfg.h</name>
+          </file>
+        </group>
+        <group>
+          <name>Mode</name>
+          <group>
+            <name>VT100</name>
+            <file>
+              <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-Shell\Terminal\Mode\VT100\terminal_mode.c</name>
+            </file>
+          </group>
+        </group>
+        <group>
+          <name>Serial</name>
+          <file>
+            <name>$PROJ_DIR$\..\Middlewares\uC-Shell\Terminal\Serial\terminal_serial.c</name>
+          </file>
+        </group>
+        <group>
+          <name>Source</name>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-Shell\Terminal\Source\terminal.c</name>
+          </file>
+          <file>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\uC-Shell\Terminal\Source\terminal.h</name>
+          </file>
+        </group>
       </group>
     </group>
   </group>
