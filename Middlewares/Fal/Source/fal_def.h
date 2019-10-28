@@ -26,7 +26,7 @@
 #define _FAL_DEF_H_
 
 #include <stdint.h>
-#include <stdio.h>
+#include <printf.h>
 
 #define FAL_SW_VERSION                 "0.4.0"
 
