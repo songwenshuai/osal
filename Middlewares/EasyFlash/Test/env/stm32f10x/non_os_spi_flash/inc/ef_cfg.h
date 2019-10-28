@@ -26,11 +26,8 @@
  * Created on: 2015-07-14
  */
 
-
 #ifndef EF_CFG_H_
 #define EF_CFG_H_
-
-#include <stm32f1xx_hal.h>
 
 /* using ENV function, default is NG (Next Generation) mode start from V4.0 */
 #define EF_USING_ENV
@@ -39,7 +36,7 @@
 #define EF_USING_IAP
 
 /* using save log function */
-#define EF_USING_LOG
+/* #define EF_USING_LOG */
 
 /* the minimum size of flash erasure */
 #define EF_ERASE_MIN_SIZE          4096
@@ -74,7 +71,7 @@
 /* ENV area size. It's at least one empty sector for GC. So it's definination must more then or equal 2 flash sector size. */
 #define ENV_AREA_SIZE             (2 * EF_ERASE_MIN_SIZE)      /* 8K */
 /* saved log area size */
-#define LOG_AREA_SIZE             (10 * EF_ERASE_MIN_SIZE)     /* 40K */
+/* #define LOG_AREA_SIZE             (10 * EF_ERASE_MIN_SIZE)*/      /* 40K */
 
 /* print debug information of flash */
 #define PRINT_DEBUG

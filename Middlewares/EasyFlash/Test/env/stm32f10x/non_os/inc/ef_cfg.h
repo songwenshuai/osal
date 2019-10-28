@@ -30,7 +30,7 @@
 #ifndef EF_CFG_H_
 #define EF_CFG_H_
 
-#include <stm32f1xx_hal.h>
+#include <stm32f10x_conf.h>
 
 /* using ENV function, default is NG (Next Generation) mode start from V4.0 */
 #define EF_USING_ENV
@@ -39,14 +39,21 @@
 #define EF_USING_IAP
 
 /* using save log function */
-#define EF_USING_LOG
+/* #define EF_USING_LOG */
+
+/* page size for stm32 flash */
+#if defined(STM32F10X_LD) || defined(STM32F10X_LD_VL) || defined (STM32F10X_MD) || defined (STM32F10X_MD_VL)
+#define PAGE_SIZE     1024
+#else
+#define PAGE_SIZE     2048
+#endif
 
 /* the minimum size of flash erasure */
-#define EF_ERASE_MIN_SIZE          4096
+#define EF_ERASE_MIN_SIZE         PAGE_SIZE              /* it is one page for STM3210x */
 
 /* the flash write granularity, unit: bit
  * only support 1(nor flash)/ 8(stm32f4)/ 32(stm32f1)/ 64(stm32l4) */
-#define EF_WRITE_GRAN             1
+#define EF_WRITE_GRAN             32
 
 /*
  *
@@ -70,11 +77,11 @@
  */
 
 /* backup area start address */
-#define EF_START_ADDR             (0) /* from the SPI Flash position: 0KB*/
+#define EF_START_ADDR                  (FLASH_BASE + 100 * 1024) /* from the chip position: 100KB */
 /* ENV area size. It's at least one empty sector for GC. So it's definination must more then or equal 2 flash sector size. */
-#define ENV_AREA_SIZE             (2 * EF_ERASE_MIN_SIZE)      /* 8K */
+#define ENV_AREA_SIZE                  (2 * EF_ERASE_MIN_SIZE)      /* 8K */
 /* saved log area size */
-#define LOG_AREA_SIZE             (10 * EF_ERASE_MIN_SIZE)     /* 40K */
+/* #define LOG_AREA_SIZE             (10 * EF_ERASE_MIN_SIZE)*/      /* 20K */
 
 /* print debug information of flash */
 #define PRINT_DEBUG

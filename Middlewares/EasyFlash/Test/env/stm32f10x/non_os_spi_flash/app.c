@@ -1,24 +1,27 @@
-#include <sfud.h>
-#include <fal.h>
+#include <bsp.h>
 #include <easyflash.h>
-#include <cm_backtrace.h>
-
-#include <printf.h>
-#include <OSAL_Helper.h>
-
-#define HARDWARE_VERSION               "V1.0.0"
-#define SOFTWARE_VERSION               "V0.1.0"
+#include <stdio.h>
+#include <stdlib.h>
 
 static void test_env(void);
 
-void easyflash_test( void )
-{
-    cm_backtrace_init("STM32F103ZET6", HARDWARE_VERSION, SOFTWARE_VERSION);
-
-    if (sfud_init() == SFUD_SUCCESS && fal_init() > 0 && easyflash_init() == EF_NO_ERR) {
+int main(void){
+        
+    BSP_Init();
+    
+    if (easyflash_init() == EF_NO_ERR) {
         /* test Env demo */
         test_env();
+    } 
+
+    while(1) {
+      LED_RUN_ON;
+      delay(6000000);
+      LED_RUN_OFF;
+      delay(6000000);      
     }
+    
+    return 0;
 }
 
 /**
@@ -31,7 +34,7 @@ static void test_env(void) {
     /* get the boot count number from Env */
     c_old_boot_times = ef_get_env("boot_times");
     assert_param(c_old_boot_times);
-    i_boot_times = osal_atol(c_old_boot_times);
+    i_boot_times = atol(c_old_boot_times);
     /* boot count +1 */
     i_boot_times ++;
     printf("The system now boot %d times\n\r", i_boot_times);
