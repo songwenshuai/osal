@@ -99,10 +99,10 @@ void fal_show_part_table(void)
             }
         }
     }
-    log_i("==================== FAL partition table ====================");
-    log_i("| %-*.*s | %-*.*s |   offset   |    length  |", part_name_max, FAL_DEV_NAME_MAX, item1, flash_dev_name_max,
+    fal_log_i("==================== FAL partition table ====================");
+    fal_log_i("| %-*.*s | %-*.*s |   offset   |    length  |", part_name_max, FAL_DEV_NAME_MAX, item1, flash_dev_name_max,
             FAL_DEV_NAME_MAX, item2);
-    log_i("-------------------------------------------------------------");
+    fal_log_i("-------------------------------------------------------------");
     for (i = 0; i < partition_table_len; i++)
     {
 
@@ -112,10 +112,10 @@ void fal_show_part_table(void)
         part = &partition_table[partition_table_len - i - 1];
 #endif
 
-        log_i("| %-*.*s | %-*.*s | 0x%08lx | 0x%08x |", part_name_max, FAL_DEV_NAME_MAX, part->name, flash_dev_name_max,
+        fal_log_i("| %-*.*s | %-*.*s | 0x%08lx | 0x%08x |", part_name_max, FAL_DEV_NAME_MAX, part->name, flash_dev_name_max,
                 FAL_DEV_NAME_MAX, part->flash_name, part->offset, part->len);
     }
-    log_i("=============================================================");
+    fal_log_i("=============================================================");
 }
 
 /**
@@ -147,14 +147,14 @@ int fal_partition_init(void)
     flash_dev = fal_flash_device_find(FAL_PART_TABLE_FLASH_DEV_NAME);
     if (flash_dev == NULL)
     {
-        log_e("Initialize failed! Flash device (%s) NOT found.", FAL_PART_TABLE_FLASH_DEV_NAME);
+        fal_log_e("Initialize failed! Flash device (%s) NOT found.", FAL_PART_TABLE_FLASH_DEV_NAME);
         goto _exit;
     }
 
     /* check partition table offset address */
     if (part_table_offset < 0 || part_table_offset >= (long) flash_dev->len)
     {
-        log_e("Setting partition table end offset address(%ld) out of flash bound(<%d).", part_table_offset, flash_dev->len);
+        fal_log_e("Setting partition table end offset address(%ld) out of flash bound(<%d).", part_table_offset, flash_dev->len);
         goto _exit;
     }
 
@@ -162,7 +162,7 @@ int fal_partition_init(void)
     new_part = (fal_partition_t)FAL_MALLOC(table_item_size);
     if (new_part == NULL)
     {
-        log_e("Initialize failed! No memory for table buffer.");
+        fal_log_e("Initialize failed! No memory for table buffer.");
         goto _exit;
     }
 
@@ -183,7 +183,7 @@ int fal_partition_init(void)
                     {
                         part_table_find_ok = 1;
                         part_table_offset += i;
-                        log_d("Find the partition table on '%s' offset @0x%08lx.", FAL_PART_TABLE_FLASH_DEV_NAME,
+                        fal_log_d("Find the partition table on '%s' offset @0x%08lx.", FAL_PART_TABLE_FLASH_DEV_NAME,
                                 part_table_offset);
                         break;
                     }
@@ -227,7 +227,7 @@ int fal_partition_init(void)
         if (flash_dev->ops.read(part_table_offset - table_item_size * (table_num), (uint8_t *) new_part,
                 table_item_size) < 0)
         {
-            log_e("Initialize failed! Flash device (%s) read error!", flash_dev->name);
+            fal_log_e("Initialize failed! Flash device (%s) read error!", flash_dev->name);
             table_num = 0;
             break;
         }
@@ -240,7 +240,7 @@ int fal_partition_init(void)
         partition_table = (fal_partition_t) FAL_REALLOC(partition_table, table_item_size * (table_num + 1));
         if (partition_table == NULL)
         {
-            log_e("Initialize failed! No memory for partition table");
+            fal_log_e("Initialize failed! No memory for partition table");
             table_num = 0;
             break;
         }
@@ -252,7 +252,7 @@ int fal_partition_init(void)
 
     if (table_num == 0)
     {
-        log_e("Partition table NOT found on flash: %s (len: %d) from offset: 0x%08x.", FAL_PART_TABLE_FLASH_DEV_NAME,
+        fal_log_e("Partition table NOT found on flash: %s (len: %d) from offset: 0x%08x.", FAL_PART_TABLE_FLASH_DEV_NAME,
                 FAL_DEV_NAME_MAX, FAL_PART_TABLE_END_OFFSET);
         goto _exit;
     }
@@ -269,13 +269,13 @@ int fal_partition_init(void)
         flash_dev = fal_flash_device_find(partition_table[i].flash_name);
         if (flash_dev == NULL)
         {
-            log_d("Warning: Do NOT found the flash device(%s).", partition_table[i].flash_name);
+            fal_log_d("Warning: Do NOT found the flash device(%s).", partition_table[i].flash_name);
             continue;
         }
 
         if (partition_table[i].offset >= (long)flash_dev->len)
         {
-            log_e("Initialize failed! Partition(%s) offset address(%ld) out of flash bound(<%d).",
+            fal_log_e("Initialize failed! Partition(%s) offset address(%ld) out of flash bound(<%d).",
                     partition_table[i].name, partition_table[i].offset, flash_dev->len);
             partition_table_len = 0;
             goto _exit;
@@ -379,21 +379,21 @@ int fal_partition_read(const struct fal_partition *part, uint32_t addr, uint8_t 
 
     if (addr + size > part->len)
     {
-        log_e("Partition read error! Partition address out of bound.");
+        fal_log_e("Partition read error! Partition address out of bound.");
         return -1;
     }
 
     flash_dev = fal_flash_device_find(part->flash_name);
     if (flash_dev == NULL)
     {
-        log_e("Partition read error! Don't found flash device(%s) of the partition(%s).", part->flash_name, part->name);
+        fal_log_e("Partition read error! Don't found flash device(%s) of the partition(%s).", part->flash_name, part->name);
         return -1;
     }
 
     ret = flash_dev->ops.read(part->offset + addr, buf, size);
     if (ret < 0)
     {
-        log_e("Partition read error! Flash device(%s) read error!", part->flash_name);
+        fal_log_e("Partition read error! Flash device(%s) read error!", part->flash_name);
     }
 
     return ret;
@@ -420,21 +420,21 @@ int fal_partition_write(const struct fal_partition *part, uint32_t addr, const u
 
     if (addr + size > part->len)
     {
-        log_e("Partition write error! Partition address out of bound.");
+        fal_log_e("Partition write error! Partition address out of bound.");
         return -1;
     }
 
     flash_dev = fal_flash_device_find(part->flash_name);
     if (flash_dev == NULL)
     {
-        log_e("Partition write error!  Don't found flash device(%s) of the partition(%s).", part->flash_name, part->name);
+        fal_log_e("Partition write error!  Don't found flash device(%s) of the partition(%s).", part->flash_name, part->name);
         return -1;
     }
 
     ret = flash_dev->ops.write(part->offset + addr, buf, size);
     if (ret < 0)
     {
-        log_e("Partition write error! Flash device(%s) write error!", part->flash_name);
+        fal_log_e("Partition write error! Flash device(%s) write error!", part->flash_name);
     }
 
     return ret;
@@ -459,21 +459,21 @@ int fal_partition_erase(const struct fal_partition *part, uint32_t addr, size_t 
 
     if (addr + size > part->len)
     {
-        log_e("Partition erase error! Partition address out of bound.");
+        fal_log_e("Partition erase error! Partition address out of bound.");
         return -1;
     }
 
     flash_dev = fal_flash_device_find(part->flash_name);
     if (flash_dev == NULL)
     {
-        log_e("Partition erase error! Don't found flash device(%s) of the partition(%s).", part->flash_name, part->name);
+        fal_log_e("Partition erase error! Don't found flash device(%s) of the partition(%s).", part->flash_name, part->name);
         return -1;
     }
 
     ret = flash_dev->ops.erase(part->offset + addr, size);
     if (ret < 0)
     {
-        log_e("Partition erase error! Flash device(%s) erase error!", part->flash_name);
+        fal_log_e("Partition erase error! Flash device(%s) erase error!", part->flash_name);
     }
 
     return ret;

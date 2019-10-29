@@ -7,8 +7,10 @@
 #include <OSAL_Helper.h>
 
 #define BUF_SIZE                        1024
-#define HARDWARE_VERSION               "V1.0.0"
-#define SOFTWARE_VERSION               "V0.1.0"
+#define HARDWARE_VERSION                "V1.0.0"
+#define SOFTWARE_VERSION                "V0.1.0"
+
+static uint8_t buf[BUF_SIZE];
 
 static int test(const char *partiton_name);
 
@@ -21,14 +23,14 @@ int fal_test(void)
         printf("Fal init success!\r\n");
     }
 
-//    if (test("bl") == 0)
-//    {
-//        printf("Fal partition (%s) test success!\r\n", "bl");
-//    }
-//    else
-//    {
-//        printf("Fal partition (%s) test failed!\r\n", "bl");
-//    }
+    if (test("bl") == 0)
+    {
+        printf("Fal partition (%s) test success!\r\n", "bl");
+    }
+    else
+    {
+        printf("Fal partition (%s) test failed!\r\n", "bl");
+    }
 
     if (test("app") == 0)
     {
@@ -64,7 +66,6 @@ static int test(const char *partiton_name)
 {
     int ret;
     int i, j, len;
-    uint8_t buf[BUF_SIZE];
     const struct fal_flash_dev *flash_dev = NULL;
     const struct fal_partition *partition = NULL;
 

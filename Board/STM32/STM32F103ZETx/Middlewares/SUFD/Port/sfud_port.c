@@ -96,13 +96,31 @@ static sfud_err spi_write_read(const sfud_spi *spi, const uint8_t *write_buf, si
     return result;
 }
 
+#ifdef SFUD_USING_QSPI
+/**
+ * read flash data by QSPI
+ */
+static sfud_err qspi_read(const struct __sfud_spi *spi, uint32_t addr, sfud_qspi_read_cmd_format *qspi_read_cmd_format,
+        uint8_t *read_buf, size_t read_size) {
+    sfud_err result = SFUD_SUCCESS;
+
+    /**
+     * add your qspi read flash data code
+     */
+
+    return result;
+}
+#endif /* SFUD_USING_QSPI */
+
 sfud_err sfud_spi_port_init(sfud_flash *flash) {
     sfud_err result = SFUD_SUCCESS;
 
     switch (flash->index) {
         case SFUD_W25Q64_DEVICE_INDEX: {
+            
             /* SPI 初始化 */
             FLASH_SPI_IO_Init();
+
             /* 同步 Flash 移植所需的接口及数据 */
             flash->spi.wr = spi_write_read;
             flash->spi.lock = spi_lock;

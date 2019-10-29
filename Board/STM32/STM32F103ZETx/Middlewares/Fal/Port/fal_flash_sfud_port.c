@@ -40,7 +40,7 @@ struct fal_flash_dev nor_flash0 = {FAL_USING_NOR_FLASH_DEV_NAME, 0, 8 * 1024 * 1
 static int init(void)
 {
     /* bare metal platform */
-    sfud_dev = (sfud_flash_t)sfud_get_device_table() + 0;
+    sfud_dev = (sfud_flash_t)sfud_get_device(SFUD_W25Q64_DEVICE_INDEX);
 
     if (NULL == sfud_dev)
     {

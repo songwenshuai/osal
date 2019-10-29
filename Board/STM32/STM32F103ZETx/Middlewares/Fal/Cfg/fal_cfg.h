@@ -10,12 +10,15 @@
 #ifndef _FAL_CFG_H_
 #define _FAL_CFG_H_
 
-#define FAL_DEBUG 1
 #define FAL_PART_HAS_TABLE_CFG
 
-#define ONCHIP_FLASH_DEV_NAME             "onchip_flash"
+#define FAL_DEBUG                           1
 
-#define NOR_FLASH_DEV_NAME                "norflash0"
+#define FAL_PRINTF                          printf
+
+#define ONCHIP_FLASH_DEV_NAME               "onchip_flash"
+
+#define NOR_FLASH_DEV_NAME                  "norflash0"
 
 /* ===================== Flash device Configuration ========================= */
 extern const struct fal_flash_dev stm32_onchip_flash;

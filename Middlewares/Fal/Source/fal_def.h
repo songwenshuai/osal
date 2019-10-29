@@ -27,23 +27,24 @@
 
 #include <stdint.h>
 #include <printf.h>
+#include <lwmem.h>
 
 #define FAL_SW_VERSION                 "0.4.0"
 
 #ifndef FAL_MALLOC
-#define FAL_MALLOC                     malloc
+#define FAL_MALLOC                     lwmem_malloc
 #endif
 
 #ifndef FAL_CALLOC
-#define FAL_CALLOC                     calloc
+#define FAL_CALLOC                     lwmem_calloc
 #endif
 
 #ifndef FAL_REALLOC
-#define FAL_REALLOC                    realloc
+#define FAL_REALLOC                    lwmem_realloc
 #endif
 
 #ifndef FAL_FREE
-#define FAL_FREE                       free
+#define FAL_FREE                       lwmem_free
 #endif
 
 #ifndef FAL_DEBUG
@@ -72,10 +73,10 @@ if (!(EXPR))                                                                   \
 }
 
 /* debug level log */
-#ifdef  log_d
-#undef  log_d
+#ifdef  fal_log_d
+#undef  fal_log_d
 #endif
-#define log_d(...)                     FAL_PRINTF("[D/FAL] (%s:%d) ", __FUNCTION__, __LINE__);           FAL_PRINTF(__VA_ARGS__);FAL_PRINTF("\n")
+#define fal_log_d(...)                     FAL_PRINTF("[D/FAL] (%s:%d) ", __FUNCTION__, __LINE__);           FAL_PRINTF(__VA_ARGS__);FAL_PRINTF("\n")
 
 #else
 
@@ -85,23 +86,23 @@ if (!(EXPR))                                                                   \
 #define assert(EXPR)                   ((void)0);
 
 /* debug level log */
-#ifdef  log_d
-#undef  log_d
+#ifdef  fal_log_d
+#undef  fal_log_d
 #endif
-#define log_d(...)
+#define fal_log_d(...)
 #endif /* FAL_DEBUG */
 
 /* error level log */
-#ifdef  log_e
-#undef  log_e
+#ifdef  fal_log_e
+#undef  fal_log_e
 #endif
-#define log_e(...)                     FAL_PRINTF("\033[31;22m[E/FAL] (%s:%d) ", __FUNCTION__, __LINE__);FAL_PRINTF(__VA_ARGS__);FAL_PRINTF("\033[0m\n")
+#define fal_log_e(...)                     FAL_PRINTF("\033[31;22m[E/FAL] (%s:%d) ", __FUNCTION__, __LINE__);FAL_PRINTF(__VA_ARGS__);FAL_PRINTF("\033[0m\n")
 
 /* info level log */
-#ifdef  log_i
-#undef  log_i
+#ifdef  fal_log_i
+#undef  fal_log_i
 #endif
-#define log_i(...)                     FAL_PRINTF("\033[32;22m[I/FAL] ");                                FAL_PRINTF(__VA_ARGS__);FAL_PRINTF("\033[0m\n")
+#define fal_log_i(...)                     FAL_PRINTF("\033[32;22m[I/FAL] ");                                FAL_PRINTF(__VA_ARGS__);FAL_PRINTF("\033[0m\n")
 
 /* FAL flash and partition device name max length */
 #ifndef FAL_DEV_NAME_MAX

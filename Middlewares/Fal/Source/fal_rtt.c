@@ -170,13 +170,13 @@ struct rt_device *fal_blk_device_create(const char *parition_name)
 
     if (!fal_part)
     {
-        log_e("Error: the partition name (%s) is not found.", parition_name);
+        fal_log_e("Error: the partition name (%s) is not found.", parition_name);
         return NULL;
     }
 
     if ((fal_flash = fal_flash_device_find(fal_part->flash_name)) == NULL)
     {
-        log_e("Error: the flash device name (%s) is not found.", fal_part->flash_name);
+        fal_log_e("Error: the flash device name (%s) is not found.", fal_part->flash_name);
         return NULL;
     }
 
@@ -205,12 +205,12 @@ struct rt_device *fal_blk_device_create(const char *parition_name)
         /* no private */
         blk_dev->parent.user_data = RT_NULL;
 
-        log_i("The FAL block device (%s) created successfully", fal_part->name);
+        fal_log_i("The FAL block device (%s) created successfully", fal_part->name);
         rt_device_register(RT_DEVICE(blk_dev), fal_part->name, RT_DEVICE_FLAG_RDWR | RT_DEVICE_FLAG_STANDALONE);
     }
     else
     {
-        log_e("Error: no memory for create FAL block device");
+        fal_log_e("Error: no memory for create FAL block device");
     }
 
     return RT_DEVICE(blk_dev);
@@ -312,13 +312,13 @@ struct rt_device *fal_mtd_nor_device_create(const char *parition_name)
 
     if (!fal_part)
     {
-        log_e("Error: the partition name (%s) is not found.", parition_name);
+        fal_log_e("Error: the partition name (%s) is not found.", parition_name);
         return NULL;
     }
 
     if ((fal_flash = fal_flash_device_find(fal_part->flash_name)) == NULL)
     {
-        log_e("Error: the flash device name (%s) is not found.", fal_part->flash_name);
+        fal_log_e("Error: the flash device name (%s) is not found.", fal_part->flash_name);
         return NULL;
     }
 
@@ -334,12 +334,12 @@ struct rt_device *fal_mtd_nor_device_create(const char *parition_name)
         /* set ops */
         mtd_nor_dev->parent.ops = &_ops;
 
-        log_i("The FAL MTD NOR device (%s) created successfully", fal_part->name);
+        fal_log_i("The FAL MTD NOR device (%s) created successfully", fal_part->name);
         rt_mtd_nor_register_device(fal_part->name, &mtd_nor_dev->parent);
     }
     else
     {
-        log_e("Error: no memory for create FAL MTD NOR device");
+        fal_log_e("Error: no memory for create FAL MTD NOR device");
     }
 
     return RT_DEVICE(&mtd_nor_dev->parent);
@@ -507,13 +507,13 @@ struct rt_device *fal_char_device_create(const char *parition_name)
 
     if (!fal_part)
     {
-        log_e("Error: the partition name (%s) is not found.", parition_name);
+        fal_log_e("Error: the partition name (%s) is not found.", parition_name);
         return NULL;
     }
 
     if ((fal_flash_device_find(fal_part->flash_name)) == NULL)
     {
-        log_e("Error: the flash device name (%s) is not found.", fal_part->flash_name);
+        fal_log_e("Error: the flash device name (%s) is not found.", fal_part->flash_name);
         return NULL;
     }
 
@@ -539,7 +539,7 @@ struct rt_device *fal_char_device_create(const char *parition_name)
 #endif
 
         rt_device_register(RT_DEVICE(char_dev), fal_part->name, RT_DEVICE_FLAG_RDWR);
-        log_i("The FAL char device (%s) created successfully", fal_part->name);
+        fal_log_i("The FAL char device (%s) created successfully", fal_part->name);
 
 #ifdef RT_USING_POSIX
         /* set fops */
@@ -549,7 +549,7 @@ struct rt_device *fal_char_device_create(const char *parition_name)
     }
     else
     {
-        log_e("Error: no memory for create FAL char device");
+        fal_log_e("Error: no memory for create FAL char device");
     }
 
     return RT_DEVICE(char_dev);
