@@ -8,8 +8,8 @@
  *      INCLUDES
  *********************/
 #include "lv_mem.h"
-#include "lv_math.h"
 #include <string.h>
+#include "printf.h"
 
 #if LV_MEM_CUSTOM != 0
 #include LV_MEM_CUSTOM_INCLUDE
@@ -26,6 +26,8 @@
 #else
 #define MEM_UNIT uint32_t
 #endif
+
+#define LV_MATH_MIN(a, b) (a < b ? a : b)
 
 /**********************
  *      TYPEDEFS
@@ -162,7 +164,7 @@ void * lv_mem_alloc(uint32_t size)
     if(alloc != NULL) memset(alloc, 0xaa, size);
 #endif
 
-    if(alloc == NULL) LV_LOG_WARN("Couldn't allocate memory");
+    if(alloc == NULL) printf("Couldn't allocate memory");
 
     return alloc;
 }
@@ -253,7 +255,7 @@ void * lv_mem_realloc(void * data_p, uint32_t new_size)
         }
     }
 
-    if(new_p == NULL) LV_LOG_WARN("Couldn't allocate memory");
+    if(new_p == NULL) printf("Couldn't allocate memory");
 
     return new_p;
 }
