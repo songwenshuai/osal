@@ -363,6 +363,7 @@
           <state>$PROJ_DIR$/../Middlewares/Easylogger/Plugins/flash/Cfg</state>
           <state>$PROJ_DIR$/../Middlewares/Fal/Cfg</state>
           <state>$PROJ_DIR$/../Middlewares/Fal/Port</state>
+          <state>$PROJ_DIR$/../Middlewares/LittleFs/Cfg</state>
           <state>$PROJ_DIR$/../Middlewares/Lwmem/Cfg</state>
           <state>$PROJ_DIR$/../Middlewares/Lwmem/Port</state>
           <state>$PROJ_DIR$/../Middlewares/OSAL/Cfg</state>
@@ -380,6 +381,7 @@
           <state>$PROJ_DIR$/../../../../Middlewares/EasyLogger/Source</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Fal/Source</state>
           <state>$PROJ_DIR$/../../../../Middlewares/FlexibleButton/Source</state>
+          <state>$PROJ_DIR$/../../../../Middlewares/LittleFs/Source</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Lwmem/Source</state>
           <state>$PROJ_DIR$/../../../../Middlewares/OSAL/Source/Inc</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Printf/Source</state>
@@ -1437,6 +1439,30 @@
         </file>
         <file>
           <name>$PROJ_DIR$\..\..\..\..\Middlewares\FlexibleButton\Source\flexible_button.h</name>
+        </file>
+      </group>
+    </group>
+    <group>
+      <name>LittleFs</name>
+      <group>
+        <name>Cfg</name>
+        <file>
+          <name>$PROJ_DIR$\..\Middlewares\LittleFs\Cfg\lfs_util.h</name>
+        </file>
+      </group>
+      <group>
+        <name>Port</name>
+        <file>
+          <name>$PROJ_DIR$\..\Middlewares\LittleFs\Port\lfs_util.c</name>
+        </file>
+      </group>
+      <group>
+        <name>Source</name>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\LittleFs\Source\lfs.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\LittleFs\Source\lfs.h</name>
         </file>
       </group>
     </group>

@@ -39,6 +39,7 @@ extern struct fal_flash_dev nor_flash0;
     {FAL_PART_MAGIC_WORD,       "app", ONCHIP_FLASH_DEV_NAME,   256*1024,  256*1024, 0}, \
     {FAL_PART_MAGIC_WORD, "easyflash",    NOR_FLASH_DEV_NAME,          0, 1024*1024, 0}, \
     {FAL_PART_MAGIC_WORD,  "download",    NOR_FLASH_DEV_NAME,  1024*1024, 1024*1024, 0}, \
+    {FAL_PART_MAGIC_WORD,  "littlefs",    NOR_FLASH_DEV_NAME,  2048*1024, 2048*1024, 0}, \
 }
 #endif /* FAL_PART_HAS_TABLE_CFG */
 #endif /* _FAL_CFG_H_ */
