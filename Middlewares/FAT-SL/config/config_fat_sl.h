@@ -55,7 +55,7 @@ extern "C" {
 **
 **************************************************************************/
 #define F_SECTOR_SIZE           512u  /* Disk sector size. */
-#define F_FS_THREAD_AWARE       1     /* Set to one if the file system will be access from more than one task. */
+#define F_FS_THREAD_AWARE       0     /* Set to one if the file system will be access from more than one task. */
 #define F_MAXPATH               64    /* Maximum length a file name (including its full path) can be. */
 #define F_MAX_LOCK_WAIT_TICKS   20    /* The maximum number of RTOS ticks to wait when attempting to obtain a lock on the file system when F_FS_THREAD_AWARE is set to 1. */
 

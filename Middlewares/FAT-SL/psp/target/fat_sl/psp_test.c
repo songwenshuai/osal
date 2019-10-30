@@ -38,7 +38,7 @@
  *
  */
 
-#include <stdio.h>
+#include <printf.h>
 #include "psp_test.h"
 #include "config_fat_sl.h"
 #include "config_mdriver_ram.h"

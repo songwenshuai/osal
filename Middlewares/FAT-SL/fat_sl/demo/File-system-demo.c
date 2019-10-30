@@ -73,10 +73,9 @@
  ******************************************************************************/
 
 /* Standard includes. */
-#include <stdio.h>
+#include <printf.h>
+#include <string.h>
 
-/* FreeRTOS includes. */
-#include "FreeRTOS.h"
 
 /* File system includes. */
 #include "fat_sl.h"
@@ -90,6 +89,19 @@
 
 /* The number of bytes written to the file that uses f_putc() and f_getc(). */
 #define fsPUTC_FILE_SIZE				100
+
+/*-----------------------------------------------------------*/
+
+/* Assert call defined for debug builds. */
+void vAssertCalled(const char* pcFile, unsigned long ulLine)
+{
+    printf("ASSERT FAILED: File %s, line %u\r\n", pcFile, ulLine);
+}
+#define configASSERT( x ) if( ( x ) == 0 ) vAssertCalled( __FILE__, __LINE__ )
+
+/*-----------------------------------------------------------*/
+
+typedef long BaseType_t;
 
 /*-----------------------------------------------------------*/
 

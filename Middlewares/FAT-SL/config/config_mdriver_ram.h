@@ -44,7 +44,7 @@
 
 #define MDRIVER_RAM_SECTOR_SIZE   512       /* Sector size */
 
-#define MDRIVER_RAM_VOLUME0_SIZE  (128 * 1024) /* defintion for size of ramdrive0 */
+#define MDRIVER_RAM_VOLUME0_SIZE  (32 * 1024) /* defintion for size of ramdrive0 */
 
 #define MDRIVER_MEM_LONG_ACCESS   1         /* set this value to 1 if 32bit access available */
 

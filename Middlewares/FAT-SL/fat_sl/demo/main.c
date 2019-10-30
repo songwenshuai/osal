@@ -78,34 +78,10 @@
 #include <stdio.h>
 #include <stdint.h>
 
-/* FreeRTOS includes. */
-#include <FreeRTOS.h>
-#include "task.h"
-#include "queue.h"
-#include "semphr.h"
-
 /* File system includes. */
 #include "config_fat_sl.h"
 
-/* Priorities at which the tasks are created. */
-#define mainUDP_CLI_TASK_PRIORITY			( tskIDLE_PRIORITY )
-
 /*-----------------------------------------------------------*/
-
-/*
- * Register the generic commands that can be used with FreeRTOS+CLI.
- */
-extern void vRegisterSampleCLICommands( void );
-
-/*
- * Register the file system commands that can be used with FreeRTOS+CLI.
- */
-extern void vRegisterFileSystemCLICommands( void );
-
-/*
- * The task that implements the UDP command interpreter using FreeRTOS+CLI.
- */
-extern void vUDPCommandInterpreterTask( void *pvParameters );
 
 /*
  * Creates and verifies different files on the volume, demonstrating the use of
@@ -124,7 +100,6 @@ extern void vCreateAndVerifySampleFiles( void );
 
 int main( void )
 {
-const uint32_t ulLongTime_ms = 250UL;
 
 	/* If the file system is only going to be accessed from one task then
 	F_FS_THREAD_AWARE can be set to 0 and the set of example files are created
@@ -142,24 +117,6 @@ const uint32_t ulLongTime_ms = 250UL;
 	}
 	#endif
 
-	/* Register generic commands with the FreeRTOS+CLI command interpreter. */
-	vRegisterSampleCLICommands();
-
-	/* Register file system related commands with the FreeRTOS+CLI command
-	interpreter. */
-	vRegisterFileSystemCLICommands();
-
-	/* Create the task that handles the CLI on a UDP port.  The port number
-	is set using the configUDP_CLI_PORT_NUMBER setting in FreeRTOSConfig.h. */
-	xTaskCreate( vUDPCommandInterpreterTask, 	/* The function that implements the command interpreter IO handling. */
-				"CLI", 							/* The name of the task - just to assist debugging. */
-				configMINIMAL_STACK_SIZE, NULL, /* The size of the stack allocated to the task. */
-				mainUDP_CLI_TASK_PRIORITY, 		/* The priority at which the task will run. */
-				NULL );							/* A handle to the task is not required, so NULL is passed. */
-
-	/* Start the RTOS scheduler. */
-	vTaskStartScheduler();
-
 	/* If all is well, the scheduler will now be running, and the following
 	line will never be reached.  If the following line does execute, then
 	there was insufficient FreeRTOS heap memory available for the idle and/or
@@ -168,65 +125,6 @@ const uint32_t ulLongTime_ms = 250UL;
 	really applicable to the Win32 simulator port). */
 	for( ;; )
 	{
-		Sleep( ulLongTime_ms );
 	}
 }
 /*-----------------------------------------------------------*/
-
-void vApplicationIdleHook( void )
-{
-const unsigned long ulMSToSleep = 5;
-
-	/* If the file system is only going to be accessed from one task then
-	F_FS_THREAD_AWARE can be set to 0 and the set of example files is created
-	before the RTOS scheduler is started.  If the file system is going to be
-	access from more than one task then F_FS_THREAD_AWARE must be set to 1 and
-	the	set of sample files are created from the idle task hook function. */
-	#if F_FS_THREAD_AWARE == 1
-	{
-		static BaseType_t xCreatedSampleFiles = pdFALSE;
-
-		/* Initialise the drive and file system, then create a few example
-		files.  The output from this function just goes to the stdout window,
-		allowing the output to be viewed when the UDP command console is not
-		connected. */
-		if( xCreatedSampleFiles == pdFALSE )
-		{
-			vCreateAndVerifySampleFiles();
-			xCreatedSampleFiles = pdTRUE;
-		}
-	}
-	#endif
-
-	/* This function is called on each cycle of the idle task if
-	configUSE_IDLE_HOOK is set to 1 in FreeRTOSConfig.h.  Sleep to reduce CPU
-	load. */
-	Sleep( ulMSToSleep );
-}
-/*-----------------------------------------------------------*/
-
-void vAssertCalled( const char *pcFile, unsigned long ulLine )
-{
-	printf( "ASSERT FAILED: File %s, line %u\r\n", pcFile, ulLine );
-}
-/*-----------------------------------------------------------*/
-
-void vApplicationMallocFailedHook( void )
-{
-	/* vApplicationMallocFailedHook() will only be called if
-	configUSE_MALLOC_FAILED_HOOK is set to 1 in FreeRTOSConfig.h.  It is a hook
-	function that will get called if a call to pvPortMalloc() fails.
-	pvPortMalloc() is called internally by the kernel whenever a task, queue,
-	timer or semaphore is created.  It is also called by various parts of the
-	demo application.  If heap_1.c, heap_2.c or heap_4.c are used, then the
-	size of the heap available to pvPortMalloc() is defined by
-	configTOTAL_HEAP_SIZE in FreeRTOSConfig.h, and the xPortGetFreeHeapSize()
-	API function can be used to query the size of free heap space that remains
-	(although it does not provide information on how the remaining heap might
-	be fragmented). */
-	taskDISABLE_INTERRUPTS();
-	for( ;; );
-}
-
-
-
