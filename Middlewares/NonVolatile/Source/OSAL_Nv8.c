@@ -146,7 +146,7 @@ typedef enum
  * GLOBAL VARIABLES
  */
 
-#ifndef OAD_KEEP_NV_PAGES
+#ifdef OAD_KEEP_NV_PAGES
 // When NV pages are to remain intact during OAD download,
 // the image itself should not include NV pages.
 #pragma location="ZIGNV_ADDRESS_SPACE"

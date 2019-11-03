@@ -57,7 +57,19 @@ uint8 nvDataBuf[HAL_NV_PAGE_CNT][HAL_FLASH_PAGE_SIZE];
  */
 void HalFlashRead(uint8 pg, uint16 offset, uint8 *buf, uint16 cnt)
 {
+  // Calculate the offset into the containing flash bank as it gets mapped into XDATA.
+  uint8 *ptr = (uint8 *)(offset + HAL_FLASH_PAGE_MAP) +
+               ((pg % HAL_FLASH_PAGE_PER_BANK) * HAL_FLASH_PAGE_SIZE);
+  halIntState_t is;
 
+  HAL_ENTER_CRITICAL_SECTION(is);
+
+  while (cnt--)
+  {
+    *buf++ = *ptr++;
+  }
+
+  HAL_EXIT_CRITICAL_SECTION(is);
 }
 
 /**************************************************************************************************
