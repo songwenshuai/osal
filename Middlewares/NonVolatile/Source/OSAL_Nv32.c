@@ -497,7 +497,7 @@ static void erasePage( uint8 pg )
  *          the page header member OSAL_NV_PG_XFER is zeroed out.
  *          During this "HAL flash brown-out", the code will run and OTA should work (until low Vdd
  *          causes an actual chip brown-out, of course.) Although no new NV items will be created
- *          or written, the last value written with a return value of SUCCESS can continue to be
+ *          or written, the last value written with a return value of OSAL_SUCCESS can continue to be
  *          read successfully.
  *          If eventually HAL flash starts working again, all of the pages marked as
  *          "pending compaction" may or may not be eventually compacted. But, initNV() will
@@ -1149,7 +1149,7 @@ void osal_nv_init( void *p )
  * @param  *buf - Pointer to item initalization data. Set to NULL if none.
  *
  * @return  NV_ITEM_UNINIT - Id did not exist and was created successfully.
- *          SUCCESS       - Id already existed, no action taken.
+ *          OSAL_SUCCESS       - Id already existed, no action taken.
  *          NV_OPER_FAILED - Failure to find or create Id.
  */
 uint8 osal_nv_item_init( uint16 id, uint16 len, void *buf )
@@ -1170,7 +1170,7 @@ uint8 osal_nv_item_init( uint16 id, uint16 len, void *buf )
     // Re-populate the NV hot item data if the corresponding items are already established.
     hotItemUpdate(findPg, offset, id);
 
-    return SUCCESS;
+    return OSAL_SUCCESS;
     }
   else if ( initItem( TRUE, id, len, buf ) != OSAL_NV_PAGE_NULL )
     {
@@ -1223,12 +1223,12 @@ uint16 osal_nv_item_len( uint16 id )
  * @param   len - Length of data to write.
  * @param  *buf - Data to write.
  *
- * @return  SUCCESS if successful, NV_ITEM_UNINIT if item did not
+ * @return  OSAL_SUCCESS if successful, NV_ITEM_UNINIT if item did not
  *          exist in NV and offset is non-zero, NV_OPER_FAILED if failure.
  */
 uint8 osal_nv_write( uint16 id, uint16 ndx, uint16 len, void *buf )
 {
-  uint8 rtrn = SUCCESS;
+  uint8 rtrn = OSAL_SUCCESS;
 
   /* -- sws del
   if ( !OSAL_NV_CHECK_BUS_VOLTAGE )
@@ -1365,7 +1365,7 @@ uint8 osal_nv_write( uint16 id, uint16 ndx, uint16 len, void *buf )
  * @param   len    - Length of data to read.
  * @param   *buf  - Data is read into this buffer.
  *
- * @return  SUCCESS if NV data was copied to the parameter 'buf'.
+ * @return  OSAL_SUCCESS if NV data was copied to the parameter 'buf'.
  *          Otherwise, NV_OPER_FAILED for failure.
  */
 uint8 osal_nv_read( uint16 id, uint16 ndx, uint16 len, void *buf )
@@ -1391,7 +1391,7 @@ uint8 osal_nv_read( uint16 id, uint16 ndx, uint16 len, void *buf )
     *ptr++ = *addr++;
   }
 
-  return SUCCESS;
+  return OSAL_SUCCESS;
 }
 
 /******************************************************************************
@@ -1403,7 +1403,7 @@ uint8 osal_nv_read( uint16 id, uint16 ndx, uint16 len, void *buf )
  * @param   id  - Valid NV item Id.
  * @param   len - Length of item to delete.
  *
- * @return  SUCCESS if item was deleted,
+ * @return  OSAL_SUCCESS if item was deleted,
  *          NV_ITEM_UNINIT if item did not exist in NV,
  *          NV_BAD_ITEM_LEN if length parameter not correct,
  *          NV_OPER_FAILED if attempted deletion failed.
@@ -1441,7 +1441,7 @@ uint8 osal_nv_delete( uint16 id, uint16 len )
   else
   {
     // Yes, it's gone
-    return SUCCESS;
+    return OSAL_SUCCESS;
   }
 }
 

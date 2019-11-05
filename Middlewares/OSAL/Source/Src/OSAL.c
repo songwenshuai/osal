@@ -89,7 +89,7 @@ static halIntState_t osal_int_state;
  * @param   uint8 task_id - receiving tasks ID
  * @param   uint8 event_flag - what event to set
  *
- * @return  SUCCESS, MSG_BUFFER_NOT_AVAIL, FAILURE, INVALID_TASK
+ * @return  OSAL_SUCCESS, MSG_BUFFER_NOT_AVAIL, OSAL_FAILURE, INVALID_TASK
  */
 uint8 osal_set_event( uint8 task_id, uint16 event_flag )
 {
@@ -99,7 +99,7 @@ uint8 osal_set_event( uint8 task_id, uint16 event_flag )
     HAL_ENTER_CRITICAL_SECTION(intState);    // Hold off interrupts
     tasksEvents[task_id] |= event_flag;  // Stuff the event bit(s)
     HAL_EXIT_CRITICAL_SECTION(intState);     // Release interrupts
-    return ( SUCCESS );
+    return ( OSAL_SUCCESS );
   }
   else
   {
@@ -118,7 +118,7 @@ uint8 osal_set_event( uint8 task_id, uint16 event_flag )
  * @param   uint8 task_id - receiving tasks ID
  * @param   uint8 event_flag - what event to clear
  *
- * @return  SUCCESS, INVALID_TASK
+ * @return  OSAL_SUCCESS, INVALID_TASK
  */
 uint8 osal_clear_event( uint8 task_id, uint16 event_flag )
 {
@@ -128,7 +128,7 @@ uint8 osal_clear_event( uint8 task_id, uint16 event_flag )
     HAL_ENTER_CRITICAL_SECTION(intState);    // Hold off interrupts
     tasksEvents[task_id] &= ~(event_flag);   // Clear the event bit(s)
     HAL_EXIT_CRITICAL_SECTION(intState);     // Release interrupts
-    return ( SUCCESS );
+    return ( OSAL_SUCCESS );
   }
    else
   {
@@ -147,14 +147,14 @@ uint8 osal_clear_event( uint8 task_id, uint16 event_flag )
  * @param   uint8 interrupt_id - Interrupt number
  * @param   void (*isr_ptr)( uint8* ) - function pointer to ISR
  *
- * @return  SUCCESS, INVALID_INTERRUPT_ID,
+ * @return  OSAL_SUCCESS, INVALID_INTERRUPT_ID,
  */
 uint8 osal_isr_register( uint8 interrupt_id, void (*isr_ptr)( uint8* ) )
 {
   // Remove these statements when functionality is complete
   (void)interrupt_id;
   (void)isr_ptr;
-  return ( SUCCESS );
+  return ( OSAL_SUCCESS );
 }
 
 /*********************************************************************
@@ -172,7 +172,7 @@ uint8 osal_isr_register( uint8 interrupt_id, void (*isr_ptr)( uint8* ) )
  *
  * @param   uint8 interrupt_id - Interrupt number
  *
- * @return  SUCCESS or INVALID_INTERRUPT_ID
+ * @return  OSAL_SUCCESS or INVALID_INTERRUPT_ID
  */
 uint8 osal_int_enable( uint8 interrupt_id )
 {
@@ -180,7 +180,7 @@ uint8 osal_int_enable( uint8 interrupt_id )
   if ( interrupt_id == INTS_ALL )
   {
     HAL_ENABLE_INTERRUPTS();
-    return ( SUCCESS );
+    return ( OSAL_SUCCESS );
   }
   else
   {
@@ -202,7 +202,7 @@ uint8 osal_int_enable( uint8 interrupt_id )
  *
  * @param   uint8 interrupt_id - Interrupt number
  *
- * @return  SUCCESS or INVALID_INTERRUPT_ID
+ * @return  OSAL_SUCCESS or INVALID_INTERRUPT_ID
  */
 uint8 osal_int_disable( uint8 interrupt_id )
 {
@@ -210,7 +210,7 @@ uint8 osal_int_disable( uint8 interrupt_id )
   if ( interrupt_id == INTS_ALL )
   {
     HAL_DISABLE_INTERRUPTS();
-    return ( SUCCESS );
+    return ( OSAL_SUCCESS );
   }
   else
   {
@@ -228,7 +228,7 @@ uint8 osal_int_disable( uint8 interrupt_id )
  *
  * @param   void
  *
- * @return  SUCCESS
+ * @return  OSAL_SUCCESS
  */
 uint8 osal_init_system( void )
 {
@@ -263,7 +263,7 @@ uint8 osal_init_system( void )
   // Allow interrupts
   osal_int_enable(INTS_ALL);
 
-  return ( SUCCESS );
+  return ( OSAL_SUCCESS );
 }
 
 /*********************************************************************

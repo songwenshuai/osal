@@ -257,14 +257,14 @@ Status_t osal_CbTimerStartReload( pfnCbTimer_t  pfnCbTimer,
  * @fn      osal_CbTimerUpdate
  *
  * @brief   This function is called to update a message timer that has
- *          already been started. If SUCCESS, the function will update
+ *          already been started. If OSAL_SUCCESS, the function will update
  *          the timer's timeout value. If INVALIDPARAMETER, the timer
  *          either doesn't exit.
  *
  * @param   timerId - identifier of the timer that is to be updated
  * @param   timeout - new timeout in milliseconds.
  *
- * @return  SUCCESS or INVALIDPARAMETER if timer not found
+ * @return  OSAL_SUCCESS or INVALIDPARAMETER if timer not found
  */
 Status_t osal_CbTimerUpdate( uint8 timerId, uint32 timeout )
 {
@@ -285,7 +285,7 @@ Status_t osal_CbTimerUpdate( uint8 timerId, uint32 timeout )
 
         HAL_EXIT_CRITICAL_SECTION(cs);
 
-        return (  SUCCESS );
+        return (  OSAL_SUCCESS );
       }
     }
   }
@@ -301,12 +301,12 @@ Status_t osal_CbTimerUpdate( uint8 timerId, uint32 timeout )
  * @fn      osal_CbTimerStop
  *
  * @brief   This function is called to stop a timer that has already been
- *          started. If SUCCESS, the function will cancel the timer. If
+ *          started. If OSAL_SUCCESS, the function will cancel the timer. If
  *          INVALIDPARAMETER, the timer doesn't exit.
  *
  * @param   timerId - identifier of the timer that is to be stopped
  *
- * @return  SUCCESS or INVALIDPARAMETER if timer not found
+ * @return  OSAL_SUCCESS or INVALIDPARAMETER if timer not found
  */
 Status_t osal_CbTimerStop( uint8 timerId )
 {
@@ -330,7 +330,7 @@ Status_t osal_CbTimerStop( uint8 timerId )
 
       HAL_EXIT_CRITICAL_SECTION(cs);
 
-      return ( SUCCESS );
+      return ( OSAL_SUCCESS );
     }
   }
 
@@ -391,7 +391,7 @@ static Status_t cbTimerSetup( pfnCbTimer_t  pfnCbTimer,
       // Start the OSAL event timer first
       if ( ( (reload==TRUE)          ?
              osal_start_reload_timer :
-             osal_start_timerEx )( TASK_ID( i ), EVENT_ID( i ), timeout ) == SUCCESS )
+             osal_start_timerEx )( TASK_ID( i ), EVENT_ID( i ), timeout ) == OSAL_SUCCESS )
       {
         // Set up the callback timer
         // Note: An odd pointer will be used to indicate to the process event
@@ -408,7 +408,7 @@ static Status_t cbTimerSetup( pfnCbTimer_t  pfnCbTimer,
 
         HAL_EXIT_CRITICAL_SECTION(cs);
 
-        return ( SUCCESS );
+        return ( OSAL_SUCCESS );
       }
     }
   }

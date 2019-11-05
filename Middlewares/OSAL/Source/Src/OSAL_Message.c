@@ -120,7 +120,7 @@ uint8 * osal_msg_allocate( uint16 len )
  *
  * @param   uint8 *msg_ptr - pointer to new message buffer
  *
- * @return  SUCCESS, INVALID_MSG_POINTER
+ * @return  OSAL_SUCCESS, INVALID_MSG_POINTER
  */
 uint8 osal_msg_deallocate( uint8 *msg_ptr )
 {
@@ -137,7 +137,7 @@ uint8 osal_msg_deallocate( uint8 *msg_ptr )
 
   OSAL_MESSAGE_FREE( (void *)x );
 
-  return ( SUCCESS );
+  return ( OSAL_SUCCESS );
 }
 
 /*********************************************************************
@@ -155,7 +155,7 @@ uint8 osal_msg_deallocate( uint8 *msg_ptr )
  * @param   uint8 destination_task - Send msg to Task ID
  * @param   uint8 *msg_ptr - pointer to new message buffer
  *
- * @return  SUCCESS, INVALID_TASK, INVALID_MSG_POINTER
+ * @return  OSAL_SUCCESS, INVALID_TASK, INVALID_MSG_POINTER
  */
 uint8 osal_msg_send( uint8 destination_task, uint8 *msg_ptr )
 {
@@ -176,7 +176,7 @@ uint8 osal_msg_send( uint8 destination_task, uint8 *msg_ptr )
  * @param   uint8 destination_task - Send msg to Task ID
  * @param   uint8 *msg_ptr - pointer to message buffer
  *
- * @return  SUCCESS, INVALID_TASK, INVALID_MSG_POINTER
+ * @return  OSAL_SUCCESS, INVALID_TASK, INVALID_MSG_POINTER
  */
 uint8 osal_msg_push_front( uint8 destination_task, uint8 *msg_ptr )
 {
@@ -199,7 +199,7 @@ uint8 osal_msg_push_front( uint8 destination_task, uint8 *msg_ptr )
  * @param   uint8 *msg_ptr - pointer to message buffer
  * @param   uint8 push - TRUE to push, otherwise enqueue
  *
- * @return  SUCCESS, INVALID_TASK, INVALID_MSG_POINTER
+ * @return  OSAL_SUCCESS, INVALID_TASK, INVALID_MSG_POINTER
  */
 static uint8 osal_msg_enqueue_push( uint8 destination_task, uint8 *msg_ptr, uint8 push )
 {
@@ -238,7 +238,7 @@ static uint8 osal_msg_enqueue_push( uint8 destination_task, uint8 *msg_ptr, uint
   // Signal the task that a message is waiting
   osal_set_event( destination_task, SYS_EVENT_MSG );
 
-  return ( SUCCESS );
+  return ( OSAL_SUCCESS );
 }
 
 /*********************************************************************

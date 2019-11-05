@@ -601,8 +601,8 @@ typedef union
 #endif
 
  /*** Generic Status Return Values ***/
-#define SUCCESS                   0x00
-#define FAILURE                   0x01
+#define OSAL_SUCCESS              0x00
+#define OSAL_FAILURE              0x01
 #define INVALIDPARAMETER          0x02
 #define INVALID_TASK              0x03
 #define MSG_BUFFER_NOT_AVAIL      0x04
@@ -724,17 +724,17 @@ typedef                        char *_va_list;
 // Return the 32bit little-endian formatted value pointed to by pBuf, and increment pBuf by 4
 #define BUF_TO_UINT32_LITTLE_ENDIAN(pBuf) (((pBuf) += 4), BUILD_UINT32((pBuf)[-4], (pBuf)[-3], (pBuf)[-2], (pBuf)[-1]))
 
-#ifndef CHECK_BIT
-#define CHECK_BIT(DISCS, IDX) ((DISCS) & (1<<(IDX)))
+#ifndef OSAL_CHECK_BIT
+#define OSAL_CHECK_BIT(DISCS, IDX) ((DISCS) & (1<<(IDX)))
 #endif          
-#ifndef GET_BIT
-#define GET_BIT(DISCS, IDX)  (((DISCS)[((IDX) / 8)] & BV((IDX) % 8)) ? TRUE : FALSE)
+#ifndef OSAL_GET_BIT
+#define OSAL_GET_BIT(DISCS, IDX)  (((DISCS)[((IDX) / 8)] & BV((IDX) % 8)) ? TRUE : FALSE)
 #endif
-#ifndef SET_BIT
-#define SET_BIT(DISCS, IDX)  (((DISCS)[((IDX) / 8)] |= BV((IDX) % 8)))
+#ifndef OSAL_SET_BIT
+#define OSAL_SET_BIT(DISCS, IDX)  (((DISCS)[((IDX) / 8)] |= BV((IDX) % 8)))
 #endif
-#ifndef CLR_BIT
-#define CLR_BIT(DISCS, IDX)  (((DISCS)[((IDX) / 8)] &= (BV((IDX) % 8) ^ 0xFF)))
+#ifndef OSAL_CLR_BIT
+#define OSAL_CLR_BIT(DISCS, IDX)  (((DISCS)[((IDX) / 8)] &= (BV((IDX) % 8) ^ 0xFF)))
 #endif
 
 /*

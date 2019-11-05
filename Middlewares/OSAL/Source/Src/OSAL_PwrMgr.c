@@ -99,7 +99,7 @@ void osal_pwrmgr_device( uint8 pwrmgr_device )
  *          state - whether the calling task wants to
  *          conserve power or not.
  *
- * @return  SUCCESS if task complete
+ * @return  OSAL_SUCCESS if task complete
  */
 uint8 osal_pwrmgr_task_state( uint8 task_id, uint8 state )
 {
@@ -124,7 +124,7 @@ uint8 osal_pwrmgr_task_state( uint8 task_id, uint8 state )
 
   HAL_EXIT_CRITICAL_SECTION( intState );
 
-  return ( SUCCESS );
+  return ( OSAL_SUCCESS );
 }
 
 #if defined( POWER_SAVING )

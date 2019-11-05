@@ -73,7 +73,7 @@ uint32 init_rand(uint32 seed)
     prngState += seed;
 
     //Successful processing
-    return SUCCESS;
+    return OSAL_SUCCESS;
 }
 
 /*********************************************************************

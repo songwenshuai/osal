@@ -226,7 +226,7 @@ void osalDeleteTimer( osalTimerRec_t *rmTimer )
  * @param   uint16 event_id - event to be notified with
  * @param   uint32 timeout_value - in milliseconds.
  *
- * @return  SUCCESS, or NO_TIMER_AVAIL.
+ * @return  OSAL_SUCCESS, or NO_TIMER_AVAIL.
  */
 uint8 osal_start_timerEx( uint8 taskID, uint16 event_id, uint32 timeout_value )
 {
@@ -240,7 +240,7 @@ uint8 osal_start_timerEx( uint8 taskID, uint16 event_id, uint32 timeout_value )
 
   HAL_EXIT_CRITICAL_SECTION( intState );   // Re-enable interrupts.
 
-  return ( (newTimer != NULL) ? SUCCESS : NO_TIMER_AVAIL );
+  return ( (newTimer != NULL) ? OSAL_SUCCESS : NO_TIMER_AVAIL );
 }
 
 /*********************************************************************
@@ -256,7 +256,7 @@ uint8 osal_start_timerEx( uint8 taskID, uint16 event_id, uint32 timeout_value )
  * @param   uint16 event_id - event to be notified with
  * @param   UNINT16 timeout_value - in milliseconds.
  *
- * @return  SUCCESS, or NO_TIMER_AVAIL.
+ * @return  OSAL_SUCCESS, or NO_TIMER_AVAIL.
  */
 uint8 osal_start_reload_timer( uint8 taskID, uint16 event_id, uint32 timeout_value )
 {
@@ -275,7 +275,7 @@ uint8 osal_start_reload_timer( uint8 taskID, uint16 event_id, uint32 timeout_val
 
   HAL_EXIT_CRITICAL_SECTION( intState );   // Re-enable interrupts.
 
-  return ( (newTimer != NULL) ? SUCCESS : NO_TIMER_AVAIL );
+  return ( (newTimer != NULL) ? OSAL_SUCCESS : NO_TIMER_AVAIL );
 }
 
 /*********************************************************************
@@ -290,7 +290,7 @@ uint8 osal_start_reload_timer( uint8 taskID, uint16 event_id, uint32 timeout_val
  * @param   uint8 task_id - task id of timer to stop
  * @param   uint16 event_id - identifier of the timer that is to be stopped
  *
- * @return  SUCCESS or INVALID_EVENT_ID
+ * @return  OSAL_SUCCESS or INVALID_EVENT_ID
  */
 uint8 osal_stop_timerEx( uint8 task_id, uint16 event_id )
 {
@@ -308,7 +308,7 @@ uint8 osal_stop_timerEx( uint8 task_id, uint16 event_id )
 
   HAL_EXIT_CRITICAL_SECTION( intState );   // Re-enable interrupts.
 
-  return ( (foundTimer != NULL) ? SUCCESS : INVALID_EVENT_ID );
+  return ( (foundTimer != NULL) ? OSAL_SUCCESS : INVALID_EVENT_ID );
 }
 
 /*********************************************************************
