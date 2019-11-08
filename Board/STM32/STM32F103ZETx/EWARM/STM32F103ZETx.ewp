@@ -1195,6 +1195,18 @@
   <group>
     <name>Middlewares</name>
     <group>
+      <name>HardFault</name>
+      <group>
+        <name>Source</name>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\HardFault\Source\HardFaultHandler.S</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Middlewares\HardFault\Source\SEGGER_HardFaultHandler.c</name>
+        </file>
+      </group>
+    </group>
+    <group>
       <name>Lwmem</name>
       <group>
         <name>Cfg</name>
