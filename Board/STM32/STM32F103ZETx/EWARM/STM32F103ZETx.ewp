@@ -366,7 +366,6 @@
           <state>$PROJ_DIR$/../Middlewares/uC-LIB/Port</state>
           <state>$PROJ_DIR$/../Middlewares/uC-Shell/Cfg</state>
           <state>$PROJ_DIR$/../Middlewares/uC-Shell/Terminal/Cfg</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/FlexibleButton/Source</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Lwmem/Source</state>
           <state>$PROJ_DIR$/../../../../Middlewares/OSAL/Source/Inc</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Printf/Source</state>
@@ -1196,24 +1195,6 @@
   <group>
     <name>Middlewares</name>
     <group>
-      <name>FlexibleButton</name>
-      <group>
-        <name>Port</name>
-        <file>
-          <name>$PROJ_DIR$\..\Middlewares\FlexibleButton\Port\flexible_button_demo.c</name>
-        </file>
-      </group>
-      <group>
-        <name>Source</name>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\FlexibleButton\Source\flexible_button.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\FlexibleButton\Source\flexible_button.h</name>
-        </file>
-      </group>
-    </group>
-    <group>
       <name>Lwmem</name>
       <group>
         <name>Cfg</name>
@@ -1559,6 +1540,12 @@
       <name>Hal</name>
       <group>
         <name>Target</name>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Sample\Hal\Target\hal_key.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\..\Sample\Hal\Target\hal_key.h</name>
+        </file>
         <file>
           <name>$PROJ_DIR$\..\..\..\..\Sample\Hal\Target\hal_led.c</name>
         </file>

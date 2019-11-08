@@ -1,5 +1,5 @@
 /**
- * @File:    flexible_button.c
+ * @File:    hal_key.c
  * @Author:  MurphyZhao
  * @Date:    2018-09-29
  * 
@@ -27,7 +27,7 @@
  * 
 */
 
-#include "flexible_button.h"
+#include "hal_key.h"
 #include <string.h>
 #include <stdio.h>
 

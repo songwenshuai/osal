@@ -15,10 +15,17 @@
 
 #include "OSAL_Message.h"
 #include "OSAL_Timers.h"
+#include "OSAL_Helper.h"
 
 #include "hal_drivers.h"
 
 #include "hal_led.h"
+
+#include "bsp_pb.h"
+
+#include "hal_key.h"
+
+#include "printf.h"
 
  /*********************************************************************
   * GLOBAL FUNCTIONS
@@ -26,7 +33,7 @@
 
 #ifndef _WIN32
 extern void flex_button_scan(void);
-extern void user_button_init( void );
+extern void Hal_KeyInit( void );
 #endif
 
 /**************************************************************************************************
@@ -35,6 +42,168 @@ extern void user_button_init( void );
 uint8 Hal_TaskID;
 
 extern void HalLedUpdate( void ); /* Notes: This for internal only so it shouldn't be in hal_led.h */
+
+
+typedef enum
+{
+    USER_BUTTON_0 = 0,
+    USER_BUTTON_1,
+    USER_BUTTON_MAX
+} user_button_t;
+
+static flex_button_t user_button[USER_BUTTON_MAX];
+
+/**************************************************************************************************
+ * @fn      btn_0_cb
+ *
+ * @brief   Initialize HW - These need to be initialized before anyone.
+ *
+ * @param   task_id - Hal TaskId
+ *
+ * @return  None
+ **************************************************************************************************/
+static void btn_0_cb(flex_button_t *btn)
+{
+    printf("btn_0_cb\n");
+    switch (btn->event)
+    {
+        case FLEX_BTN_PRESS_DOWN:
+            printf("btn_0_cb [FLEX_BTN_PRESS_DOWN]\n");
+            break;
+        case FLEX_BTN_PRESS_CLICK:
+            printf("btn_0_cb [FLEX_BTN_PRESS_CLICK]\n");
+            break;
+        case FLEX_BTN_PRESS_DOUBLE_CLICK:
+            printf("btn_0_cb [FLEX_BTN_PRESS_DOUBLE_CLICK]\n");
+            break;
+        case FLEX_BTN_PRESS_SHORT_START:
+            printf("btn_0_cb [FLEX_BTN_PRESS_SHORT_START]\n");
+            break;
+        case FLEX_BTN_PRESS_SHORT_UP:
+            printf("btn_0_cb [FLEX_BTN_PRESS_SHORT_UP]\n");
+            break;
+        case FLEX_BTN_PRESS_LONG_START:
+            printf("btn_0_cb [FLEX_BTN_PRESS_LONG_START]\n");
+            break;
+        case FLEX_BTN_PRESS_LONG_UP:
+            printf("btn_0_cb [FLEX_BTN_PRESS_LONG_UP]\n");
+            break;
+        case FLEX_BTN_PRESS_LONG_HOLD:
+            printf("btn_0_cb [FLEX_BTN_PRESS_LONG_HOLD]\n");
+            break;
+        case FLEX_BTN_PRESS_LONG_HOLD_UP:
+            printf("btn_0_cb [FLEX_BTN_PRESS_LONG_HOLD_UP]\n");
+            break;
+    }
+}
+
+/**************************************************************************************************
+ * @fn      btn_1_cb
+ *
+ * @brief   Initialize HW - These need to be initialized before anyone.
+ *
+ * @param   task_id - Hal TaskId
+ *
+ * @return  None
+ **************************************************************************************************/
+static void btn_1_cb(flex_button_t *btn)
+{
+    printf("btn_1_cb\n");
+    switch (btn->event)
+    {
+        case FLEX_BTN_PRESS_DOWN:
+            printf("btn_1_cb [FLEX_BTN_PRESS_DOWN]\n");
+            break;
+        case FLEX_BTN_PRESS_CLICK:
+            printf("btn_1_cb [FLEX_BTN_PRESS_CLICK]\n");
+            break;
+        case FLEX_BTN_PRESS_DOUBLE_CLICK:
+            printf("btn_1_cb [FLEX_BTN_PRESS_DOUBLE_CLICK]\n");
+            break;
+        case FLEX_BTN_PRESS_SHORT_START:
+            printf("btn_1_cb [FLEX_BTN_PRESS_SHORT_START]\n");
+            break;
+        case FLEX_BTN_PRESS_SHORT_UP:
+            printf("btn_1_cb [FLEX_BTN_PRESS_SHORT_UP]\n");
+            break;
+        case FLEX_BTN_PRESS_LONG_START:
+            printf("btn_1_cb [FLEX_BTN_PRESS_LONG_START]\n");
+            break;
+        case FLEX_BTN_PRESS_LONG_UP:
+            printf("btn_1_cb [FLEX_BTN_PRESS_LONG_UP]\n");
+            break;
+        case FLEX_BTN_PRESS_LONG_HOLD:
+            printf("btn_1_cb [FLEX_BTN_PRESS_LONG_HOLD]\n");
+            break;
+        case FLEX_BTN_PRESS_LONG_HOLD_UP:
+            printf("btn_1_cb [FLEX_BTN_PRESS_LONG_HOLD_UP]\n");
+            break;
+    }
+}
+
+/**************************************************************************************************
+ * @fn      button_key0_read
+ *
+ * @brief   Initialize HW - These need to be initialized before anyone.
+ *
+ * @param   task_id - Hal TaskId
+ *
+ * @return  None
+ **************************************************************************************************/
+static uint8_t button_key0_read(void)
+{
+    return BSP_PB_GetState(BUTTON_A);
+}
+
+/**************************************************************************************************
+ * @fn      button_key1_read
+ *
+ * @brief   Initialize HW - These need to be initialized before anyone.
+ *
+ * @param   task_id - Hal TaskId
+ *
+ * @return  None
+ **************************************************************************************************/
+static uint8_t button_key1_read(void)
+{
+    return BSP_PB_GetState(BUTTON_B);
+}
+
+/**************************************************************************************************
+ * @fn      Hal_KeyInit
+ *
+ * @brief   Initialize HW - These need to be initialized before anyone.
+ *
+ * @param   task_id - Hal TaskId
+ *
+ * @return  None
+ **************************************************************************************************/
+void Hal_KeyInit(void)
+{
+    int i;
+
+    BSP_PB_Init(BUTTON_A, BUTTON_MODE_GPIO);
+    BSP_PB_Init(BUTTON_B, BUTTON_MODE_GPIO);
+
+    osal_memset(&user_button[0], 0x0, sizeof(user_button));
+
+    user_button[USER_BUTTON_0].usr_button_read = button_key0_read;
+    user_button[USER_BUTTON_0].cb = (flex_button_response_callback)btn_0_cb;
+
+    user_button[USER_BUTTON_1].usr_button_read = button_key1_read;
+    user_button[USER_BUTTON_1].cb = (flex_button_response_callback)btn_1_cb;
+
+    for (i = 0; i < USER_BUTTON_MAX; i ++)
+    {
+        user_button[i].pressed_logic_level = 1;
+        user_button[i].click_start_tick = 20;
+        user_button[i].short_press_start_tick = 100;
+        user_button[i].long_press_start_tick = 200;
+        user_button[i].long_hold_start_tick = 300;
+
+        flex_button_register(&user_button[i]);
+    }
+}
 
 /**************************************************************************************************
  * @fn      Hal_Init
@@ -77,7 +246,7 @@ void HalDriverInit (void)
   /* KEY */
 #if (defined HAL_KEY) && (HAL_KEY == TRUE)
 #ifndef _WIN32
-  user_button_init();
+  Hal_KeyInit();
 #endif
 #endif
   
