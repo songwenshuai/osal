@@ -13,7 +13,7 @@
 
 #include "lwmem.h"
 
-#include "LinkList.h"
+#include "OSAL_LinkList.h"
 
 /*********************
  *      DEFINES

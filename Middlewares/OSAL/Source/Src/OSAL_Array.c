@@ -14,7 +14,7 @@
 
 #include "lwmem.h"
 
-#include "array.h"
+#include "OSAL_Array.h"
 
 #define ARRAY_BUF_MEMCPY                      osal_memcpy
 #define ARRAY_MEM_ALLOC                       lwmem_malloc

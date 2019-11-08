@@ -374,7 +374,6 @@
           <state>$PROJ_DIR$/../Middlewares/uC-Shell/Cfg</state>
           <state>$PROJ_DIR$/../Middlewares/uC-Shell/Terminal/Cfg</state>
           <state>$PROJ_DIR$/../../../../Middlewares/CmBacktrace/Source</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/DataStructure/Source/Inc</state>
           <state>$PROJ_DIR$/../../../../Middlewares/EasyFlash/Source</state>
           <state>$PROJ_DIR$/../../../../Middlewares/EasyLogger/Plugins/flash/Source</state>
           <state>$PROJ_DIR$/../../../../Middlewares/EasyLogger/Source</state>
@@ -1239,54 +1238,6 @@
         <file>
           <name>$PROJ_DIR$\..\..\..\..\Middlewares\CmBacktrace\Source\cmb_def.h</name>
         </file>
-      </group>
-    </group>
-    <group>
-      <name>DataStructure</name>
-      <group>
-        <name>Source</name>
-        <group>
-          <name>Inc</name>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Source\Inc\Array.h</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Source\Inc\Fifo.h</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Source\Inc\LinkList.h</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Source\Inc\List.h</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Source\Inc\Queue.h</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Source\Inc\Ring.h</name>
-          </file>
-        </group>
-        <group>
-          <name>Src</name>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Source\Src\Array.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Source\Src\Fifo.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Source\Src\LinkList.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Source\Src\List.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Source\Src\Queue.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\DataStructure\Source\Src\Ring.c</name>
-          </file>
-        </group>
       </group>
     </group>
     <group>

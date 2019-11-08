@@ -14,7 +14,7 @@
 
 #include "OSAL_Helper.h"
 
-#include "Fifo.h"
+#include "OSAL_Fifo.h"
 
 /*********************************************************************
  * LOCAL VARIABLES

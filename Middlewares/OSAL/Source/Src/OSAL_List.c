@@ -12,7 +12,7 @@
  */
 #include "OSAL.h"
 
-#include "List.h"
+#include "OSAL_List.h"
 
 /**
  *  @brief  Function to initialize the contents of an list_list
