@@ -1,40 +1,40 @@
-/**
- * @File:    hal_key.c
- * @Author:  MurphyZhao
- * @Date:    2018-09-29
- * 
- * Copyright (c) 2018-2019 MurphyZhao <d2014zjt@163.com>
- *               https://github.com/murphyzhao
- * All rights reserved.
- * License-Identifier: Apache-2.0
- *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * Change logs:
- * Date        Author       Notes
- * 2018-09-29  MurphyZhao   First add
- * 2019-08-02  MurphyZhao   迁移代码到 murphyzhao 仓库
- * 
-*/
+/**************************************************************************************************
+  Filename:       hal_key.c
+  Revised:        $Date: 2013-05-17 11:25:11 -0700 (Fri, 17 May 2013) $
+  Revision:       $Revision: 34355 $
+
+  Description:    This file contains the interface to the HAL KEY Service.
+
+**************************************************************************************************/
+
+/***************************************************************************************************
+ *                                             INCLUDES
+ ***************************************************************************************************/
 
 #include "hal_key.h"
-#include <string.h>
-#include <stdio.h>
 
-static flex_button_t *btn_head = NULL;
+/***************************************************************************************************
+ *                                             CONSTANTS
+ ***************************************************************************************************/
+
+/***************************************************************************************************
+ *                                              MACROS
+ ***************************************************************************************************/
 
 #define EVENT_CB_EXECUTOR(button) if(button->cb) button->cb((flex_button_t*)button)
 #define MAX_BUTTON_CNT 16
+
+/***************************************************************************************************
+ *                                              TYPEDEFS
+ ***************************************************************************************************/
+/***************************************************************************************************
+ *                                           GLOBAL VARIABLES
+ ***************************************************************************************************/
+/***************************************************************************************************
+ *                                            LOCAL FUNCTION
+ ***************************************************************************************************/
+
+static flex_button_t *btn_head = NULL;
 
 static uint16_t trg = 0;
 static uint16_t cont = 0;
@@ -42,12 +42,18 @@ static uint16_t keydata = 0xFFFF;
 static uint16_t key_rst_data = 0xFFFF;
 static uint8_t button_cnt = 0;
 
-/**
+/***************************************************************************************************
+ *                                            FUNCTIONS - API
+ ***************************************************************************************************/
+
+/***************************************************************************************************
+ * @fn      flex_button_register
+ *
  * @brief Register a user button
  * 
  * @param button: button structure instance
  * @return Number of keys that have been registered
-*/
+ ***************************************************************************************************/
 int8_t flex_button_register(flex_button_t *button)
 {
     flex_button_t *curr = btn_head;
@@ -77,12 +83,14 @@ int8_t flex_button_register(flex_button_t *button)
     return button_cnt;
 }
 
-/**
+/***************************************************************************************************
+ * @fn      flex_button_read
+ *
  * @brief Read all key values in one scan cycle
  * 
  * @param void
  * @return none
-*/
+ ***************************************************************************************************/
 static void flex_button_read(void)
 {
     flex_button_t* target;
@@ -105,13 +113,15 @@ static void flex_button_read(void)
     cont = read_data;
 }
 
-/**
+/***************************************************************************************************
+ * @fn      flex_button_process
+ *
  * @brief Handle all key events in one scan cycle.
  *        Must be used after 'flex_button_read' API
  * 
  * @param void
  * @return none
-*/
+ ***************************************************************************************************/
 static void flex_button_process(void)
 {
     int8_t i = 0;
@@ -256,21 +266,21 @@ static void flex_button_process(void)
     }
 }
 
-/**
- * flex_button_event_read
- * 
+/***************************************************************************************************
+ * @fn      flex_button_event_read
+ *
  * @brief Get the button event of the specified button.
  * 
  * @param button: button structure instance
  * @return button event
-*/
+ ***************************************************************************************************/
 flex_button_event_t flex_button_event_read(flex_button_t* button)
 {
     return (flex_button_event_t)(button->event);
 }
 
-/**
- * flex_button_scan
+/***************************************************************************************************
+ * @fn      flex_button_scan
  * 
  * @brief Start key scan.
  *        Need to be called cyclically within the specified period.
@@ -278,7 +288,7 @@ flex_button_event_t flex_button_event_read(flex_button_t* button)
  * 
  * @param void
  * @return none
-*/
+ ***************************************************************************************************/
 void flex_button_scan(void)
 {
     flex_button_read();
