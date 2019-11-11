@@ -18,16 +18,13 @@
 #include "OSAL_Helper.h"
 #include "OSAL_Message.h"
 
-#include "lwmem.h"
+#include "OSAL_Memory.h"
 
 #include "printf.h"
 
 /*********************************************************************
  * MACROS
  */
-
-#define OSAL_MESSAGE_ALLOC                       lwmem_malloc
-#define OSAL_MESSAGE_FREE                        lwmem_free
 
 /*********************************************************************
  * CONSTANTS
@@ -96,7 +93,7 @@ uint8 * osal_msg_allocate( uint16 len )
   if ( len == 0 )
     return ( NULL );
 
-  hdr = (osal_msg_hdr_t *) OSAL_MESSAGE_ALLOC( (short)(len + sizeof( osal_msg_hdr_t )) );
+  hdr = (osal_msg_hdr_t *) osal_mem_alloc( (short)(len + sizeof( osal_msg_hdr_t )) );
   if ( hdr )
   {
     hdr->next = NULL;
@@ -135,7 +132,7 @@ uint8 osal_msg_deallocate( uint8 *msg_ptr )
 
   x = (uint8 *)((uint8 *)msg_ptr - sizeof( osal_msg_hdr_t ));
 
-  OSAL_MESSAGE_FREE( (void *)x );
+  osal_mem_free( (void *)x );
 
   return ( OSAL_SUCCESS );
 }

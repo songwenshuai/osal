@@ -2,14 +2,11 @@
 
 #include "OSAL_Helper.h"
 
-#include "lwmem.h"
+#include "OSAL_Memory.h"
 
 /*********************************************************************
  * MACROS
  */
-
-#define   OSAL_HELPER_ALLOC                       lwmem_malloc
-#define   OSAL_HELPER_FREE                        lwmem_free
 
 /*********************************************************************
  * CONSTANTS
@@ -561,7 +558,7 @@ void *osal_memdup( const void GENERIC *src, unsigned int len )
 {
   uint8 *pDst;
 
-  pDst = OSAL_HELPER_ALLOC( len );
+  pDst = osal_mem_alloc( len );
   if ( pDst )
   {
     osal_memcpy( pDst, src, len );

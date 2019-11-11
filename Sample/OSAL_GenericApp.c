@@ -16,7 +16,7 @@
 #include "OSAL_Cbtimer.h"
 #include "OSAL_Tasks.h"
 
-#include "lwmem.h"
+#include "OSAL_Memory.h"
 
 #include "GenericApp.h"
 #include "hal_drivers.h"
@@ -26,9 +26,6 @@
 /*********************************************************************
  * MACROS
  */
-
-#define OSAL_GENERIC_APP_ALLOC                       lwmem_malloc
-#define OSAL_GENERIC_APP_FREE                        lwmem_free
 
 /*********************************************************************
  * GLOBAL VARIABLES
@@ -67,7 +64,7 @@ void osalInitTasks( void )
 {
   uint8 taskID = 0;
 
-  tasksEvents = (uint16 *)OSAL_GENERIC_APP_ALLOC( sizeof( uint16 ) * tasksCnt);
+  tasksEvents = (uint16 *)osal_mem_alloc( sizeof( uint16 ) * tasksCnt);
 
   /* The tasksEvents allocated pointer must be valid */
   if (tasksEvents != NULL)

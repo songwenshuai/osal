@@ -15,6 +15,7 @@
 
 #include "OSAL.h"
 
+#include "OSAL_Helper.h"
 #include "OSAL_Memory.h"
 
 #include "printf.h"

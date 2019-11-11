@@ -21,16 +21,13 @@
 #include "OSAL_Timers.h"
 #include "OSAL_PwrMgr.h"
 
-#include "lwmem.h"
+#include "OSAL_Memory.h"
 
 #include "printf.h"
 
 /*********************************************************************
  * MACROS
  */
-
-#define OSAL_ALLOC                       lwmem_malloc
-#define OSAL_FREE                        lwmem_free
 
 /*********************************************************************
  * CONSTANTS
@@ -239,7 +236,7 @@ uint8 osal_init_system( void )
   OSAL_Init_Hook();
 
   // Initialize the Memory Allocation System
-  lwmem_init();
+  osal_mem_init();
 
   // Initialize the message queue
   osal_qHead = NULL;

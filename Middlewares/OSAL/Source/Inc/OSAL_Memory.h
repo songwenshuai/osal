@@ -30,6 +30,11 @@ extern "C"
  * MACROS
  */
 
+// Memory Allocation Heap
+#define MAXMEMHEAP                 4096   /* Typically, 1.0-6.0K */
+#define OSALMEM_IN_USE             0x8000
+// #define DPRINTF_OSALHEAPTRACE   1
+
 /*********************************************************************
  * TYPEDEFS
  */

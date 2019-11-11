@@ -357,11 +357,8 @@
           <state>$PROJ_DIR$/../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy</state>
           <state>$PROJ_DIR$/../Drivers/CMSIS/Device/ST/STM32F1xx/Include</state>
           <state>$PROJ_DIR$/../Drivers/CMSIS/Include</state>
-          <state>$PROJ_DIR$/../Middlewares/Lwmem/Cfg</state>
-          <state>$PROJ_DIR$/../Middlewares/Lwmem/Port</state>
           <state>$PROJ_DIR$/../Middlewares/OSAL/Cfg</state>
           <state>$PROJ_DIR$/../Middlewares/SystemView/Config</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/Lwmem/Source</state>
           <state>$PROJ_DIR$/../../../../Middlewares/OSAL/Source/Inc</state>
           <state>$PROJ_DIR$/../../../../Middlewares/Printf/Source</state>
           <state>$PROJ_DIR$/../../../../Middlewares/SystemView/SEGGER</state>
@@ -1197,39 +1194,6 @@
       </group>
     </group>
     <group>
-      <name>Lwmem</name>
-      <group>
-        <name>Cfg</name>
-        <file>
-          <name>$PROJ_DIR$\..\Middlewares\Lwmem\Cfg\lwmem_config.h</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\Middlewares\Lwmem\Cfg\lwmem_config_default.h</name>
-        </file>
-      </group>
-      <group>
-        <name>Port</name>
-        <file>
-          <name>$PROJ_DIR$\..\Middlewares\Lwmem\Port\lwmem_init.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\Middlewares\Lwmem\Port\lwmem_sys.h</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\Middlewares\Lwmem\Port\lwmem_sys_nonos.c</name>
-        </file>
-      </group>
-      <group>
-        <name>Source</name>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\Lwmem\Source\lwmem.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\Lwmem\Source\lwmem.h</name>
-        </file>
-      </group>
-    </group>
-    <group>
       <name>OSAL</name>
       <group>
         <name>Cfg</name>
@@ -1251,7 +1215,7 @@
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Array.h</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Bufmgr.h</name>
           </file>
           <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Cbtimer.h</name>
@@ -1266,16 +1230,13 @@
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Debug.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Fifo.h</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Flashutil32.h</name>
           </file>
           <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Helper.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_LinkList.h</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_List.h</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Memory.h</name>
           </file>
           <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Message.h</name>
@@ -1284,10 +1245,10 @@
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Mutex.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_PwrMgr.h</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Nv.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Ring.h</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_PwrMgr.h</name>
           </file>
           <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Tasks.h</name>
@@ -1302,7 +1263,7 @@
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Array.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Bufmgr.c</name>
           </file>
           <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Cbtimer.c</name>
@@ -1311,16 +1272,13 @@
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Clock.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Fifo.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Flashutil32.c</name>
           </file>
           <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Helper.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_LinkList.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_List.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Memory.c</name>
           </file>
           <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Message.c</name>
@@ -1329,13 +1287,10 @@
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Mutex.c</name>
           </file>
           <file>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Nv32.c</name>
+          </file>
+          <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_PwrMgr.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Queue.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Ring.c</name>
           </file>
           <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Timers.c</name>
