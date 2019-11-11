@@ -360,7 +360,6 @@
           <state>$PROJ_DIR$/../Middlewares/OSAL/Cfg</state>
           <state>$PROJ_DIR$/../Middlewares/SystemView/Config</state>
           <state>$PROJ_DIR$/../../../../Middlewares/OSAL/Source/Inc</state>
-          <state>$PROJ_DIR$/../../../../Middlewares/Printf/Source</state>
           <state>$PROJ_DIR$/../../../../Middlewares/SystemView/SEGGER</state>
           <state>$PROJ_DIR$/../../../../Sample/App</state>
           <state>$PROJ_DIR$/../../../../Sample/Hal</state>
@@ -1233,6 +1232,9 @@
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Nv.h</name>
           </file>
           <file>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Printf.h</name>
+          </file>
+          <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_PwrMgr.h</name>
           </file>
           <file>
@@ -1266,24 +1268,15 @@
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Nv.c</name>
           </file>
           <file>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Printf.c</name>
+          </file>
+          <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_PwrMgr.c</name>
           </file>
           <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Timers.c</name>
           </file>
         </group>
-      </group>
-    </group>
-    <group>
-      <name>Printf</name>
-      <group>
-        <name>Source</name>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\Printf\Source\printf.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\..\Middlewares\Printf\Source\printf.h</name>
-        </file>
       </group>
     </group>
     <group>

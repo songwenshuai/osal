@@ -16,12 +16,12 @@
 
 #include "OSAL_Timers.h"
 #include "OSAL_Cbtimer.h"
+#include "OSAL_Printf.h"
 
 #include "GenericApp.h"
 
 #include "OSAL_Memory.h"
 
-#include "printf.h"
 
 #include "hal_led.h"
 

@@ -13,8 +13,7 @@
 
 #include "OSAL_Timers.h"
 #include "OSAL_Clock.h"
-
-#include "printf.h"
+#include "OSAL_Printf.h"
 
 /*********************************************************************
  * MACROS

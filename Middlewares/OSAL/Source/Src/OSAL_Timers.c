@@ -13,7 +13,6 @@
 
 #include "OSAL_PwrMgr.h"
 #include "OSAL_Timers.h"
-
 #include "OSAL_Memory.h"
 
 /*********************************************************************

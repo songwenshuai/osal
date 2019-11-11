@@ -14,6 +14,7 @@
 #include "OSAL.h"
 
 #include "OSAL_Timers.h"
+#include "OSAL_Printf.h"
 
 #include "hal_drivers.h"
 
@@ -23,7 +24,6 @@
 
 #include "hal_key.h"
 
-#include "printf.h"
 
  /*********************************************************************
   * GLOBAL FUNCTIONS
