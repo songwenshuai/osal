@@ -34,17 +34,17 @@ extern "C"
 
 // number of seconds since 0 hrs, 0 minutes, 0 seconds, on the
 // 1st of January 2000 UTC
-typedef uint32 UTCTime;
+typedef uint32_t UTCTime;
 
 // To be used with
 typedef struct
 {
-  uint8 seconds;  // 0-59
-  uint8 minutes;  // 0-59
-  uint8 hour;     // 0-23
-  uint8 day;      // 0-30
-  uint8 month;    // 0-11
-  uint16 year;    // 2000+
+  uint8_t seconds;  // 0-59
+  uint8_t minutes;  // 0-59
+  uint8_t hour;     // 0-23
+  uint8_t day;      // 0-30
+  uint8_t month;    // 0-11
+  uint16_t year;    // 2000+
 } UTCTimeStruct;
 
 /*********************************************************************
@@ -96,7 +96,7 @@ typedef struct
    * Update/Adjust the osal clock and timers
    * Msec - elapsed time in milli seconds 
    */
-  extern void osalAdjustTimer( uint32 Msec );
+  extern void osalAdjustTimer( uint32_t Msec );
 
 /*********************************************************************
 *********************************************************************/

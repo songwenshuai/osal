@@ -58,17 +58,17 @@ extern "C"
 /*
  * Allocate a block of memory.
  */
-extern void *osal_bm_alloc( uint16 size );
+extern void *osal_bm_alloc( uint16_t size );
 
 /*
  * Add or remove header space for the payload pointer.
  */
-extern void *osal_bm_adjust_header( void *payload_ptr, int16 size );
+extern void *osal_bm_adjust_header( void *payload_ptr, int16_t size );
   
 /*
  * Add or remove tail space for the payload pointer.
  */
-extern void *osal_bm_adjust_tail( void *payload_ptr, int16 size );
+extern void *osal_bm_adjust_tail( void *payload_ptr, int16_t size );
 
 /*
  * Free a block of memory.

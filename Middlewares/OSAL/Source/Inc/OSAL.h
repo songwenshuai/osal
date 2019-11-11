@@ -26,9 +26,9 @@ extern "C"
  * MACROS
  */
 #if ( UINT_MAX == 65535 ) /* 8-bit and 16-bit devices */
-  #define osal_offsetof(type, member) ((uint16) &(((type *) 0)->member))
+  #define osal_offsetof(type, member) ((uint16_t) &(((type *) 0)->member))
 #else /* 32-bit devices */
-  #define osal_offsetof(type, member) ((uint32) &(((type *) 0)->member))
+  #define osal_offsetof(type, member) ((uint32_t) &(((type *) 0)->member))
 #endif
 
 #define OSAL_MSG_NEXT(msg_ptr)      ((osal_msg_hdr_t *) (msg_ptr) - 1)->next
@@ -57,21 +57,21 @@ extern "C"
 typedef struct
 {
   void   *next;
-  uint16 len;
-  uint8  dest_id;
+  uint16_t len;
+  uint8_t  dest_id;
 } osal_msg_hdr_t;
 
 typedef struct
 {
-  uint8  event;
-  uint8  status;
+  uint8_t  event;
+  uint8_t  status;
 } osal_event_hdr_t;
 
 typedef void * osal_msg_q_t;
 
 typedef struct mutex_struct
 {
- uint32 mutex_value;
+ uint32_t mutex_value;
  struct mutex_struct *next_mutex;
 }osal_mutex_t;
 
@@ -88,17 +88,17 @@ typedef struct mutex_struct
   /*
    * Convert an interger to an ascii string
    */
-  extern uint32 init_rand(uint32 seed);
+  extern uint32_t init_rand(uint32_t seed);
 
   /*
    * Convert an interger to an ascii string
    */
-  extern uint32 _rand(void);
+  extern uint32_t _rand(void);
 
   /*
    * Convert an interger to an ascii string
    */
-  extern int32 rand_range(int32 min, int32 max);
+  extern int32_t rand_range(int32_t min, int32_t max);
 
   /*
    * Convert an interger to an ascii string
@@ -113,17 +113,17 @@ typedef struct mutex_struct
   /*
    * Convert an interger to an ascii string
    */
-  extern _size_t osal_strnlen(const char* str, _size_t maxlen);
+  extern size_t osal_strnlen(const char* str, size_t maxlen);
 
   /*
    * Convert an interger to an ascii string
    */
-  extern _size_t osal_strncpy_m(char *destStr, _size_t destSize, int nStrings, ...);
+  extern size_t osal_strncpy_m(char *destStr, size_t destSize, int nStrings, ...);
 
   /*
    * Convert an interger to an ascii string
    */
-  extern char* osal_strncpy(char* dst, const char* src, _size_t maxlen);
+  extern char* osal_strncpy(char* dst, const char* src, size_t maxlen);
 
   /*
    * String Length
@@ -148,27 +148,27 @@ typedef struct mutex_struct
   /*
    * Memory compare
    */
-  extern uint8 osal_memcmp( const void GENERIC *src1, const void GENERIC *src2, unsigned int len );
+  extern uint8_t osal_memcmp( const void GENERIC *src1, const void GENERIC *src2, unsigned int len );
 
   /*
    * Memory set
    */
-  extern void *osal_memset( void *dest, uint8 value, int len );
+  extern void *osal_memset( void *dest, uint8_t value, int len );
 
   /*
-   * Build a uint16 out of 2 bytes (0 then 1).
+   * Build a uint16_t out of 2 bytes (0 then 1).
    */
-  extern uint16 osal_build_uint16( uint8 *swapped );
+  extern uint16_t osal_build_uint16( uint8_t *swapped );
 
   /*
-   * Build a uint32 out of sequential bytes.
+   * Build a uint32_t out of sequential bytes.
    */
-  extern uint32 osal_build_uint32( uint8 *swapped, uint8 len );
+  extern uint32_t osal_build_uint32( uint8_t *swapped, uint8_t len );
 
   /*
    * Convert long to ascii string
    */
-  extern uint8 *osal_ltoa( uint32 l, uint8 * buf, uint8 radix );
+  extern uint8_t *osal_ltoa( uint32_t l, uint8_t * buf, uint8_t radix );
 
   /*
    * convert a string int to a long unsigned.
@@ -178,27 +178,27 @@ typedef struct mutex_struct
   /*
    * Random number generator
    */
-  extern uint32 osal_rand(void);
+  extern uint32_t osal_rand(void);
 
   /*
-   * Buffer an uint32 value - LSB first.
+   * Buffer an uint32_t value - LSB first.
    */
-  extern uint8* osal_buffer_uint32( uint8 *buf, uint32 val );
+  extern uint8_t* osal_buffer_uint32( uint8_t *buf, uint32_t val );
 
   /*
-   * Buffer an uint24 value - LSB first
+   * Buffer an uint32_t value - LSB first
    */
-  extern uint8* osal_buffer_uint24( uint8 *buf, uint24 val );
+  extern uint8_t* osal_buffer_uint24( uint8_t *buf, uint32_t val );
 
   /*
    * Is all of the array elements set to a value?
    */
-  extern uint8 osal_isbufset( uint8 *buf, uint8 val, uint8 len );
+  extern uint8_t osal_isbufset( uint8_t *buf, uint8_t val, uint8_t len );
 
   /*
    * Convert an interger to an ascii string
    */
-  extern void osal_itoa( uint16 num, uint8 *buf, uint8 radix );
+  extern void osal_itoa( uint16_t num, uint8_t *buf, uint8_t radix );
 
 /*** Mutex Management ***/
 
@@ -213,11 +213,11 @@ typedef struct mutex_struct
   /*
    * Task Message Allocation
    */
-  void osalMutexTake(osal_mutex_t** mutex,uint32 mutex_overtime);
+  void osalMutexTake(osal_mutex_t** mutex,uint32_t mutex_overtime);
   /*
    * Task Message Allocation
    */
-  uint32 osalMutexCheck(osal_mutex_t* mutex);
+  uint32_t osalMutexCheck(osal_mutex_t* mutex);
   /*
    * Task Message Allocation
    */
@@ -225,44 +225,44 @@ typedef struct mutex_struct
   /*
    * Task Message Allocation
    */
-  void osalMutexUpdate( uint32 mutexTime );
+  void osalMutexUpdate( uint32_t mutexTime );
 
 /*** Message Management ***/
 
   /*
    * Task Message Allocation
    */
-  extern uint8 * osal_msg_allocate(uint16 len );
+  extern uint8_t * osal_msg_allocate(uint16_t len );
 
   /*
    * Task Message Deallocation
    */
-  extern uint8 osal_msg_deallocate( uint8 *msg_ptr );
+  extern uint8_t osal_msg_deallocate( uint8_t *msg_ptr );
 
   /*
    * Send a Task Message
    */
-  extern uint8 osal_msg_send( uint8 destination_task, uint8 *msg_ptr );
+  extern uint8_t osal_msg_send( uint8_t destination_task, uint8_t *msg_ptr );
 
   /*
    * Push a Task Message to head of queue
    */
-  extern uint8 osal_msg_push_front( uint8 destination_task, uint8 *msg_ptr );
+  extern uint8_t osal_msg_push_front( uint8_t destination_task, uint8_t *msg_ptr );
 
   /*
    * Receive a Task Message
    */
-  extern uint8 *osal_msg_receive( uint8 task_id );
+  extern uint8_t *osal_msg_receive( uint8_t task_id );
 
   /*
    * Find in place a matching Task Message / Event.
    */
-  extern osal_event_hdr_t *osal_msg_find(uint8 task_id, uint8 event);
+  extern osal_event_hdr_t *osal_msg_find(uint8_t task_id, uint8_t event);
 
   /*
    * Count the number of queued OSAL messages matching Task ID / Event.
    */
-  extern uint8 osal_msg_count(uint8 task_id, uint8 event);
+  extern uint8_t osal_msg_count(uint8_t task_id, uint8_t event);
 
   /*
    * Enqueue a Task Message
@@ -272,7 +272,7 @@ typedef struct mutex_struct
   /*
    * Enqueue a Task Message Up to Max
    */
-  extern uint8 osal_msg_enqueue_max( osal_msg_q_t *q_ptr, void *msg_ptr, uint8 max );
+  extern uint8_t osal_msg_enqueue_max( osal_msg_q_t *q_ptr, void *msg_ptr, uint8_t max );
 
   /*
    * Dequeue a Task Message
@@ -294,12 +294,12 @@ typedef struct mutex_struct
   /*
    * Set a Task Event
    */
-  extern uint8 osal_set_event( uint8 task_id, uint16 event_flag );
+  extern uint8_t osal_set_event( uint8_t task_id, uint16_t event_flag );
 
   /*
    * Clear a Task Event
    */
-  extern uint8 osal_clear_event( uint8 task_id, uint16 event_flag );
+  extern uint8_t osal_clear_event( uint8_t task_id, uint16_t event_flag );
 
 
   /*** Interrupt Management  ***/
@@ -307,17 +307,17 @@ typedef struct mutex_struct
   /*
    * Register Interrupt Service Routine (ISR)
    */
-  extern uint8 osal_isr_register(uint8 interrupt_id, void (*isr_ptr)(uint8*));
+  extern uint8_t osal_isr_register(uint8_t interrupt_id, void (*isr_ptr)(uint8_t*));
 
   /*
    * Enable Interrupt
    */
-  extern uint8 osal_int_enable( uint8 interrupt_id );
+  extern uint8_t osal_int_enable( uint8_t interrupt_id );
 
   /*
    * Disable Interrupt
    */
-  extern uint8 osal_int_disable( uint8 interrupt_id );
+  extern uint8_t osal_int_disable( uint8_t interrupt_id );
 
 
 /*** Task Management  ***/
@@ -325,7 +325,7 @@ typedef struct mutex_struct
   /*
    * Initialize the Task System
    */
-  extern uint8 osal_init_system( void );
+  extern uint8_t osal_init_system( void );
 
   /*
    * System Processing Loop
@@ -340,7 +340,7 @@ typedef struct mutex_struct
   /*
    * Get the active task ID
    */
-  extern uint8 osal_self( void );
+  extern uint8_t osal_self( void );
 
 
 /*********************************************************************

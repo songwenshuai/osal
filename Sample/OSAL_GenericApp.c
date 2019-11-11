@@ -42,8 +42,8 @@ const pTaskEventHandlerFn tasksArr[] = {
   App_ProcessEvent
 };
 
-const uint8 tasksCnt = sizeof( tasksArr ) / sizeof( tasksArr[0] );
-uint16 *tasksEvents;
+const uint8_t tasksCnt = sizeof( tasksArr ) / sizeof( tasksArr[0] );
+uint16_t *tasksEvents;
 
 /*********************************************************************
  * FUNCTIONS
@@ -60,14 +60,14 @@ uint16 *tasksEvents;
  */
 void osalInitTasks( void )
 {
-  uint8 taskID = 0;
+  uint8_t taskID = 0;
 
-  tasksEvents = (uint16 *)osal_mem_alloc( sizeof( uint16 ) * tasksCnt);
+  tasksEvents = (uint16_t *)osal_mem_alloc( sizeof( uint16_t ) * tasksCnt);
 
   /* The tasksEvents allocated pointer must be valid */
   if (tasksEvents != NULL)
   {
-  	osal_memset( tasksEvents, 0, (sizeof( uint16 ) * tasksCnt));
+  	osal_memset( tasksEvents, 0, (sizeof( uint16_t ) * tasksCnt));
   }
   else
   {

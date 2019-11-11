@@ -61,10 +61,10 @@ extern "C"
   * Allocate a block of memory.
   */
 #ifdef DPRINTF_OSALHEAPTRACE
-  void *osal_mem_alloc_dbg( uint16 size, const char *fname, unsigned lnum );
+  void *osal_mem_alloc_dbg( uint16_t size, const char *fname, unsigned lnum );
 #define osal_mem_alloc(_size ) osal_mem_alloc_dbg(_size, __FILE__, __LINE__)
 #else /* DPRINTF_OSALHEAPTRACE */
-  void *osal_mem_alloc( uint16 size );
+  void *osal_mem_alloc( uint16_t size );
 #endif /* DPRINTF_OSALHEAPTRACE */
 
  /*
@@ -81,28 +81,28 @@ extern "C"
  /*
   * Return the maximum number of blocks ever allocated at once.
   */
-  uint16 osal_heap_block_max( void );
+  uint16_t osal_heap_block_max( void );
 
  /*
   * Return the current number of blocks now allocated.
   */
-  uint16 osal_heap_block_cnt( void );
+  uint16_t osal_heap_block_cnt( void );
 
  /*
   * Return the current number of free blocks.
   */
-  uint16 osal_heap_block_free( void );
+  uint16_t osal_heap_block_free( void );
 
  /*
   * Return the current number of bytes allocated.
   */
-  uint16 osal_heap_mem_used( void );
+  uint16_t osal_heap_mem_used( void );
 #endif
 
   /*
    * Return the highest number of bytes ever used in the heap.
    */
-  uint16 osal_heap_high_water( void );
+  uint16_t osal_heap_high_water( void );
 
 /*********************************************************************
 *********************************************************************/

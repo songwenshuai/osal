@@ -52,7 +52,7 @@ extern "C"
 //
 // pData - pointer to data registered with timer
 //
-typedef void (*pfnCbTimer_t)( uint8 *pData );
+typedef void (*pfnCbTimer_t)( uint8_t *pData );
 
 /*********************************************************************
  * VARIABLES
@@ -65,40 +65,40 @@ typedef void (*pfnCbTimer_t)( uint8 *pData );
 /*
  * Callback Timer task initialization function.
  */
-extern void osal_CbTimerInit( uint8 taskId );
+extern void osal_CbTimerInit( uint8_t taskId );
 
 /*
  * Callback Timer task event processing function.
  */
-extern uint16 osal_CbTimerProcessEvent( uint8  taskId,
-                                        uint16 events );
+extern uint16_t osal_CbTimerProcessEvent( uint8_t  taskId,
+                                        uint16_t events );
 
 /*
  * Function to start a timer to expire in n mSecs.
  */
 extern Status_t osal_CbTimerStart( pfnCbTimer_t  pfnCbTimer,
-                                   uint8        *pData,
-                                   uint32        timeout,
-                                   uint8        *pTimerId );
+                                   uint8_t        *pData,
+                                   uint32_t        timeout,
+                                   uint8_t        *pTimerId );
 
 /*
  * Function to start a timer to expire in n mSecs, then reload.
  */
 extern Status_t osal_CbTimerStartReload( pfnCbTimer_t  pfnCbTimer,
-                                         uint8        *pData,
-                                         uint32        timeout,
-                                         uint8        *pTimerId );
+                                         uint8_t        *pData,
+                                         uint32_t        timeout,
+                                         uint8_t        *pTimerId );
 
 /*
  * Function to update a timer that has already been started.
  */
-extern Status_t osal_CbTimerUpdate( uint8  timerId,
-                                    uint32 timeout );
+extern Status_t osal_CbTimerUpdate( uint8_t  timerId,
+                                    uint32_t timeout );
 
 /*
  * Function to stop a timer that has already been started.
  */
-extern Status_t osal_CbTimerStop( uint8 timerId );
+extern Status_t osal_CbTimerStop( uint8_t timerId );
 
 /*********************************************************************
 *********************************************************************/

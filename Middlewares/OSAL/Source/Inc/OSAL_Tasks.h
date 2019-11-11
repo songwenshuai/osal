@@ -41,8 +41,8 @@ typedef unsigned short (*pTaskEventHandlerFn)( unsigned char task_id, unsigned s
  */
 
 extern const pTaskEventHandlerFn tasksArr[];
-extern const uint8 tasksCnt;
-extern uint16 *tasksEvents;
+extern const uint8_t tasksCnt;
+extern uint16_t *tasksEvents;
 
 /*********************************************************************
  * FUNCTIONS

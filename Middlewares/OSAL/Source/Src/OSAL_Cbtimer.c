@@ -48,14 +48,14 @@
 typedef struct
 {
   pfnCbTimer_t  pfnCbTimer; // callback function to be called when timer expires
-  uint8        *pData;      // data to be passed in to callback function
+  uint8_t        *pData;      // data to be passed in to callback function
 } cbTimer_t;
 
 /*********************************************************************
  * GLOBAL VARIABLES
  */
 // Callback Timer base task id
-uint16 baseTaskID = TASK_NO_TASK;
+uint16_t baseTaskID = TASK_NO_TASK;
 
 /*********************************************************************
  * EXTERNAL VARIABLES
@@ -78,10 +78,10 @@ uint16 baseTaskID = TASK_NO_TASK;
  */
 
 static Status_t cbTimerSetup( pfnCbTimer_t  pfnCbTimer,
-                              uint8        *pData,
-                              uint32        timeout,
-                              uint8        *pTimerId,
-                              uint8         reload );
+                              uint8_t        *pData,
+                              uint32_t        timeout,
+                              uint8_t        *pTimerId,
+                              uint8_t         reload );
 
 /*********************************************************************
  * API FUNCTIONS
@@ -98,7 +98,7 @@ static Status_t cbTimerSetup( pfnCbTimer_t  pfnCbTimer,
  *
  * @return      void
  */
-void osal_CbTimerInit( uint8 taskId )
+void osal_CbTimerInit( uint8_t taskId )
 {
   if ( baseTaskID == TASK_NO_TASK )
   {
@@ -121,7 +121,7 @@ void osal_CbTimerInit( uint8 taskId )
  *
  * @return      events not processed
  */
-uint16 osal_CbTimerProcessEvent( uint8 taskId, uint16 events )
+uint16_t osal_CbTimerProcessEvent( uint8_t taskId, uint16_t events )
 {
   if ( events & SYS_EVENT_MSG )
   {
@@ -133,8 +133,8 @@ uint16 osal_CbTimerProcessEvent( uint8 taskId, uint16 events )
 
   if ( events )
   {
-    uint8 i;
-    uint16 event = 0;
+    uint8_t i;
+    uint16_t event = 0;
     halIntState_t cs;
 
     HAL_ENTER_CRITICAL_SECTION(cs);
@@ -205,9 +205,9 @@ uint16 osal_CbTimerProcessEvent( uint8 taskId, uint16 events )
  * @return  Success, or Failure.
  */
 Status_t osal_CbTimerStart( pfnCbTimer_t  pfnCbTimer,
-                            uint8        *pData,
-                            uint32        timeout,
-                            uint8        *pTimerId )
+                            uint8_t        *pData,
+                            uint32_t        timeout,
+                            uint8_t        *pTimerId )
 {
   return ( cbTimerSetup( pfnCbTimer,
                          pData,
@@ -239,9 +239,9 @@ Status_t osal_CbTimerStart( pfnCbTimer_t  pfnCbTimer,
  * @return  Success, or Failure.
  */
 Status_t osal_CbTimerStartReload( pfnCbTimer_t  pfnCbTimer,
-                                  uint8        *pData,
-                                  uint32        timeout,
-                                  uint8        *pTimerId )
+                                  uint8_t        *pData,
+                                  uint32_t        timeout,
+                                  uint8_t        *pTimerId )
 {
   return ( cbTimerSetup( pfnCbTimer,
                          pData,
@@ -264,7 +264,7 @@ Status_t osal_CbTimerStartReload( pfnCbTimer_t  pfnCbTimer,
  *
  * @return  OSAL_SUCCESS or INVALIDPARAMETER if timer not found
  */
-Status_t osal_CbTimerUpdate( uint8 timerId, uint32 timeout )
+Status_t osal_CbTimerUpdate( uint8_t timerId, uint32_t timeout )
 {
   halIntState_t cs;
 
@@ -306,7 +306,7 @@ Status_t osal_CbTimerUpdate( uint8 timerId, uint32 timeout )
  *
  * @return  OSAL_SUCCESS or INVALIDPARAMETER if timer not found
  */
-Status_t osal_CbTimerStop( uint8 timerId )
+Status_t osal_CbTimerStop( uint8_t timerId )
 {
   halIntState_t cs;
 
@@ -363,12 +363,12 @@ Status_t osal_CbTimerStop( uint8 timerId )
  * @return  Success, or Failure.
  */
 static Status_t cbTimerSetup( pfnCbTimer_t  pfnCbTimer,
-                              uint8        *pData,
-                              uint32        timeout,
-                              uint8        *pTimerId,
-                              uint8         reload )
+                              uint8_t        *pData,
+                              uint32_t        timeout,
+                              uint8_t        *pTimerId,
+                              uint8_t         reload )
 {
-  uint8 i;
+  uint8_t i;
   halIntState_t cs;
 
   HAL_ENTER_CRITICAL_SECTION(cs);
@@ -394,7 +394,7 @@ static Status_t cbTimerSetup( pfnCbTimer_t  pfnCbTimer,
         // Set up the callback timer
         // Note: An odd pointer will be used to indicate to the process event
         //       handler that the timer was started with reload.
-        cbTimers[i].pfnCbTimer = pfnCbTimer; //(pfnCbTimer_t)((uint32)pfnCbTimer | reload);
+        cbTimers[i].pfnCbTimer = pfnCbTimer; //(pfnCbTimer_t)((uint32_t)pfnCbTimer | reload);
         cbTimers[i].pData      = pData;
 
         // Check if the caller wants the timer Id

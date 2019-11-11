@@ -53,12 +53,12 @@ extern "C"
  */
 
 typedef struct {
-    uint8  inc;    // step value (4-8)
-    uint8  bdir;   // Switch from light to dark or from dark to light
-    uint16 min;    // minimum brightness (not 0)
-    uint16 max;    // maximum brightness
-    uint16 out;    // Brightness output
-    uint32 cal;    // initial brightness (not 0)
+    uint8_t  inc;    // step value (4-8)
+    uint8_t  bdir;   // Switch from light to dark or from dark to light
+    uint16_t min;    // minimum brightness (not 0)
+    uint16_t max;    // maximum brightness
+    uint16_t out;    // Brightness output
+    uint32_t cal;    // initial brightness (not 0)
 } HalledBreath_t;
 
 /*********************************************************************
@@ -73,12 +73,12 @@ extern void HalLedInit( void );
 /*
  * Set the LED ON/OFF/TOGGLE.
  */
-extern uint8 HalLedSet( uint8 led, uint8 mode );
+extern uint8_t HalLedSet( uint8_t led, uint8_t mode );
 
 /*
  * Blink the LED.
  */
-extern void HalLedBlink( uint8 leds, uint8 cnt, uint8 duty, uint16 time );
+extern void HalLedBlink( uint8_t leds, uint8_t cnt, uint8_t duty, uint16_t time );
 
 /*********************************************************************
 *********************************************************************/

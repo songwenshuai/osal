@@ -30,18 +30,18 @@ extern "C"
  * GLOBAL VARIABLES
  **************************************************************************************************/
 
-extern uint8 Hal_TaskID;
+extern uint8_t Hal_TaskID;
 
 /**************************************************************************************************
  * FUNCTIONS - API
  **************************************************************************************************/
 
-extern void Hal_Init ( uint8 task_id );
+extern void Hal_Init ( uint8_t task_id );
 
 /*
  * Process Serial Buffer
  */
-extern uint16 Hal_ProcessEvent ( uint8 task_id, uint16 events );
+extern uint16_t Hal_ProcessEvent ( uint8_t task_id, uint16_t events );
 
 /*
  * Process Polls

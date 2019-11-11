@@ -131,10 +131,10 @@ typedef struct {
 
 typedef union {
   /* Dummy variable so compiler forces structure to alignment of largest element while not wasting
-   * space on targets when the halDataAlign_t is smaller than a uint16.
+   * space on targets when the halDataAlign_t is smaller than a uint16_t.
    */
   halDataAlign_t alignDummy;
-  uint16 val;
+  uint16_t val;
   osalMemHdrHdr_t hdr;
 } osalMemHdr_t;
 
@@ -151,14 +151,14 @@ static osalMemHdr_t theHeap[MAXMEMHEAP / OSALMEM_HDRSZ];
 static osalMemHdr_t *ff1;  // First free block in the small-block bucket.
 #endif
 
-static uint8 osalMemStat;            // Discrete status flags: 0x01 = kicked.
+static uint8_t osalMemStat;            // Discrete status flags: 0x01 = kicked.
 
 #if OSALMEM_METRICS
-static uint16 blkMax;  // Max cnt of all blocks ever seen at once.
-static uint16 blkCnt;  // Current cnt of all blocks.
-static uint16 blkFree; // Current cnt of free blocks.
-static uint16 memAlo;  // Current total memory allocated.
-static uint16 memMax;  // Max total memory ever allocated at once.
+static uint16_t blkMax;  // Max cnt of all blocks ever seen at once.
+static uint16_t blkCnt;  // Current cnt of all blocks.
+static uint16_t blkFree; // Current cnt of free blocks.
+static uint16_t memAlo;  // Current total memory allocated.
+static uint16_t memMax;  // Max total memory ever allocated at once.
 #endif
 
 #if OSALMEM_PROFILER
@@ -167,12 +167,12 @@ static uint16 memMax;  // Max total memory ever allocated at once.
  * last bucket must equal the max alloc size. Set the bucket sizes to
  * whatever sizes necessary to show how your application is using memory.
  */
-static uint16 proCnt[OSALMEM_PROMAX] = {
+static uint16_t proCnt[OSALMEM_PROMAX] = {
 OSALMEM_SMALL_BLKSZ, 48, 112, 176, 192, 224, 256, 65535 };
-static uint16 proCur[OSALMEM_PROMAX+1] = { 0 };
-static uint16 proMax[OSALMEM_PROMAX+1] = { 0 };
-static uint16 proTot[OSALMEM_PROMAX+1] = { 0 };
-static uint16 proSmallBlkMiss;
+static uint16_t proCur[OSALMEM_PROMAX+1] = { 0 };
+static uint16_t proMax[OSALMEM_PROMAX+1] = { 0 };
+static uint16_t proTot[OSALMEM_PROMAX+1] = { 0 };
+static uint16_t proSmallBlkMiss;
 #endif
 
 /* ------------------------------------------------------------------------------------------------
@@ -279,15 +279,15 @@ void osal_mem_kick(void)
  * @return      None.
  */
 #ifdef DPRINTF_OSALHEAPTRACE
-void *osal_mem_alloc_dbg( uint16 size, const char *fname, unsigned lnum )
+void *osal_mem_alloc_dbg( uint16_t size, const char *fname, unsigned lnum )
 #else /* DPRINTF_OSALHEAPTRACE */
-void *osal_mem_alloc( uint16 size )
+void *osal_mem_alloc( uint16_t size )
 #endif /* DPRINTF_OSALHEAPTRACE */
 {
   osalMemHdr_t *prev = NULL;
   osalMemHdr_t *hdr;
   halIntState_t intState;
-  uint8 coal = 0;
+  uint8_t coal = 0;
 
   size += OSALMEM_HDRSZ;
 
@@ -298,7 +298,7 @@ void *osal_mem_alloc( uint16 size )
   }
   else if ( sizeof( halDataAlign_t ) != 1 )
   {
-    const uint8 mod = size % sizeof( halDataAlign_t );
+    const uint8_t mod = size % sizeof( halDataAlign_t );
 
     if ( mod != 0 )
     {
@@ -354,7 +354,7 @@ void *osal_mem_alloc( uint16 size )
       }
     }
 
-    hdr = (osalMemHdr_t *)((uint8 *)hdr + hdr->hdr.len);
+    hdr = (osalMemHdr_t *)((uint8_t *)hdr + hdr->hdr.len);
 
     if ( hdr->val == 0 )
     {
@@ -365,13 +365,13 @@ void *osal_mem_alloc( uint16 size )
 
   if ( hdr != NULL )
   {
-    uint16 tmp = hdr->hdr.len - size;
+    uint16_t tmp = hdr->hdr.len - size;
 
     // Determine whether the threshold for splitting is met.
     if ( tmp >= OSALMEM_MIN_BLKSZ )
     {
       // Split the block before allocating it.
-      osalMemHdr_t *next = (osalMemHdr_t *)((uint8 *)hdr + size);
+      osalMemHdr_t *next = (osalMemHdr_t *)((uint8_t *)hdr + size);
       next->val = tmp;                     // Set 'len' & clear 'inUse' field.
       hdr->val = (size | OSALMEM_IN_USE);  // Set 'len' & 'inUse' field.
 
@@ -406,7 +406,7 @@ void *osal_mem_alloc( uint16 size )
     if (osalMemStat != 0)  // Don't profile until after the LL block is filled.
 #endif
     {
-      uint8 idx;
+      uint8_t idx;
 
       for ( idx = 0; idx < OSALMEM_PROMAX; idx++ )
       {
@@ -436,12 +436,12 @@ void *osal_mem_alloc( uint16 size )
       }
     }
 
-    (void)osal_memset((uint8 *)(hdr+1), OSALMEM_ALOC, (hdr->hdr.len - OSALMEM_HDRSZ));
+    (void)osal_memset((uint8_t *)(hdr+1), OSALMEM_ALOC, (hdr->hdr.len - OSALMEM_HDRSZ));
 #endif
 
     if ((osalMemStat != 0) && (ff1 == hdr))
     {
-      ff1 = (osalMemHdr_t *)((uint8 *)hdr + hdr->hdr.len);
+      ff1 = (osalMemHdr_t *)((uint8_t *)hdr + hdr->hdr.len);
     }
 
     hdr++;
@@ -449,7 +449,7 @@ void *osal_mem_alloc( uint16 size )
 
   HAL_EXIT_CRITICAL_SECTION( intState );  // Re-enable interrupts.
 
-  HAL_ASSERT(((_size_t)hdr % sizeof(halDataAlign_t)) == 0);
+  HAL_ASSERT(((size_t)hdr % sizeof(halDataAlign_t)) == 0);
 
 #ifdef DPRINTF_OSALHEAPTRACE
   printf("osal_mem_alloc(%u)->%lx:%s:%u\n", size, (unsigned) hdr, fname, lnum);
@@ -485,7 +485,7 @@ void osal_mem_free(void *ptr)
   printf("osal_mem_free(%lx):%s:%u\n", (unsigned) ptr, fname, lnum);
 #endif /* DPRINTF_OSALHEAPTRACE */
 
-  HAL_ASSERT(((uint8 *)ptr >= (uint8 *)theHeap) && ((uint8 *)ptr < (uint8 *)theHeap+MAXMEMHEAP));
+  HAL_ASSERT(((uint8_t *)ptr >= (uint8_t *)theHeap) && ((uint8_t *)ptr < (uint8_t *)theHeap+MAXMEMHEAP));
   HAL_ASSERT(hdr->hdr.inUse);
 
   HAL_ENTER_CRITICAL_SECTION( intState );  // Hold off interrupts.
@@ -501,7 +501,7 @@ void osal_mem_free(void *ptr)
   if (osalMemStat != 0)  // Don't profile until after the LL block is filled.
 #endif
   {
-    uint8 idx;
+    uint8_t idx;
 
     for (idx = 0; idx < OSALMEM_PROMAX; idx++)
     {
@@ -514,7 +514,7 @@ void osal_mem_free(void *ptr)
     proCur[idx]--;
   }
 
-  (void)osal_memset((uint8 *)(hdr+1), OSALMEM_REIN, (hdr->hdr.len - OSALMEM_HDRSZ) );
+  (void)osal_memset((uint8_t *)(hdr+1), OSALMEM_REIN, (hdr->hdr.len - OSALMEM_HDRSZ) );
 #endif
 #if OSALMEM_METRICS
   memAlo -= hdr->hdr.len;
@@ -534,7 +534,7 @@ void osal_mem_free(void *ptr)
  *
  * @return  Maximum number of blocks ever allocated at once.
  */
-uint16 osal_heap_block_max( void )
+uint16_t osal_heap_block_max( void )
 {
   return blkMax;
 }
@@ -548,7 +548,7 @@ uint16 osal_heap_block_max( void )
  *
  * @return  Current number of blocks now allocated.
  */
-uint16 osal_heap_block_cnt( void )
+uint16_t osal_heap_block_cnt( void )
 {
   return blkCnt;
 }
@@ -562,7 +562,7 @@ uint16 osal_heap_block_cnt( void )
  *
  * @return  Current number of free blocks.
  */
-uint16 osal_heap_block_free( void )
+uint16_t osal_heap_block_free( void )
 {
   return blkFree;
 }
@@ -576,7 +576,7 @@ uint16 osal_heap_block_free( void )
  *
  * @return  Current number of bytes allocated.
  */
-uint16 osal_heap_mem_used( void )
+uint16_t osal_heap_mem_used( void )
 {
   return memAlo;
 }
@@ -591,7 +591,7 @@ uint16 osal_heap_mem_used( void )
  *
  * @return  Highest number of bytes ever used by the stack.
  */
-uint16 osal_heap_high_water( void )
+uint16_t osal_heap_high_water( void )
 {
 #if ( OSALMEM_METRICS )
   return memMax;

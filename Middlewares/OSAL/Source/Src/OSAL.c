@@ -62,7 +62,7 @@ extern void Hal_ProcessPoll (void);
  */
 
 // Index of active task
-static uint8 activeTaskID = TASK_NO_TASK;
+static uint8_t activeTaskID = TASK_NO_TASK;
 // osal_int_enable state
 static halIntState_t osal_int_state;
 
@@ -70,7 +70,7 @@ static halIntState_t osal_int_state;
  * LOCAL FUNCTION PROTOTYPES
  */
 
-static uint8 osal_msg_enqueue_push( uint8 destination_task, uint8 *msg_ptr, uint8 urgent );
+static uint8_t osal_msg_enqueue_push( uint8_t destination_task, uint8_t *msg_ptr, uint8_t urgent );
 
 /*********************************************************************
  * API FUNCTIONS
@@ -80,7 +80,7 @@ static uint8 osal_msg_enqueue_push( uint8 destination_task, uint8 *msg_ptr, uint
  * HELPER FUNCTIONS
  */
 
-static uint32 prngState = 0;
+static uint32_t prngState = 0;
 
 /*********************************************************************
  * @fn      init_rand
@@ -91,7 +91,7 @@ static uint32 prngState = 0;
  *
  * @return  Error code
  */
-uint32 init_rand(uint32 seed)
+uint32_t init_rand(uint32_t seed)
 {
     //Seed the pseudo-random number generator
     prngState += seed;
@@ -109,9 +109,9 @@ uint32 init_rand(uint32 seed)
  *
  * @return  Random value
  */
-uint32 _rand(void)
+uint32_t _rand(void)
 {
-    uint32 value;
+    uint32_t value;
 
     //Use a linear congruential generator (LCG) to update the state of the PRNG
     prngState *= 1103515245;
@@ -145,9 +145,9 @@ uint32 _rand(void)
  * 
  * @return  Random value in the specified range
  */
-int32 rand_range(int32 min, int32 max)
+int32_t rand_range(int32_t min, int32_t max)
 {
-    int32 value;
+    int32_t value;
 
     //Valid parameters?
     if (max > min)
@@ -180,8 +180,8 @@ int32 rand_range(int32 min, int32 max)
  */
 char* osal_strcat(char* dst, const char* src)
 {
-    const _size_t dstlen = osal_strlen(dst);
-    const _size_t srclen = osal_strlen(src);
+    const size_t dstlen = osal_strlen(dst);
+    const size_t srclen = osal_strlen(src);
     //  The osal_strcat() and strncat() functions append a copy of the null-
     //  terminated string src to the end of the null-terminated string dst,
     //  then add a terminating '\0'.  The string dst must have sufficient
@@ -206,7 +206,7 @@ char* osal_strcat(char* dst, const char* src)
  */
 char* osal_strcpy(char* dst, const char* src)
 {
-    const _size_t length = osal_strlen(src);
+    const size_t length = osal_strlen(src);
     //  The stpcpy() and osal_strcpy() functions copy the string src to dst
     //  (including the terminating '\0' character).
     osal_memcpy(dst, src, length + 1);
@@ -227,7 +227,7 @@ char* osal_strcpy(char* dst, const char* src)
  * 
  * @return  char*
  */
-_size_t osal_strnlen(const char* str, _size_t maxlen)
+size_t osal_strnlen(const char* str, size_t maxlen)
 {
     const char* cp;
 
@@ -238,7 +238,7 @@ _size_t osal_strnlen(const char* str, _size_t maxlen)
         }
     }
 
-    return (_size_t)(cp - str);
+    return (size_t)(cp - str);
 }
 
 /*********************************************************************
@@ -254,9 +254,9 @@ _size_t osal_strnlen(const char* str, _size_t maxlen)
  * 
  * @return  char*
  */
-char* osal_strncpy(char* dst, const char* src, _size_t maxlen)
+char* osal_strncpy(char* dst, const char* src, size_t maxlen)
 {
-    const _size_t srclen = osal_strnlen(src, maxlen);
+    const size_t srclen = osal_strnlen(src, maxlen);
     if(srclen < maxlen)
     {
         //  The stpncpy() and strncpy() functions copy at most maxlen
@@ -277,7 +277,7 @@ char* osal_strncpy(char* dst, const char* src, _size_t maxlen)
 
 /*****************************************************************************
   Function:
-    char* strncpy_m(char* destStr, _size_t destSize, int nStrings, ...)
+    char* strncpy_m(char* destStr, size_t destSize, int nStrings, ...)
 
   Summary:
     Copies multiple strings to a destination
@@ -306,19 +306,19 @@ char* osal_strncpy(char* dst, const char* src, _size_t maxlen)
   Returns:
     Length of the destination string, terminating \0 (if exists) not included
   */
-_size_t osal_strncpy_m(char *destStr, _size_t destSize, int nStrings, ...)
+size_t osal_strncpy_m(char *destStr, size_t destSize, int nStrings, ...)
 {
     _va_list args = {0};
     const char *str;
     char *end;
-    _size_t len;
+    size_t len;
 
     destStr[0] = '\0';
     end = destStr + destSize - 1;
     *end = '\0';
     len = 0;
 
-    _va_start(args, nStrings);
+    _VA_START(args, nStrings);
 
     while (nStrings--)
     {
@@ -328,12 +328,12 @@ _size_t osal_strncpy_m(char *destStr, _size_t destSize, int nStrings, ...)
             break;
         }
 
-        str = _va_arg(args, const char *);
+        str = _VA_ARG(args, const char *);
         osal_strncpy(destStr + len, str, destSize - len);
         len += osal_strlen(str);
     }
 
-    _va_end(args);
+    _VA_END(args);
 
     return len;
 }
@@ -407,7 +407,7 @@ int osal_strlen( const char* pString )
  *   Generic memory copy.
  *
  *   Note: This function differs from the standard osal_memcpy(), since
- *         it returns the pointer to the next destination uint8. The
+ *         it returns the pointer to the next destination uint8_t. The
  *         standard osal_memcpy() returns the original destination address.
  *
  * @param   dst - destination address
@@ -449,23 +449,23 @@ void *osal_memcpy( void *dst, const void GENERIC *src, unsigned int len )
   if (((int)pd & 3) == 0) {
     unsigned NumWords = len >> 2;
     while (NumWords >= 4) {
-      *(uint32*)pd = *(uint32*)ps;
+      *(uint32_t*)pd = *(uint32_t*)ps;
       pd += 4;
       ps += 4;
-      *(uint32*)pd = *(uint32*)ps;
+      *(uint32_t*)pd = *(uint32_t*)ps;
       pd += 4;
       ps += 4;
-      *(uint32*)pd = *(uint32*)ps;
+      *(uint32_t*)pd = *(uint32_t*)ps;
       pd += 4;
       ps += 4;
-      *(uint32*)pd = *(uint32*)ps;
+      *(uint32_t*)pd = *(uint32_t*)ps;
       pd += 4;
       ps += 4;
       NumWords -= 4;
     }
     if (NumWords) {
       do {
-        *(uint32*)pd = *(uint32*)ps;
+        *(uint32_t*)pd = *(uint32_t*)ps;
         pd += 4;
         ps += 4;
       } while (--NumWords);
@@ -478,23 +478,23 @@ void *osal_memcpy( void *dst, const void GENERIC *src, unsigned int len )
   if (((int)pd & 1) == 0) {
     unsigned NumItems = len >> 1;
     while (NumItems >= 4) {
-      *(uint16*)pd = *(uint16*)ps;
+      *(uint16_t*)pd = *(uint16_t*)ps;
       pd += 2;
       ps += 2;
-      *(uint16*)pd = *(uint16*)ps;
+      *(uint16_t*)pd = *(uint16_t*)ps;
       pd += 2;
       ps += 2;
-      *(uint16*)pd = *(uint16*)ps;
+      *(uint16_t*)pd = *(uint16_t*)ps;
       pd += 2;
       ps += 2;
-      *(uint16*)pd = *(uint16*)ps;
+      *(uint16_t*)pd = *(uint16_t*)ps;
       pd += 2;
       ps += 2;
       NumItems -= 4;
     }
     if (NumItems) {
       do {
-      *(uint16*)pd = *(uint16*)ps;
+      *(uint16_t*)pd = *(uint16_t*)ps;
       pd += 2;
       ps += 2;
       } while (--NumItems);
@@ -533,7 +533,7 @@ done:
  *   pointer ahead "len" bytes, then decrementing the pointer.
  *
  *   Note: This function differs from the standard osal_memcpy(), since
- *         it returns the pointer to the next destination uint8. The
+ *         it returns the pointer to the next destination uint8_t. The
  *         standard osal_memcpy() returns the original destination address.
  *
  * @param   dst - destination address
@@ -594,7 +594,7 @@ done:
  */
 void *osal_memdup( const void GENERIC *src, unsigned int len )
 {
-  uint8 *pDst;
+  uint8_t *pDst;
 
   pDst = osal_mem_alloc( len );
   if ( pDst )
@@ -618,10 +618,10 @@ void *osal_memdup( const void GENERIC *src, unsigned int len )
  *
  * @return  TRUE - same, FALSE - different
  */
-uint8 osal_memcmp( const void GENERIC *src1, const void GENERIC *src2, unsigned int len )
+uint8_t osal_memcmp( const void GENERIC *src1, const void GENERIC *src2, unsigned int len )
 {
-  const uint8 GENERIC *pSrc1;
-  const uint8 GENERIC *pSrc2;
+  const uint8_t GENERIC *pSrc1;
+  const uint8_t GENERIC *pSrc2;
 
   pSrc1 = src1;
   pSrc2 = src2;
@@ -643,15 +643,15 @@ uint8 osal_memcmp( const void GENERIC *src1, const void GENERIC *src2, unsigned 
  *   Set memory buffer to value.
  *
  * @param   dest - pointer to buffer
- * @param   value - what to set each uint8 of the message
+ * @param   value - what to set each uint8_t of the message
  * @param   size - how big
  *
  * @return  pointer to destination buffer
  */
-void *osal_memset( void *dest, uint8 value, int len )
+void *osal_memset( void *dest, uint8_t value, int len )
 {
   unsigned char* s = dest;
-  _size_t k;
+  size_t k;
 
   /* Fill head and tail with minimal branching. Each
    * conditional ensures that all the subsequently used
@@ -690,8 +690,8 @@ void *osal_memset( void *dest, uint8 value, int len )
   len /= 4;
 
   // Cast to void first to prevent alignment warning
-  uint32* ws = (uint32*)(void*)s;
-  uint32 wc = value & 0xFF;
+  uint32_t* ws = (uint32_t*)(void*)s;
+  uint32_t wc = value & 0xFF;
   wc |= ((wc << 8) | (wc << 16) | (wc << 24));
 
   /* Pure C fallback with no aliasing violations. */
@@ -710,13 +710,13 @@ void *osal_memset( void *dest, uint8 value, int len )
  *
  * @brief
  *
- *   Build a uint16 out of 2 bytes (0 then 1).
+ *   Build a uint16_t out of 2 bytes (0 then 1).
  *
  * @param   swapped - 0 then 1
  *
- * @return  uint16
+ * @return  uint16_t
  */
-uint16 osal_build_uint16( uint8 *swapped )
+uint16_t osal_build_uint16( uint8_t *swapped )
 {
   return ( BUILD_UINT16( swapped[0], swapped[1] ) );
 }
@@ -726,14 +726,14 @@ uint16 osal_build_uint16( uint8 *swapped )
  *
  * @brief
  *
- *   Build a uint32 out of sequential bytes.
+ *   Build a uint32_t out of sequential bytes.
  *
  * @param   swapped - sequential bytes
- * @param   len - number of bytes in the uint8 array
+ * @param   len - number of bytes in the uint8_t array
  *
- * @return  uint32
+ * @return  uint32_t
  */
-uint32 osal_build_uint32( uint8 *swapped, uint8 len )
+uint32_t osal_build_uint32( uint8_t *swapped, uint8_t len )
 {
   if ( len == 2 )
     return ( BUILD_UINT32( swapped[0], swapped[1], 0L, 0L ) );
@@ -742,7 +742,7 @@ uint32 osal_build_uint32( uint8 *swapped, uint8 len )
   else if ( len == 4 )
     return ( BUILD_UINT32( swapped[0], swapped[1], swapped[2], swapped[3] ) );
   else
-    return ( (uint32)swapped[0] );
+    return ( (uint32_t)swapped[0] );
 }
 
 /******************************************************************************
@@ -757,10 +757,10 @@ uint32 osal_build_uint32( uint8 *swapped, uint8 len )
  * @return  void
  *
  */
-void osal_itoa(uint16 num, uint8 *buf, uint8 radix)
+void osal_itoa(uint16_t num, uint8_t *buf, uint8_t radix)
 {
   char c,i;
-  uint8 *p, rst[5];
+  uint8_t *p, rst[5];
 
   p = rst;
   for ( i=0; i<5; i++,p++ )
@@ -795,7 +795,7 @@ void osal_itoa(uint16 num, uint8 *buf, uint8 radix)
  *
  * @return  pointer to buffer
  */
-uint8* osal_ltoa(uint32 l, uint8* buf, uint8 radix)
+uint8_t* osal_ltoa(uint32_t l, uint8_t* buf, uint8_t radix)
 {
   unsigned char tmp1[10] = "", tmp2[10] = "", tmp3[10] = "";
   unsigned short num1, num2, num3;
@@ -893,9 +893,9 @@ long osal_atol(const char *s)
  *
  * @param   none
  *
- * @return  uint32 - new random number
+ * @return  uint32_t - new random number
  */
-uint32 osal_rand( void )
+uint32_t osal_rand( void )
 {
   return ( _rand() );
 }
@@ -957,7 +957,7 @@ void osalMutexDelete( osal_mutex_t** mutex )
     if( pseach == *mutex )
     {
         osal_mutex_head = (*mutex)->next_mutex;
-        osal_mem_free( (uint8*)(*mutex) );
+        osal_mem_free( (uint8_t*)(*mutex) );
         *mutex = NULL;
 
     }
@@ -970,7 +970,7 @@ void osalMutexDelete( osal_mutex_t** mutex )
         if( pseach->next_mutex == *mutex )
         {
             pseach->next_mutex = (*mutex)->next_mutex;
-            osal_mem_free( (uint8*)(*mutex) );
+            osal_mem_free( (uint8_t*)(*mutex) );
             *mutex = NULL;
         }
     }
@@ -984,7 +984,7 @@ void osalMutexDelete( osal_mutex_t** mutex )
  *
  * @return none
  */
-void osalMutexTake( osal_mutex_t** mutex,uint32 mutex_overtime )
+void osalMutexTake( osal_mutex_t** mutex,uint32_t mutex_overtime )
 {
     if( *mutex == NULL )
     {
@@ -1004,7 +1004,7 @@ void osalMutexTake( osal_mutex_t** mutex,uint32 mutex_overtime )
  *
  * @return  muter state   1 - take  0 - release
  */
-uint32 osalMutexCheck( osal_mutex_t* mutex )
+uint32_t osalMutexCheck( osal_mutex_t* mutex )
 {
     if( mutex == NULL )
         return FALSE;
@@ -1039,7 +1039,7 @@ void osalMutexRelease( osal_mutex_t** mutex )
  *
  * @return NONE
  */
-void osalMutexUpdate( uint32 mutexTime )
+void osalMutexUpdate( uint32_t mutexTime )
 {
     osal_mutex_t *pseach;
     pseach = osal_mutex_head;
@@ -1074,12 +1074,12 @@ void osalMutexUpdate( uint32 mutexTime )
  *    from the tasks).
  *
  *
- * @param   uint8 len  - wanted buffer length
+ * @param   uint8_t len  - wanted buffer length
  *
  *
  * @return  pointer to allocated buffer or NULL if allocation failed.
  */
-uint8 * osal_msg_allocate( uint16 len )
+uint8_t * osal_msg_allocate( uint16_t len )
 {
   osal_msg_hdr_t *hdr;
 
@@ -1092,7 +1092,7 @@ uint8 * osal_msg_allocate( uint16 len )
     hdr->next = NULL;
     hdr->len = len;
     hdr->dest_id = TASK_NO_TASK;
-    return ( (uint8 *) (hdr + 1) );
+    return ( (uint8_t *) (hdr + 1) );
   }
   else
     return ( NULL );
@@ -1108,13 +1108,13 @@ uint8 * osal_msg_allocate( uint16 len )
  *    processing a received message.
  *
  *
- * @param   uint8 *msg_ptr - pointer to new message buffer
+ * @param   uint8_t *msg_ptr - pointer to new message buffer
  *
  * @return  OSAL_SUCCESS, INVALID_MSG_POINTER
  */
-uint8 osal_msg_deallocate( uint8 *msg_ptr )
+uint8_t osal_msg_deallocate( uint8_t *msg_ptr )
 {
-  uint8 *x;
+  uint8_t *x;
 
   if ( msg_ptr == NULL )
     return ( INVALID_MSG_POINTER );
@@ -1123,7 +1123,7 @@ uint8 osal_msg_deallocate( uint8 *msg_ptr )
   if ( OSAL_MSG_ID( msg_ptr ) != TASK_NO_TASK )
     return ( MSG_BUFFER_NOT_AVAIL );
 
-  x = (uint8 *)((uint8 *)msg_ptr - sizeof( osal_msg_hdr_t ));
+  x = (uint8_t *)((uint8_t *)msg_ptr - sizeof( osal_msg_hdr_t ));
 
   osal_mem_free( (void *)x );
 
@@ -1142,12 +1142,12 @@ uint8 osal_msg_deallocate( uint8 *msg_ptr )
  *    ready event in the destination tasks event list.
  *
  *
- * @param   uint8 destination_task - Send msg to Task ID
- * @param   uint8 *msg_ptr - pointer to new message buffer
+ * @param   uint8_t destination_task - Send msg to Task ID
+ * @param   uint8_t *msg_ptr - pointer to new message buffer
  *
  * @return  OSAL_SUCCESS, INVALID_TASK, INVALID_MSG_POINTER
  */
-uint8 osal_msg_send( uint8 destination_task, uint8 *msg_ptr )
+uint8_t osal_msg_send( uint8_t destination_task, uint8_t *msg_ptr )
 {
   return ( osal_msg_enqueue_push( destination_task, msg_ptr, FALSE ) );
 }
@@ -1163,12 +1163,12 @@ uint8 osal_msg_send( uint8 destination_task, uint8 *msg_ptr )
  *    send the message to. This function will also set a message
  *    ready event in the destination task's event list.
  *
- * @param   uint8 destination_task - Send msg to Task ID
- * @param   uint8 *msg_ptr - pointer to message buffer
+ * @param   uint8_t destination_task - Send msg to Task ID
+ * @param   uint8_t *msg_ptr - pointer to message buffer
  *
  * @return  OSAL_SUCCESS, INVALID_TASK, INVALID_MSG_POINTER
  */
-uint8 osal_msg_push_front( uint8 destination_task, uint8 *msg_ptr )
+uint8_t osal_msg_push_front( uint8_t destination_task, uint8_t *msg_ptr )
 {
   return ( osal_msg_enqueue_push( destination_task, msg_ptr, TRUE ) );
 }
@@ -1185,13 +1185,13 @@ uint8 osal_msg_push_front( uint8 destination_task, uint8 *msg_ptr )
  *    function will also set a message ready event in the destination
  *    task's event list.
  *
- * @param   uint8 destination_task - Send msg to Task ID
- * @param   uint8 *msg_ptr - pointer to message buffer
- * @param   uint8 push - TRUE to push, otherwise enqueue
+ * @param   uint8_t destination_task - Send msg to Task ID
+ * @param   uint8_t *msg_ptr - pointer to message buffer
+ * @param   uint8_t push - TRUE to push, otherwise enqueue
  *
  * @return  OSAL_SUCCESS, INVALID_TASK, INVALID_MSG_POINTER
  */
-static uint8 osal_msg_enqueue_push( uint8 destination_task, uint8 *msg_ptr, uint8 push )
+static uint8_t osal_msg_enqueue_push( uint8_t destination_task, uint8_t *msg_ptr, uint8_t push )
 {
   if ( msg_ptr == NULL )
   {
@@ -1240,11 +1240,11 @@ static uint8 osal_msg_enqueue_push( uint8 destination_task, uint8 *msg_ptr, uint
  *    message. The calling task must deallocate the message buffer after
  *    processing the message using the osal_msg_deallocate() call.
  *
- * @param   uint8 task_id - receiving tasks ID
+ * @param   uint8_t task_id - receiving tasks ID
  *
- * @return  *uint8 - message information or NULL if no message
+ * @return  *uint8_t - message information or NULL if no message
  */
-uint8 *osal_msg_receive( uint8 task_id )
+uint8_t *osal_msg_receive( uint8_t task_id )
 {
   osal_msg_hdr_t *listHdr;
   osal_msg_hdr_t *prevHdr = NULL;
@@ -1302,7 +1302,7 @@ uint8 *osal_msg_receive( uint8 task_id )
   // Release interrupts
   HAL_EXIT_CRITICAL_SECTION(intState);
 
-  return ( (uint8*) foundHdr );
+  return ( (uint8_t*) foundHdr );
 }
 
 /**************************************************************************************************
@@ -1323,7 +1323,7 @@ uint8 *osal_msg_receive( uint8 task_id )
  * @return      NULL if no match, otherwise an in place pointer to the matching OSAL message.
  **************************************************************************************************
  */
-osal_event_hdr_t *osal_msg_find(uint8 task_id, uint8 event)
+osal_event_hdr_t *osal_msg_find(uint8_t task_id, uint8_t event)
 {
   osal_msg_hdr_t *pHdr;
   halIntState_t intState;
@@ -1367,9 +1367,9 @@ osal_event_hdr_t *osal_msg_find(uint8 task_id, uint8 event)
  * @return      The number of OSAL messages that match the task ID and Event.
  **************************************************************************************************
  */
-uint8 osal_msg_count( uint8 task_id, uint8 event )
+uint8_t osal_msg_count( uint8_t task_id, uint8_t event )
 {
-  uint8 count = 0;
+  uint8_t count = 0;
   osal_msg_hdr_t *pHdr;
   halIntState_t intState;
 
@@ -1543,14 +1543,14 @@ void osal_msg_extract( osal_msg_q_t *q_ptr, void *msg_ptr, void *prev_ptr )
  *
  * @param   osal_msg_q_t *q_ptr - OSAL queue
  * @param   void *msg_ptr  - OSAL message
- * @param   uint8 max - maximum length of queue
+ * @param   uint8_t max - maximum length of queue
  *
  * @return  TRUE if message was enqueued, FALSE otherwise
  */
-uint8 osal_msg_enqueue_max( osal_msg_q_t *q_ptr, void *msg_ptr, uint8 max )
+uint8_t osal_msg_enqueue_max( osal_msg_q_t *q_ptr, void *msg_ptr, uint8_t max )
 {
   void *list;
-  uint8 ret = FALSE;
+  uint8_t ret = FALSE;
   halIntState_t intState;
 
   // Hold off interrupts
@@ -1595,12 +1595,12 @@ uint8 osal_msg_enqueue_max( osal_msg_q_t *q_ptr, void *msg_ptr, uint8 max )
  *    This function is called to set the event flags for a task. The
  *    event passed in is OR'd into the task's event variable.
  *
- * @param   uint8 task_id - receiving tasks ID
- * @param   uint8 event_flag - what event to set
+ * @param   uint8_t task_id - receiving tasks ID
+ * @param   uint8_t event_flag - what event to set
  *
  * @return  OSAL_SUCCESS, MSG_BUFFER_NOT_AVAIL, OSAL_FAILURE, INVALID_TASK
  */
-uint8 osal_set_event( uint8 task_id, uint16 event_flag )
+uint8_t osal_set_event( uint8_t task_id, uint16_t event_flag )
 {
   if ( task_id < tasksCnt )
   {
@@ -1624,12 +1624,12 @@ uint8 osal_set_event( uint8 task_id, uint16 event_flag )
  *    This function is called to clear the event flags for a task. The
  *    event passed in is masked out of the task's event variable.
  *
- * @param   uint8 task_id - receiving tasks ID
- * @param   uint8 event_flag - what event to clear
+ * @param   uint8_t task_id - receiving tasks ID
+ * @param   uint8_t event_flag - what event to clear
  *
  * @return  OSAL_SUCCESS, INVALID_TASK
  */
-uint8 osal_clear_event( uint8 task_id, uint16 event_flag )
+uint8_t osal_clear_event( uint8_t task_id, uint16_t event_flag )
 {
   if ( task_id < tasksCnt )
   {
@@ -1653,12 +1653,12 @@ uint8 osal_clear_event( uint8 task_id, uint16 event_flag )
  *   This function is called to register a service routine with an
  *   interrupt. When the interrupt occurs, this service routine is called.
  *
- * @param   uint8 interrupt_id - Interrupt number
- * @param   void (*isr_ptr)( uint8* ) - function pointer to ISR
+ * @param   uint8_t interrupt_id - Interrupt number
+ * @param   void (*isr_ptr)( uint8_t* ) - function pointer to ISR
  *
  * @return  OSAL_SUCCESS, INVALID_INTERRUPT_ID,
  */
-uint8 osal_isr_register( uint8 interrupt_id, void (*isr_ptr)( uint8* ) )
+uint8_t osal_isr_register( uint8_t interrupt_id, void (*isr_ptr)( uint8_t* ) )
 {
   // Remove these statements when functionality is complete
   (void)interrupt_id;
@@ -1679,11 +1679,11 @@ uint8 osal_isr_register( uint8 interrupt_id, void (*isr_ptr)( uint8* ) )
  *   If a single interrupt is passed in, then interrupts still have
  *   to be enabled with another call to INTS_ALL.
  *
- * @param   uint8 interrupt_id - Interrupt number
+ * @param   uint8_t interrupt_id - Interrupt number
  *
  * @return  OSAL_SUCCESS or INVALID_INTERRUPT_ID
  */
-uint8 osal_int_enable( uint8 interrupt_id )
+uint8_t osal_int_enable( uint8_t interrupt_id )
 {
 
   if ( interrupt_id == INTS_ALL )
@@ -1709,11 +1709,11 @@ uint8 osal_int_enable( uint8 interrupt_id )
  *   If INTS_ALL is the interrupt_id, interrupts (in general) are disabled.
  *   If a single interrupt is passed in, then just that interrupt is disabled.
  *
- * @param   uint8 interrupt_id - Interrupt number
+ * @param   uint8_t interrupt_id - Interrupt number
  *
  * @return  OSAL_SUCCESS or INVALID_INTERRUPT_ID
  */
-uint8 osal_int_disable( uint8 interrupt_id )
+uint8_t osal_int_disable( uint8_t interrupt_id )
 {
 
   if ( interrupt_id == INTS_ALL )
@@ -1739,7 +1739,7 @@ uint8 osal_int_disable( uint8 interrupt_id )
  *
  * @return  OSAL_SUCCESS
  */
-uint8 osal_init_system( void )
+uint8_t osal_init_system( void )
 {
   // Turn off interrupts
   osal_int_disable(INTS_ALL);
@@ -1820,7 +1820,7 @@ void osal_start_system( void )
  */
 void osal_run_system( void )
 {
-  uint8 idx = 0;
+  uint8_t idx = 0;
 
 #ifndef USE_SYSTICK_IRQ
   osalTimeUpdate();
@@ -1837,7 +1837,7 @@ void osal_run_system( void )
 
   if (idx < tasksCnt)
   {
-    uint16 events;
+    uint16_t events;
     halIntState_t intState;
 
     HAL_ENTER_CRITICAL_SECTION(intState);
@@ -1867,14 +1867,14 @@ void osal_run_system( void )
  *
  * @brief
  *
- *   Buffer an uint32 value - LSB first.
+ *   Buffer an uint32_t value - LSB first.
  *
  * @param   buf - buffer
- * @param   val - uint32 value
+ * @param   val - uint32_t value
  *
  * @return  pointer to end of destination buffer
  */
-uint8* osal_buffer_uint32( uint8 *buf, uint32 val )
+uint8_t* osal_buffer_uint32( uint8_t *buf, uint32_t val )
 {
   *buf++ = BREAK_UINT32( val, 0 );
   *buf++ = BREAK_UINT32( val, 1 );
@@ -1889,15 +1889,15 @@ uint8* osal_buffer_uint32( uint8 *buf, uint32 val )
  *
  * @brief
  *
- *   Buffer an uint24 value - LSB first. Note that type uint24 is
- *   typedef to uint32 in OSAL_Comdef.h
+ *   Buffer an uint32_t value - LSB first. Note that type uint32_t is
+ *   typedef to uint32_t in OSAL_Comdef.h
  *
  * @param   buf - buffer
- * @param   val - uint24 value
+ * @param   val - uint32_t value
  *
  * @return  pointer to end of destination buffer
  */
-uint8* osal_buffer_uint24( uint8 *buf, uint24 val )
+uint8_t* osal_buffer_uint24( uint8_t *buf, uint32_t val )
 {
   *buf++ = BREAK_UINT32( val, 0 );
   *buf++ = BREAK_UINT32( val, 1 );
@@ -1920,9 +1920,9 @@ uint8* osal_buffer_uint24( uint8 *buf, uint24 val )
  * @return  TRUE if all "val"
  *          FALSE otherwise
  */
-uint8 osal_isbufset( uint8 *buf, uint8 val, uint8 len )
+uint8_t osal_isbufset( uint8_t *buf, uint8_t val, uint8_t len )
 {
-  uint8 x;
+  uint8_t x;
 
   if ( buf == NULL )
   {
@@ -1951,7 +1951,7 @@ uint8 osal_isbufset( uint8 *buf, uint8 val, uint8 len )
  *
  * @return   active task ID or TASK_NO_TASK if no task is active
  */
-uint8 osal_self( void )
+uint8_t osal_self( void )
 {
   return ( activeTaskID );
 }

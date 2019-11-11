@@ -83,7 +83,7 @@ void SysTickIntDisable(void)
  *
  * @return      None.
  */
-void halSleep( uint32 osal_timeout )
+void halSleep( uint32_t osal_timeout )
 {
 
 }

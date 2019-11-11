@@ -43,7 +43,7 @@ pwrmgr_attribute_t pwrmgr_attribute;
 /*********************************************************************
  * EXTERNAL FUNCTIONS
  */
-extern void halSleep( uint32 osal_timeout );
+extern void halSleep( uint32_t osal_timeout );
 
 /*********************************************************************
  * LOCAL VARIABLES
@@ -84,7 +84,7 @@ void osal_pwrmgr_init( void )
  *
  * @return  none
  */
-void osal_pwrmgr_device( uint8 pwrmgr_device )
+void osal_pwrmgr_device( uint8_t pwrmgr_device )
 {
   pwrmgr_attribute.pwrmgr_device = pwrmgr_device;
 }
@@ -101,7 +101,7 @@ void osal_pwrmgr_device( uint8 pwrmgr_device )
  *
  * @return  OSAL_SUCCESS if task complete
  */
-uint8 osal_pwrmgr_task_state( uint8 task_id, uint8 state )
+uint8_t osal_pwrmgr_task_state( uint8_t task_id, uint8_t state )
 {
   halIntState_t intState;
 
@@ -140,7 +140,7 @@ uint8 osal_pwrmgr_task_state( uint8 task_id, uint8 state )
  */
 void osal_pwrmgr_powerconserve( void )
 {
-  uint32        next;
+  uint32_t        next;
   halIntState_t intState;
 
   // Should we even look into power conservation

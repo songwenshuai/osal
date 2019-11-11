@@ -46,27 +46,27 @@ extern void osal_nv_init( void *p );
 /*
  * Initialize an item in NV
  */
-extern uint8 osal_nv_item_init( uint16 id, uint16 len, void *buf );
+extern uint8_t osal_nv_item_init( uint16_t id, uint16_t len, void *buf );
 
 /*
  * Read an NV attribute
  */
-extern uint8 osal_nv_read( uint16 id, uint16 offset, uint16 len, void *buf );
+extern uint8_t osal_nv_read( uint16_t id, uint16_t offset, uint16_t len, void *buf );
 
 /*
  * Write an NV attribute
  */
-extern uint8 osal_nv_write( uint16 id, uint16 offset, uint16 len, void *buf );
+extern uint8_t osal_nv_write( uint16_t id, uint16_t offset, uint16_t len, void *buf );
 
 /*
  * Get the length of an NV item.
  */
-extern uint16 osal_nv_item_len( uint16 id );
+extern uint16_t osal_nv_item_len( uint16_t id );
 
 /*
  * Delete an NV item.
  */
-extern uint8 osal_nv_delete( uint16 id, uint16 len );
+extern uint8_t osal_nv_delete( uint16_t id, uint16_t len );
 
 /*********************************************************************
 *********************************************************************/

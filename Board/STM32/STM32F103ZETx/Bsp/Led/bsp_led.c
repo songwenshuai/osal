@@ -210,7 +210,7 @@ void  BSP_LED_Off (BSP_LED  led)
 *********************************************************************************************************
 */
 
-uint32  BSP_LED_Read (BSP_LED  led)
+uint32_t  BSP_LED_Read (BSP_LED  led)
 {
     uint8_t LedState = 0;
     switch (led) {

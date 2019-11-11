@@ -43,9 +43,9 @@
 #define HAL_NV_PAGE_BEG                   (HAL_NV_PAGE_END - HAL_NV_PAGE_CNT + 1)
 
 #ifdef _WIN32
-#define NV_FLASH_BASE                     ((uint32)nvDataBuf)                      // Flash 
+#define NV_FLASH_BASE                     ((uint32_t)nvDataBuf)                      // Flash 
 #else
-#define NV_FLASH_BASE                     ((uint32)0x08040000)                      // Flash 
+#define NV_FLASH_BASE                     ((uint32_t)0x08040000)                      // Flash 
 #endif
 
 #define HAL_NV_START_ADDR                 NV_FLASH_BASE
@@ -59,7 +59,7 @@
  */
 
 #ifdef _WIN32
-extern uint8 nvDataBuf[HAL_NV_PAGE_CNT][HAL_FLASH_PAGE_SIZE];
+extern uint8_t nvDataBuf[HAL_NV_PAGE_CNT][HAL_FLASH_PAGE_SIZE];
 #endif
 
 /*********************************************************************
@@ -70,9 +70,9 @@ extern uint8 nvDataBuf[HAL_NV_PAGE_CNT][HAL_FLASH_PAGE_SIZE];
 extern void initFlash(void);
 #endif
 
-extern void flashErasePage( uint8 *addr );
+extern void flashErasePage( uint8_t *addr );
 
-extern void flashWrite( uint8 *addr, uint16 len, uint8 *buf );
+extern void flashWrite( uint8_t *addr, uint16_t len, uint8_t *buf );
 
 #endif
 

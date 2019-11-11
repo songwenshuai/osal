@@ -14,7 +14,7 @@
 static void Periodic_Event(void)
 {
 //------------------------------- time test ------------------------------------
-    static int32 oldtime = 0, new_time = 0, deviation = 0;
+    static int32_t oldtime = 0, new_time = 0, deviation = 0;
 
     new_time = osal_GetSystemClock();
     deviation = ABS((new_time - oldtime) - SBP_PERIODIC_EVT_DELAY);
@@ -24,7 +24,7 @@ static void Periodic_Event(void)
     // Initialize NV System
     osal_nv_init(NULL);
 
-    static uint32 flag = 0;
+    static uint32_t flag = 0;
     static char nvDataWrite[13] = {0};
     static char nvDataRead[13] = {0};
 
@@ -37,8 +37,8 @@ static void Periodic_Event(void)
 //------------------------------- message test ------------------------------------
     msg_send_str("message");
 //------------------------------- ltoa test ------------------------------------
-    static uint8 ltoa_str[11] = { 0 };
-    static uint32 ltoa_num = 2147483648;
+    static uint8_t ltoa_str[11] = { 0 };
+    static uint32_t ltoa_num = 2147483648;
 
     osal_ltoa(ltoa_num, ltoa_str, 10);
     printf("ltoa_num   = %s\r\n", ltoa_str);
@@ -49,8 +49,8 @@ static void Periodic_Event(void)
     printf("rand       = %d\r\n", osal_rand());
 }
 
-void cb_timer_test(uint8* pData){
-        static int32 oldtime1 = 0, new_time1 = 0, deviation1 = 0;
+void cb_timer_test(uint8_t* pData){
+        static int32_t oldtime1 = 0, new_time1 = 0, deviation1 = 0;
         
         new_time1 = osal_GetSystemClock();
         deviation1 = ABS((new_time1 - oldtime1) - SBP_CBTIMER_EVT_DELAY);
@@ -71,18 +71,18 @@ void cb_timer_test(uint8* pData){
  *   This feature will most likely be compiled out in the production
  *   code in order to save code space.
  *
- * @param   uint8 *str_ptr - pointer to null-terminated string
+ * @param   uint8_t *str_ptr - pointer to null-terminated string
  *
  * @return  void
  */
-static void msg_send_str( uint8 *str_ptr )
+static void msg_send_str( uint8_t *str_ptr )
 {
   DebugStr_t *msg;
-  uint8 mln;
-  uint8 strLen;
+  uint8_t mln;
+  uint8_t strLen;
 
   // Text string length
-  strLen = (uint8)osal_strlen( (void*)str_ptr );
+  strLen = (uint8_t)osal_strlen( (void*)str_ptr );
 
   // Debug string message length
   mln = sizeof ( DebugStr_t ) + strLen;
@@ -98,10 +98,10 @@ static void msg_send_str( uint8 *str_ptr )
     msg->strLen = strLen;
 
     // Append message, has terminator
-    msg->pString = (uint8 *)( msg + 1 );
+    msg->pString = (uint8_t *)( msg + 1 );
     osal_memcpy ( msg->pString, str_ptr, strLen );
 
-    osal_msg_send( App_TaskID, (uint8 *)msg );
+    osal_msg_send( App_TaskID, (uint8_t *)msg );
   }
 } // msg_send_str()
 
@@ -119,14 +119,14 @@ extern void HalLedExitSleep( void );
 /*
  * Return LED state
  */
-extern uint8 HalLedGetState ( void );
+extern uint8_t HalLedGetState ( void );
 
 /*
  * Breath led
  */
-extern uint32 HalledBreathHandle(HalledBreath_t* breath);
+extern uint32_t HalledBreathHandle(HalledBreath_t* breath);
 
-static uint8 HalSleepLedState;         // LED state at last set/clr/blink update
+static uint8_t HalSleepLedState;         // LED state at last set/clr/blink update
 
 /***************************************************************************************************
  * @fn      HalLedEnterSleep
@@ -197,13 +197,13 @@ void HalLedExitSleep( void )
  *
  * @return  none
  ***************************************************************************************************/
-uint32 HalledBreathHandle(HalledBreath_t* breath)
+uint32_t HalledBreathHandle(HalledBreath_t* breath)
 {
-    uint32 min, max, cal;
+    uint32_t min, max, cal;
 
     cal = breath->cal;
-    min = (uint32)(breath->min << 8);
-    max = (uint32)(breath->max << 8);
+    min = (uint32_t)(breath->min << 8);
+    max = (uint32_t)(breath->max << 8);
 
     if (breath->bdir)
     {
@@ -229,6 +229,6 @@ uint32 HalledBreathHandle(HalledBreath_t* breath)
         }
     }
     breath->cal = cal;
-    breath->out = (uint16)(cal >> 8);
+    breath->out = (uint16_t)(cal >> 8);
     return (breath->out);
 }

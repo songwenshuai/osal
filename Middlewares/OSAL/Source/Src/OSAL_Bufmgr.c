@@ -21,7 +21,7 @@
  */
 // 'bd_ptr' used with these macros must be of the type 'bm_desc_t *'
 #define START_PTR( bd_ptr )  ( (bd_ptr) + 1 )
-#define END_PTR( bd_ptr )    ( (uint8 *)START_PTR( bd_ptr ) + (bd_ptr)->payload_len )
+#define END_PTR( bd_ptr )    ( (uint8_t *)START_PTR( bd_ptr ) + (bd_ptr)->payload_len )
 
 /*********************************************************************
  * CONSTANTS
@@ -33,7 +33,7 @@
 typedef struct bm_desc
 {
   struct bm_desc *next_ptr;    // pointer to next buffer descriptor
-  uint16          payload_len; // length of user's buffer
+  uint16_t          payload_len; // length of user's buffer
 } bm_desc_t;
 
 /*********************************************************************
@@ -53,7 +53,7 @@ static bm_desc_t *bm_list_ptr = NULL;
 /*********************************************************************
  * LOCAL FUNCTIONS
  */
-static bm_desc_t *bm_desc_from_payload ( uint8 *payload_ptr );
+static bm_desc_t *bm_desc_from_payload ( uint8_t *payload_ptr );
 
 /*********************************************************************
  * @fn      osal_bm_alloc
@@ -68,7 +68,7 @@ static bm_desc_t *bm_desc_from_payload ( uint8 *payload_ptr );
  *
  * @return  pointer to the heap allocation; NULL if error or failure.
  */
-void *osal_bm_alloc( uint16 size )
+void *osal_bm_alloc( uint16_t size )
 {
   halIntState_t  cs;
   bm_desc_t     *bd_ptr;
@@ -159,19 +159,19 @@ void osal_bm_free( void *payload_ptr )
  *
  * @return  pointer to payload at the new adjusted location
  */
-void *osal_bm_adjust_header( void *payload_ptr, int16 size )
+void *osal_bm_adjust_header( void *payload_ptr, int16_t size )
 {
   bm_desc_t *bd_ptr;
-  uint8 *new_payload_ptr;
+  uint8_t *new_payload_ptr;
 
-  bd_ptr = bm_desc_from_payload( (uint8 *)payload_ptr );
+  bd_ptr = bm_desc_from_payload( (uint8_t *)payload_ptr );
   if ( bd_ptr != NULL )
   {
-    new_payload_ptr = (uint8 *)( (uint8 *)payload_ptr - size );
+    new_payload_ptr = (uint8_t *)( (uint8_t *)payload_ptr - size );
 
     // make sure the new payload is within valid range
-    if ( new_payload_ptr >= (uint8 *)START_PTR( bd_ptr ) &&
-         new_payload_ptr <= (uint8 *)END_PTR( bd_ptr ) )
+    if ( new_payload_ptr >= (uint8_t *)START_PTR( bd_ptr ) &&
+         new_payload_ptr <= (uint8_t *)END_PTR( bd_ptr ) )
     {
       // return new payload pointer
       return ( (void *)new_payload_ptr );
@@ -193,19 +193,19 @@ void *osal_bm_adjust_header( void *payload_ptr, int16 size )
  *
  * @return  pointer to payload at the new adjusted location
  */
-void *osal_bm_adjust_tail( void *payload_ptr, int16 size )
+void *osal_bm_adjust_tail( void *payload_ptr, int16_t size )
 {
   bm_desc_t *bd_ptr;
-  uint8 *new_payload_ptr;
+  uint8_t *new_payload_ptr;
 
-  bd_ptr = bm_desc_from_payload( (uint8 *)payload_ptr );
+  bd_ptr = bm_desc_from_payload( (uint8_t *)payload_ptr );
   if ( bd_ptr != NULL )
   {
-    new_payload_ptr = (uint8 *)END_PTR( bd_ptr ) - size;
+    new_payload_ptr = (uint8_t *)END_PTR( bd_ptr ) - size;
 
     // make sure the new payload is within valid range
-    if ( new_payload_ptr >= (uint8 *)START_PTR( bd_ptr ) &&
-         new_payload_ptr <= (uint8 *)END_PTR( bd_ptr ) )
+    if ( new_payload_ptr >= (uint8_t *)START_PTR( bd_ptr ) &&
+         new_payload_ptr <= (uint8_t *)END_PTR( bd_ptr ) )
     {
       // return new payload pointer
       return ( (void *)new_payload_ptr );
@@ -225,15 +225,15 @@ void *osal_bm_adjust_tail( void *payload_ptr, int16 size )
  *
  * @return  pointer to buffer descriptor
  */
-static bm_desc_t *bm_desc_from_payload ( uint8 *payload_ptr )
+static bm_desc_t *bm_desc_from_payload ( uint8_t *payload_ptr )
 {
   bm_desc_t *loop_ptr;
 
   loop_ptr = bm_list_ptr;
   while ( loop_ptr != NULL )
   {
-    if ( payload_ptr >= (uint8 *)START_PTR( loop_ptr ) &&
-         payload_ptr <= (uint8 *)END_PTR( loop_ptr) )
+    if ( payload_ptr >= (uint8_t *)START_PTR( loop_ptr ) &&
+         payload_ptr <= (uint8_t *)END_PTR( loop_ptr) )
     {
       // item found
       break;

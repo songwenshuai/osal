@@ -19,7 +19,7 @@
  * MACROS
  */
 
-#define    YearLength(yr)    ((uint16)(IsLeapYear(yr) ? 366 : 365))
+#define    YearLength(yr)    ((uint16_t)(IsLeapYear(yr) ? 366 : 365))
 
 /*********************************************************************
  * CONSTANTS
@@ -57,7 +57,7 @@
  * EXTERNAL FUNCTIONS
  */
 #ifndef USE_SYSTICK_IRQ
-extern uint32 macMcuPrecisionCount(void);
+extern uint32_t macMcuPrecisionCount(void);
 #endif
 
 #if (defined HAL_MCU_CC2430) || (defined HAL_MCU_CC2530) || (defined HAL_MCU_CC2533)
@@ -74,7 +74,7 @@ extern uint32 macMcuPrecisionCount(void);
  *
  *  return - MSW divisor; LSW quotient
  */
-  extern __near_func uint32 osalMcuDivide31By16To16( uint32 dividend, uint16 divisor );
+  extern __near_func uint32_t osalMcuDivide31By16To16( uint32_t dividend, uint16_t divisor );
 
   #define CONVERT_320US_TO_MS_ELAPSED_REMAINDER( x, y, z ) st( \
                                                                \
@@ -86,7 +86,7 @@ extern uint32 macMcuPrecisionCount(void);
     y += (x >> 16);                                            \
                                                                \
     /* Copy remainder to z */                                  \
-    z = (uint16)(x & 0x0FFFF);                                 \
+    z = (uint16_t)(x & 0x0FFFF);                                 \
   )
   
   #define CONVERT_MS_TO_S_ELAPSED_REMAINDER( x, y, z ) st(     \
@@ -99,7 +99,7 @@ extern uint32 macMcuPrecisionCount(void);
     y += (x >> 16);                                            \
                                                                \
     /* Copy remainder to z */                                  \
-    z = (uint16)(x & 0x0FFFF);                                 \
+    z = (uint16_t)(x & 0x0FFFF);                                 \
   )
 
 #else /* (defined HAL_MCU_CC2430) || (defined HAL_MCU_CC2530) || (defined HAL_MCU_CC2533) */
@@ -120,11 +120,11 @@ extern uint32 macMcuPrecisionCount(void);
  */
 
 #ifndef USE_SYSTICK_IRQ
-static uint32 previousMacTimerTick = 0;
-static uint16 remUsTicks = 0;
+static uint32_t previousMacTimerTick = 0;
+static uint16_t remUsTicks = 0;
 #endif
 
-static uint32 timeMSec = 0;
+static uint32_t timeMSec = 0;
 
 // number of seconds since 0 hrs, 0 minutes, 0 seconds, on the
 // 1st of January 2000 UTC
@@ -133,9 +133,9 @@ UTCTime OSAL_timeSeconds = 0;
 /*********************************************************************
  * LOCAL FUNCTION PROTOTYPES
  */
-static uint8 monthLength( uint8 lpyr, uint8 mon );
+static uint8_t monthLength( uint8_t lpyr, uint8_t mon );
 
-static void osalClockUpdate( uint32 elapsedMSec );
+static void osalClockUpdate( uint32_t elapsedMSec );
 
 /*********************************************************************
  * FUNCTIONS
@@ -161,9 +161,9 @@ void osalTimeUpdate( void )
   /* Note that when ICall is in use the OSAL tick is not updated
    * in this fashion but rather through real OS timer tick. */
   halIntState_t intState;
-  uint32 tmp;
-  uint32 ticks320us;
-  uint32 elapsedMSec = 0;
+  uint32_t tmp;
+  uint32_t ticks320us;
+  uint32_t elapsedMSec = 0;
 
   HAL_ENTER_CRITICAL_SECTION(intState);
   // Get the free-running count of 320us timer ticks
@@ -217,9 +217,9 @@ void osalTimeUpdate( void )
  *
  * @return  none
  */
-static void osalClockUpdate( uint32 elapsedMSec )
+static void osalClockUpdate( uint32_t elapsedMSec )
 {
-  uint32 tmp;
+  uint32_t tmp;
   halIntState_t intState;
   
   HAL_ENTER_CRITICAL_SECTION(intState);
@@ -244,7 +244,7 @@ static void osalClockUpdate( uint32 elapsedMSec )
  *
  * @return  none
  */
-void osalAdjustTimer(uint32 Msec )
+void osalAdjustTimer(uint32_t Msec )
 {
   /* Disable SysTick interrupts */ 
   SysTickIntDisable(); 
@@ -305,15 +305,15 @@ void osal_ConvertUTCTime( UTCTimeStruct *tm, UTCTime secTime )
 {
   // calculate the time less than a day - hours, minutes, seconds
   {
-    uint32 day = secTime % DAY;
+    uint32_t day = secTime % DAY;
     tm->seconds = day % 60UL;
-    tm->minutes = (uint8)((day % 3600UL) / 60UL);
-    tm->hour = (uint8)(day / 3600UL);
+    tm->minutes = (uint8_t)((day % 3600UL) / 60UL);
+    tm->hour = (uint8_t)(day / 3600UL);
   }
 
   // Fill in the calendar - day, month, year
   {
-    uint16 numDays = (uint16)(secTime / DAY);
+    uint16_t numDays = (uint16_t)(secTime / DAY);
     tm->year = BEGYEAR;
     while ( numDays >= YearLength( tm->year ) )
     {
@@ -328,7 +328,7 @@ void osal_ConvertUTCTime( UTCTimeStruct *tm, UTCTime secTime )
       tm->month++;
     }
 
-    tm->day = (uint8)numDays;
+    tm->day = (uint8_t)numDays;
   }
 }
 
@@ -341,9 +341,9 @@ void osal_ConvertUTCTime( UTCTimeStruct *tm, UTCTime secTime )
  *
  * @return  number of days in specified month
  */
-static uint8 monthLength( uint8 lpyr, uint8 mon )
+static uint8_t monthLength( uint8_t lpyr, uint8_t mon )
 {
-  uint8 days = 31;
+  uint8_t days = 31;
 
   if ( mon == 1 ) // feb
   {
@@ -376,7 +376,7 @@ static uint8 monthLength( uint8 lpyr, uint8 mon )
  */
 UTCTime osal_ConvertUTCSecs( UTCTimeStruct *tm )
 {
-  uint32 seconds;
+  uint32_t seconds;
 
   /* Seconds for the partial day */
   seconds = (((tm->hour * 60UL) + tm->minutes) * 60UL) + tm->seconds;
@@ -384,11 +384,11 @@ UTCTime osal_ConvertUTCSecs( UTCTimeStruct *tm )
   /* Account for previous complete days */
   {
     /* Start with complete days in current month */
-    uint16 days = tm->day;
+    uint16_t days = tm->day;
 
     /* Next, complete months in current year */
     {
-      int8 month = tm->month;
+      int8_t month = tm->month;
       while ( --month >= 0 )
       {
         days += monthLength( IsLeapYear( tm->year ), month );
@@ -397,7 +397,7 @@ UTCTime osal_ConvertUTCSecs( UTCTimeStruct *tm )
 
     /* Next, complete years before current year */
     {
-      uint16 year = tm->year;
+      uint16_t year = tm->year;
       while ( --year >= BEGYEAR )
       {
         days += YearLength( year );

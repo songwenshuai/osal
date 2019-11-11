@@ -18,32 +18,18 @@ extern "C"
 /*********************************************************************
  * INCLUDES
  */
+#include <stdint.h>
+#include <stddef.h>
+
 #include "OSAL_Config.h"
 
 /*********************************************************************
  * TYPEDEFS
  */
 
-typedef   signed char       int8;
-typedef unsigned char       uint8;
-
-typedef   signed short int  int16;
-typedef unsigned short int  uint16;
-
-typedef   signed long int   int24;
-typedef unsigned long int   uint24;
-
-typedef   signed long int   int32;
-typedef unsigned long int   uint32;
-
-typedef   signed long long  int64;
-typedef unsigned long long  uint64;
-
-typedef             uint32  _size_t;
-typedef              int32  _bool;
-typedef               _bool  halIntState_t;
-typedef             uint32  halDataAlign_t;
-typedef              uint8  Status_t;
+typedef              uint8_t  Status_t;
+typedef              int32_t  halIntState_t;
+typedef             uint32_t  halDataAlign_t;
 
 /*********************************************************************
  * INCLUDES
@@ -396,9 +382,9 @@ typedef                        char *_va_list;
 #define _ADDRESSOF(v)          (&(v))
 #define _INTSIZEOF(n)          ((sizeof(n) + sizeof(int) - 1) & ~(sizeof(int) - 1))
 
-#define _va_start(ap, v)       ((void)(ap = (_va_list)_ADDRESSOF(v) + _INTSIZEOF(v)))
-#define _va_arg(ap, t)         (*(t*)((ap += _INTSIZEOF(t)) - _INTSIZEOF(t)))
-#define _va_end(ap)            ((void)(ap = (_va_list)0))
+#define _VA_START(ap, v)       ((void)(ap = (_va_list)_ADDRESSOF(v) + _INTSIZEOF(v)))
+#define _VA_ARG(ap, t)         (*(t*)((ap += _INTSIZEOF(t)) - _INTSIZEOF(t)))
+#define _VA_END(ap)            ((void)(ap = (_va_list)0))
 
 /*********************************************************************
  * Global System Events
@@ -465,21 +451,21 @@ typedef                        char *_va_list;
 #define BINV(VAR,Place)
 #endif
 
-/* takes a byte out of a uint32 : var - uint32,  ByteNum - byte to take out (0 - 3) */
-#define BREAK_UINT32( var, ByteNum ) (uint8)((uint32)(((var) >>((ByteNum) * 8)) & 0x00FF))
+/* takes a byte out of a uint32_t : var - uint32_t,  ByteNum - byte to take out (0 - 3) */
+#define BREAK_UINT32( var, ByteNum ) (uint8_t)((uint32_t)(((var) >>((ByteNum) * 8)) & 0x00FF))
 
 #define BUILD_UINT32(Byte0, Byte1, Byte2, Byte3) \
-            ((uint32)((uint32)((Byte0) & 0x00FF) \
-            +  ((uint32)((Byte1) & 0x00FF) << 8) \
-            + ((uint32)((Byte2) & 0x00FF) << 16) \
-            + ((uint32)((Byte3) & 0x00FF) << 24)))
+            ((uint32_t)((uint32_t)((Byte0) & 0x00FF) \
+            +  ((uint32_t)((Byte1) & 0x00FF) << 8) \
+            + ((uint32_t)((Byte2) & 0x00FF) << 16) \
+            + ((uint32_t)((Byte3) & 0x00FF) << 24)))
 
-#define BUILD_UINT16(loByte, hiByte)  ((uint16)(((loByte) & 0x00FF) + (((hiByte) & 0x00FF) << 8)))
+#define BUILD_UINT16(loByte, hiByte)  ((uint16_t)(((loByte) & 0x00FF) + (((hiByte) & 0x00FF) << 8)))
 
 #define HI_UINT16(a)                  (((a) >> 8) & 0xFF)
 #define LO_UINT16(a)                  ((a) & 0xFF)
 
-#define BUILD_UINT8(hiByte, loByte)   ((uint8)(((loByte) & 0x0F) + (((hiByte) & 0x0F) << 4)))
+#define BUILD_UINT8(hiByte, loByte)   ((uint8_t)(((loByte) & 0x0F) + (((hiByte) & 0x0F) << 4)))
 
 #define HI_UINT8(a)                   (((a) >> 4) & 0x0F)
 #define LO_UINT8(a)                   ((a) & 0x0F)
@@ -488,10 +474,10 @@ typedef                        char *_va_list;
 // to by pBuf, and increment pBuf by 4
 #define UINT32_TO_BUF_LITTLE_ENDIAN(pBuf,val) \
     do { \
-        *(pBuf)++ = ((((uint32)(val)) >>  0) & 0xFF); \
-        *(pBuf)++ = ((((uint32)(val)) >>  8) & 0xFF); \
-        *(pBuf)++ = ((((uint32)(val)) >> 16) & 0xFF); \
-        *(pBuf)++ = ((((uint32)(val)) >> 24) & 0xFF); \
+        *(pBuf)++ = ((((uint32_t)(val)) >>  0) & 0xFF); \
+        *(pBuf)++ = ((((uint32_t)(val)) >>  8) & 0xFF); \
+        *(pBuf)++ = ((((uint32_t)(val)) >> 16) & 0xFF); \
+        *(pBuf)++ = ((((uint32_t)(val)) >> 24) & 0xFF); \
     } while (0)
 
 // Return the 32bit little-endian formatted value pointed to by pBuf, and increment pBuf by 4

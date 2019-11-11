@@ -28,18 +28,18 @@
  */
 
 typedef union {
-  uint32 time32;
-  uint16 time16[2];
-  uint8 time8[4];
+  uint32_t time32;
+  uint16_t time16[2];
+  uint8_t time8[4];
 } osalTime_t;
 
 typedef struct
 {
   void   *next;
   osalTime_t timeout;
-  uint16 event_flag;
-  uint8  task_id;
-  uint32 reloadTimeout;
+  uint16_t event_flag;
+  uint8_t  task_id;
+  uint32_t reloadTimeout;
 } osalTimerRec_t;
 
 /*********************************************************************
@@ -60,13 +60,13 @@ osalTimerRec_t *timerHead;
  * LOCAL VARIABLES
  */
 // Milliseconds since last reboot
-static uint32 osal_systemClock;
+static uint32_t osal_systemClock;
 
 /*********************************************************************
  * LOCAL FUNCTION PROTOTYPES
  */
-osalTimerRec_t  *osalAddTimer( uint8 task_id, uint16 event_flag, uint32 timeout );
-osalTimerRec_t *osalFindTimer( uint8 task_id, uint16 event_flag );
+osalTimerRec_t  *osalAddTimer( uint8_t task_id, uint16_t event_flag, uint32_t timeout );
+osalTimerRec_t *osalFindTimer( uint8_t task_id, uint16_t event_flag );
 void osalDeleteTimer( osalTimerRec_t *rmTimer );
 
 /*********************************************************************
@@ -99,7 +99,7 @@ void osalTimerInit( void )
  *
  * @return  osalTimerRec_t * - pointer to newly created timer
  */
-osalTimerRec_t * osalAddTimer( uint8 task_id, uint16 event_flag, uint32 timeout )
+osalTimerRec_t * osalAddTimer( uint8_t task_id, uint16_t event_flag, uint32_t timeout )
 {
   osalTimerRec_t *newTimer;
   osalTimerRec_t *srchTimer;
@@ -166,7 +166,7 @@ osalTimerRec_t * osalAddTimer( uint8 task_id, uint16 event_flag, uint32 timeout 
  *
  * @return  osalTimerRec_t *
  */
-osalTimerRec_t *osalFindTimer( uint8 task_id, uint16 event_flag )
+osalTimerRec_t *osalFindTimer( uint8_t task_id, uint16_t event_flag )
 {
   osalTimerRec_t *srchTimer;
 
@@ -218,13 +218,13 @@ void osalDeleteTimer( osalTimerRec_t *rmTimer )
  *   This function is called to start a timer to expire in n mSecs.
  *   When the timer expires, the calling task will get the specified event.
  *
- * @param   uint8 taskID - task id to set timer for
- * @param   uint16 event_id - event to be notified with
- * @param   uint32 timeout_value - in milliseconds.
+ * @param   uint8_t taskID - task id to set timer for
+ * @param   uint16_t event_id - event to be notified with
+ * @param   uint32_t timeout_value - in milliseconds.
  *
  * @return  OSAL_SUCCESS, or NO_TIMER_AVAIL.
  */
-uint8 osal_start_timerEx( uint8 taskID, uint16 event_id, uint32 timeout_value )
+uint8_t osal_start_timerEx( uint8_t taskID, uint16_t event_id, uint32_t timeout_value )
 {
   halIntState_t intState;
   osalTimerRec_t *newTimer;
@@ -248,13 +248,13 @@ uint8 osal_start_timerEx( uint8 taskID, uint16 event_id, uint32 timeout_value )
  *   When the timer expires, the calling task will get the specified event
  *   and the timer will be reloaded with the timeout value.
  *
- * @param   uint8 taskID - task id to set timer for
- * @param   uint16 event_id - event to be notified with
+ * @param   uint8_t taskID - task id to set timer for
+ * @param   uint16_t event_id - event to be notified with
  * @param   UNINT16 timeout_value - in milliseconds.
  *
  * @return  OSAL_SUCCESS, or NO_TIMER_AVAIL.
  */
-uint8 osal_start_reload_timer( uint8 taskID, uint16 event_id, uint32 timeout_value )
+uint8_t osal_start_reload_timer( uint8_t taskID, uint16_t event_id, uint32_t timeout_value )
 {
   halIntState_t intState;
   osalTimerRec_t *newTimer;
@@ -283,12 +283,12 @@ uint8 osal_start_reload_timer( uint8 taskID, uint16 event_id, uint32 timeout_val
  *   If ZSUCCESS, the function will cancel the timer and prevent the event
  *   associated with the timer from being set for the calling task.
  *
- * @param   uint8 task_id - task id of timer to stop
- * @param   uint16 event_id - identifier of the timer that is to be stopped
+ * @param   uint8_t task_id - task id of timer to stop
+ * @param   uint16_t event_id - identifier of the timer that is to be stopped
  *
  * @return  OSAL_SUCCESS or INVALID_EVENT_ID
  */
-uint8 osal_stop_timerEx( uint8 task_id, uint16 event_id )
+uint8_t osal_stop_timerEx( uint8_t task_id, uint16_t event_id )
 {
   halIntState_t intState;
   osalTimerRec_t *foundTimer;
@@ -312,15 +312,15 @@ uint8 osal_stop_timerEx( uint8 task_id, uint16 event_id )
  *
  * @brief
  *
- * @param   uint8 task_id - task id of timer to check
- * @param   uint16 event_id - identifier of timer to be checked
+ * @param   uint8_t task_id - task id of timer to check
+ * @param   uint16_t event_id - identifier of timer to be checked
  *
  * @return  Return the timer's tick count if found, zero otherwise.
  */
-uint32 osal_get_timeoutEx( uint8 task_id, uint16 event_id )
+uint32_t osal_get_timeoutEx( uint8_t task_id, uint16_t event_id )
 {
   halIntState_t intState;
-  uint32 rtrn = 0;
+  uint32_t rtrn = 0;
   osalTimerRec_t *tmr;
 
   HAL_ENTER_CRITICAL_SECTION( intState );  // Hold off interrupts.
@@ -344,12 +344,12 @@ uint32 osal_get_timeoutEx( uint8 task_id, uint16 event_id )
  *
  *   This function counts the number of active timers.
  *
- * @return  uint8 - number of timers
+ * @return  uint8_t - number of timers
  */
-uint8 osal_timer_num_active( void )
+uint8_t osal_timer_num_active( void )
 {
   halIntState_t intState;
-  uint8 num_timers = 0;
+  uint8_t num_timers = 0;
   osalTimerRec_t *srchTimer;
 
   HAL_ENTER_CRITICAL_SECTION( intState );  // Hold off interrupts.
@@ -378,7 +378,7 @@ uint8 osal_timer_num_active( void )
  *
  * @return  none
  *********************************************************************/
-void osalTimerUpdate( uint32 updateTime )
+void osalTimerUpdate( uint32_t updateTime )
 {
   halIntState_t intState;
   osalTimerRec_t *srchTimer;
@@ -517,7 +517,7 @@ void osalTimerUpdate( uint32 updateTime )
  * @return      Number of timer ticks elapsed during sleep.
  **************************************************************************************************
  */
-uint32 TimerElapsed( void )
+uint32_t TimerElapsed( void )
 {
   /* Stubs */
   return (0);
@@ -534,7 +534,7 @@ uint32 TimerElapsed( void )
  *********************************************************************/
 void osal_adjust_timers( void )
 {
-  uint32 eTime;
+  uint32_t eTime;
 
   if ( timerHead != NULL )
   {
@@ -562,9 +562,9 @@ void osal_adjust_timers( void )
  *
  * @return  none
  *********************************************************************/
-uint32 osal_next_timeout( void )
+uint32_t osal_next_timeout( void )
 {
-  uint32 nextTimeout;
+  uint32_t nextTimeout;
   osalTimerRec_t *srchTimer;
 
   if ( timerHead != NULL )
@@ -603,7 +603,7 @@ uint32 osal_next_timeout( void )
  *
  * @return  local clock in milliseconds
  */
-uint32 osal_GetSystemClock( void )
+uint32_t osal_GetSystemClock( void )
 {
   return ( osal_systemClock );
 }

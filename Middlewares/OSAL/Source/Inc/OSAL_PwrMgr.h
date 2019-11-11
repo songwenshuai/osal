@@ -31,10 +31,10 @@ extern "C"
  */
 typedef struct
 {
-  uint16 pwrmgr_task_state;
-  uint16 pwrmgr_next_timeout;
-  uint16 accumulated_sleep_time;
-  uint8  pwrmgr_device;
+  uint16_t pwrmgr_task_state;
+  uint16_t pwrmgr_next_timeout;
+  uint16_t accumulated_sleep_time;
+  uint8_t  pwrmgr_device;
 } pwrmgr_attribute_t;
 
 /* With PWRMGR_ALWAYS_ON selection, there is no power savings and the
@@ -81,7 +81,7 @@ extern pwrmgr_attribute_t pwrmgr_attribute;
    * state to PWRMGR_HOLD to switch back to PWRMGR_CONSERVE when the
    * hold period ends.
    */
-  extern uint8 osal_pwrmgr_task_state( uint8 task_id, uint8 state );
+  extern uint8_t osal_pwrmgr_task_state( uint8_t task_id, uint8_t state );
 
   /*
    * This function is called on power-up, whenever the device characteristic
@@ -90,7 +90,7 @@ extern pwrmgr_attribute_t pwrmgr_attribute;
    * This function should be called form HAL initialization. After power up
    * initialization, it should only be called from NWK or ZDO.
    */
-  extern void osal_pwrmgr_device( uint8 pwrmgr_device );
+  extern void osal_pwrmgr_device( uint8_t pwrmgr_device );
 
   /*
    * This function is called from the main OSAL loop when there are

@@ -105,7 +105,7 @@ void SysTickIntDisable(void)
  *
  * @return      None.
  */
-void halSleep( uint32 osal_timeout )
+void halSleep( uint32_t osal_timeout )
 {
     //Sleep the task for the specified duration
     HAL_Delay(osal_timeout);

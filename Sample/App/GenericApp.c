@@ -33,7 +33,7 @@
  * GLOBAL VARIABLES
  */
 
-uint8 App_TaskID;
+uint8_t App_TaskID;
 
 /*********************************************************************
  * LOCAL VARIABLES
@@ -49,7 +49,7 @@ uint8 App_TaskID;
 
 static void App_ProcessOSALMsg( DebugStr_t *pInMsg );
 static void Periodic_Event( void );
-static void App_TimerCB( uint8* pData );
+static void App_TimerCB( uint8_t* pData );
 
 /*********************************************************************
  * @fn          App_Init
@@ -60,7 +60,7 @@ static void App_TimerCB( uint8* pData );
  *
  * @return      none
  */
-void App_Init(uint8 task_id)
+void App_Init(uint8_t task_id)
 {
     App_TaskID = task_id;
 
@@ -77,9 +77,9 @@ void App_Init(uint8 task_id)
  *
  * @return      none
  */
-uint16 App_ProcessEvent(uint8 task_id, uint16 events)
+uint16_t App_ProcessEvent(uint8_t task_id, uint16_t events)
 {
-    uint8* pMsg;
+    uint8_t* pMsg;
 
     VOID task_id; // Intentionally unreferenced parameter
 
@@ -108,7 +108,7 @@ uint16 App_ProcessEvent(uint8 task_id, uint16 events)
         pCmd->code = HAL_LED_3;
     
         // Setup Cb Timer
-        osal_CbTimerStartReload(App_TimerCB, (uint8*)pCmd, SBP_CBTIMER_EVT_DELAY, NULL);
+        osal_CbTimerStartReload(App_TimerCB, (uint8_t*)pCmd, SBP_CBTIMER_EVT_DELAY, NULL);
 
         // Set timer for first periodic event
         osal_start_timerEx(App_TaskID, SBP_PERIODIC_EVT, SBP_PERIODIC_EVT_DELAY);
@@ -157,7 +157,7 @@ static void Periodic_Event(void)
  *
  * @return      none
  */
-static void App_TimerCB(uint8* pData)
+static void App_TimerCB(uint8_t* pData)
 {
     if (pData)
     {

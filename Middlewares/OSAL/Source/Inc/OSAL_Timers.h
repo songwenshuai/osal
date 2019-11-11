@@ -49,22 +49,22 @@ extern "C"
   /*
    * Set a Timer
    */
-  extern uint8 osal_start_timerEx( uint8 task_id, uint16 event_id, uint32 timeout_value );
+  extern uint8_t osal_start_timerEx( uint8_t task_id, uint16_t event_id, uint32_t timeout_value );
   
   /*
    * Set a timer that reloads itself.
    */
-  extern uint8 osal_start_reload_timer( uint8 taskID, uint16 event_id, uint32 timeout_value );
+  extern uint8_t osal_start_reload_timer( uint8_t taskID, uint16_t event_id, uint32_t timeout_value );
 
   /*
    * Stop a Timer
    */
-  extern uint8 osal_stop_timerEx( uint8 task_id, uint16 event_id );
+  extern uint8_t osal_stop_timerEx( uint8_t task_id, uint16_t event_id );
 
   /*
    * Get the tick count of a Timer.
    */
-  extern uint32 osal_get_timeoutEx( uint8 task_id, uint16 event_id );
+  extern uint32_t osal_get_timeoutEx( uint8_t task_id, uint16_t event_id );
 
   /*
    * Adjust timer tables
@@ -74,23 +74,23 @@ extern "C"
   /*
    * Update timer tables
    */
-  extern void osalTimerUpdate( uint32 updateTime );
+  extern void osalTimerUpdate( uint32_t updateTime );
 
   /*
    * Count active timers
    */
-  extern uint8 osal_timer_num_active( void );
+  extern uint8_t osal_timer_num_active( void );
 
  /*
   * Read the system clock - returns milliseconds
   */
-  extern uint32 osal_GetSystemClock( void );
+  extern uint32_t osal_GetSystemClock( void );
 
   /*
    * Get the next OSAL timer expiration.
    * This function should only be called in OSAL_PwrMgr.c
    */
-  extern uint32 osal_next_timeout( void );
+  extern uint32_t osal_next_timeout( void );
 
 /*********************************************************************
 *********************************************************************/

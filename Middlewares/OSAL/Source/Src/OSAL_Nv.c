@@ -62,7 +62,7 @@
 #define OSAL_NV_PAGE_HDR_OFFSET 0
 
 #define OSAL_NV_MAX_HOT         3
-static const uint16 hotIds[OSAL_NV_MAX_HOT] = {
+static const uint16_t hotIds[OSAL_NV_MAX_HOT] = {
   ZCD_NV_NWKKEY,
   ZCD_NV_NWK_ACTIVE_KEY_INFO,
   ZCD_NV_NWK_ALTERN_KEY_INFO,
@@ -92,7 +92,7 @@ static const uint16 hotIds[OSAL_NV_MAX_HOT] = {
 )
 
 #define OSAL_NV_PAGE_TO_PTR( pg ) \
-  ((uint8 *)((uint8 *)(((HAL_NV_PAGE_BEG + ((pg) * OSAL_NV_PHY_PER_PG)) * HAL_FLASH_PAGE_SIZE)+ (NV_FLASH_BASE))))
+  ((uint8_t *)((uint8_t *)(((HAL_NV_PAGE_BEG + ((pg) * OSAL_NV_PHY_PER_PG)) * HAL_FLASH_PAGE_SIZE)+ (NV_FLASH_BASE))))
 
 /*********************************************************************
  * TYPEDEFS
@@ -101,14 +101,14 @@ static const uint16 hotIds[OSAL_NV_MAX_HOT] = {
 /* DO NOT CHANGE THIS STRUCTURE - the element order is significant */
 typedef struct
 {
-  uint16 id;    // NV item id code (0xFFFF = not active)
-  uint16 len;   // Length of NV item data bytes
-  uint16 chk;   // Byte-wise checksum of the 'len' data bytes of the item.
-  uint16 pad1;  // Padding ("don't care") for 32-bit flash writes
-  uint16 stat;  // Item status
-  uint16 pad2;  // Padding ("don't care") for 32-bit flash writes
-  uint16 live;  // NV item is 'live' if  and id !=0xFFFF
-  uint16 pad3;  // Padding ("don't care") for 32-bit flash writes
+  uint16_t id;    // NV item id code (0xFFFF = not active)
+  uint16_t len;   // Length of NV item data bytes
+  uint16_t chk;   // Byte-wise checksum of the 'len' data bytes of the item.
+  uint16_t pad1;  // Padding ("don't care") for 32-bit flash writes
+  uint16_t stat;  // Item status
+  uint16_t pad2;  // Padding ("don't care") for 32-bit flash writes
+  uint16_t live;  // NV item is 'live' if  and id !=0xFFFF
+  uint16_t pad3;  // Padding ("don't care") for 32-bit flash writes
 } osalNvHdr_t;
 // Struct member offsets.
 #define OSAL_NV_HDR_ID    0
@@ -121,10 +121,10 @@ typedef struct
 /* DO NOT CHANGE THIS STRUCTURE - the element order is significant */
 typedef struct
 {
-  uint16 active;
-  uint16 pad1;   // Padding ("don't care") for 32-bit flash writes
-  uint16 xfer;
-  uint16 pad2;   // Padding ("don't care") for 32-bit flash writes
+  uint16_t active;
+  uint16_t pad1;   // Padding ("don't care") for 32-bit flash writes
+  uint16_t xfer;
+  uint16_t pad2;   // Padding ("don't care") for 32-bit flash writes
 } osalNvPgHdr_t;
 // Struct member offsets.
 #define OSAL_NV_PG_ACTIVE    0
@@ -149,48 +149,48 @@ typedef enum
  */
 
 // Offset into the page of the first available erased space.
-static uint16 pgOff[OSAL_NV_PAGES_USED];
+static uint16_t pgOff[OSAL_NV_PAGES_USED];
 
 // Count of the bytes lost for the zeroed-out items.
-static uint16 pgLost[OSAL_NV_PAGES_USED];
+static uint16_t pgLost[OSAL_NV_PAGES_USED];
 
 // Page reserved for item compacting transfer.
-static uint8 pgRes;
+static uint8_t pgRes;
 
 // NV page and offsets for hot items.
-static uint8 hotPg[OSAL_NV_MAX_HOT];
-static uint16 hotOff[OSAL_NV_MAX_HOT];
+static uint8_t hotPg[OSAL_NV_MAX_HOT];
+static uint16_t hotOff[OSAL_NV_MAX_HOT];
 
 // Temp header data, 2nd item does not change
-static uint16 hdrData[2] = {OSAL_NV_ERASED_ID,OSAL_NV_ERASED_ID};
+static uint16_t hdrData[2] = {OSAL_NV_ERASED_ID,OSAL_NV_ERASED_ID};
 
 /******************************************************************************
  * LOCAL FUNCTIONS
  */
 
-static uint8  initNV( void );
+static uint8_t  initNV( void );
 
-static uint8  compactPage( uint8 srcPg, uint16 skipId );
-static void   erasePage( uint8 pg );
-static uint16 initPage( uint8 pg, uint16 id, uint8 findDups );
-static void   markPage( uint8 pg, uint8 hdrOfs );
+static uint8_t  compactPage( uint8_t srcPg, uint16_t skipId );
+static void   erasePage( uint8_t pg );
+static uint16_t initPage( uint8_t pg, uint16_t id, uint8_t findDups );
+static void   markPage( uint8_t pg, uint8_t hdrOfs );
 
-static uint16 findItem( uint16 id, uint8 *findPg );
-static uint8  initItem( uint8 flag, uint16 id, uint16 len, void *buf );
-static void   setItem( uint8 pg, uint16 offset, eNvHdrEnum stat );
+static uint16_t findItem( uint16_t id, uint8_t *findPg );
+static uint8_t  initItem( uint8_t flag, uint16_t id, uint16_t len, void *buf );
+static void   setItem( uint8_t pg, uint16_t offset, eNvHdrEnum stat );
 
-static uint16 calcChkB( uint16 len, uint8 *buf );
-static uint16 calcChkF( uint8 pg, uint16 offset, uint16 len );
+static uint16_t calcChkB( uint16_t len, uint8_t *buf );
+static uint16_t calcChkF( uint8_t pg, uint16_t offset, uint16_t len );
 
-static void   readHdr( uint8 pg, uint16 offset, uint8 *buf );
-static void   readPgHdr( uint8 pg, uint16 offset, uint8 *buf );
+static void   readHdr( uint8_t pg, uint16_t offset, uint8_t *buf );
+static void   readPgHdr( uint8_t pg, uint16_t offset, uint8_t *buf );
 
-static void   writeBuf( uint8 pg, uint16 offset, uint16 len, uint8 *buf );
-static void   xferBuf( uint8 srcPg, uint16 srcOff, uint8 dstPg, uint16 dstOff, uint16 len );
+static void   writeBuf( uint8_t pg, uint16_t offset, uint16_t len, uint8_t *buf );
+static void   xferBuf( uint8_t srcPg, uint16_t srcOff, uint8_t dstPg, uint16_t dstOff, uint16_t len );
 
-static uint8  writeItem( uint8 pg, uint16 id, uint16 len, void *buf, uint8 flag );
-static uint8  hotItem(uint16 id);
-static void   hotItemUpdate(uint8 pg, uint16 off, uint16 id);
+static uint8_t  writeItem( uint8_t pg, uint16_t id, uint16_t len, void *buf, uint8_t flag );
+static uint8_t  hotItem(uint16_t id);
+static void   hotItemUpdate(uint8_t pg, uint16_t off, uint16_t id);
 
 /******************************************************************************
  * @fn      initNV
@@ -201,12 +201,12 @@ static void   hotItemUpdate(uint8 pg, uint16 off, uint16 id);
  *
  * @return  TRUE
  */
-static uint8 initNV( void )
+static uint8_t initNV( void )
 {
   osalNvPgHdr_t pgHdr;
-  uint8 oldPg = OSAL_NV_PAGE_NULL;
-  uint8 findDups = FALSE;
-  uint8 pg;
+  uint8_t oldPg = OSAL_NV_PAGE_NULL;
+  uint8_t findDups = FALSE;
+  uint8_t pg;
 
 #ifdef _WIN32
   initFlash();
@@ -216,7 +216,7 @@ static uint8 initNV( void )
 
   for ( pg = 0; pg < OSAL_NV_PAGES_USED; pg++ )
   {
-    readPgHdr( pg, OSAL_NV_PAGE_HDR_OFFSET, (uint8 *)(&pgHdr) );
+    readPgHdr( pg, OSAL_NV_PAGE_HDR_OFFSET, (uint8_t *)(&pgHdr) );
 
     if ( pgHdr.active == OSAL_NV_ERASED_ID )
     {
@@ -290,7 +290,7 @@ static uint8 initNV( void )
 
   if ( pgRes == OSAL_NV_PAGE_NULL )
   {
-    uint8 idx, mostLost = 0;
+    uint8_t idx, mostLost = 0;
 
     for ( idx = 0; idx < OSAL_NV_PAGES_USED; idx++ )
     {
@@ -326,12 +326,12 @@ static uint8 initNV( void )
  *
  * @return  none
  */
-static void markPage( uint8 pg, uint8 ofs )
+static void markPage( uint8_t pg, uint8_t ofs )
 {
   hdrData[0] = OSAL_NV_ZEROED_ID;
 
   flashWrite(OSAL_NV_PAGE_TO_PTR(pg) + OSAL_NV_PAGE_HDR_OFFSET + ofs,
-             OSAL_NV_HDR_ITEM, (uint8 *)(hdrData));
+             OSAL_NV_HDR_ITEM, (uint8_t *)(hdrData));
 }
 
 /******************************************************************************
@@ -349,15 +349,15 @@ static void markPage( uint8 pg, uint8 ofs )
  * @return  If 'id' is non-NULL and good checksums are found, return the offset
  *          of the data corresponding to item Id; else OSAL_NV_ITEM_NULL.
  */
-static uint16 initPage( uint8 pg, uint16 id, uint8 findDups )
+static uint16_t initPage( uint8_t pg, uint16_t id, uint8_t findDups )
 {
-  uint16 offset = OSAL_NV_PG_HDR_SIZE;
-  uint16 sz, lost = 0;
+  uint16_t offset = OSAL_NV_PG_HDR_SIZE;
+  uint16_t sz, lost = 0;
   osalNvHdr_t hdr;
 
   do
   {
-    readHdr( pg, offset, (uint8 *)(&hdr) );
+    readHdr( pg, offset, (uint8_t *)(&hdr) );
 
     if ( hdr.id == OSAL_NV_ERASED_ID )
     {
@@ -411,8 +411,8 @@ static uint16 initPage( uint8 pg, uint16 id, uint8 findDups )
                * immediately above to return a valid page only if the header 'stat'
                * indicates that it was the older item being transferred.
                */
-              uint8 findPg;
-              uint16 off = findItem( (hdr.id | OSAL_NV_SOURCE_ID), &findPg );
+              uint8_t findPg;
+              uint16_t off = findItem( (hdr.id | OSAL_NV_SOURCE_ID), &findPg );
 
               if ( off != OSAL_NV_ITEM_NULL )
               {
@@ -456,10 +456,10 @@ static uint16 initPage( uint8 pg, uint16 id, uint8 findDups )
  *
  * @return  none
  */
-static void erasePage( uint8 pg )
+static void erasePage( uint8_t pg )
 {
-  uint8 *addr = OSAL_NV_PAGE_TO_PTR(pg);
-  uint8 cnt = OSAL_NV_PHY_PER_PG;
+  uint8_t *addr = OSAL_NV_PAGE_TO_PTR(pg);
+  uint8_t cnt = OSAL_NV_PHY_PER_PG;
 
   do {
     flashErasePage(addr);
@@ -497,17 +497,17 @@ static void erasePage( uint8 pg )
  *          (if HAL flash is working.) Nevertheless, one erased reserve page will be maintained
  *          through such a scenario.
  */
-static uint8 compactPage( uint8 srcPg, uint16 skipId )
+static uint8_t compactPage( uint8_t srcPg, uint16_t skipId )
 {
-  uint16 srcOff = OSAL_NV_PG_HDR_SIZE;
-  uint8 rtrn = TRUE;
+  uint16_t srcOff = OSAL_NV_PG_HDR_SIZE;
+  uint8_t rtrn = TRUE;
 
   while ( srcOff < (OSAL_NV_PAGE_SIZE - OSAL_NV_HDR_SIZE ) )
   {
     osalNvHdr_t hdr;
-    uint16 sz, dstOff = pgOff[pgRes];
+    uint16_t sz, dstOff = pgOff[pgRes];
 
-    readHdr( srcPg, srcOff, (uint8 *)(&hdr) );
+    readHdr( srcPg, srcOff, (uint8_t *)(&hdr) );
 
     if ( hdr.id == OSAL_NV_ERASED_ID )
     {
@@ -540,7 +540,7 @@ static uint8 compactPage( uint8 srcPg, uint16 skipId )
 
         if ( writeItem( pgRes, hdr.id, hdr.len, NULL, FALSE ) )
         {
-          uint16 chk;
+          uint16_t chk;
 
           dstOff += OSAL_NV_HDR_SIZE;
           xferBuf( srcPg, srcOff, pgRes, dstOff, sz );
@@ -548,9 +548,9 @@ static uint8 compactPage( uint8 srcPg, uint16 skipId )
           hdrData[0] = calcChkF( pgRes, dstOff, hdr.len );
           dstOff -= OSAL_NV_HDR_SIZE;
           flashWrite(OSAL_NV_PAGE_TO_PTR(pgRes) + dstOff + OSAL_NV_HDR_CHK,
-                     OSAL_NV_HDR_ITEM, (uint8 *)(hdrData));
+                     OSAL_NV_HDR_ITEM, (uint8_t *)(hdrData));
           chk = hdr.chk;
-          readHdr( pgRes, dstOff, (uint8 *)(&hdr) );
+          readHdr( pgRes, dstOff, (uint8_t *)(&hdr) );
 
           if ( chk != hdr.chk )
           {
@@ -600,10 +600,10 @@ static uint8 compactPage( uint8 srcPg, uint16 skipId )
  *          otherwise no valid assignment made - left equal to item Id.
  *
  */
-static uint16 findItem( uint16 id, uint8 *findPg )
+static uint16_t findItem( uint16_t id, uint8_t *findPg )
 {
-  uint16 off;
-  uint8 pg;
+  uint16_t off;
+  uint8_t pg;
 
   for ( pg = 0; pg < OSAL_NV_PAGES_USED; pg++ )
   {
@@ -644,12 +644,12 @@ static uint16 findItem( uint16 id, uint8 *findPg )
  * @return  The OSAL Nv page number if item write and read back checksums ok;
  *          OSAL_NV_PAGE_NULL otherwise.
  */
-static uint8 initItem( uint8 flag, uint16 id, uint16 len, void *buf )
+static uint8_t initItem( uint8_t flag, uint16_t id, uint16_t len, void *buf )
 {
-  uint16 sz = OSAL_NV_ITEM_SIZE( len );
-  uint8 rtrn = OSAL_NV_PAGE_NULL;
-  uint8 cnt = OSAL_NV_PAGES_USED;
-  uint8 pg = pgRes+1;  // Set to 1 after the reserve page to even wear across all available pages.
+  uint16_t sz = OSAL_NV_ITEM_SIZE( len );
+  uint8_t rtrn = OSAL_NV_PAGE_NULL;
+  uint8_t cnt = OSAL_NV_PAGES_USED;
+  uint8_t pg = pgRes+1;  // Set to 1 after the reserve page to even wear across all available pages.
 
   do {
     if (pg >= OSAL_NV_PAGES_USED)
@@ -690,7 +690,7 @@ static uint8 initItem( uint8 flag, uint16 id, uint16 len, void *buf )
           /* Overload 'buf' as an OUT parameter to pass back to the calling function
            * the old page to be cleaned up.
            */
-          *(uint8 *)buf = pg;
+          *(uint8_t *)buf = pg;
         }
         else
         {
@@ -725,13 +725,13 @@ static uint8 initItem( uint8 flag, uint16 id, uint16 len, void *buf )
  *
  * @return  none
  */
-static void setItem( uint8 pg, uint16 offset, eNvHdrEnum stat )
+static void setItem( uint8_t pg, uint16_t offset, eNvHdrEnum stat )
 {
-  uint8 *addr;
+  uint8_t *addr;
   osalNvHdr_t hdr;
 
   offset -= OSAL_NV_HDR_SIZE;
-  readHdr( pg, offset, (uint8 *)(&hdr) );
+  readHdr( pg, offset, (uint8_t *)(&hdr) );
 
   // Address of NV item header
   addr = OSAL_NV_PAGE_TO_PTR(pg) + offset;
@@ -739,14 +739,14 @@ static void setItem( uint8 pg, uint16 offset, eNvHdrEnum stat )
   if ( stat == eNvXfer )
   {
     hdr.stat = OSAL_NV_ACTIVE;
-    flashWrite(addr + OSAL_NV_HDR_STAT, OSAL_NV_HDR_ITEM, (uint8*)(&(hdr.stat)));
+    flashWrite(addr + OSAL_NV_HDR_STAT, OSAL_NV_HDR_ITEM, (uint8_t*)(&(hdr.stat)));
   }
   else // if ( stat == eNvZero )
   {
-    uint16 sz = ((hdr.len + (OSAL_NV_WORD_SIZE-1)) / OSAL_NV_WORD_SIZE) * OSAL_NV_WORD_SIZE +
+    uint16_t sz = ((hdr.len + (OSAL_NV_WORD_SIZE-1)) / OSAL_NV_WORD_SIZE) * OSAL_NV_WORD_SIZE +
                                                                           OSAL_NV_HDR_SIZE;
     hdr.live = OSAL_NV_ZEROED_ID;
-    flashWrite(addr + OSAL_NV_HDR_LIVE, OSAL_NV_HDR_ITEM, (uint8*)(&(hdr.live)));
+    flashWrite(addr + OSAL_NV_HDR_LIVE, OSAL_NV_HDR_ITEM, (uint8_t*)(&(hdr.live)));
     pgLost[pg] += sz;
   }
 }
@@ -761,10 +761,10 @@ static void setItem( uint8 pg, uint16 offset, eNvHdrEnum stat )
  *
  * @return  Calculated checksum of the data bytes.
  */
-static uint16 calcChkB( uint16 len, uint8 *buf )
+static uint16_t calcChkB( uint16_t len, uint8_t *buf )
 {
-  uint8 fill = len % OSAL_NV_WORD_SIZE;
-  uint16 chk;
+  uint8_t fill = len % OSAL_NV_WORD_SIZE;
+  uint16_t chk;
 
   if ( !buf )
   {
@@ -799,10 +799,10 @@ static uint16 calcChkB( uint16 len, uint8 *buf )
  *
  * @return  Calculated checksum of the data bytes.
  */
-static uint16 calcChkF( uint8 pg, uint16 offset, uint16 len )
+static uint16_t calcChkF( uint8_t pg, uint16_t offset, uint16_t len )
 {
-  uint8 *addr = OSAL_NV_PAGE_TO_PTR( pg ) + offset;
-  uint16 chk = 0;
+  uint8_t *addr = OSAL_NV_PAGE_TO_PTR( pg ) + offset;
+  uint16_t chk = 0;
 
   // Length of data extended to OSAL_NV_WORD_SIZE
   len = OSAL_NV_DATA_SIZE( len );
@@ -826,10 +826,10 @@ static uint16 calcChkF( uint8 pg, uint16 offset, uint16 len )
  *
  * @return  none
  */
-static void readHdr( uint8 pg, uint16 offset, uint8 *buf )
+static void readHdr( uint8_t pg, uint16_t offset, uint8_t *buf )
 {
-  uint8 *addr = OSAL_NV_PAGE_TO_PTR( pg ) + offset;
-  uint8 len = OSAL_NV_HDR_SIZE;
+  uint8_t *addr = OSAL_NV_PAGE_TO_PTR( pg ) + offset;
+  uint8_t len = OSAL_NV_HDR_SIZE;
 
   do
   {
@@ -848,10 +848,10 @@ static void readHdr( uint8 pg, uint16 offset, uint8 *buf )
  *
  * @return  none
  */
-static void readPgHdr( uint8 pg, uint16 offset, uint8 *buf )
+static void readPgHdr( uint8_t pg, uint16_t offset, uint8_t *buf )
 {
-  uint8 *addr = OSAL_NV_PAGE_TO_PTR( pg ) + offset;
-  uint8 len = OSAL_NV_PG_HDR_SIZE;
+  uint8_t *addr = OSAL_NV_PAGE_TO_PTR( pg ) + offset;
+  uint8_t len = OSAL_NV_PG_HDR_SIZE;
 
   do
   {
@@ -871,10 +871,10 @@ static void readPgHdr( uint8 pg, uint16 offset, uint8 *buf )
  *
  * @return  TRUE if data buf checksum matches read back checksum, else FALSE.
  */
-static void writeBuf( uint8 dstPg, uint16 dstOff, uint16 len, uint8 *buf )
+static void writeBuf( uint8_t dstPg, uint16_t dstOff, uint16_t len, uint8_t *buf )
 {
-  uint8 *addr;
-  uint8 idx, rem, tmp[OSAL_NV_WORD_SIZE];
+  uint8_t *addr;
+  uint8_t idx, rem, tmp[OSAL_NV_WORD_SIZE];
 
   rem = dstOff % OSAL_NV_WORD_SIZE;
   if ( rem )
@@ -932,10 +932,10 @@ static void writeBuf( uint8 dstPg, uint16 dstOff, uint16 len, uint8 *buf )
  *
  * @return  none
  */
-static void xferBuf( uint8 srcPg, uint16 srcOff, uint8 dstPg, uint16 dstOff, uint16 len )
+static void xferBuf( uint8_t srcPg, uint16_t srcOff, uint8_t dstPg, uint16_t dstOff, uint16_t len )
 {
-  uint8 *addr;
-  uint8 idx, rem, tmp[OSAL_NV_WORD_SIZE];
+  uint8_t *addr;
+  uint8_t idx, rem, tmp[OSAL_NV_WORD_SIZE];
 
   rem = dstOff % OSAL_NV_WORD_SIZE;
   if ( rem )
@@ -1003,25 +1003,25 @@ static void xferBuf( uint8 srcPg, uint16 srcOff, uint8 dstPg, uint16 dstOff, uin
  *
  * @return  TRUE if header/data to write matches header/data read back, else FALSE.
  */
-static uint8 writeItem( uint8 pg, uint16 id, uint16 len, void *buf, uint8 flag )
+static uint8_t writeItem( uint8_t pg, uint16_t id, uint16_t len, void *buf, uint8_t flag )
 {
-  uint16 hdrOff = pgOff[pg];
-  uint8 rtrn = FALSE;
+  uint16_t hdrOff = pgOff[pg];
+  uint8_t rtrn = FALSE;
   osalNvHdr_t hdr;
 
   hdr.id = id;
   hdr.len = len;
 
   flashWrite(OSAL_NV_PAGE_TO_PTR(pg) + hdrOff + OSAL_NV_HDR_ID,
-             OSAL_NV_HDR_ITEM, (uint8 *)(&hdr));
-  readHdr( pg, hdrOff, (uint8 *)(&hdr) );
+             OSAL_NV_HDR_ITEM, (uint8_t *)(&hdr));
+  readHdr( pg, hdrOff, (uint8_t *)(&hdr) );
 
   if ( (hdr.id == id) && (hdr.len == len) )
   {
     if ( flag )
     {
-      uint16 chk = calcChkB( len, buf );
-      uint16 datOff = hdrOff + OSAL_NV_HDR_SIZE;
+      uint16_t chk = calcChkB( len, buf );
+      uint16_t datOff = hdrOff + OSAL_NV_HDR_SIZE;
 
       if ( buf != NULL )
       {
@@ -1032,8 +1032,8 @@ static uint8 writeItem( uint8 pg, uint16 id, uint16 len, void *buf, uint8 flag )
       {
         hdrData[0] = chk;
         flashWrite(OSAL_NV_PAGE_TO_PTR(pg) + hdrOff + OSAL_NV_HDR_CHK,
-                   OSAL_NV_HDR_ITEM, (uint8 *)(hdrData));
-        readHdr( pg, hdrOff, (uint8 *)(&hdr) );
+                   OSAL_NV_HDR_ITEM, (uint8_t *)(hdrData));
+        readHdr( pg, hdrOff, (uint8_t *)(&hdr) );
 
         if ( chk == hdr.chk )
         {
@@ -1074,9 +1074,9 @@ static uint8 writeItem( uint8 pg, uint16 id, uint16 len, void *buf, uint8 flag )
  *
  * @return  A valid index into the hot items if the item is hot; OSAL_NV_MAX_HOT if not.
  */
-static uint8 hotItem(uint16 id)
+static uint8_t hotItem(uint16_t id)
 {
-  uint8 hotIdx;
+  uint8_t hotIdx;
 
   for (hotIdx = 0; hotIdx < OSAL_NV_MAX_HOT; hotIdx++)
   {
@@ -1100,9 +1100,9 @@ static uint8 hotItem(uint16 id)
  *
  * @return  none
  */
-static void hotItemUpdate(uint8 pg, uint16 off, uint16 id)
+static void hotItemUpdate(uint8_t pg, uint16_t off, uint16_t id)
 {
-  uint8 hotIdx = hotItem(id);
+  uint8_t hotIdx = hotItem(id);
 
   if (hotIdx < OSAL_NV_MAX_HOT)
   {
@@ -1144,10 +1144,10 @@ void osal_nv_init( void *p )
  *          OSAL_SUCCESS       - Id already existed, no action taken.
  *          NV_OPER_FAILED - Failure to find or create Id.
  */
-uint8 osal_nv_item_init( uint16 id, uint16 len, void *buf )
+uint8_t osal_nv_item_init( uint16_t id, uint16_t len, void *buf )
 {
-  uint8 findPg;
-  uint16 offset;
+  uint8_t findPg;
+  uint16_t offset;
 
   if ( hotItem( id ) < OSAL_NV_MAX_HOT )
   {
@@ -1179,12 +1179,12 @@ uint8 osal_nv_item_init( uint16 id, uint16 len, void *buf )
  *
  * @return  Item length, if found; zero otherwise.
  */
-uint16 osal_nv_item_len( uint16 id )
+uint16_t osal_nv_item_len( uint16_t id )
 {
-  uint8 findPg;
+  uint8_t findPg;
   osalNvHdr_t hdr;
-  uint16 offset;
-  uint8 hotIdx;
+  uint16_t offset;
+  uint8_t hotIdx;
 
   if ((hotIdx = hotItem(id)) < OSAL_NV_MAX_HOT)
   {
@@ -1196,7 +1196,7 @@ uint16 osal_nv_item_len( uint16 id )
     return 0;
   }
 
-    readHdr( findPg, (offset - OSAL_NV_HDR_SIZE), (uint8 *)(&hdr) );
+    readHdr( findPg, (offset - OSAL_NV_HDR_SIZE), (uint8_t *)(&hdr) );
     return hdr.len;
   }
 
@@ -1214,16 +1214,16 @@ uint16 osal_nv_item_len( uint16 id )
  * @return  OSAL_SUCCESS if successful, NV_ITEM_UNINIT if item did not
  *          exist in NV and offset is non-zero, NV_OPER_FAILED if failure.
  */
-uint8 osal_nv_write( uint16 id, uint16 ndx, uint16 len, void *buf )
+uint8_t osal_nv_write( uint16_t id, uint16_t ndx, uint16_t len, void *buf )
 {
-  uint8 rtrn = OSAL_SUCCESS;
+  uint8_t rtrn = OSAL_SUCCESS;
 
   if ( len != 0 )
   {
     osalNvHdr_t hdr;
-    uint16 origOff, srcOff;
-    uint16 cnt, chk;
-    uint8 *addr, *ptr, srcPg;
+    uint16_t origOff, srcOff;
+    uint16_t cnt, chk;
+    uint8_t *addr, *ptr, srcPg;
 
     origOff = srcOff = findItem( id, &srcPg );
     if ( srcOff == OSAL_NV_ITEM_NULL )
@@ -1231,7 +1231,7 @@ uint8 osal_nv_write( uint16 id, uint16 ndx, uint16 len, void *buf )
       return NV_ITEM_UNINIT;
     }
 
-    readHdr( srcPg, (srcOff - OSAL_NV_HDR_SIZE), (uint8 *)(&hdr) );
+    readHdr( srcPg, (srcOff - OSAL_NV_HDR_SIZE), (uint8_t *)(&hdr) );
     if ( hdr.len < (ndx + len) )
     {
       return NV_OPER_FAILED;
@@ -1256,13 +1256,13 @@ uint8 osal_nv_write( uint16 id, uint16 ndx, uint16 len, void *buf )
 
     if ( chk != 0 )  // If the buffer to write is different in one or more bytes.
     {
-      uint8 comPg = OSAL_NV_PAGE_NULL;
-      uint8 dstPg = initItem( FALSE, id, hdr.len, &comPg );
+      uint8_t comPg = OSAL_NV_PAGE_NULL;
+      uint8_t dstPg = initItem( FALSE, id, hdr.len, &comPg );
 
       if ( dstPg != OSAL_NV_PAGE_NULL )
       {
-        uint16 tmp = OSAL_NV_DATA_SIZE( hdr.len );
-        uint16 dstOff = pgOff[dstPg] - tmp;
+        uint16_t tmp = OSAL_NV_DATA_SIZE( hdr.len );
+        uint16_t dstOff = pgOff[dstPg] - tmp;
         srcOff = origOff;
         chk = hdr.chk;
 
@@ -1289,8 +1289,8 @@ uint8 osal_nv_write( uint16 id, uint16 ndx, uint16 len, void *buf )
         hdrData[0] = calcChkF( dstPg, dstOff, hdr.len );
         dstOff -= OSAL_NV_HDR_SIZE;
         flashWrite(OSAL_NV_PAGE_TO_PTR(dstPg) + dstOff + OSAL_NV_HDR_CHK,
-                   OSAL_NV_HDR_ITEM, (uint8 *)(hdrData));
-        readHdr( dstPg, dstOff, (uint8 *)(&hdr) );
+                   OSAL_NV_HDR_ITEM, (uint8_t *)(hdrData));
+        readHdr( dstPg, dstOff, (uint8_t *)(&hdr) );
 
         if ( chk != hdr.chk )
         {
@@ -1349,12 +1349,12 @@ uint8 osal_nv_write( uint16 id, uint16 ndx, uint16 len, void *buf )
  * @return  OSAL_SUCCESS if NV data was copied to the parameter 'buf'.
  *          Otherwise, NV_OPER_FAILED for failure.
  */
-uint8 osal_nv_read( uint16 id, uint16 ndx, uint16 len, void *buf )
+uint8_t osal_nv_read( uint16_t id, uint16_t ndx, uint16_t len, void *buf )
 {
-  uint8 *addr, *ptr = (uint8 *)buf;
-  uint8 findPg;
-  uint16 offset;
-  uint8 hotIdx;
+  uint8_t *addr, *ptr = (uint8_t *)buf;
+  uint8_t findPg;
+  uint16_t offset;
+  uint8_t hotIdx;
 
   if ((hotIdx = hotItem(id)) < OSAL_NV_MAX_HOT)
   {
@@ -1389,11 +1389,11 @@ uint8 osal_nv_read( uint16 id, uint16 ndx, uint16 len, void *buf )
  *          NV_BAD_ITEM_LEN if length parameter not correct,
  *          NV_OPER_FAILED if attempted deletion failed.
  */
-uint8 osal_nv_delete( uint16 id, uint16 len )
+uint8_t osal_nv_delete( uint16_t id, uint16_t len )
 {
-  uint8 findPg;
-  uint16 length;
-  uint16 offset;
+  uint8_t findPg;
+  uint16_t length;
+  uint16_t offset;
 
   offset = findItem( id, &findPg );
   if ( offset == OSAL_NV_ITEM_NULL )

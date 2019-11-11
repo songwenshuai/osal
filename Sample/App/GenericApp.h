@@ -38,7 +38,7 @@ extern "C"
 /*********************************************************************
  * GLOBAL VARIABLES
  */
-extern uint8 App_TaskID;
+extern uint8_t App_TaskID;
 
 /*********************************************************************
  * TYPEDEF
@@ -46,22 +46,22 @@ extern uint8 App_TaskID;
 typedef struct
 {
   osal_event_hdr_t  hdr;
-  uint8             strLen;
-  uint8             *pString;
+  uint8_t             strLen;
+  uint8_t             *pString;
 } DebugStr_t;
 
 // LED Command info
 typedef struct
 {
-  uint16 connHandle;
-  uint8 code;
+  uint16_t connHandle;
+  uint8_t code;
 } ledCmd_t;
 
 /*********************************************************************
  * FUNCTIONS
  */
-void         App_Init( uint8 task_id );
-uint16       App_ProcessEvent( uint8 task_id, uint16 events );
+void         App_Init( uint8_t task_id );
+uint16_t       App_ProcessEvent( uint8_t task_id, uint16_t events );
 
 /*********************************************************************
 *********************************************************************/

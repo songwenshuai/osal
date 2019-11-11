@@ -37,7 +37,7 @@ extern void Hal_KeyInit( void );
 /**************************************************************************************************
  *                                      GLOBAL VARIABLES
  **************************************************************************************************/
-uint8 Hal_TaskID;
+uint8_t Hal_TaskID;
 
 extern void HalLedUpdate( void ); /* Notes: This for internal only so it shouldn't be in hal_led.h */
 
@@ -212,7 +212,7 @@ void Hal_KeyInit(void)
  *
  * @return  None
  **************************************************************************************************/
-void Hal_Init( uint8 task_id )
+void Hal_Init( uint8_t task_id )
 {
   /* Register task ID */
   Hal_TaskID = task_id;
@@ -257,9 +257,9 @@ void HalDriverInit (void)
  *
  * @return  None
  **************************************************************************************************/
-uint16 Hal_ProcessEvent( uint8 task_id, uint16 events )
+uint16_t Hal_ProcessEvent( uint8_t task_id, uint16_t events )
 {
-  uint8 *msgPtr;
+  uint8_t *msgPtr;
 
   (void)task_id;  // Intentionally unreferenced parameter
 
