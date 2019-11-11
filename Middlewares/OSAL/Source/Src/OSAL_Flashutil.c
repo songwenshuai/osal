@@ -10,7 +10,7 @@
  * INCLUDES
  */
 #include "OSAL.h"
-#include "OSAL_Flashutil32.h"
+#include "OSAL_Flashutil.h"
 
 /*********************************************************************
  * MACROS

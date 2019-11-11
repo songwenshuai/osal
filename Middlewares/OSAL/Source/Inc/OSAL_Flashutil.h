@@ -1,5 +1,5 @@
 /**************************************************************************************************
-  Filename:       OSAL_Flashutil32.h
+  Filename:       OSAL_Flashutil.h
   Revised:        $Date: 2011-01-21 14:43:43 -0800 (Fri, 21 Jan 2011) $
   Revision:       $Revision: 24872 $
 

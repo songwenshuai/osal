@@ -1230,7 +1230,7 @@
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Debug.h</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Flashutil32.h</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Flashutil.h</name>
           </file>
           <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Inc\OSAL_Helper.h</name>
@@ -1272,7 +1272,7 @@
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Clock.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Flashutil32.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Flashutil.c</name>
           </file>
           <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Helper.c</name>
@@ -1287,7 +1287,7 @@
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Mutex.c</name>
           </file>
           <file>
-            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Nv32.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_Nv.c</name>
           </file>
           <file>
             <name>$PROJ_DIR$\..\..\..\..\Middlewares\OSAL\Source\Src\OSAL_PwrMgr.c</name>
