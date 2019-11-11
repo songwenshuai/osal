@@ -1108,9 +1108,6 @@
           <name>$PROJ_DIR$\..\Core\Src\gpio.c</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\Core\Src\spi.c</name>
-        </file>
-        <file>
           <name>$PROJ_DIR$\..\Core\Src\usart.c</name>
         </file>
         <file>
@@ -1134,9 +1131,6 @@
       <name>STM32F1xx_HAL_Driver</name>
       <file>
         <name>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_gpio_ex.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_spi.c</name>
       </file>
       <file>
         <name>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_tim.c</name>
