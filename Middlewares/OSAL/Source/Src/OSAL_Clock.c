@@ -13,7 +13,6 @@
 
 #include "OSAL_Timers.h"
 #include "OSAL_Clock.h"
-#include "OSAL_Mutex.h"
 
 #include "printf.h"
 
