@@ -351,6 +351,7 @@
         <option>
           <name>CCIncludePath2</name>
           <state>$PROJ_DIR$/../Bsp/Button</state>
+          <state>$PROJ_DIR$/../Bsp/Flash</state>
           <state>$PROJ_DIR$/../Bsp/Led</state>
           <state>$PROJ_DIR$/../Core/Inc</state>
           <state>$PROJ_DIR$/../Drivers/STM32F1xx_HAL_Driver/Inc</state>
@@ -1078,6 +1079,15 @@
         </file>
         <file>
           <name>$PROJ_DIR$\..\Bsp\Button\bsp_pb.h</name>
+        </file>
+      </group>
+      <group>
+        <name>Flash</name>
+        <file>
+          <name>$PROJ_DIR$\..\Bsp\Flash\drv_flash.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\Bsp\Flash\drv_flash.h</name>
         </file>
       </group>
       <group>
