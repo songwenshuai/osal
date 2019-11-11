@@ -217,9 +217,6 @@ void Hal_Init( uint8 task_id )
   /* Register task ID */
   Hal_TaskID = task_id;
 
-  // Initialze HAL drivers
-  HalDriverInit();
-
   /* Start polling if callback function is setup*/
   osal_set_event(Hal_TaskID, HAL_KEY_EVENT);
 }

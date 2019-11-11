@@ -18,7 +18,10 @@
 #include "OSAL_Timers.h"
 #include "OSAL_PwrMgr.h"
 #include "OSAL_Memory.h"
+#include "OSAL_Nv.h"
 #include "OSAL_Printf.h"
+
+#include "hal_drivers.h"
 
 /*********************************************************************
  * MACROS
@@ -1743,6 +1746,12 @@ uint8 osal_init_system( void )
 
   // Hook Initialize
   OSAL_Init_Hook();
+
+  // Initialze HAL drivers
+  HalDriverInit();
+
+  // Initialize NV System
+  osal_nv_init(NULL);
 
   // Initialize the Memory Allocation System
   osal_mem_init();

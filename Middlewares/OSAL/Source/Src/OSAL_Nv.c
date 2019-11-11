@@ -72,8 +72,6 @@ static const uint16 hotIds[OSAL_NV_MAX_HOT] = {
  * MACROS
  */
 
-/* #define OSAL_NV_CHECK_BUS_VOLTAGE  OnBoard_CheckVoltage() */
-
 #define OSAL_NV_DATA_SIZE( LEN )  \
      ((((LEN) + OSAL_NV_WORD_SIZE - 1) / OSAL_NV_WORD_SIZE) * OSAL_NV_WORD_SIZE)
 
@@ -146,14 +144,6 @@ typedef enum
  * GLOBAL VARIABLES
  */
 
-#ifdef OAD_KEEP_NV_PAGES
-// When NV pages are to remain intact during OAD download,
-// the image itself should not include NV pages.
-#pragma location=HAL_NV_START_ADDR
-__no_init uint8 _nvBuf[OSAL_NV_PAGES_USED * OSAL_NV_PAGE_SIZE];
-#pragma required=_nvBuf
-#endif // OAD_KEEP_NV_PAGES
-
 /******************************************************************************
  * LOCAL VARIABLES
  */
@@ -218,8 +208,6 @@ static uint8 initNV( void )
   uint8 findDups = FALSE;
   uint8 pg;
 
-  /* ++ sws add */
-  initFlash();
   pgRes = OSAL_NV_PAGE_NULL;
 
   for ( pg = 0; pg < OSAL_NV_PAGES_USED; pg++ )
@@ -1157,10 +1145,6 @@ uint8 osal_nv_item_init( uint16 id, uint16 len, void *buf )
   uint8 findPg;
   uint16 offset;
 
-  /* -- sws add
-  if ( ( hotItem( id ) < OSAL_NV_MAX_HOT ) && ( !OSAL_NV_CHECK_BUS_VOLTAGE ) )
-  */
-  // -- sws del
   if ( hotItem( id ) < OSAL_NV_MAX_HOT )
   {
     return NV_OPER_FAILED;
@@ -1229,13 +1213,6 @@ uint16 osal_nv_item_len( uint16 id )
 uint8 osal_nv_write( uint16 id, uint16 ndx, uint16 len, void *buf )
 {
   uint8 rtrn = OSAL_SUCCESS;
-
-  /* -- sws del
-  if ( !OSAL_NV_CHECK_BUS_VOLTAGE )
-  {
-    return NV_OPER_FAILED;
-  }
-  */
 
   if ( len != 0 )
   {

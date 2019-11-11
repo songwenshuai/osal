@@ -66,7 +66,7 @@ int stm32_flash_read(uint32_t addr, uint8_t *buf, size_t size)
 
     if ((addr + size) > STM32_FLASH_END_ADDRESS)
     {
-        printf("read outrange flash size! addr is (0x%p)", (void *)(addr + size));
+        printf("read outrange flash size! addr is (0x%p)\r\n", (void *)(addr + size));
         return -FLASHIF_EINVAL;
     }
 
@@ -96,13 +96,13 @@ int stm32_flash_write(uint32_t addr, const uint8_t *buf, size_t size)
 
     if (addr % 4 != 0)
     {
-        printf("write addr must be 4-byte alignment");
+        printf("write addr must be 4-byte alignment\r\n");
         return -FLASHIF_EINVAL;
     }
 
     if ((end_addr) > STM32_FLASH_END_ADDRESS)
     {
-        printf("write outrange flash size! addr is (0x%p)", (void *)(addr + size));
+        printf("write outrange flash size! addr is (0x%p)\r\n", (void *)(addr + size));
         return -FLASHIF_EINVAL;
     }
 
@@ -157,7 +157,7 @@ int stm32_flash_erase(uint32_t addr, size_t size)
 
     if ((addr + size) > STM32_FLASH_END_ADDRESS)
     {
-        printf("ERROR: erase outrange flash size! addr is (0x%p)\n", (void *)(addr + size));
+        printf("ERROR: erase outrange flash size! addr is (0x%p)\r\n", (void *)(addr + size));
         return -FLASHIF_EINVAL;
     }
 
@@ -182,7 +182,7 @@ __exit:
         return result;
     }
 
-    printf("erase done: addr (0x%p), size %d", (void *)addr, size);
+    printf("erase done: addr (0x%p), size %d\r\n", (void *)addr, size);
     return size;
 }
 

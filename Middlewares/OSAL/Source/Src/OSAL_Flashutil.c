@@ -22,15 +22,9 @@
 /* Greatest-multiple-of-4 <= addr */
 #define aligned_address(addr)           ((uint32)addr & ~3)
 
-#define HAL_NV_ADDR_OFFSET(p_addr)      (((uint32)p_addr) - HAL_NV_START_ADDR)
-#define OSAL_NV_PTR_TO_PAGE( p_addr )   (HAL_NV_ADDR_OFFSET(p_addr) / HAL_FLASH_PAGE_SIZE)
-#define OSAL_NV_PTR_TO_OFFSET( p_addr ) (HAL_NV_ADDR_OFFSET(p_addr) % HAL_FLASH_PAGE_SIZE)
-
 /*********************************************************************
  * GLOBAL VARIABLES
  */
-
-uint8 nvDataBuf[HAL_NV_PAGE_CNT][HAL_FLASH_PAGE_SIZE];
 
 /*********************************************************************
  * @fn      flash_write_word
@@ -46,41 +40,7 @@ uint8 nvDataBuf[HAL_NV_PAGE_CNT][HAL_FLASH_PAGE_SIZE];
  */
 static void flash_write_word( uint32 *ulAddress, uint32 data )
 {
-  /* -- sws del
-  ROM_ProgramFlash((uint32_t *)&data, (uint32_t)ulAddress, 4);
-  */
-  // ++ sws add
-  *(uint32*)(&nvDataBuf[OSAL_NV_PTR_TO_PAGE(ulAddress)][OSAL_NV_PTR_TO_OFFSET(ulAddress)]) = data;
-}
-
-/*********************************************************************
- * @fn      initFlash
- *
- * @brief   Sets the clock parameter required by the flash-controller
- *
- * @param   none
- *
- * @return  none
- */
-void initFlash( void )
-{
-  //FlashUsecSet( HAL_CPU_CLOCK_MHZ - 1 );
-
-  // ++ sws add start
-  halIntState_t IntState;
-  uint16 offset;
-  uint8 pg;
-
-  HAL_ENTER_CRITICAL_SECTION(IntState);
-  for (pg = 0; pg < HAL_NV_PAGE_CNT; pg++)
-  {
-    for (offset = 0; offset < HAL_FLASH_PAGE_SIZE; offset++)
-    {
-        nvDataBuf[pg][offset] = 0xFF;
-    }
-  }
-  HAL_EXIT_CRITICAL_SECTION(IntState);
-  // ++ sws add end
+  stm32_flash_write( (uint32_t)ulAddress, (const uint8_t *)&data, sizeof(uint32) );
 }
 
 /*********************************************************************
@@ -97,28 +57,10 @@ void flashErasePage( uint8 *addr )
 {
   halIntState_t IntState;
 
-  /* Set the clock frequency */
-  /* -- sws del
-  initFlash();
-  */
-
   HAL_ENTER_CRITICAL_SECTION( IntState );
 
   /* Erase flash */
-  /* -- sws del
-  FlashMainPageErase( (unsigned long)addr );
-  */
-
-  // ++ sws add start
-  uint16 cnt = HAL_FLASH_PAGE_SIZE;
-  uint8* pData = nvDataBuf[(HAL_NV_ADDR_OFFSET(addr) / HAL_FLASH_PAGE_SIZE)];
-
-  while (cnt--)
-  {
-    *pData++ = 0xFF;
-  }
-  // ++ sws add end
-
+  stm32_flash_erase( (uint32_t)addr, HAL_FLASH_PAGE_SIZE );
   HAL_EXIT_CRITICAL_SECTION( IntState );
 }
 
@@ -152,11 +94,6 @@ void flashWrite( uint8 *addr, uint16 len, uint8 *buf )
      */
     uint16 start_bytes = 0, middle_bytes = 0, end_bytes = 0;
     halIntState_t IntState;
-  
-    /* Set the clock frequency */
-    /* -- sws del
-    initFlash();
-    */
   
     /* Extract 4-byte aligned address */
     uint32ptr = (uint32 *)aligned_address(addr);
