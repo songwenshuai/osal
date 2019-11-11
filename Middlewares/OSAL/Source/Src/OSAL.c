@@ -247,9 +247,6 @@ uint8 osal_init_system( void )
   // Initialize the timers
   osalTimerInit();
 
-  // Initialize clock module
-  osalClockInit();
-
   // Initialize the Power Management System
   osal_pwrmgr_init();
   
