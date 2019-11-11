@@ -13,7 +13,9 @@
  * INCLUDES
  */
 
+#ifndef _WIN32
 #include "drv_flash.h"
+#endif
 
 /*********************************************************************
  * CONSTANTS
@@ -32,11 +34,19 @@
 #define HAL_FLASH_WORD_SIZE               8
 
 // Z-Stack uses flash pages for NV
+#ifdef _WIN32
+#define HAL_NV_PAGE_CNT                   6
+#else
 #define HAL_NV_PAGE_CNT                   128
+#endif
 #define HAL_NV_PAGE_END                   (HAL_NV_PAGE_CNT - 1)                    // 0-5 six page
 #define HAL_NV_PAGE_BEG                   (HAL_NV_PAGE_END - HAL_NV_PAGE_CNT + 1)
 
+#ifdef _WIN32
+#define NV_FLASH_BASE                     ((uint32)nvDataBuf)                      // Flash 
+#else
 #define NV_FLASH_BASE                     ((uint32)0x08040000)                      // Flash 
+#endif
 
 #define HAL_NV_START_ADDR                 NV_FLASH_BASE
 
@@ -48,9 +58,17 @@
  * GLOBAL VARIABLES
  */
 
+#ifdef _WIN32
+extern uint8 nvDataBuf[HAL_NV_PAGE_CNT][HAL_FLASH_PAGE_SIZE];
+#endif
+
 /*********************************************************************
  * FUNCTIONS
  */
+
+#ifdef _WIN32
+extern void initFlash(void);
+#endif
 
 extern void flashErasePage( uint8 *addr );
 

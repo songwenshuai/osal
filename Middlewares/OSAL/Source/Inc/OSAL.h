@@ -296,7 +296,6 @@ typedef struct mutex_struct
    */
   extern uint8 osal_set_event( uint8 task_id, uint16 event_flag );
 
-
   /*
    * Clear a Task Event
    */
@@ -322,7 +321,6 @@ typedef struct mutex_struct
 
 
 /*** Task Management  ***/
-
 
   /*
    * Initialize the Task System

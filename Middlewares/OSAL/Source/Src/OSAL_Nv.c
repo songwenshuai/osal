@@ -208,6 +208,10 @@ static uint8 initNV( void )
   uint8 findDups = FALSE;
   uint8 pg;
 
+#ifdef _WIN32
+  initFlash();
+#endif
+
   pgRes = OSAL_NV_PAGE_NULL;
 
   for ( pg = 0; pg < OSAL_NV_PAGES_USED; pg++ )
